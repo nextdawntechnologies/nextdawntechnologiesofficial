@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Next Dawn Technologies explores software, interactive experiences, and emerging technology."
+    />
+    <meta name="theme-color" content="#6c4df4" />
+    <link rel="icon" href="assets/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="assets/next-dawn-mark.png" />
+    <title>Next Dawn Technologies</title>
+    <style>
+      :root {
+        --ink: #151221;
+        --muted: #676275;
+        --line: #e8e5ef;
+        --canvas: #fbfaff;
+        --paper: #fff;
+        --violet: #6c4df4;
+        --violet-deep: #4828c7;
+        --orange: #ff8a4c;
+        --orange-deep: #e86526;
+        --page-width: min(1160px, calc(100vw - 48px));
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        min-width: 320px;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 99% 6%, rgba(255, 138, 76, .1), transparent 19rem),
+          radial-gradient(circle at 4% 13%, rgba(108, 77, 244, .1), transparent 23rem),
+          var(--canvas);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      a { color: inherit; text-decoration: none; }
+      select { font: inherit; }
+      h1, h2, h3, p { margin-top: 0; }
+      h1, h2, h3 { letter-spacing: -.055em; }
+
+      .site-shell { position: relative; overflow: hidden; min-height: 100vh; }
+      .site-header, .hero, .focus, .idea, .contact, .site-footer {
+        position: relative;
+        z-index: 1;
+        width: var(--page-width);
+        margin-inline: auto;
+      }
+
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 24px 0;
+      }
+      .brand { display: inline-flex; align-items: center; gap: .72rem; min-width: max-content; }
+      .brand img { display: block; width: 40px; height: 40px; border-radius: 13px; }
+      .brand-name { display: grid; gap: 1px; font-size: .94rem; font-weight: 760; letter-spacing: -.025em; line-height: 1; }
+      .brand-name small { color: var(--muted); font-size: .61rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+      .header-actions, .site-nav { display: flex; align-items: center; }
+      .header-actions { gap: 1.25rem; }
+      .site-nav { gap: 1.25rem; color: #544f5f; font-size: .83rem; font-weight: 680; }
+      .site-nav a { transition: color .18s ease; }
+      .site-nav a:hover, .site-nav a:focus-visible { color: var(--violet-deep); }
+      .language-picker select {
+        min-width: 108px;
+        padding: .56rem 2rem .56rem .72rem;
+        color: #423c4c;
+        appearance: none;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        outline: none;
+        background:
+          linear-gradient(45deg, transparent 50%, #746d7b 50%) calc(100% - 15px) calc(50% - 2px) / 5px 5px no-repeat,
+          linear-gradient(135deg, #746d7b 50%, transparent 50%) calc(100% - 10px) calc(50% - 2px) / 5px 5px no-repeat,
+          rgba(255, 255, 255, .8);
+        cursor: pointer;
+        font-size: .79rem;
+        font-weight: 650;
+      }
+      .language-picker select:focus-visible { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(108, 77, 244, .13); }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.03fr) minmax(410px, .97fr);
+        align-items: center;
+        gap: clamp(2.75rem, 7vw, 7rem);
+        min-height: 610px;
+        padding: 4.5rem 0 5.5rem;
+      }
+      .hero-copy { max-width: 615px; }
+      .eyebrow { margin: 0 0 1rem; color: var(--violet-deep); font-size: .69rem; font-weight: 800; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
+      h1 { max-width: 11ch; margin-bottom: 1.3rem; font-size: clamp(3.3rem, 6.3vw, 5.55rem); font-weight: 760; line-height: .96; }
+      .hero-lead, .section-intro > p:last-child, .idea-copy > p:last-child, .contact > p:nth-of-type(2), .pillar > p:last-child {
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.78;
+      }
+      .hero-lead { max-width: 58ch; margin-bottom: 1.85rem; }
+      .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .55rem;
+        min-height: 47px;
+        padding: .78rem 1.08rem;
+        border-radius: 999px;
+        font-size: .88rem;
+        font-weight: 760;
+        transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .button span { font-size: 1.05rem; line-height: 1; }
+      .button-primary { color: white; background: linear-gradient(118deg, var(--violet-deep), var(--violet) 52%, #856eff); box-shadow: 0 12px 24px rgba(74, 44, 193, .23); }
+      .button-primary:hover, .button-primary:focus-visible { transform: translateY(-2px); box-shadow: 0 16px 30px rgba(74, 44, 193, .28); }
+      .button-quiet { color: #40394c; background: rgba(255,255,255,.72); box-shadow: inset 0 0 0 1px var(--line); }
+      .button-quiet:hover, .button-quiet:focus-visible { background: var(--paper); transform: translateY(-2px); }
+      .hero-note { margin: 2.15rem 0 0; color: #777180; font-family: Georgia, serif; font-size: .97rem; font-style: italic; }
+
+      .hero-art { position: relative; min-height: 480px; isolation: isolate; }
+      .hero-art::before {
+        position: absolute;
+        z-index: -2;
+        inset: 4% 4% 8% 5%;
+        border: 1px solid rgba(108,77,244,.12);
+        border-radius: 48% 52% 45% 55% / 50% 43% 57% 50%;
+        background: linear-gradient(145deg, rgba(242,239,255,.98), rgba(255,246,238,.88));
+        content: "";
+        transform: rotate(-8deg);
+      }
+      .hero-grid {
+        position: absolute;
+        z-index: -1;
+        inset: 10% 11% 15% 13%;
+        opacity: .5;
+        background-image: linear-gradient(rgba(107,83,186,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(107,83,186,.1) 1px, transparent 1px);
+        background-size: 27px 27px;
+        mask-image: radial-gradient(ellipse at center, black 29%, transparent 72%);
+      }
+      .symbol-frame {
+        position: absolute;
+        top: 58px;
+        right: 48px;
+        display: grid;
+        width: min(345px, 68vw);
+        aspect-ratio: 1;
+        place-items: center;
+        border: 1px solid rgba(255,255,255,.93);
+        border-radius: 32% 68% 64% 36% / 35% 39% 61% 65%;
+        background: rgba(255,255,255,.88);
+        box-shadow: 0 24px 55px rgba(62,45,122,.11);
+        transform: rotate(8deg);
+      }
+      .symbol-frame img { display: block; width: 77%; height: auto; mix-blend-mode: multiply; transform: rotate(-8deg); }
+      .orb { position: absolute; z-index: -1; border-radius: 999px; }
+      .orb-one { top: 37px; left: 20px; width: 83px; height: 83px; background: linear-gradient(145deg, #a595ff, #694df1); box-shadow: 0 16px 28px rgba(89,62,207,.2); }
+      .orb-two { right: 0; bottom: 65px; width: 91px; height: 91px; background: linear-gradient(145deg, #ffc27b, var(--orange)); box-shadow: 0 16px 28px rgba(212,109,50,.18); }
+      .signal-card {
+        position: absolute;
+        bottom: 32px;
+        left: 0;
+        display: grid;
+        gap: .38rem;
+        width: min(275px, 75vw);
+        padding: 1.1rem 1.15rem;
+        border: 1px solid rgba(255,255,255,.9);
+        border-radius: 18px;
+        color: #2c2737;
+        background: rgba(255,255,255,.87);
+        box-shadow: 0 18px 36px rgba(54,44,89,.1);
+        backdrop-filter: blur(10px);
+      }
+      .signal-card p, .signal-card span { margin: 0; color: #706a7a; font-size: .67rem; font-weight: 750; letter-spacing: .11em; line-height: 1.45; text-transform: uppercase; }
+      .signal-card strong { font-size: 1rem; letter-spacing: -.03em; }
+      .signal-card span { color: var(--muted); font-size: .68rem; font-weight: 600; letter-spacing: .02em; text-transform: none; }
+
+      .focus { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: clamp(2rem,7vw,6rem); padding: 7rem 0; border-top: 1px solid var(--line); }
+      .section-intro { max-width: 390px; }
+      h2 { margin-bottom: 1rem; font-size: clamp(2.15rem,4.2vw,3.65rem); font-weight: 760; line-height: 1.03; }
+      .pillar-grid { display: grid; gap: 0; border-top: 1px solid var(--line); }
+      .pillar { display: grid; grid-template-columns: 58px minmax(125px,.72fr) minmax(0,1.2fr); gap: 1rem; align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+      .pillar-number { margin: 0; color: var(--orange-deep); font-size: .73rem; font-weight: 800; letter-spacing: .12em; }
+      .pillar h3 { margin: 0; font-size: 1.05rem; font-weight: 750; line-height: 1.2; }
+      .pillar > p:last-child { margin: 0; font-size: .89rem; line-height: 1.62; }
+
+      .idea {
+        display: grid;
+        grid-template-columns: minmax(190px,.55fr) minmax(0,1fr);
+        gap: clamp(2rem,9vw,9rem);
+        align-items: center;
+        margin-bottom: 7rem;
+        padding: clamp(2.8rem,6vw,5rem);
+        border-radius: 34px;
+        color: #fff;
+        background:
+          radial-gradient(circle at 93% 13%, rgba(255,159,91,.95) 0 2%, transparent 18%),
+          radial-gradient(circle at 23% 92%, rgba(173,155,255,.38), transparent 28%),
+          linear-gradient(120deg, #221851, #4525ad 57%, #6d4ff3);
+        box-shadow: 0 24px 65px rgba(51,31,115,.19);
+      }
+      .idea-index { color: rgba(255,255,255,.13); font-size: clamp(5rem,15vw,11rem); font-weight: 800; letter-spacing: -.16em; line-height: .75; text-align: center; }
+      .idea-copy { max-width: 650px; }
+      .idea-copy .eyebrow { color: #d5cbff; }
+      .idea-copy > p:last-child { margin-bottom: 0; color: rgba(255,255,255,.77); }
+
+      .contact { padding: 1rem 0 7rem; text-align: center; }
+      .contact .eyebrow { color: var(--orange-deep); }
+      .contact h2 { max-width: 11ch; margin-inline: auto; }
+      .contact > p:nth-of-type(2) { max-width: 550px; margin: 0 auto 1.7rem; }
+      .site-footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.5rem 0 2rem; border-top: 1px solid var(--line); color: #7a7483; font-size: .75rem; line-height: 1.5; }
+      .site-footer a { color: #514a5d; font-weight: 700; }
+      .site-footer a:hover, .site-footer a:focus-visible { color: var(--violet-deep); }
+      .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+      :focus-visible { outline: 3px solid rgba(108,77,244,.45); outline-offset: 3px; }
+
+      @media (max-width: 820px) {
+        :root { --page-width: min(100% - 32px, 620px); }
+        .site-header { align-items: flex-start; }
+        .header-actions { flex-direction: column-reverse; align-items: flex-end; gap: .7rem; }
+        .site-nav { gap: .85rem; font-size: .75rem; }
+        .hero { grid-template-columns: 1fr; min-height: auto; gap: 2rem; padding: 3rem 0 4.5rem; }
+        h1 { max-width: 13ch; }
+        .hero-art { width: min(100%,500px); min-height: 410px; margin-inline: auto; }
+        .symbol-frame { top: 34px; right: 10%; width: min(318px,69vw); }
+        .signal-card { left: 3%; }
+        .focus { grid-template-columns: 1fr; gap: 2.5rem; padding: 5rem 0; }
+        .section-intro { max-width: 540px; }
+        .idea { grid-template-columns: 1fr; gap: 2.2rem; margin-bottom: 5rem; }
+        .idea-index { font-size: 7rem; text-align: left; }
+        .contact { padding-bottom: 5rem; }
+      }
+      @media (max-width: 560px) {
+        :root { --page-width: min(100% - 28px, 540px); }
+        .site-header { gap: .85rem; padding: 17px 0; }
+        .brand img { width: 35px; height: 35px; }
+        .brand-name { font-size: .84rem; }
+        .brand-name small { font-size: .55rem; }
+        .site-nav { display: none; }
+        .header-actions { gap: 0; }
+        .language-picker select { min-width: 98px; padding-block: .48rem; }
+        .hero { padding-top: 2.8rem; }
+        h1 { font-size: clamp(2.85rem,14vw,4.2rem); }
+        .hero-lead, .section-intro > p:last-child, .idea-copy > p:last-child, .contact > p:nth-of-type(2) { font-size: .95rem; }
+        .hero-art { min-height: 350px; }
+        .symbol-frame { top: 25px; right: 8%; width: min(275px,73vw); }
+        .orb-one { top: 23px; left: 0; width: 62px; height: 62px; }
+        .orb-two { right: 0; bottom: 50px; width: 68px; height: 68px; }
+        .signal-card { bottom: 7px; width: min(260px,80vw); }
+        .pillar { grid-template-columns: 48px 1fr; gap: .5rem .8rem; }
+        .pillar > p:last-child { grid-column: 2; }
+        .idea { padding: 2.2rem 1.45rem; border-radius: 25px; }
+        .idea-index { font-size: 5.6rem; }
+        .site-footer { flex-direction: column; padding-bottom: 1.5rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="Next Dawn Technologies home">
+          <img src="assets/next-dawn-mark.png" alt="" width="512" height="512" />
+          <span class="brand-name"><span>Next Dawn</span><small>Technologies</small></span>
+        </a>
+        <div class="header-actions">
+          <nav class="site-nav" aria-label="Primary navigation">
+            <a href="#focus" data-t="navFocus">What we explore</a>
+            <a href="#idea" data-t="navIdea">Our idea</a>
+            <a href="#contact" data-t="navContact">Contact</a>
+          </nav>
+          <label class="language-picker">
+            <span class="visually-hidden" id="language-label">Language</span>
+            <select id="language" aria-labelledby="language-label">
+              <option value="en">English</option>
+              <option value="zh-CN">简体中文</option>
+              <option value="zh-TW">繁體中文</option>
+              <option value="es">Español</option>
+              <option value="ja">日本語</option>
+              <option value="ko">한국어</option>
+            </select>
+          </label>
+        </div>
+      </header>
+
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow" data-t="heroEyebrow">A NEW BEGINNING, BUILT WITH INTENT</p>
+          <h1 id="hero-title" data-t="heroTitle">Designing the moment technology feels like a new dawn.</h1>
+          <p class="hero-lead" data-t="heroLead">Next Dawn Technologies explores where software, interactive experiences, and emerging technology meet—turning promising ideas into clearer, more human digital products.</p>
+          <div class="actions">
+            <a class="button button-primary" href="mailto:nextdawntechnologies@gmail.com"><span data-t="heroPrimary">Start a conversation</span><b aria-hidden="true">↗</b></a>
+            <a class="button button-quiet" href="#focus"><span data-t="heroSecondary">Explore our focus</span><b aria-hidden="true">↓</b></a>
+          </div>
+          <p class="hero-note" data-t="heroNote">Small signals can start a new world.</p>
+        </div>
+        <div class="hero-art" aria-label="Next Dawn brand symbol">
+          <div class="hero-grid" aria-hidden="true"></div>
+          <div class="orb orb-one" aria-hidden="true"></div>
+          <div class="orb orb-two" aria-hidden="true"></div>
+          <div class="symbol-frame"><img src="assets/next-dawn-mark.png" alt="Next Dawn Technologies logo" width="512" height="512" /></div>
+          <div class="signal-card">
+            <p data-t="signalLabel">01 / OPEN POSSIBILITY</p>
+            <strong data-t="signalTitle">Made for the next move</strong>
+            <span data-t="signalText">Curious by nature. Precise by design.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="focus" id="focus" aria-labelledby="focus-title">
+        <div class="section-intro">
+          <p class="eyebrow" data-t="focusEyebrow">WHAT WE EXPLORE</p>
+          <h2 id="focus-title" data-t="focusTitle">Technology with room for imagination.</h2>
+          <p data-t="focusLead">We look for early signals, meaningful problems, and better ways to make digital experiences feel effortless.</p>
+        </div>
+        <div class="pillar-grid">
+          <article class="pillar"><p class="pillar-number">01</p><h3 data-pillar-title="0">Digital products</h3><p data-pillar-text="0">Useful, focused software shaped around how people actually move through a day.</p></article>
+          <article class="pillar"><p class="pillar-number">02</p><h3 data-pillar-title="1">Interactive experiences</h3><p data-pillar-text="1">Interfaces and worlds that make technology feel responsive, intuitive, and alive.</p></article>
+          <article class="pillar"><p class="pillar-number">03</p><h3 data-pillar-title="2">Emerging technology</h3><p data-pillar-text="2">Thoughtful experiments with the tools and platforms that are just beginning to matter.</p></article>
+        </div>
+      </section>
+
+      <section class="idea" id="idea" aria-labelledby="idea-title">
+        <div class="idea-index" aria-hidden="true">ND</div>
+        <div class="idea-copy">
+          <p class="eyebrow" data-t="ideaEyebrow">WHY NEXT DAWN</p>
+          <h2 id="idea-title" data-t="ideaTitle">A name for the moment before possibility becomes real.</h2>
+          <p data-t="ideaText">Dawn is not the finish line. It is the first clear sign that something new is ready to begin. That is the space we choose to work in: where curiosity becomes direction, and direction becomes a product people can feel.</p>
+        </div>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow" data-t="contactEyebrow">LET’S CONNECT</p>
+        <h2 id="contact-title" data-t="contactTitle">Let’s shape what comes next.</h2>
+        <p data-t="contactText">Have an idea, a question, or a conversation worth starting? We would be glad to hear from you.</p>
+        <a class="button button-primary" href="mailto:nextdawntechnologies@gmail.com"><span data-t="contactAction">Email Next Dawn</span><b aria-hidden="true">↗</b></a>
+      </section>
+
+      <footer class="site-footer">
+        <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+        <span data-t="footer">© 2026 Next Dawn Technologies Co., Ltd. All rights reserved.</span>
+      </footer>
+    </main>
+
+    <script>
+      const translations = {
+        en: {
+          lang: "en", pageTitle: "Next Dawn Technologies", languageLabel: "Language",
+          navFocus: "What we explore", navIdea: "Our idea", navContact: "Contact",
+          heroEyebrow: "A NEW BEGINNING, BUILT WITH INTENT",
+          heroTitle: "Designing the moment technology feels like a new dawn.",
+          heroLead: "Next Dawn Technologies explores where software, interactive experiences, and emerging technology meet—turning promising ideas into clearer, more human digital products.",
+          heroPrimary: "Start a conversation", heroSecondary: "Explore our focus", heroNote: "Small signals can start a new world.",
+          signalLabel: "01 / OPEN POSSIBILITY", signalTitle: "Made for the next move", signalText: "Curious by nature. Precise by design.",
+          focusEyebrow: "WHAT WE EXPLORE", focusTitle: "Technology with room for imagination.",
+          focusLead: "We look for early signals, meaningful problems, and better ways to make digital experiences feel effortless.",
+          pillars: [
+            ["Digital products", "Useful, focused software shaped around how people actually move through a day."],
+            ["Interactive experiences", "Interfaces and worlds that make technology feel responsive, intuitive, and alive."],
+            ["Emerging technology", "Thoughtful experiments with the tools and platforms that are just beginning to matter."]
+          ],
+          ideaEyebrow: "WHY NEXT DAWN", ideaTitle: "A name for the moment before possibility becomes real.",
+          ideaText: "Dawn is not the finish line. It is the first clear sign that something new is ready to begin. That is the space we choose to work in: where curiosity becomes direction, and direction becomes a product people can feel.",
+          contactEyebrow: "LET’S CONNECT", contactTitle: "Let’s shape what comes next.",
+          contactText: "Have an idea, a question, or a conversation worth starting? We would be glad to hear from you.",
+          contactAction: "Email Next Dawn", footer: "© 2026 Next Dawn Technologies Co., Ltd. All rights reserved."
+        },
+        "zh-CN": {
+          lang: "zh-Hans", pageTitle: "Next Dawn Technologies", languageLabel: "语言",
+          navFocus: "探索方向", navIdea: "我们的理念", navContact: "联系",
+          heroEyebrow: "以明确的意图，开启新的可能", heroTitle: "让技术带来如同破晓般的新体验。",
+          heroLead: "Next Dawn Technologies 探索软件、互动体验与新兴技术的交汇点，将有潜力的想法转化为更清晰、更贴近人的数字产品。",
+          heroPrimary: "与我们交流", heroSecondary: "探索方向", heroNote: "微小的信号，也能开启一个新世界。",
+          signalLabel: "01 / 开放可能", signalTitle: "为下一步而设计", signalText: "因好奇而出发，以精确而落地。",
+          focusEyebrow: "我们探索什么", focusTitle: "为想象力留出空间的技术。", focusLead: "我们关注早期信号、有意义的问题，以及让数字体验变得自然轻松的更好方式。",
+          pillars: [["数字产品", "围绕真实日常使用方式，打造实用、专注的软件产品。"], ["互动体验", "让技术更具响应感、直觉感与生命力的界面和数字世界。"], ["新兴技术", "审慎探索正在显现价值的新工具、新平台与新可能。"]],
+          ideaEyebrow: "为什么是 NEXT DAWN", ideaTitle: "在可能性成为现实之前的那一刻。", ideaText: "破晓不是终点，而是新事物准备开始的第一个清晰信号。我们选择在这个空间里工作：让好奇心成为方向，让方向成为人们能够感受到的产品。",
+          contactEyebrow: "保持联系", contactTitle: "一起塑造下一次破晓。", contactText: "如果你有一个想法、一个问题，或一段值得开启的对话，我们很愿意听见。", contactAction: "发送邮件",
+          footer: "© 2026 Next Dawn Technologies Co., Ltd. 保留所有权利。"
+        },
+        "zh-TW": {
+          lang: "zh-Hant", pageTitle: "Next Dawn Technologies", languageLabel: "語言",
+          navFocus: "探索方向", navIdea: "我們的理念", navContact: "聯絡我們",
+          heroEyebrow: "以清晰的意圖，開啟新的可能", heroTitle: "讓技術帶來如同破曉般的新體驗。",
+          heroLead: "Next Dawn Technologies 探索軟體、互動體驗與新興技術的交會點，將具潛力的想法轉化為更清晰、更貼近人的數位產品。",
+          heroPrimary: "與我們交流", heroSecondary: "探索方向", heroNote: "微小的訊號，也能開啟一個新世界。",
+          signalLabel: "01 / 開放可能", signalTitle: "為下一步而設計", signalText: "因好奇而出發，以精確而落地。",
+          focusEyebrow: "我們探索什麼", focusTitle: "為想像力留出空間的技術。", focusLead: "我們關注早期訊號、有意義的問題，以及讓數位體驗變得自然輕鬆的更好方式。",
+          pillars: [["數位產品", "圍繞真實的日常使用方式，打造實用、專注的軟體產品。"], ["互動體驗", "讓技術更具回應感、直覺感與生命力的介面和數位世界。"], ["新興技術", "審慎探索正在顯現價值的新工具、新平台與新可能。"]],
+          ideaEyebrow: "為什麼是 NEXT DAWN", ideaTitle: "在可能性成為現實之前的那一刻。", ideaText: "破曉不是終點，而是新事物準備開始的第一個清晰訊號。我們選擇在這個空間裡工作：讓好奇心成為方向，讓方向成為人們能夠感受到的產品。",
+          contactEyebrow: "保持聯絡", contactTitle: "一起塑造下一次破曉。", contactText: "如果你有一個想法、一個問題，或一段值得開啟的對話，我們很願意聽見。", contactAction: "寄送電子郵件",
+          footer: "© 2026 Next Dawn Technologies Co., Ltd. 保留所有權利。"
+        },
+        es: {
+          lang: "es", pageTitle: "Next Dawn Technologies", languageLabel: "Idioma",
+          navFocus: "Lo que exploramos", navIdea: "Nuestra idea", navContact: "Contacto",
+          heroEyebrow: "UN NUEVO COMIENZO, CREADO CON INTENCIÓN", heroTitle: "Diseñamos el momento en que la tecnología se siente como un nuevo amanecer.",
+          heroLead: "Next Dawn Technologies explora el punto de encuentro entre el software, las experiencias interactivas y las tecnologías emergentes para convertir ideas prometedoras en productos digitales más claros y humanos.",
+          heroPrimary: "Iniciar una conversación", heroSecondary: "Explorar nuestro enfoque", heroNote: "Las pequeñas señales pueden iniciar un mundo nuevo.",
+          signalLabel: "01 / POSIBILIDAD ABIERTA", signalTitle: "Hecho para el siguiente paso", signalText: "Curiosos por naturaleza. Precisos por diseño.",
+          focusEyebrow: "LO QUE EXPLORAMOS", focusTitle: "Tecnología con espacio para la imaginación.", focusLead: "Buscamos señales tempranas, problemas relevantes y mejores formas de hacer que las experiencias digitales se sientan naturales.",
+          pillars: [["Productos digitales", "Software útil y enfocado, creado alrededor de la forma en que las personas viven su día a día."], ["Experiencias interactivas", "Interfaces y mundos digitales que hacen que la tecnología se sienta receptiva, intuitiva y viva."], ["Tecnología emergente", "Experimentos reflexivos con herramientas y plataformas que apenas comienzan a importar."]],
+          ideaEyebrow: "POR QUÉ NEXT DAWN", ideaTitle: "Un nombre para el instante antes de que una posibilidad se haga real.", ideaText: "El amanecer no es la meta. Es la primera señal clara de que algo nuevo está listo para comenzar. Ese es el espacio donde elegimos trabajar: donde la curiosidad se convierte en dirección y la dirección, en un producto que las personas pueden sentir.",
+          contactEyebrow: "HABLEMOS", contactTitle: "Demos forma a lo que viene.", contactText: "¿Tienes una idea, una pregunta o una conversación que vale la pena iniciar? Nos encantará conocerte.", contactAction: "Escribir a Next Dawn",
+          footer: "© 2026 Next Dawn Technologies Co., Ltd. Todos los derechos reservados."
+        },
+        ja: {
+          lang: "ja", pageTitle: "Next Dawn Technologies", languageLabel: "言語",
+          navFocus: "探求する領域", navIdea: "私たちの考え", navContact: "お問い合わせ",
+          heroEyebrow: "意図から始まる、新しい夜明け", heroTitle: "テクノロジーが、新しい夜明けのように感じられる瞬間をデザインします。",
+          heroLead: "Next Dawn Technologies は、ソフトウェア、インタラクティブ体験、そして新興技術が交わる場所を探求し、有望なアイデアを、より明快で人に寄り添うデジタルプロダクトへと形にします。",
+          heroPrimary: "お問い合わせ", heroSecondary: "探求する領域を見る", heroNote: "小さな兆しが、新しい世界を始めることがあります。",
+          signalLabel: "01 / ひらかれた可能性", signalTitle: "次の一歩のために", signalText: "好奇心から始め、精度で形にする。",
+          focusEyebrow: "探求する領域", focusTitle: "想像力の余白を残すテクノロジー。", focusLead: "私たちは、早い段階の兆し、意味のある課題、そしてデジタル体験を自然で心地よいものにする方法を見つめています。",
+          pillars: [["デジタルプロダクト", "人々の毎日に沿った、実用的で焦点の明確なソフトウェア。"], ["インタラクティブ体験", "テクノロジーを応答的で直感的、そして生き生きと感じさせるインターフェースとデジタル空間。"], ["新興テクノロジー", "これから価値を持ち始めるツールやプラットフォームを、思慮深く探求します。"]],
+          ideaEyebrow: "NEXT DAWN という名前", ideaTitle: "可能性が現実になる直前の瞬間のために。", ideaText: "夜明けはゴールではありません。何か新しいものが始まる準備が整ったことを示す、最初の明確な兆しです。私たちはその場所で仕事をします。好奇心を方向へ、方向を人が感じられるプロダクトへと変えていきます。",
+          contactEyebrow: "つながりましょう", contactTitle: "次に来るものを、一緒につくりましょう。", contactText: "アイデアやご質問、始める価値のある会話があれば、ぜひお聞かせください。", contactAction: "メールを送る",
+          footer: "© 2026 Next Dawn Technologies Co., Ltd. All rights reserved."
+        },
+        ko: {
+          lang: "ko", pageTitle: "Next Dawn Technologies", languageLabel: "언어",
+          navFocus: "탐구하는 영역", navIdea: "우리의 생각", navContact: "문의",
+          heroEyebrow: "의도에서 시작되는 새로운 여명", heroTitle: "기술이 새로운 여명처럼 느껴지는 순간을 디자인합니다.",
+          heroLead: "Next Dawn Technologies는 소프트웨어, 인터랙티브 경험, 신기술이 만나는 지점을 탐구하며, 유망한 아이디어를 더 명확하고 사람 중심적인 디지털 제품으로 만듭니다.",
+          heroPrimary: "대화 시작하기", heroSecondary: "탐구하는 영역 보기", heroNote: "작은 신호가 새로운 세계의 시작이 될 수 있습니다.",
+          signalLabel: "01 / 열린 가능성", signalTitle: "다음 움직임을 위해", signalText: "호기심으로 시작하고, 정교함으로 완성합니다.",
+          focusEyebrow: "탐구하는 영역", focusTitle: "상상력을 위한 여백을 남기는 기술.", focusLead: "우리는 초기 신호와 의미 있는 문제를 살피고, 디지털 경험을 더 자연스럽고 편안하게 만드는 방법을 찾습니다.",
+          pillars: [["디지털 제품", "사람들이 하루를 살아가는 방식에 맞춘, 유용하고 집중도 높은 소프트웨어입니다."], ["인터랙티브 경험", "기술을 반응적이고 직관적이며 살아 있는 듯 느끼게 하는 인터페이스와 디지털 세계입니다."], ["신기술", "이제 막 중요해지기 시작한 도구와 플랫폼을 사려 깊게 실험합니다."]],
+          ideaEyebrow: "WHY NEXT DAWN", ideaTitle: "가능성이 현실이 되기 직전의 순간을 위한 이름.", ideaText: "여명은 결승선이 아닙니다. 새로운 무언가가 시작될 준비가 되었다는 첫 번째 분명한 신호입니다. 우리는 바로 그 지점에서 일합니다. 호기심을 방향으로, 방향을 사람들이 느낄 수 있는 제품으로 바꿉니다.",
+          contactEyebrow: "연결하기", contactTitle: "다음에 올 것을 함께 만들어 갑시다.", contactText: "아이디어나 질문, 혹은 시작할 가치가 있는 대화가 있다면 기쁘게 듣겠습니다.", contactAction: "Next Dawn에 이메일 보내기",
+          footer: "© 2026 Next Dawn Technologies Co., Ltd. All rights reserved."
+        }
+      };
+
+      const languageSelect = document.getElementById("language");
+      const languageLabel = document.getElementById("language-label");
+
+      function render(locale) {
+        const copy = translations[locale] || translations.en;
+        document.documentElement.lang = copy.lang;
+        document.title = copy.pageTitle;
+        languageLabel.textContent = copy.languageLabel;
+        languageSelect.setAttribute("aria-label", copy.languageLabel);
+
+        document.querySelectorAll("[data-t]").forEach((element) => {
+          const key = element.dataset.t;
+          if (typeof copy[key] === "string") element.textContent = copy[key];
+        });
+
+        document.querySelectorAll("[data-pillar-title]").forEach((element) => {
+          element.textContent = copy.pillars[Number(element.dataset.pillarTitle)][0];
+        });
+        document.querySelectorAll("[data-pillar-text]").forEach((element) => {
+          element.textContent = copy.pillars[Number(element.dataset.pillarText)][1];
+        });
+      }
+
+      languageSelect.addEventListener("change", (event) => render(event.target.value));
+      languageSelect.value = "en";
+      render("en");
+    </script>
+  </body>
+</html>

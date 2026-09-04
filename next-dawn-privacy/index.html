@@ -1,0 +1,1341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Privacy Policy for Next Dawn Technologies Co., Ltd."
+    />
+    <meta name="theme-color" content="#6d50f5" />
+    <link rel="icon" href="assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="assets/brand-mark.png" />
+    <link rel="apple-touch-icon" href="assets/brand-mark.png" />
+    <title>Privacy Policy · Next Dawn Technologies Co., Ltd.</title>
+    <style>
+      :root {
+        --ink: #161321;
+        --muted: #6f6b7c;
+        --line: #e8e5ef;
+        --surface: #ffffff;
+        --canvas: #fbfaff;
+        --purple: #6d50f5;
+        --purple-deep: #4d36bd;
+        --orange: #ff8a4d;
+        --orange-soft: #fff1e8;
+        --violet-soft: #f0edff;
+        --radius-xl: 28px;
+        --radius-lg: 18px;
+        --shadow: 0 18px 45px rgba(37, 29, 73, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 90% 0%, rgba(255, 138, 77, 0.13), transparent 28rem),
+          radial-gradient(circle at 5% 12%, rgba(109, 80, 245, 0.1), transparent 27rem),
+          var(--canvas);
+        font-family: Inter, "PingFang SC", "Microsoft YaHei", "Noto Sans TC",
+          "Hiragino Sans", "Yu Gothic", "Malgun Gothic", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.75;
+      }
+
+      a {
+        color: var(--purple-deep);
+        text-underline-offset: 0.18em;
+      }
+
+      a:hover {
+        color: var(--purple);
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 10;
+        top: 0.8rem;
+        left: 0.8rem;
+        transform: translateY(-160%);
+        padding: 0.55rem 0.9rem;
+        color: #fff;
+        background: var(--ink);
+        border-radius: 999px;
+        transition: transform 0.2s ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .site-header {
+        width: min(1160px, calc(100% - 40px));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 0 auto;
+        padding: 24px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--ink);
+        font-weight: 750;
+        letter-spacing: -0.025em;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 37px;
+        height: 37px;
+        border-radius: 11px;
+        box-shadow: 0 6px 18px rgba(75, 54, 165, 0.12);
+      }
+
+      .brand small {
+        display: block;
+        margin-top: -0.1rem;
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .header-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+      }
+
+      .header-label {
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 650;
+      }
+
+      .language-select {
+        appearance: none;
+        min-height: 38px;
+        padding: 0.4rem 2.15rem 0.4rem 0.8rem;
+        color: var(--ink);
+        font: inherit;
+        font-size: 0.86rem;
+        font-weight: 680;
+        background:
+          linear-gradient(45deg, transparent 50%, var(--purple) 50%) calc(100% - 14px) 52% / 5px
+            5px no-repeat,
+          linear-gradient(135deg, var(--purple) 50%, transparent 50%) calc(100% - 9px) 52% / 5px
+            5px no-repeat,
+          #fff;
+        border: 1px solid #ded9eb;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .language-select:focus-visible {
+        outline: 3px solid rgba(109, 80, 245, 0.22);
+        outline-offset: 2px;
+      }
+
+      .shell {
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto 68px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(2rem, 5vw, 4.6rem);
+        color: #fff;
+        background: #18142c;
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow);
+      }
+
+      .hero::before,
+      .hero::after {
+        position: absolute;
+        content: "";
+        border-radius: 999px;
+        transform: rotate(-32deg);
+      }
+
+      .hero::before {
+        top: -56px;
+        right: -64px;
+        width: 260px;
+        height: 88px;
+        background: linear-gradient(90deg, var(--purple), #8a6aff);
+      }
+
+      .hero::after {
+        right: 82px;
+        bottom: -69px;
+        width: 275px;
+        height: 96px;
+        background: linear-gradient(90deg, var(--orange), #ffaf72);
+      }
+
+      .eyebrow {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0 0 0.95rem;
+        color: #d7d0ff;
+        font-size: 0.8rem;
+        font-weight: 760;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 7px;
+        height: 7px;
+        content: "";
+        background: var(--orange);
+        border-radius: 50%;
+      }
+
+      h1 {
+        position: relative;
+        z-index: 1;
+        max-width: 730px;
+        margin: 0;
+        font-size: clamp(2rem, 5.1vw, 4.1rem);
+        line-height: 1.15;
+        letter-spacing: -0.06em;
+      }
+
+      .hero p:not(.eyebrow) {
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+        margin: 1.1rem 0 0;
+        color: #d9d5e8;
+        font-size: clamp(1rem, 1.8vw, 1.13rem);
+      }
+
+      .hero-meta {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 1.65rem;
+      }
+
+      .hero-meta span {
+        padding: 0.38rem 0.72rem;
+        color: #f4f1ff;
+        font-size: 0.82rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+      }
+
+      .notice {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.85rem;
+        margin: 22px 0;
+        padding: 1rem 1.1rem;
+        color: #514452;
+        background: var(--orange-soft);
+        border: 1px solid #ffd9c5;
+        border-radius: var(--radius-lg);
+      }
+
+      .notice strong {
+        color: #8d4c28;
+      }
+
+      .notice-icon {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        color: #fff;
+        background: var(--orange);
+        border-radius: 9px;
+        place-items: center;
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.28fr) minmax(0, 1fr);
+        align-items: start;
+        gap: clamp(1.25rem, 4vw, 4rem);
+        margin-top: 22px;
+      }
+
+      .toc {
+        position: sticky;
+        top: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(231, 227, 239, 0.95);
+        border-radius: var(--radius-lg);
+        backdrop-filter: blur(12px);
+      }
+
+      .toc-title {
+        margin: 0 0 0.55rem;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .toc a {
+        display: block;
+        padding: 0.48rem 0.55rem;
+        color: #4b4655;
+        font-size: 0.9rem;
+        font-weight: 620;
+        text-decoration: none;
+        border-radius: 9px;
+      }
+
+      .toc a:hover,
+      .toc a:focus-visible {
+        color: var(--purple-deep);
+        background: var(--violet-soft);
+        outline: none;
+      }
+
+      .policy {
+        min-width: 0;
+        padding: clamp(1.25rem, 3vw, 3rem);
+        background: var(--surface);
+        border: 1px solid #ece9f2;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 10px 35px rgba(29, 24, 62, 0.045);
+      }
+
+      section {
+        scroll-margin-top: 1rem;
+      }
+
+      .policy section + section {
+        margin-top: 2.8rem;
+        padding-top: 2.8rem;
+        border-top: 1px solid var(--line);
+      }
+
+      h2 {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        margin: 0 0 0.85rem;
+        font-size: clamp(1.28rem, 2.4vw, 1.7rem);
+        line-height: 1.3;
+        letter-spacing: -0.035em;
+      }
+
+      h2::before {
+        width: 8px;
+        height: 28px;
+        flex: 0 0 auto;
+        content: "";
+        background: linear-gradient(180deg, var(--purple), var(--orange));
+        border-radius: 999px;
+      }
+
+      h3 {
+        margin: 1.3rem 0 0.35rem;
+        font-size: 1rem;
+      }
+
+      p,
+      li {
+        color: #4f4a59;
+      }
+
+      p {
+        margin: 0.55rem 0;
+      }
+
+      ul {
+        margin: 0.7rem 0 0;
+        padding-left: 1.25rem;
+      }
+
+      li + li {
+        margin-top: 0.45rem;
+      }
+
+      .data-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.85rem;
+        margin-top: 1rem;
+      }
+
+      .data-card {
+        padding: 1rem;
+        background: #fbfaff;
+        border: 1px solid #ece8fb;
+        border-radius: 15px;
+      }
+
+      .data-card strong {
+        display: block;
+        margin-bottom: 0.25rem;
+        color: var(--ink);
+      }
+
+      .data-card p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .placeholder {
+        padding: 0.08rem 0.35rem;
+        color: #773e22;
+        font-weight: 700;
+        background: #fff0e8;
+        border-radius: 5px;
+      }
+
+      .contact-card {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 1rem;
+        margin-top: 1.1rem;
+        padding: 1.2rem;
+        background: #f8f7ff;
+        border: 1px solid #e8e4ff;
+        border-radius: 16px;
+      }
+
+      .contact-symbol {
+        display: grid;
+        width: 52px;
+        height: 52px;
+        color: #fff;
+        background: var(--purple);
+        border-radius: 16px;
+        place-items: center;
+        font-size: 1.25rem;
+      }
+
+      .contact-card p {
+        margin: 0;
+      }
+
+      .contact-card p + p {
+        margin-top: 0.35rem;
+      }
+
+      .footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.75rem;
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 0 0 42px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      @media (max-width: 780px) {
+        .site-header,
+        .shell,
+        .footer {
+          width: min(100% - 28px, 1160px);
+        }
+
+        .header-label {
+          display: none;
+        }
+
+        .hero {
+          border-radius: 22px;
+        }
+
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .toc {
+          position: static;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.25rem;
+        }
+
+        .toc-title {
+          width: 100%;
+        }
+
+        .toc a {
+          padding: 0.35rem 0.5rem;
+          font-size: 0.82rem;
+          background: #f8f7fb;
+        }
+
+        .data-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .site-header {
+          align-items: flex-start;
+        }
+
+        .brand small {
+          display: none;
+        }
+
+        .language-select {
+          max-width: 150px;
+        }
+
+        .contact-card {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .site-header,
+        .toc,
+        .notice {
+          display: none;
+        }
+
+        .shell,
+        .footer {
+          width: 100%;
+        }
+
+        .hero,
+        .policy {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#policy" id="skip-link">Skip to the privacy policy</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Next Dawn Technologies Co., Ltd.">
+        <img src="assets/brand-mark.png" alt="Next Dawn brand mark" />
+        <span>
+          Next Dawn
+          <small>TECHNOLOGIES CO., LTD.</small>
+        </span>
+      </a>
+      <div class="header-actions">
+        <span class="header-label" id="header-label">Privacy Policy</span>
+        <label class="visually-hidden" for="language-select" id="language-label">Language</label>
+        <select class="language-select" id="language-select" aria-labelledby="language-label">
+          <option value="en">English</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="zh-TW">繁體中文</option>
+          <option value="es">Español</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+        </select>
+      </div>
+    </header>
+
+    <main id="top" class="shell">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow" id="hero-eyebrow">Privacy Notice</p>
+        <h1 id="page-title">Privacy Policy</h1>
+        <p id="hero-lead"></p>
+        <div class="hero-meta" id="hero-meta" aria-label="Policy information"></div>
+      </section>
+
+      <aside class="notice" id="notice" aria-label="Publication reminder">
+        <span class="notice-icon" aria-hidden="true">!</span>
+        <div id="notice-copy"></div>
+      </aside>
+
+      <div class="content-grid">
+        <nav class="toc" id="toc" aria-label="On this page"></nav>
+        <article id="policy" class="policy"></article>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span id="footer-copyright">© 2026 Next Dawn Technologies Co., Ltd.</span>
+      <span id="footer-version">Privacy Policy · Version 1.0</span>
+    </footer>
+
+    <noscript>
+      <p style="max-width: 760px; margin: 0 auto 2rem; padding: 1rem; background: #fff1e8; border-radius: 12px;">
+        Please enable JavaScript to display the language-switching privacy policy.
+      </p>
+    </noscript>
+
+    <script>
+      const email = "privacy@your-domain.com";
+
+      const policies = {
+        en: {
+          lang: "en",
+          documentTitle: "Privacy Policy · Next Dawn Technologies Co., Ltd.",
+          languageLabel: "Language",
+          headerLabel: "Privacy Policy",
+          skipLink: "Skip to the privacy policy",
+          eyebrow: "Privacy Notice",
+          title: "Privacy Policy",
+          lead: "This policy explains how Next Dawn Technologies Co., Ltd. (we, us, or our) may handle personal information when operating our website and related services.",
+          meta: ["Last updated: August 6, 2026", "For websites and related services"],
+          metaLabel: "Policy information",
+          noticeLabel: "Publication reminder",
+          noticeStrong: "Review before publishing.",
+          noticeText: "This is an editable general template. Confirm your actual features, SDKs, cookies, retention periods, service regions, and contact details before publishing.",
+          tocTitle: "On this page",
+          contactEmailLabel: "Privacy contact:",
+          contactNote: "Replace this placeholder with your actual privacy email address, registered address, or other applicable contact channel before publication.",
+          footerVersion: "Privacy Policy · Version 1.0",
+          sections: [
+            {
+              id: "scope",
+              nav: "Scope",
+              title: "1. Scope",
+              paragraphs: [
+                "This Privacy Policy applies to our websites, products, applications, and related services (collectively, the Services). If a particular service has a separate privacy notice, that notice will apply to that service.",
+                "Please read this policy before using the Services. If you do not agree with any part of it, stop using the relevant Services and contact us using the details below."
+              ]
+            },
+            {
+              id: "collect",
+              nav: "Information we may collect",
+              title: "2. Information We May Collect",
+              intro: "We process personal information only as needed to provide, maintain, protect, and improve the Services. Depending on the features actually used, this may include:",
+              cards: [
+                ["Information you provide", "For example, your name, contact details, and message content when you submit an enquiry, create an account, request support, or contact us."],
+                ["Usage and device information", "For example, browser type, device identifiers, logs, IP address, access times, page interactions, and diagnostic data."],
+                ["Cookie and similar technology data", "Used to remember preferences, assess site performance, protect security, or provide features that you have agreed to use."],
+                ["Information from third parties", "Information received from lawful sources only when permitted by law, authorized by you, or necessary to provide the Services."]
+              ],
+              paragraphs: [
+                "If sensitive personal information, children’s information, or cross-border transfers are involved, we will take any additional measures required by applicable law and obtain consent where required."
+              ]
+            },
+            {
+              id: "use",
+              nav: "How we use information",
+              title: "3. How We Use Information",
+              intro: "We may use personal information to:",
+              list: [
+                "provide, operate, maintain, and improve the Services;",
+                "respond to enquiries, support requests, feedback, and other communications;",
+                "protect the Services and prevent fraud, abuse, attacks, and other unlawful activity;",
+                "comply with legal obligations, resolve disputes, or enforce our agreements; and",
+                "support another purpose that has been clearly explained to you and, where required, consented to by you."
+              ],
+              paragraphs: [
+                "We determine an appropriate lawful basis for processing under applicable law and provide clear notice before processing where required."
+              ]
+            },
+            {
+              id: "safeguards",
+              nav: "Sharing, retention & security",
+              title: "4. Sharing, Retention & Security",
+              paragraphs: [
+                "We do not share personal information with unrelated third parties unless you have agreed, sharing is necessary to provide the Services, or applicable law allows or requires it. We may use contracted service providers for cloud hosting, support, analytics, payment, or security services, subject to appropriate safeguards and instructions.",
+                "We retain personal information only for as long as necessary for the stated purposes, unless a longer period is required or permitted by law. When no longer needed, we delete, anonymize, or otherwise handle it as required by law.",
+                "We use reasonable administrative, technical, and physical safeguards designed to reduce the risk of unauthorized access, use, disclosure, alteration, or loss. No Internet transmission or electronic storage method is completely secure."
+              ]
+            },
+            {
+              id: "rights",
+              nav: "Your rights",
+              title: "5. Your Rights",
+              intro: "Subject to applicable law, you may request to:",
+              list: [
+                "access or obtain a copy of your personal information;",
+                "correct or supplement inaccurate or incomplete information;",
+                "delete personal information or withdraw consent where applicable; and",
+                "receive an explanation of our processing rules or exercise other applicable privacy rights."
+              ],
+              paragraphs: [
+                "We may verify your identity before completing a request in order to protect your information, and we will respond within the period required by applicable law."
+              ]
+            },
+            {
+              id: "cookies",
+              nav: "Cookies",
+              title: "6. Cookies and Similar Technologies",
+              paragraphs: [
+                "We may use cookies, pixels, local storage, and similar technologies to keep the website operating, remember preferences, measure performance, and improve the user experience.",
+                "You can usually limit or delete cookies through your browser settings, although doing so may affect certain features. If you use third-party analytics or advertising technology, add the provider name, purpose, information categories, and opt-out method here before publication."
+              ]
+            },
+            {
+              id: "changes",
+              nav: "Children & updates",
+              title: "7. Children and Policy Updates",
+              paragraphs: [
+                "If our Services are directed to children or may process children’s information, we will obtain any required authorization and apply safeguards required by applicable law. Contact us if you believe children’s information was collected without appropriate authorization.",
+                "We may update this policy because of changes to our Services, legal requirements, or operational needs. We will provide appropriate notice of material changes, and an updated policy takes effect on the stated publication or notice date."
+              ]
+            },
+            {
+              id: "contact",
+              nav: "Contact us",
+              title: "8. Contact Us",
+              intro: "If you have questions, comments, or requests regarding this policy or our handling of personal information, please contact us:"
+            }
+          ]
+        },
+        "zh-CN": {
+          lang: "zh-CN",
+          documentTitle: "隐私政策 · Next Dawn Technologies Co., Ltd.",
+          languageLabel: "语言",
+          headerLabel: "隐私政策",
+          skipLink: "跳至隐私政策正文",
+          eyebrow: "隐私声明",
+          title: "隐私政策",
+          lead: "本政策说明 Next Dawn Technologies Co., Ltd.（以下简称“我们”）在运营网站及相关服务时，可能如何处理您的个人信息。",
+          meta: ["最后更新：2026 年 8 月 6 日", "适用于网站及相关服务"],
+          metaLabel: "政策信息",
+          noticeLabel: "发布前提示",
+          noticeStrong: "发布前请核对实际业务。",
+          noticeText: "本页面是可编辑的通用模板；请依据实际使用的功能、SDK、Cookie、保存期限、服务地区和联系信息补充或删改后再发布。",
+          tocTitle: "页面目录",
+          contactEmailLabel: "隐私联系邮箱：",
+          contactNote: "请在发布前替换为贵司实际的隐私联系邮箱、注册地址或其他适用联系渠道。",
+          footerVersion: "隐私政策 · 版本 1.0",
+          sections: [
+            {
+              id: "scope",
+              nav: "适用范围",
+              title: "1. 适用范围",
+              paragraphs: [
+                "本隐私政策适用于我们提供的网站、产品、应用程序及其他相关服务（统称“服务”）。如某项服务另行提供专门的隐私说明，以该专门说明为准。",
+                "在使用服务前，请仔细阅读本政策。若您不同意本政策中的任何内容，请停止使用相关服务，并通过下文所列方式与我们联系。"
+              ]
+            },
+            {
+              id: "collect",
+              nav: "我们可能收集的信息",
+              title: "2. 我们可能收集的信息",
+              intro: "我们仅在提供、维护、保障和改进服务所必需的范围内处理个人信息。具体信息类别应以实际业务功能为准，可能包括：",
+              cards: [
+                ["您主动提供的信息", "例如您提交咨询、注册账户、申请支持或与我们联系时提供的姓名、联系方式及留言内容。"],
+                ["使用与设备信息", "例如浏览器类型、设备标识符、日志、IP 地址、访问时间、页面交互与诊断信息。"],
+                ["Cookie 与类似技术信息", "用于记住偏好、分析网站表现、维护安全或提供经您同意的功能。"],
+                ["第三方来源信息", "仅在法律允许、您已授权或为提供服务所必需时，从合法渠道获得的相关信息。"]
+              ],
+              paragraphs: [
+                "如需处理敏感个人信息、未成年人信息或进行跨境传输，我们将依照适用法律采取额外保护措施，并在需要时取得相应同意。"
+              ]
+            },
+            {
+              id: "use",
+              nav: "我们如何使用信息",
+              title: "3. 我们如何使用信息",
+              intro: "我们可能将个人信息用于以下目的：",
+              list: [
+                "提供、运营、维护和改进服务；",
+                "处理您的咨询、支持请求、反馈或其他沟通；",
+                "保障服务安全，防止欺诈、滥用、攻击或其他违法违规活动；",
+                "在必要范围内履行法律义务、处理争议或执行我们的协议；以及",
+                "经明确说明并在需要时取得您同意后的其他目的。"
+              ],
+              paragraphs: [
+                "我们会根据适用法律确定处理个人信息的合法基础，并在需要时于处理前以清晰易懂的方式向您告知相关事项。"
+              ]
+            },
+            {
+              id: "safeguards",
+              nav: "共享、保存与安全",
+              title: "4. 共享、保存与安全",
+              paragraphs: [
+                "除非取得您的同意、为履行服务所必需或适用法律允许或要求，我们不会向无关第三方共享个人信息。我们可能委托受约束的服务提供商协助提供云服务、客户支持、分析、支付或安全服务，并要求其遵守相应保护措施和处理指示。",
+                "我们会在实现收集目的所需的期限内保存个人信息，法律法规另有要求或允许的除外。到期后，我们将依法删除、匿名化处理或采取其他适当措施。",
+                "我们采取合理的管理、技术和物理安全措施，降低信息被未经授权访问、使用、披露、变更或丢失的风险。但任何互联网传输或电子存储方式均不能保证绝对安全。"
+              ]
+            },
+            {
+              id: "rights",
+              nav: "您的权利",
+              title: "5. 您的权利",
+              intro: "在适用法律规定的范围内，您可以请求：",
+              list: [
+                "查阅或获得个人信息副本；",
+                "更正或补充不准确、不完整的信息；",
+                "删除个人信息，或在适用情形下撤回同意；以及",
+                "要求解释我们的处理规则，或行使其他适用的隐私权利。"
+              ],
+              paragraphs: [
+                "为保护您的信息安全，我们可能在处理请求前核验您的身份，并将在适用法律规定的期限内作出回应。"
+              ]
+            },
+            {
+              id: "cookies",
+              nav: "Cookie",
+              title: "6. Cookie 与类似技术",
+              paragraphs: [
+                "我们可能使用 Cookie、像素标签、本地存储及类似技术，以保障网站正常运行、记住偏好、评估服务表现和改进用户体验。",
+                "您通常可以通过浏览器设置限制或删除 Cookie；但这样做可能会影响部分功能。若使用第三方分析或广告技术，请在发布前补充第三方名称、用途、信息类别和退出方式。"
+              ]
+            },
+            {
+              id: "changes",
+              nav: "未成年人与更新",
+              title: "7. 未成年人与政策更新",
+              paragraphs: [
+                "如我们的服务面向未成年人或可能处理未成年人信息，我们将依照适用法律取得必要授权并采取相应保护措施。若您认为我们在未获适当授权的情况下收集了未成年人信息，请及时联系我们。",
+                "我们可能因服务变化、法律要求或运营需要更新本政策。重大变更时，我们会以适当方式通知您；更新后的政策自公布或通知中载明的日期起生效。"
+              ]
+            },
+            {
+              id: "contact",
+              nav: "联系我们",
+              title: "8. 联系我们",
+              intro: "如您对本政策或个人信息处理有任何问题、意见或请求，请通过以下方式联系我们："
+            }
+          ]
+        },
+        "zh-TW": {
+          lang: "zh-Hant",
+          documentTitle: "隱私權政策 · Next Dawn Technologies Co., Ltd.",
+          languageLabel: "語言",
+          headerLabel: "隱私權政策",
+          skipLink: "跳至隱私權政策正文",
+          eyebrow: "隱私權聲明",
+          title: "隱私權政策",
+          lead: "本政策說明 Next Dawn Technologies Co., Ltd.（以下稱「我們」）在營運網站及相關服務時，可能如何處理您的個人資料。",
+          meta: ["最後更新：2026 年 8 月 6 日", "適用於網站及相關服務"],
+          metaLabel: "政策資訊",
+          noticeLabel: "發布前提示",
+          noticeStrong: "發布前請核對實際業務。",
+          noticeText: "本頁面是可編輯的一般範本；請依據實際使用的功能、SDK、Cookie、保存期間、服務地區與聯絡資料補充或刪改後再發布。",
+          tocTitle: "頁面目錄",
+          contactEmailLabel: "隱私聯絡信箱：",
+          contactNote: "請在發布前替換為貴司實際的隱私聯絡信箱、註冊地址或其他適用聯絡管道。",
+          footerVersion: "隱私權政策 · 版本 1.0",
+          sections: [
+            {
+              id: "scope",
+              nav: "適用範圍",
+              title: "1. 適用範圍",
+              paragraphs: [
+                "本隱私權政策適用於我們提供的網站、產品、應用程式及其他相關服務（統稱「服務」）。如特定服務另行提供專門的隱私說明，以該專門說明為準。",
+                "使用服務前，請仔細閱讀本政策。若您不同意本政策中的任何內容，請停止使用相關服務，並透過下文所列方式與我們聯絡。"
+              ]
+            },
+            {
+              id: "collect",
+              nav: "我們可能蒐集的資料",
+              title: "2. 我們可能蒐集的資料",
+              intro: "我們僅在提供、維護、保障與改善服務所需的範圍內處理個人資料。具體資料類別應以實際業務功能為準，可能包括：",
+              cards: [
+                ["您主動提供的資料", "例如您提交諮詢、註冊帳戶、申請支援或與我們聯絡時提供的姓名、聯絡方式及留言內容。"],
+                ["使用與裝置資料", "例如瀏覽器類型、裝置識別碼、日誌、IP 位址、存取時間、頁面互動與診斷資料。"],
+                ["Cookie 與類似技術資料", "用於記住偏好、分析網站表現、維護安全或提供經您同意的功能。"],
+                ["第三方來源資料", "僅在法律允許、您已授權或為提供服務所必需時，自合法管道取得的相關資料。"]
+              ],
+              paragraphs: [
+                "如需處理敏感個人資料、未成年人資料或進行跨境傳輸，我們將依適用法律採取額外保護措施，並在需要時取得相應同意。"
+              ]
+            },
+            {
+              id: "use",
+              nav: "我們如何使用資料",
+              title: "3. 我們如何使用資料",
+              intro: "我們可能將個人資料用於下列目的：",
+              list: [
+                "提供、營運、維護與改善服務；",
+                "處理您的諮詢、支援請求、意見回饋或其他溝通；",
+                "保障服務安全，防止詐欺、濫用、攻擊或其他違法違規活動；",
+                "在必要範圍內履行法律義務、處理爭議或執行我們的協議；以及",
+                "經清楚說明並在需要時取得您同意後的其他目的。"
+              ],
+              paragraphs: [
+                "我們會依適用法律確定處理個人資料的合法基礎，並在需要時於處理前以清楚易懂的方式向您告知相關事項。"
+              ]
+            },
+            {
+              id: "safeguards",
+              nav: "分享、保存與安全",
+              title: "4. 分享、保存與安全",
+              paragraphs: [
+                "除非取得您的同意、為履行服務所必需或適用法律允許或要求，我們不會向無關第三方分享個人資料。我們可能委託受約束的服務供應商協助提供雲端服務、客戶支援、分析、付款或安全服務，並要求其遵守相應保護措施與處理指示。",
+                "我們會在達成蒐集目的所需的期間內保存個人資料，法律法規另有要求或允許者除外。期間屆滿後，我們將依法刪除、匿名化處理或採取其他適當措施。",
+                "我們採取合理的管理、技術與實體安全措施，以降低資料遭未經授權存取、使用、揭露、變更或遺失的風險。但任何網際網路傳輸或電子儲存方式均無法保證絕對安全。"
+              ]
+            },
+            {
+              id: "rights",
+              nav: "您的權利",
+              title: "5. 您的權利",
+              intro: "在適用法律規定的範圍內，您可以要求：",
+              list: [
+                "查閱或取得個人資料副本；",
+                "更正或補充不正確、不完整的資料；",
+                "刪除個人資料，或在適用情形下撤回同意；以及",
+                "要求說明我們的處理規則，或行使其他適用的隱私權利。"
+              ],
+              paragraphs: [
+                "為保障您的資料安全，我們可能在處理請求前驗證您的身分，並會在適用法律規定的期間內回應。"
+              ]
+            },
+            {
+              id: "cookies",
+              nav: "Cookie",
+              title: "6. Cookie 與類似技術",
+              paragraphs: [
+                "我們可能使用 Cookie、像素標籤、本機儲存及類似技術，以保障網站正常運作、記住偏好、評估服務表現並改善使用者體驗。",
+                "您通常可以透過瀏覽器設定限制或刪除 Cookie；但這可能影響部分功能。若使用第三方分析或廣告技術，請在發布前補充第三方名稱、用途、資料類別與退出方式。"
+              ]
+            },
+            {
+              id: "changes",
+              nav: "未成年人與更新",
+              title: "7. 未成年人與政策更新",
+              paragraphs: [
+                "如我們的服務面向未成年人或可能處理未成年人資料，我們將依適用法律取得必要授權並採取相應保護措施。若您認為我們在未獲適當授權的情況下蒐集了未成年人資料，請及時與我們聯絡。",
+                "我們可能因服務變更、法律要求或營運需要更新本政策。重大變更時，我們會以適當方式通知您；更新後的政策自公布或通知中載明的日期起生效。"
+              ]
+            },
+            {
+              id: "contact",
+              nav: "聯絡我們",
+              title: "8. 聯絡我們",
+              intro: "如您對本政策或個人資料處理有任何問題、意見或請求，請透過以下方式與我們聯絡："
+            }
+          ]
+        },
+        es: {
+          lang: "es",
+          documentTitle: "Política de privacidad · Next Dawn Technologies Co., Ltd.",
+          languageLabel: "Idioma",
+          headerLabel: "Política de privacidad",
+          skipLink: "Ir a la política de privacidad",
+          eyebrow: "Aviso de privacidad",
+          title: "Política de privacidad",
+          lead: "Esta política explica cómo Next Dawn Technologies Co., Ltd. (nosotros) puede tratar información personal al operar nuestro sitio web y servicios relacionados.",
+          meta: ["Última actualización: 6 de agosto de 2026", "Para sitios web y servicios relacionados"],
+          metaLabel: "Información de la política",
+          noticeLabel: "Recordatorio antes de publicar",
+          noticeStrong: "Revise el contenido antes de publicar.",
+          noticeText: "Esta es una plantilla general editable. Confirme las funciones, SDK, cookies, plazos de conservación, regiones de servicio y datos de contacto reales antes de publicarla.",
+          tocTitle: "En esta página",
+          contactEmailLabel: "Contacto de privacidad:",
+          contactNote: "Sustituya este marcador por su correo de privacidad real, domicilio social u otro canal de contacto aplicable antes de publicar.",
+          footerVersion: "Política de privacidad · Versión 1.0",
+          sections: [
+            {
+              id: "scope",
+              nav: "Ámbito",
+              title: "1. Ámbito",
+              paragraphs: [
+                "Esta Política de privacidad se aplica a nuestros sitios web, productos, aplicaciones y servicios relacionados (en conjunto, los Servicios). Si un servicio concreto tiene un aviso de privacidad independiente, ese aviso se aplicará a dicho servicio.",
+                "Lea esta política antes de utilizar los Servicios. Si no está de acuerdo con alguna parte, deje de utilizar los Servicios pertinentes y póngase en contacto con nosotros mediante los datos indicados a continuación."
+              ]
+            },
+            {
+              id: "collect",
+              nav: "Información que podemos recopilar",
+              title: "2. Información que podemos recopilar",
+              intro: "Tratamos información personal únicamente cuando es necesario para proporcionar, mantener, proteger y mejorar los Servicios. Según las funciones utilizadas, esta información puede incluir:",
+              cards: [
+                ["Información que usted proporciona", "Por ejemplo, nombre, datos de contacto y contenido de mensajes al enviar una consulta, crear una cuenta, solicitar asistencia o escribirnos."],
+                ["Información de uso y del dispositivo", "Por ejemplo, tipo de navegador, identificadores del dispositivo, registros, dirección IP, horas de acceso, interacciones y datos de diagnóstico."],
+                ["Datos de cookies y tecnologías similares", "Se usan para recordar preferencias, medir el rendimiento del sitio, proteger la seguridad o proporcionar funciones que usted haya aceptado."],
+                ["Información de terceros", "Información obtenida de fuentes lícitas únicamente cuando la ley lo permite, usted la autoriza o es necesaria para proporcionar los Servicios."]
+              ],
+              paragraphs: [
+                "Si intervienen datos personales sensibles, información de menores o transferencias internacionales, aplicaremos las medidas adicionales exigidas por la legislación aplicable y solicitaremos consentimiento cuando sea necesario."
+              ]
+            },
+            {
+              id: "use",
+              nav: "Cómo usamos la información",
+              title: "3. Cómo usamos la información",
+              intro: "Podemos utilizar la información personal para:",
+              list: [
+                "proporcionar, operar, mantener y mejorar los Servicios;",
+                "responder consultas, solicitudes de asistencia, comentarios y otras comunicaciones;",
+                "proteger los Servicios y prevenir fraude, abuso, ataques u otra actividad ilícita;",
+                "cumplir obligaciones legales, resolver controversias o hacer cumplir nuestros acuerdos; y",
+                "apoyar otro propósito que se le haya explicado claramente y, cuando corresponda, para el cual haya dado su consentimiento."
+              ],
+              paragraphs: [
+                "Determinamos una base jurídica adecuada conforme a la legislación aplicable y proporcionamos un aviso claro antes del tratamiento cuando sea necesario."
+              ]
+            },
+            {
+              id: "safeguards",
+              nav: "Compartición, conservación y seguridad",
+              title: "4. Uso compartido, conservación y seguridad",
+              paragraphs: [
+                "No compartimos información personal con terceros no relacionados salvo que usted lo acepte, sea necesario para prestar los Servicios o la ley lo permita o exija. Podemos utilizar proveedores contratados para alojamiento, asistencia, análisis, pagos o seguridad, sujetos a salvaguardas e instrucciones adecuadas.",
+                "Conservamos la información personal solo durante el tiempo necesario para los fines indicados, salvo que la ley exija o permita un periodo mayor. Cuando deja de ser necesaria, la eliminamos, anonimizamos o tratamos de otra forma conforme a la ley.",
+                "Aplicamos medidas administrativas, técnicas y físicas razonables para reducir el riesgo de acceso, uso, divulgación, alteración o pérdida no autorizados. Ninguna transmisión por Internet ni almacenamiento electrónico es completamente seguro."
+              ]
+            },
+            {
+              id: "rights",
+              nav: "Sus derechos",
+              title: "5. Sus Derechos",
+              intro: "Conforme a la legislación aplicable, puede solicitar:",
+              list: [
+                "acceso a su información personal u obtención de una copia;",
+                "rectificación de información inexacta o incompleta;",
+                "eliminación de datos personales o retirada del consentimiento cuando corresponda; y",
+                "una explicación de nuestras reglas de tratamiento u otros derechos de privacidad aplicables."
+              ],
+              paragraphs: [
+                "Podemos verificar su identidad antes de completar una solicitud para proteger su información y responderemos dentro del plazo exigido por la ley aplicable."
+              ]
+            },
+            {
+              id: "cookies",
+              nav: "Cookies",
+              title: "6. Cookies y Tecnologías Similares",
+              paragraphs: [
+                "Podemos utilizar cookies, píxeles, almacenamiento local y tecnologías similares para mantener el funcionamiento del sitio, recordar preferencias, medir el rendimiento y mejorar la experiencia de usuario.",
+                "Normalmente puede limitar o eliminar cookies en la configuración del navegador, aunque esto puede afectar a ciertas funciones. Si utiliza análisis o publicidad de terceros, añada antes de publicar el proveedor, la finalidad, las categorías de información y el método de exclusión."
+              ]
+            },
+            {
+              id: "changes",
+              nav: "Menores y actualizaciones",
+              title: "7. Menores y Actualizaciones de la Política",
+              paragraphs: [
+                "Si los Servicios están dirigidos a menores o pueden tratar información de menores, obtendremos la autorización exigida y aplicaremos las salvaguardas requeridas por la legislación aplicable. Contáctenos si cree que se recopiló información de menores sin la autorización adecuada.",
+                "Podemos actualizar esta política por cambios en los Servicios, requisitos legales o necesidades operativas. Comunicaremos los cambios importantes de manera adecuada; la política actualizada entrará en vigor en la fecha de publicación o aviso indicada."
+              ]
+            },
+            {
+              id: "contact",
+              nav: "Contáctenos",
+              title: "8. Contáctenos",
+              intro: "Si tiene preguntas, comentarios o solicitudes sobre esta política o el tratamiento de información personal, contáctenos:"
+            }
+          ]
+        },
+        ja: {
+          lang: "ja",
+          documentTitle: "プライバシーポリシー · Next Dawn Technologies Co., Ltd.",
+          languageLabel: "言語",
+          headerLabel: "プライバシーポリシー",
+          skipLink: "プライバシーポリシー本文へ移動",
+          eyebrow: "プライバシーに関するお知らせ",
+          title: "プライバシーポリシー",
+          lead: "本ポリシーは、Next Dawn Technologies Co., Ltd.（以下「当社」）がウェブサイトおよび関連サービスを運営する際に、個人情報をどのように取り扱うかを説明するものです。",
+          meta: ["最終更新日：2026年8月6日", "ウェブサイトおよび関連サービスに適用"],
+          metaLabel: "ポリシー情報",
+          noticeLabel: "公開前の確認事項",
+          noticeStrong: "公開前に実際の業務内容をご確認ください。",
+          noticeText: "本ページは編集可能な一般テンプレートです。実際に利用する機能、SDK、Cookie、保存期間、提供地域および連絡先を確認し、補足または修正した上で公開してください。",
+          tocTitle: "目次",
+          contactEmailLabel: "プライバシー窓口：",
+          contactNote: "公開前に、このプレースホルダーを実際のプライバシー問い合わせ先メールアドレス、登記上の住所またはその他の適切な連絡先に置き換えてください。",
+          footerVersion: "プライバシーポリシー · バージョン 1.0",
+          sections: [
+            {
+              id: "scope",
+              nav: "適用範囲",
+              title: "1. 適用範囲",
+              paragraphs: [
+                "本プライバシーポリシーは、当社が提供するウェブサイト、製品、アプリケーションおよび関連サービス（総称して「本サービス」）に適用されます。特定のサービスに個別のプライバシー通知がある場合は、その通知が当該サービスに適用されます。",
+                "本サービスを利用する前に本ポリシーをよくお読みください。本ポリシーの一部に同意できない場合は、関連するサービスの利用を中止し、下記の連絡先から当社へお問い合わせください。"
+              ]
+            },
+            {
+              id: "collect",
+              nav: "収集する可能性のある情報",
+              title: "2. 収集する可能性のある情報",
+              intro: "当社は、本サービスの提供、維持、保護および改善に必要な範囲でのみ個人情報を取り扱います。実際に使用される機能に応じて、以下の情報が含まれる場合があります。",
+              cards: [
+                ["お客様が提供する情報", "お問い合わせ、アカウント作成、サポートの依頼または当社への連絡の際に提供される氏名、連絡先およびメッセージ内容など。"],
+                ["利用状況および端末情報", "ブラウザの種類、端末識別子、ログ、IPアドレス、アクセス時刻、ページ操作および診断データなど。"],
+                ["Cookie等の技術情報", "設定の記憶、サイトパフォーマンスの評価、セキュリティの維持または同意いただいた機能の提供に使用されます。"],
+                ["第三者からの情報", "法令で認められる場合、お客様の承認がある場合、または本サービスの提供に必要な場合に限り、適法な情報源から取得する情報。"]
+              ],
+              paragraphs: [
+                "要配慮個人情報、子どもの情報または国境を越える移転が関係する場合、当社は適用法令で求められる追加措置を講じ、必要に応じて同意を取得します。"
+              ]
+            },
+            {
+              id: "use",
+              nav: "情報の利用方法",
+              title: "3. 情報の利用方法",
+              intro: "当社は個人情報を次の目的で利用することがあります。",
+              list: [
+                "本サービスの提供、運営、維持および改善のため。",
+                "お問い合わせ、サポート依頼、フィードバックその他の連絡への対応のため。",
+                "本サービスを保護し、不正、濫用、攻撃その他の違法行為を防止するため。",
+                "法的義務の履行、紛争の解決または契約の執行のため。",
+                "お客様に明確に説明し、必要に応じて同意を得たその他の目的のため。"
+              ],
+              paragraphs: [
+                "当社は適用法令に基づく適法な処理の根拠を確認し、必要な場合には処理前に分かりやすい方法で通知します。"
+              ]
+            },
+            {
+              id: "safeguards",
+              nav: "共有、保存および安全管理",
+              title: "4. 共有、保存および安全管理",
+              paragraphs: [
+                "お客様の同意がある場合、本サービスの提供に必要な場合、または適用法令で許可または要求される場合を除き、当社は無関係な第三者と個人情報を共有しません。クラウドホスティング、サポート、分析、決済またはセキュリティのために、適切な安全措置および指示の下で委託先を利用することがあります。",
+                "当社は、記載された目的に必要な期間に限って個人情報を保持します。ただし、法令でより長い期間が求められる、または許容される場合を除きます。不要となった情報は、法令に従って削除、匿名化または適切に処理します。",
+                "当社は、不正なアクセス、利用、開示、改ざんまたは紛失のリスクを軽減するため、合理的な管理上、技術上および物理上の安全措置を講じます。ただし、インターネット送信または電子的な保存方法が完全に安全であるとは限りません。"
+              ]
+            },
+            {
+              id: "rights",
+              nav: "お客様の権利",
+              title: "5. お客様の権利",
+              intro: "適用法令に従い、お客様は次の事項を請求できる場合があります。",
+              list: [
+                "個人情報へのアクセスまたはその写しの取得。",
+                "不正確または不完全な情報の訂正または補完。",
+                "該当する場合の個人情報の削除または同意の撤回。",
+                "当社の取扱いルールの説明、またはその他の適用されるプライバシー権の行使。"
+              ],
+              paragraphs: [
+                "お客様の情報を保護するため、当社は請求への対応前に本人確認を行うことがあります。適用法令で定められた期間内に回答します。"
+              ]
+            },
+            {
+              id: "cookies",
+              nav: "Cookie",
+              title: "6. Cookieおよび類似技術",
+              paragraphs: [
+                "当社は、ウェブサイトの運用、設定の記憶、パフォーマンスの測定およびユーザー体験の改善のために、Cookie、ピクセル、ローカルストレージおよび類似技術を利用することがあります。",
+                "通常、ブラウザ設定によりCookieを制限または削除できますが、その場合、一部の機能に影響することがあります。第三者の分析または広告技術を使用する場合は、公開前に提供事業者、目的、情報の種類およびオプトアウト方法を追加してください。"
+              ]
+            },
+            {
+              id: "changes",
+              nav: "子どもの情報と改定",
+              title: "7. 子どもの情報とポリシーの改定",
+              paragraphs: [
+                "本サービスが子ども向けである場合、または子どもの情報を取り扱う可能性がある場合、当社は適用法令に従い、必要に応じて親権者その他の法定代理人の同意を取得し、必要な保護措置を講じます。適切な同意なく子どもの情報が収集されたと思われる場合は、当社にご連絡ください。",
+                "当社は、本サービス、法的要件または運用上の必要性の変更により本ポリシーを更新することがあります。重要な変更については適切な方法で通知し、更新後のポリシーは記載された公開日または通知日から有効になります。"
+              ]
+            },
+            {
+              id: "contact",
+              nav: "お問い合わせ",
+              title: "8. お問い合わせ",
+              intro: "本ポリシーまたは個人情報の取扱いについてご質問、ご意見またはご請求がある場合は、次の連絡先までお問い合わせください。"
+            }
+          ]
+        },
+        ko: {
+          lang: "ko",
+          documentTitle: "개인정보 처리방침 · Next Dawn Technologies Co., Ltd.",
+          languageLabel: "언어",
+          headerLabel: "개인정보 처리방침",
+          skipLink: "개인정보 처리방침 본문으로 이동",
+          eyebrow: "개인정보 보호 고지",
+          title: "개인정보 처리방침",
+          lead: "본 정책은 Next Dawn Technologies Co., Ltd.(이하 “당사”)가 웹사이트 및 관련 서비스를 운영할 때 개인정보를 어떻게 처리하는지 설명합니다.",
+          meta: ["최종 업데이트: 2026년 8월 6일", "웹사이트 및 관련 서비스에 적용"],
+          metaLabel: "정책 정보",
+          noticeLabel: "게시 전 안내",
+          noticeStrong: "게시 전에 실제 업무 내용을 확인해 주세요.",
+          noticeText: "이 페이지는 수정 가능한 일반 템플릿입니다. 실제 사용하는 기능, SDK, 쿠키, 보존 기간, 서비스 지역 및 연락처를 확인하고 보완 또는 수정한 뒤 게시해 주세요.",
+          tocTitle: "목차",
+          contactEmailLabel: "개인정보 문의처:",
+          contactNote: "게시 전에 이 자리 표시자를 실제 개인정보 문의 이메일, 등록 주소 또는 기타 적용 가능한 연락처로 바꿔 주세요.",
+          footerVersion: "개인정보 처리방침 · 버전 1.0",
+          sections: [
+            {
+              id: "scope",
+              nav: "적용 범위",
+              title: "1. 적용 범위",
+              paragraphs: [
+                "본 개인정보 처리방침은 당사가 제공하는 웹사이트, 제품, 애플리케이션 및 관련 서비스(통칭하여 “서비스”)에 적용됩니다. 특정 서비스에 별도의 개인정보 처리방침이 있는 경우 해당 방침이 그 서비스에 적용됩니다.",
+                "서비스를 이용하기 전에 본 정책을 주의 깊게 읽어 주세요. 본 정책의 일부에 동의하지 않는 경우 관련 서비스의 이용을 중단하고 아래 연락처를 통해 당사에 문의해 주세요."
+              ]
+            },
+            {
+              id: "collect",
+              nav: "수집할 수 있는 정보",
+              title: "2. 수집할 수 있는 정보",
+              intro: "당사는 서비스를 제공, 유지, 보호 및 개선하는 데 필요한 범위에서만 개인정보를 처리합니다. 실제 사용하는 기능에 따라 다음 정보가 포함될 수 있습니다.",
+              cards: [
+                ["이용자가 제공하는 정보", "문의 제출, 계정 생성, 지원 요청 또는 당사와의 연락 시 제공하는 이름, 연락처 및 메시지 내용 등."],
+                ["이용 및 기기 정보", "브라우저 유형, 기기 식별자, 로그, IP 주소, 접속 시간, 페이지 상호작용 및 진단 데이터 등."],
+                ["쿠키 및 유사 기술 데이터", "환경설정 기억, 사이트 성능 측정, 보안 유지 또는 동의한 기능 제공을 위해 사용됩니다."],
+                ["제3자로부터의 정보", "법에서 허용하거나 이용자가 승인했거나 서비스 제공에 필요한 경우에만 적법한 출처에서 얻는 정보."]
+              ],
+              paragraphs: [
+                "민감한 개인정보, 아동 정보 또는 국외 이전이 관련되는 경우 당사는 적용 법령에서 요구하는 추가 조치를 취하고 필요한 경우 동의를 받습니다."
+              ]
+            },
+            {
+              id: "use",
+              nav: "정보 이용 방법",
+              title: "3. 정보 이용 방법",
+              intro: "당사는 개인정보를 다음 목적으로 이용할 수 있습니다.",
+              list: [
+                "서비스의 제공, 운영, 유지 및 개선.",
+                "문의, 지원 요청, 피드백 및 기타 커뮤니케이션에 대한 대응.",
+                "서비스 보호 및 사기, 오남용, 공격 또는 기타 불법 행위 방지.",
+                "법적 의무 이행, 분쟁 해결 또는 계약 이행.",
+                "이용자에게 명확히 설명하고 필요한 경우 동의를 받은 기타 목적."
+              ],
+              paragraphs: [
+                "당사는 적용 법령에 따라 적법한 처리의 법적 근거를 확인하고 필요한 경우 처리 전에 명확하고 이해하기 쉬운 방식으로 고지합니다."
+              ]
+            },
+            {
+              id: "safeguards",
+              nav: "공유, 보존 및 보안",
+              title: "4. 공유, 보존 및 보안",
+              paragraphs: [
+                "이용자가 동의했거나 서비스 제공에 필요하거나 적용 법령이 허용 또는 요구하는 경우를 제외하고, 당사는 무관한 제3자와 개인정보를 공유하지 않습니다. 당사는 적절한 보호조치와 지침에 따라 클라우드 호스팅, 지원, 분석, 결제 또는 보안을 위한 수탁업체를 이용할 수 있습니다.",
+                "당사는 명시된 목적에 필요한 기간 동안만 개인정보를 보유합니다. 법에서 더 긴 기간을 요구하거나 허용하는 경우는 예외입니다. 더 이상 필요하지 않은 정보는 법에 따라 삭제, 익명화 또는 적절히 처리합니다.",
+                "당사는 무단 접근, 이용, 공개, 변경 또는 분실의 위험을 줄이기 위해 합리적인 관리적, 기술적 및 물리적 보호조치를 적용합니다. 다만 인터넷 전송이나 전자적 저장 방식이 완전히 안전하다고 보장할 수는 없습니다."
+              ]
+            },
+            {
+              id: "rights",
+              nav: "이용자의 권리",
+              title: "5. 이용자의 권리",
+              intro: "적용 법령의 범위에서 이용자는 다음을 요청할 수 있습니다.",
+              list: [
+                "개인정보에 대한 열람 또는 사본 제공.",
+                "부정확하거나 불완전한 정보의 정정 또는 보완.",
+                "해당하는 경우 개인정보의 삭제 또는 동의 철회.",
+                "당사의 개인정보 처리에 관한 설명 또는 기타 적용 가능한 개인정보 보호 권리의 행사."
+              ],
+              paragraphs: [
+                "당사는 이용자 정보를 보호하기 위해 요청을 처리하기 전에 본인 확인을 할 수 있으며, 적용 법령에서 요구하는 기간 내에 응답합니다."
+              ]
+            },
+            {
+              id: "cookies",
+              nav: "쿠키",
+              title: "6. 쿠키 및 유사 기술",
+              paragraphs: [
+                "당사는 웹사이트 운영, 환경설정 기억, 성능 측정 및 사용자 경험 개선을 위해 쿠키, 픽셀, 로컬 저장소 및 유사 기술을 사용할 수 있습니다.",
+                "일반적으로 브라우저 설정에서 쿠키를 제한하거나 삭제할 수 있으나 일부 기능에 영향을 줄 수 있습니다. 제3자 분석 또는 광고 기술을 사용한다면 게시 전에 제공업체, 목적, 정보 유형 및 거부 방법을 추가해 주세요."
+              ]
+            },
+            {
+              id: "changes",
+              nav: "아동 정보 및 업데이트",
+              title: "7. 아동 정보 및 정책 업데이트",
+              paragraphs: [
+                "서비스가 아동을 대상으로 하거나 아동 정보를 처리할 수 있는 경우, 당사는 적용 법령에 따라 필요한 동의와 필요한 경우 법정대리인의 동의를 받고 보호조치를 적용합니다. 적절한 동의 없이 아동 정보가 수집되었다고 생각되면 당사에 연락해 주세요.",
+                "당사는 서비스 변경, 법적 요구사항 또는 운영상 필요에 따라 본 정책을 업데이트할 수 있습니다. 중요한 변경 사항은 적절한 방법으로 알리며, 업데이트된 정책은 명시된 게시일 또는 통지일에 효력이 발생합니다."
+              ]
+            },
+            {
+              id: "contact",
+              nav: "문의하기",
+              title: "8. 문의하기",
+              intro: "본 정책 또는 개인정보 처리에 관한 질문, 의견 또는 요청이 있으면 다음 방법으로 당사에 연락해 주세요."
+            }
+          ]
+        }
+      };
+
+      const sectionTemplate = (section, policy) => {
+        const intro = section.intro ? `<p>${section.intro}</p>` : "";
+        const cards = section.cards
+          ? `<div class="data-cards">${section.cards
+              .map(
+                ([title, text]) =>
+                  `<div class="data-card"><strong>${title}</strong><p>${text}</p></div>`
+              )
+              .join("")}</div>`
+          : "";
+        const list = section.list
+          ? `<ul>${section.list.map((item) => `<li>${item}</li>`).join("")}</ul>`
+          : "";
+        const paragraphs = (section.paragraphs || [])
+          .map((paragraph) => `<p>${paragraph}</p>`)
+          .join("");
+        const contact =
+          section.id === "contact"
+            ? `
+              <div class="contact-card">
+                <div class="contact-symbol" aria-hidden="true">✦</div>
+                <div>
+                  <p><strong>Next Dawn Technologies Co., Ltd.</strong></p>
+                  <p>${policy.contactEmailLabel} <a href="mailto:${email}"><span class="placeholder">${email}</span></a></p>
+                  <p>${policy.contactNote}</p>
+                </div>
+              </div>`
+            : "";
+        return `<section id="${section.id}"><h2>${section.title}</h2>${intro}${cards}${list}${paragraphs}${contact}</section>`;
+      };
+
+      const renderPolicy = (key) => {
+        const policy = policies[key] || policies.en;
+        document.documentElement.lang = policy.lang;
+        document.title = policy.documentTitle;
+        document.getElementById("language-select").value = key;
+        document.getElementById("language-label").textContent = policy.languageLabel;
+        document.getElementById("header-label").textContent = policy.headerLabel;
+        document.getElementById("skip-link").textContent = policy.skipLink;
+        document.getElementById("hero-eyebrow").textContent = policy.eyebrow;
+        document.getElementById("page-title").textContent = policy.title;
+        document.getElementById("hero-lead").textContent = policy.lead;
+        document.getElementById("hero-meta").setAttribute("aria-label", policy.metaLabel);
+        document.getElementById("hero-meta").innerHTML = policy.meta
+          .map((item) => `<span>${item}</span>`)
+          .join("");
+        document.getElementById("notice").setAttribute("aria-label", policy.noticeLabel);
+        document.getElementById("notice-copy").innerHTML =
+          `<strong>${policy.noticeStrong}</strong> ${policy.noticeText}`;
+        document.getElementById("toc").setAttribute("aria-label", policy.tocTitle);
+        document.getElementById("toc").innerHTML =
+          `<p class="toc-title">${policy.tocTitle}</p>` +
+          policy.sections.map((section) => `<a href="#${section.id}">${section.nav}</a>`).join("");
+        document.getElementById("policy").innerHTML = policy.sections
+          .map((section) => sectionTemplate(section, policy))
+          .join("");
+        document.getElementById("footer-copyright").textContent =
+          "© 2026 Next Dawn Technologies Co., Ltd.";
+        document.getElementById("footer-version").textContent = policy.footerVersion;
+      };
+
+      document.getElementById("language-select").addEventListener("change", (event) => {
+        renderPolicy(event.target.value);
+      });
+
+      renderPolicy("en");
+    </script>
+  </body>
+</html>
