@@ -7,14 +7,13 @@
   <title>产品预览</title>
   <style>
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; min-width: 320px; background: #fff; }
-    main { display: grid; gap: 0; padding: 0; }
-    .preview { height: 916px; overflow: hidden; background: #fff; }
-    .preview iframe { display: block; width: 100%; height: 916px; border: 0; overflow: hidden; }
-    @media (max-width: 700px) {
-      .preview, .preview iframe { height: 796px; }
-    }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #171515; }
+    main { height: 100dvh; overflow-y: auto; scroll-snap-type: y mandatory; scrollbar-width: none; }
+    main::-webkit-scrollbar { display: none; }
+    .preview { height: 100%; scroll-snap-align: start; scroll-snap-stop: always; overflow: hidden; }
+    .preview iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .pager { position: fixed; right: 10px; bottom: 10px; display: flex; gap: 8px; z-index: 2; }
+    .pager button { border: 1px solid #ffffff50; border-radius: 20px; background: #24221ee6; color: white; padding: 10px 14px; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -29,19 +28,78 @@
       <iframe src="yunjian.html" title="云间煮茶产品预览" loading="lazy" scrolling="no"></iframe>
     </section>
   </main>
+  <nav class="pager" aria-label="切换产品">
+    <button type="button" id="previous" aria-label="上一个产品">↑</button>
+    <button type="button" id="next" aria-label="下一个产品">上滑切换 ↓</button>
+  </nav>
   <script>
+    const feed = document.querySelector('main');
+    let lockedUntil = 0;
+    function changeProduct(direction) {
+      if (Date.now() < lockedUntil) return;
+      const index = Math.round(feed.scrollTop / feed.clientHeight);
+      const target = Math.max(0, Math.min(2, index + direction));
+      lockedUntil = Date.now() + 600;
+      feed.scrollTo({ top: target * feed.clientHeight, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    }
+    document.querySelector('#previous').onclick = () => changeProduct(-1);
+    document.querySelector('#next').onclick = () => changeProduct(1);
     // 预览文件与此页同源：隐藏其文档滚动条，让页面只保留外层的一个滚动条。
     document.querySelectorAll('.preview iframe').forEach((frame) => {
       frame.addEventListener('load', () => {
+        if (!frame.contentDocument) return;
         const { documentElement, body } = frame.contentDocument;
         documentElement.style.overflow = 'hidden';
         body.style.overflow = 'hidden';
         const style = frame.contentDocument.createElement('style');
         style.textContent = `
-          .app-shell { padding-bottom: 16px !important; }
+          .app-shell { height: 100dvh; min-height: 0 !important; padding-bottom: 16px !important; }
+          .workspace { min-height: 0 !important; height: auto !important; flex: 1; }
+          .stage { min-height: 0 !important; }
+          .topbar, .footer { flex-shrink: 0; }
+          @media (max-width: 760px) {
+            .workspace { display: flex !important; flex-direction: column !important; }
+            .product-panel { display: contents !important; }
+            .stage { flex: 1; height: auto !important; }
+            .product-title { padding-top: 10px; padding-bottom: 10px; }
+            .view-section { padding-top: 8px; }
+            .auto-row { min-height: 40px; margin-top: 0; }
+            .footer { padding-bottom: 12px; }
+          }
           .stage, model-viewer { touch-action: none !important; }
         `;
         frame.contentDocument.head.append(style);
+        const doc = frame.contentDocument;
+        let start = null;
+        const isControl = (target) => target.closest('.stage, button, input, a, select');
+        doc.addEventListener('touchstart', (event) => {
+          start = event.touches.length === 1 && !isControl(event.target)
+            ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null;
+        }, { passive: true });
+        doc.addEventListener('touchmove', (event) => {
+          if (event.touches.length !== 1) start = null;
+          if (start && event.cancelable) event.preventDefault();
+        }, { passive: false });
+        doc.addEventListener('touchend', (event) => {
+          if (!start) return;
+          const dx = event.changedTouches[0].clientX - start.x;
+          const dy = event.changedTouches[0].clientY - start.y;
+          start = null;
+          if (Math.abs(dy) > 45 && Math.abs(dy) > Math.abs(dx)) changeProduct(dy < 0 ? 1 : -1);
+        });
+        doc.addEventListener('touchcancel', () => { start = null; });
+        doc.addEventListener('wheel', (event) => {
+          if (isControl(event.target) || Math.abs(event.deltaY) < 15) return;
+          event.preventDefault();
+          changeProduct(event.deltaY > 0 ? 1 : -1);
+        }, { passive: false });
+        doc.addEventListener('keydown', (event) => {
+          if (isControl(event.target)) return;
+          if (['ArrowDown', 'PageDown', 'ArrowUp', 'PageUp'].includes(event.key)) {
+            event.preventDefault();
+            changeProduct(['ArrowDown', 'PageDown'].includes(event.key) ? 1 : -1);
+          }
+        });
       });
     });
   </script>
