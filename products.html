@@ -37,7 +37,10 @@
         documentElement.style.overflow = 'hidden';
         body.style.overflow = 'hidden';
         const style = frame.contentDocument.createElement('style');
-        style.textContent = '.app-shell { padding-bottom: 16px !important; }';
+        style.textContent = `
+          .app-shell { padding-bottom: 16px !important; }
+          .stage, model-viewer { touch-action: none !important; }
+        `;
         frame.contentDocument.head.append(style);
       });
     });
