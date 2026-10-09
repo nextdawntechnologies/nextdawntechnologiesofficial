@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND File — Support</title>
+<meta name="description" content="Get help with ND File: local folders, Photos, NAS and network sources, offline downloads, membership and App Lock." />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #0a7cff;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #4da2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 28px; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  .contact {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin: 24px 0 36px;
+  }
+  .contact a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  h2 { font-size: 18px; margin: 32px 0 10px; }
+  details {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 10px;
+  }
+  details summary { cursor: pointer; font-weight: 600; font-size: 15.5px; }
+  details p { margin: 10px 0 0; color: var(--fg); font-size: 15px; }
+  details p + p { margin-top: 8px; }
+  a { color: var(--accent); }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .lang-toggle button {
+    appearance: none; border: 1px solid var(--border); background: var(--card);
+    color: var(--fg); border-radius: 999px; padding: 6px 16px; font-size: 14px; cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  .contact { align-items: flex-start; }
+  .contact > span:first-child { flex: 0 0 auto; }
+  .contact > span:last-child { min-width: 0; }
+  .contact a { overflow-wrap: anywhere; }
+  details { padding: 0; }
+  details summary {
+    min-height: 48px; padding: 14px 18px; border-radius: 11px;
+    line-height: 1.55; touch-action: manipulation;
+  }
+  details p { margin: 0 18px 14px; }
+  details p + p { margin-top: 8px; }
+  @media (max-width: 680px) {
+    .contact { padding: 14px 16px; margin: 20px 0 28px; }
+    details summary { padding: 14px 16px; }
+    details p { margin-left: 16px; margin-right: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <p class="eyebrow">ND File</p>
+      <h1 data-i18n="heading">Support</h1>
+      <p class="sub" data-i18n="subtitle">Local-first photos, videos and file browser for your phone and your NAS.</p>
+    </header>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+      <button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+      <button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+      <button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <div class="contact">
+        <span>📧</span>
+        <span>Email us at <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — we reply as soon as we can.</span>
+      </div>
+
+      <h2>Getting started</h2>
+      <details>
+        <summary>How do I add my own media?</summary>
+        <p>On first launch, choose "Add Local Folder" to pick any folder in the Files app, or "Choose Photos or Videos" to pick items from your Photos library. Added items appear on Home and in Library.</p>
+      </details>
+      <details>
+        <summary>How do I connect my NAS or network server?</summary>
+        <p>From the Add Source screen, choose a network source and enter your server's protocol (SMB, WebDAV, SFTP, FTP, or NFS), address, and credentials. ND File only asks for local network permission when you tap "Search for Sources."</p>
+        <p>Make sure your phone and server are on the same network, and that the account you enter has read access to the share or folder.</p>
+      </details>
+
+      <h2>Membership</h2>
+      <details>
+        <summary>What does membership unlock?</summary>
+        <p>Free accounts can add one source. Membership (monthly, annual, or a one-time lifetime purchase) unlocks additional sources, offline downloads, HEIC viewing, App Lock, and casting to AirPlay or Chromecast-compatible TVs.</p>
+      </details>
+      <details>
+        <summary>I purchased membership but it isn't showing. How do I restore it?</summary>
+        <p>Open Settings → Membership Plan → Restore Purchases. Membership status is verified directly with the App Store through StoreKit.</p>
+      </details>
+
+      <h2>Troubleshooting</h2>
+      <details>
+        <summary>A video or photo won't play or load</summary>
+        <p>Check that the source is still reachable (network sources need the server online and on the same network) and that the file format is supported. For offline items, confirm the download finished in the Downloads screen.</p>
+      </details>
+      <details>
+        <summary>I forgot my App Lock code</summary>
+        <p>Email us at the address above from the Apple ID account the app is installed under, and we'll help you regain access.</p>
+      </details>
+      <details>
+        <summary>How do I send you diagnostic logs?</summary>
+        <p>Go to Settings → Diagnostic Logs → Export Diagnostic Logs, then attach the exported file to your support email. Logs never leave your device unless you export them yourself.</p>
+      </details>
+
+      <h2>Legal</h2>
+      <p>See our <a href="./privacy.html" data-page-link="./privacy.html">Privacy Policy</a> for details on what data ND File does (and does not) handle.</p>
+    </section>
+
+    <section data-lang="zh" lang="zh-Hans">
+      <div class="contact">
+        <span>📧</span>
+        <span>邮箱联系：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>，我们会尽快回复。</span>
+      </div>
+
+      <h2>快速上手</h2>
+      <details>
+        <summary>怎么添加我自己的媒体？</summary>
+        <p>首次启动时，选择"添加本地文件夹"从「文件」App 中挑选任意文件夹，或选择"选择照片或视频"从相册中挑选内容。添加后的内容会显示在首页和媒体库。</p>
+      </details>
+      <details>
+        <summary>怎么连接我的 NAS 或局域网服务器？</summary>
+        <p>在添加来源页面选择网络来源，填写协议（SMB、WebDAV、SFTP、FTP 或 NFS）、地址和账号信息。只有在你点击"搜索来源"时，应用才会请求本地网络权限。</p>
+        <p>请确认手机和服务器在同一网络下，且所填账号对该共享目录有读取权限。</p>
+      </details>
+
+      <h2>会员</h2>
+      <details>
+        <summary>会员能解锁什么？</summary>
+        <p>免费账号可添加 1 个来源。会员（包月、包年或一次性永久购买）可解锁更多来源、离线下载、HEIC 查看、App 锁定，以及投屏到 AirPlay 或支持 Chromecast 的电视。</p>
+      </details>
+      <details>
+        <summary>我已购买会员但没有生效，怎么恢复？</summary>
+        <p>打开"设置 → 会员方案 → 恢复购买"。会员状态会通过 StoreKit 直接向 App Store 核实。</p>
+      </details>
+
+      <h2>常见问题排查</h2>
+      <details>
+        <summary>视频或照片无法播放/加载</summary>
+        <p>请确认来源仍可访问（网络来源需要服务器在线并处于同一网络），以及文件格式受支持。离线内容请在"下载"页面确认下载已完成。</p>
+      </details>
+      <details>
+        <summary>忘记了 App 锁定的密码</summary>
+        <p>请使用安装该应用的 Apple ID 对应邮箱，发邮件到上方地址，我们会协助你恢复访问。</p>
+      </details>
+      <details>
+        <summary>如何提供诊断日志？</summary>
+        <p>进入"设置 → 诊断日志 → 导出诊断日志"，将导出的文件附加到支持邮件中。日志只有在你主动导出时才会离开设备。</p>
+      </details>
+
+      <h2>法律</h2>
+      <p>数据处理方式详见<a href="./privacy.html" data-page-link="./privacy.html">隐私政策</a>。</p>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant">
+      <div class="contact">
+        <span>📧</span>
+        <span>電子郵件聯絡：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>，我們會盡快回覆。</span>
+      </div>
+
+      <h2>快速入門</h2>
+      <details>
+        <summary>如何加入自己的媒體？</summary>
+        <p>首次啟動時，選擇「加入本機資料夾」，從「檔案」App 中挑選任意資料夾，或選擇「選擇照片或影片」，從照片圖庫中挑選內容。加入後的內容會顯示在首頁和媒體庫。</p>
+      </details>
+      <details>
+        <summary>如何連接 NAS 或網路伺服器？</summary>
+        <p>在「加入來源」頁面選擇網路來源，輸入伺服器的協定（SMB、WebDAV、SFTP、FTP 或 NFS）、位址和登入資訊。只有在你點選「搜尋來源」時，ND File 才會要求區域網路存取權限。</p>
+        <p>請確認手機和伺服器位於同一個網路，且輸入的帳號對共享目錄或資料夾有讀取權限。</p>
+      </details>
+
+      <h2>會員</h2>
+      <details>
+        <summary>會員可以解鎖哪些功能？</summary>
+        <p>免費帳號可加入 1 個來源。會員（月付、年付或一次性永久購買）可解鎖更多來源、離線下載、HEIC 檢視、App 鎖定，以及投放到支援 AirPlay 或 Chromecast 的電視。</p>
+      </details>
+      <details>
+        <summary>已購買會員但未生效，如何恢復？</summary>
+        <p>開啟「設定 → 會員方案 → 恢復購買」。會員狀態會透過 StoreKit 直接向 App Store 驗證。</p>
+      </details>
+
+      <h2>疑難排解</h2>
+      <details>
+        <summary>影片或照片無法播放或載入</summary>
+        <p>請確認來源仍可存取（網路來源需要伺服器在線上且位於同一個網路），並確認檔案格式受支援。離線內容請在「下載」頁面確認下載已完成。</p>
+      </details>
+      <details>
+        <summary>忘記 App 鎖定密碼</summary>
+        <p>請使用安裝此 App 的 Apple ID 所對應的電子郵件帳號，寄信至上方地址，我們會協助你恢復存取。</p>
+      </details>
+      <details>
+        <summary>如何提供診斷記錄？</summary>
+        <p>前往「設定 → 診斷記錄 → 匯出診斷記錄」，並將匯出的檔案附加至支援郵件。只有在你主動匯出時，記錄才會離開裝置。</p>
+      </details>
+
+      <h2>法律資訊</h2>
+      <p>請參閱 <a href="./privacy.html" data-page-link="./privacy.html">隱私權政策</a>，了解 ND File 處理及不處理哪些資料。</p>
+    </section>
+
+    <section data-lang="ko" lang="ko">
+      <div class="contact">
+        <span>📧</span>
+        <span>이메일 문의: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — 최대한 빠르게 답변해 드리겠습니다.</span>
+      </div>
+
+      <h2>시작하기</h2>
+      <details>
+        <summary>내 미디어는 어떻게 추가하나요?</summary>
+        <p>처음 실행할 때 "로컬 폴더 추가"를 선택해 파일 앱에서 폴더를 고르거나, "사진 또는 동영상 선택"을 선택해 사진 보관함에서 항목을 고르세요. 추가한 항목은 홈과 라이브러리에 표시됩니다.</p>
+      </details>
+      <details>
+        <summary>NAS나 네트워크 서버는 어떻게 연결하나요?</summary>
+        <p>소스 추가 화면에서 네트워크 소스를 선택하고 서버의 프로토콜(SMB, WebDAV, SFTP, FTP 또는 NFS), 주소, 로그인 정보를 입력하세요. ND File은 "소스 검색"을 탭할 때만 로컬 네트워크 접근 권한을 요청합니다.</p>
+        <p>휴대폰과 서버가 같은 네트워크에 연결되어 있고, 입력한 계정에 공유 위치나 폴더의 읽기 권한이 있는지 확인하세요.</p>
+      </details>
+
+      <h2>멤버십</h2>
+      <details>
+        <summary>멤버십으로 어떤 기능을 이용할 수 있나요?</summary>
+        <p>무료 계정은 소스 하나를 추가할 수 있습니다. 멤버십(월간, 연간 또는 일회성 평생 구매)을 이용하면 추가 소스, 오프라인 다운로드, HEIC 보기, 앱 잠금, AirPlay 또는 Chromecast 호환 TV로 전송 기능을 사용할 수 있습니다.</p>
+      </details>
+      <details>
+        <summary>멤버십을 구매했는데 표시되지 않습니다. 어떻게 복원하나요?</summary>
+        <p>설정 → 멤버십 요금제 → 구매 복원으로 이동하세요. 멤버십 상태는 StoreKit을 통해 App Store에서 직접 확인합니다.</p>
+      </details>
+
+      <h2>문제 해결</h2>
+      <details>
+        <summary>동영상이나 사진이 재생되거나 로드되지 않아요</summary>
+        <p>소스에 계속 접근할 수 있는지, 파일 형식이 지원되는지 확인하세요. 네트워크 소스는 서버가 온라인 상태이며 같은 네트워크에 있어야 합니다. 오프라인 항목은 다운로드 화면에서 다운로드가 완료되었는지 확인하세요.</p>
+      </details>
+      <details>
+        <summary>앱 잠금 암호를 잊어버렸어요</summary>
+        <p>앱 설치에 사용한 Apple ID 계정의 이메일로 위 주소에 문의해 주세요. 다시 접근할 수 있도록 도와드리겠습니다.</p>
+      </details>
+      <details>
+        <summary>진단 로그는 어떻게 보내나요?</summary>
+        <p>설정 → 진단 로그 → 진단 로그 내보내기로 이동한 후, 내보낸 파일을 지원 문의 이메일에 첨부하세요. 직접 내보내지 않는 한 로그는 기기 밖으로 전송되지 않습니다.</p>
+      </details>
+
+      <h2>법률 정보</h2>
+      <p>ND File의 데이터 처리 방식에 대한 자세한 내용은 <a href="./privacy.html" data-page-link="./privacy.html">개인정보 처리방침</a>을 확인하세요.</p>
+    </section>
+
+    <section data-lang="ja" lang="ja">
+      <div class="contact">
+        <span>📧</span>
+        <span>メールでのお問い合わせ：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>— できるだけ早く返信いたします。</span>
+      </div>
+
+      <h2>使いはじめるには</h2>
+      <details>
+        <summary>自分のメディアを追加するには？</summary>
+        <p>初回起動時に「ローカルフォルダを追加」を選び、「ファイル」アプリ内のフォルダを選択します。または「写真または動画を選択」から、写真ライブラリ内の項目を選びます。追加した項目はホームとライブラリに表示されます。</p>
+      </details>
+      <details>
+        <summary>NAS やネットワークサーバーに接続するには？</summary>
+        <p>ソース追加画面でネットワークソースを選び、サーバーのプロトコル（SMB、WebDAV、SFTP、FTP、NFS）、アドレス、認証情報を入力します。ND File がローカルネットワークへのアクセス許可を求めるのは、「ソースを検索」をタップしたときだけです。</p>
+        <p>スマートフォンとサーバーが同じネットワークに接続されていること、入力したアカウントに共有先やフォルダの読み取り権限があることを確認してください。</p>
+      </details>
+
+      <h2>メンバーシップ</h2>
+      <details>
+        <summary>メンバーシップで利用できる機能は？</summary>
+        <p>無料アカウントではソースを 1 つ追加できます。メンバーシップ（月額、年額、または一度の購入で永続利用）では、ソースの追加、オフラインダウンロード、HEIC 表示、アプリロック、AirPlay または Chromecast 対応テレビへのキャストを利用できます。</p>
+      </details>
+      <details>
+        <summary>購入したメンバーシップが反映されません。復元するには？</summary>
+        <p>「設定 → メンバーシッププラン → 購入を復元」を開いてください。メンバーシップの状態は、StoreKit を通じて App Store に直接確認されます。</p>
+      </details>
+
+      <h2>トラブルシューティング</h2>
+      <details>
+        <summary>動画や写真を再生・読み込みできない場合</summary>
+        <p>ソースにアクセスできることと、ファイル形式が対応していることを確認してください。ネットワークソースでは、サーバーがオンラインで同じネットワーク上にある必要があります。オフラインの項目は、ダウンロード画面で完了していることを確認してください。</p>
+      </details>
+      <details>
+        <summary>アプリロックのコードを忘れた場合</summary>
+        <p>アプリのインストールに使用した Apple ID のメールアドレスから、上記の宛先にご連絡ください。アクセスの復旧をお手伝いします。</p>
+      </details>
+      <details>
+        <summary>診断ログを送るには？</summary>
+        <p>「設定 → 診断ログ → 診断ログを書き出す」に進み、書き出したファイルをサポートへのメールに添付してください。自分で書き出さない限り、ログがデバイスの外に送信されることはありません。</p>
+      </details>
+
+      <h2>法的情報</h2>
+      <p>ND File が扱うデータや扱わないデータの詳細は、<a href="./privacy.html" data-page-link="./privacy.html">プライバシーポリシー</a>をご確認ください。</p>
+    </section>
+
+    <footer class="page">
+      <p>© 2026 Next Dawn Technologies · <a href="./index.html" data-page-link="./index.html">ND File</a> · <a href="./privacy.html" data-page-link="./privacy.html" data-i18n="privacy">Privacy Policy</a></p>
+    </footer>
+  </div>
+
+  <script>
+
+    (function () {
+      var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND File — Support",
+    "description": "Get help with ND File: local folders, Photos, NAS and network sources, offline downloads, membership and App Lock.",
+    "heading": "Support",
+    "subtitle": "Local-first photos, videos and file browser for your phone and your NAS."
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND File — 支持与帮助",
+    "description": "获取 ND File 帮助：本地文件夹、相册、NAS 和网络来源、离线下载、会员与 App 锁定。",
+    "heading": "支持与帮助",
+    "subtitle": "为手机和 NAS 打造的本地优先照片、视频与文件浏览器。"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND File — 支援與說明",
+    "description": "取得 ND File 使用說明：本機資料夾、照片、NAS 與網路來源、離線下載、會員及 App 鎖定。",
+    "heading": "支援與說明",
+    "subtitle": "為手機和 NAS 打造的本機優先照片、影片與檔案瀏覽器。"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND File — 지원",
+    "description": "ND File 도움말: 로컬 폴더, 사진, NAS와 네트워크 소스, 오프라인 다운로드, 멤버십, 앱 잠금.",
+    "heading": "지원",
+    "subtitle": "휴대폰과 NAS를 위한 로컬 우선 사진·동영상·파일 탐색기."
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND File — サポート",
+    "description": "ND File のヘルプ：ローカルフォルダ、写真、NAS とネットワークソース、オフラインダウンロード、メンバーシップ、アプリロック。",
+    "heading": "サポート",
+    "subtitle": "スマートフォンと NAS のための、ローカルを優先する写真・動画・ファイルブラウザ。"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-file-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>

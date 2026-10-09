@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND File — Privacy Policy</title>
+<meta name="description" content="Privacy Policy for ND File, a local-first media player by Next Dawn Technologies." />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #0a7cff;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #4da2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 32px; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  h2 { font-size: 19px; margin: 36px 0 10px; }
+  p { margin: 0 0 14px; font-size: 15.5px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 16px; }
+  .card p { margin: 0; color: var(--fg); }
+  a { color: var(--accent); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .lang-toggle button {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--fg);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  @media (max-width: 680px) {
+    .card { padding: 16px; }
+    .lang-toggle { margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <p class="eyebrow">ND File</p>
+      <h1 data-i18n="heading">Privacy Policy</h1>
+      <p class="sub" data-i18n="subtitle">Effective July 16, 2026 · Published by Next Dawn Technologies</p>
+    </header>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+      <button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+      <button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+      <button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <p>ND File is local-first. It does not require an account, sell data, or track you across apps.</p>
+
+      <div class="card">
+        <h3>We Do Not Collect Your Media Data</h3>
+        <p>ND File has no service that collects user data and includes no advertising or third-party analytics SDK. The developer does not receive your files, file names, media index, playback history, favorites, server addresses, or diagnostic logs. App Store handles membership payments; the app receives only a verified StoreKit entitlement and never receives full payment details.</p>
+      </div>
+
+      <div class="card">
+        <h3>Data Stays on Your Device</h3>
+        <p>The media index, playback progress, favorites, and settings are stored in the app's local database. Folder permissions are managed by the operating system. Passwords are protected by iOS Keychain or Android Keystore. Removing a source deletes its saved credentials; other retention follows your operating system's rules.</p>
+      </div>
+
+      <div class="card">
+        <h3>Only Sources You Choose Are Accessed</h3>
+        <p>ND File accesses content only after you choose a folder or configure a network source. Network connections go directly from this device to the server you configure (for example your own NAS over SMB, WebDAV, SFTP, FTP, or NFS). You or the server operator control how that server handles data.</p>
+      </div>
+
+      <div class="card">
+        <h3>You Control and Can Delete Local Data</h3>
+        <p>You can remove sources and delete playback history, caches, and diagnostic logs. Revoking access does not modify original media. ND File never uploads diagnostic logs; they leave the device only when you explicitly export them with the system share sheet.</p>
+      </div>
+
+      <h2>Policy Updates and Contact</h2>
+      <p>If these practices materially change, a new app version will update this notice. For privacy questions, contact the developer at <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Publisher</h2>
+      <p>Next Dawn Technologies<br />Email: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="zh" lang="zh-Hans">
+      <p>ND File 以本地优先为原则，不要求账号，不出售数据，也不进行跨应用追踪。</p>
+
+      <div class="card">
+        <h3>开发者不收集你的媒体数据</h3>
+        <p>ND File 没有用于收集用户数据的后台服务，也不接入广告或第三方分析 SDK。开发者不会收到你的文件、文件名、媒体索引、播放记录、收藏、服务器地址或诊断日志。会员付款由 App Store 处理；应用只通过 StoreKit 获取已验证的会员权益状态，不会接收完整支付信息。</p>
+      </div>
+
+      <div class="card">
+        <h3>数据保存在设备上</h3>
+        <p>媒体索引、播放进度、收藏和设置保存在应用的本地数据库；目录授权由系统安全管理；密码由 iOS Keychain 或 Android Keystore 保护。移除来源时会删除对应凭据，其他保留期限遵循设备系统规则。</p>
+      </div>
+
+      <div class="card">
+        <h3>只访问你主动选择的来源</h3>
+        <p>应用仅在你选择文件夹或配置网络来源（例如通过 SMB、WebDAV、SFTP、FTP 或 NFS 连接的自有 NAS）后访问相应内容。网络连接在你的设备与所配置服务器之间直接建立；该服务器如何处理数据由你或服务器运营者控制。</p>
+      </div>
+
+      <div class="card">
+        <h3>你可以控制和删除数据</h3>
+        <p>你可以移除来源、清空播放历史、删除缓存和诊断日志。移除授权不会修改原始媒体文件；应用也不会上传诊断日志，只有你主动使用系统分享面板时才会导出。</p>
+      </div>
+
+      <h2>隐私政策更新与联系</h2>
+      <p>如隐私实践发生实质变化，新版本会更新本说明。如有隐私相关问题，请联系开发者：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>。</p>
+
+      <h2>发布者</h2>
+      <p>Next Dawn Technologies<br />邮箱：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant">
+      <p>ND File 以本機優先為原則，不要求帳號、不出售資料，也不進行跨 App 追蹤。</p>
+
+      <div class="card">
+        <h3>我們不收集你的媒體資料</h3>
+        <p>ND File 沒有用於收集使用者資料的服務，也不使用廣告或第三方分析 SDK。開發者不會收到你的檔案、檔案名稱、媒體索引、播放記錄、收藏、伺服器位址或診斷記錄。會員付款由 App Store 處理；App 只透過 StoreKit 取得已驗證的會員權益狀態，不會接收完整付款資訊。</p>
+      </div>
+
+      <div class="card">
+        <h3>資料保存在你的裝置上</h3>
+        <p>媒體索引、播放進度、收藏和設定保存在 App 的本機資料庫。資料夾權限由作業系統管理。密碼由 iOS Keychain 或 Android Keystore 保護。移除來源時會刪除其儲存的登入憑證；其他資料保留方式遵循作業系統的規則。</p>
+      </div>
+
+      <div class="card">
+        <h3>只存取你選擇的來源</h3>
+        <p>ND File 只會在你選擇資料夾或設定網路來源後，才存取相應內容。網路連線直接在此裝置與你設定的伺服器之間建立（例如透過 SMB、WebDAV、SFTP、FTP 或 NFS 連接你自己的 NAS）。該伺服器如何處理資料，由你或伺服器營運者控制。</p>
+      </div>
+
+      <div class="card">
+        <h3>你可以控制和刪除本機資料</h3>
+        <p>你可以移除來源，並刪除播放歷史、快取和診斷記錄。撤銷存取權限不會修改原始媒體。ND File 不會上傳診斷記錄；只有在你主動透過系統分享面板匯出時，記錄才會離開裝置。</p>
+      </div>
+
+      <h2>政策更新與聯絡方式</h2>
+      <p>如上述隱私實務發生重大變更，新的 App 版本會更新本說明。如有隱私權相關問題，請透過以下電子郵件聯絡開發者：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>。</p>
+
+      <h2>發行者</h2>
+      <p>Next Dawn Technologies<br />電子郵件：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ko" lang="ko">
+      <p>ND File은 로컬 우선 앱입니다. 계정을 요구하거나 데이터를 판매하지 않으며, 여러 앱에 걸쳐 사용자를 추적하지 않습니다.</p>
+
+      <div class="card">
+        <h3>미디어 데이터를 수집하지 않습니다</h3>
+        <p>ND File에는 사용자 데이터를 수집하는 서비스가 없으며 광고 또는 타사 분석 SDK도 포함되어 있지 않습니다. 개발자는 사용자의 파일, 파일명, 미디어 색인, 재생 기록, 즐겨찾기, 서버 주소, 진단 로그를 받지 않습니다. 멤버십 결제는 App Store에서 처리하며, 앱은 StoreKit으로 확인된 이용 권한만 받습니다. 전체 결제 정보는 받지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>데이터는 기기에 저장됩니다</h3>
+        <p>미디어 색인, 재생 진행 상황, 즐겨찾기, 설정은 앱의 로컬 데이터베이스에 저장됩니다. 폴더 권한은 운영체제가 관리합니다. 비밀번호는 iOS Keychain 또는 Android Keystore로 보호됩니다. 소스를 제거하면 저장된 인증 정보가 삭제되며, 그 밖의 데이터 보관은 운영체제의 규칙을 따릅니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>선택한 소스에만 접근합니다</h3>
+        <p>ND File은 사용자가 폴더를 선택하거나 네트워크 소스를 설정한 후에만 콘텐츠에 접근합니다. 네트워크는 이 기기에서 사용자가 설정한 서버로 직접 연결됩니다(예: SMB, WebDAV, SFTP, FTP, NFS를 통한 개인 NAS 연결). 해당 서버의 데이터 처리 방식은 사용자 또는 서버 운영자가 관리합니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>로컬 데이터를 관리하고 삭제할 수 있습니다</h3>
+        <p>소스를 제거하고 재생 기록, 캐시, 진단 로그를 삭제할 수 있습니다. 접근 권한을 취소해도 원본 미디어는 변경되지 않습니다. ND File은 진단 로그를 업로드하지 않습니다. 사용자가 시스템 공유 시트로 직접 내보낼 때만 로그가 기기 밖으로 전송됩니다.</p>
+      </div>
+
+      <h2>방침 변경 및 문의</h2>
+      <p>이러한 데이터 처리 방식에 중대한 변경이 있으면 새 앱 버전에서 이 안내를 업데이트합니다. 개인정보 관련 문의는 개발자에게 이메일로 보내 주세요: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>발행자</h2>
+      <p>Next Dawn Technologies<br />이메일: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ja" lang="ja">
+      <p>ND File はローカルを優先するアプリです。アカウントを必要とせず、データを販売したり、アプリをまたいでユーザーを追跡したりすることもありません。</p>
+
+      <div class="card">
+        <h3>メディアデータを収集しません</h3>
+        <p>ND File にはユーザーデータを収集するサービスがなく、広告 SDK や第三者の分析 SDK も含まれていません。開発者がファイル、ファイル名、メディアインデックス、再生履歴、お気に入り、サーバーアドレス、診断ログを受け取ることはありません。メンバーシップの支払いは App Store が処理し、アプリが受け取るのは StoreKit で検証済みの利用権限のみです。支払い情報の全詳細を受け取ることはありません。</p>
+      </div>
+
+      <div class="card">
+        <h3>データはデバイス上に保存されます</h3>
+        <p>メディアインデックス、再生位置、お気に入り、設定は、アプリのローカルデータベースに保存されます。フォルダへのアクセス権限は OS が管理します。パスワードは iOS Keychain または Android Keystore で保護されます。ソースを削除すると、保存された認証情報も削除されます。それ以外のデータ保持は OS の規則に従います。</p>
+      </div>
+
+      <div class="card">
+        <h3>選択したソースにのみアクセスします</h3>
+        <p>ND File は、フォルダを選択するかネットワークソースを設定した後にのみ、コンテンツにアクセスします。ネットワーク接続は、このデバイスから設定したサーバーへ直接行われます（例：SMB、WebDAV、SFTP、FTP、NFS を使った自分の NAS への接続）。サーバーでのデータの扱いは、ユーザーまたはサーバー運営者が管理します。</p>
+      </div>
+
+      <div class="card">
+        <h3>ローカルデータを管理・削除できます</h3>
+        <p>ソースを削除し、再生履歴、キャッシュ、診断ログを消去できます。アクセス権限を取り消しても、元のメディアは変更されません。ND File が診断ログをアップロードすることはなく、システムの共有シートから明示的に書き出した場合にのみ、ログがデバイスの外に送信されます。</p>
+      </div>
+
+      <h2>ポリシーの更新とお問い合わせ</h2>
+      <p>これらの取り扱いに重要な変更があった場合、新しいアプリバージョンで本通知を更新します。プライバシーに関するご質問は、次のメールアドレスから開発者にお問い合わせください：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>。</p>
+
+      <h2>発行者</h2>
+      <p>Next Dawn Technologies<br />メール：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <footer class="page">
+      <p>© 2026 Next Dawn Technologies · <a href="./index.html" data-page-link="./index.html">ND File</a> · <a href="./support.html" data-page-link="./support.html" data-i18n="support">Support</a></p>
+    </footer>
+  </div>
+
+  <script>
+
+    (function () {
+      var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND File — Privacy Policy",
+    "description": "Privacy Policy for ND File, a local-first media player by Next Dawn Technologies.",
+    "heading": "Privacy Policy",
+    "subtitle": "Effective July 16, 2026 · Published by Next Dawn Technologies"
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND File — 隐私政策",
+    "description": "Next Dawn Technologies 旗下本地优先媒体播放器 ND File 的隐私政策。",
+    "heading": "隐私政策",
+    "subtitle": "生效日期：2026 年 7 月 16 日 · 发布者：Next Dawn Technologies"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND File — 隱私權政策",
+    "description": "Next Dawn Technologies 旗下本機優先媒體播放器 ND File 的隱私權政策。",
+    "heading": "隱私權政策",
+    "subtitle": "生效日期：2026 年 7 月 16 日 · 發行者：Next Dawn Technologies"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND File — 개인정보 처리방침",
+    "description": "Next Dawn Technologies의 로컬 우선 미디어 플레이어 ND File의 개인정보 처리방침.",
+    "heading": "개인정보 처리방침",
+    "subtitle": "시행일: 2026년 7월 16일 · 발행자: Next Dawn Technologies"
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND File — プライバシーポリシー",
+    "description": "Next Dawn Technologies のローカルを優先するメディアプレーヤー、ND File のプライバシーポリシー。",
+    "heading": "プライバシーポリシー",
+    "subtitle": "施行日：2026 年 7 月 16 日 · 発行者：Next Dawn Technologies"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-file-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>
