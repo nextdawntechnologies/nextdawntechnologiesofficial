@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Masking — Support</title>
+<meta name="description" content="Get help with ND Masking: detection, manual masks, saving and sharing, Lifetime Pro and feedback." />
+<link rel="icon" href="./app-icon.png" />
+<link rel="apple-touch-icon" href="./app-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #087aff;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #5aa5ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 28px; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+  .eyebrow img { width: 22px; height: 22px; border-radius: 5px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  .contact {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin: 24px 0 36px;
+  }
+  .contact a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  h2 { font-size: 18px; margin: 32px 0 10px; }
+  details {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 10px;
+  }
+  details summary { cursor: pointer; font-weight: 600; font-size: 15.5px; }
+  details p { margin: 10px 0 0; color: var(--fg); font-size: 15px; }
+  details p + p { margin-top: 8px; }
+  a { color: var(--accent); }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .lang-toggle button {
+    appearance: none; border: 1px solid var(--border); background: var(--card);
+    color: var(--fg); border-radius: 999px; padding: 6px 16px; font-size: 14px; cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  .contact { align-items: flex-start; }
+  .contact > span:first-child { flex: 0 0 auto; }
+  .contact > span:last-child { min-width: 0; }
+  .contact a { overflow-wrap: anywhere; }
+  details { padding: 0; }
+  details summary {
+    min-height: 48px; padding: 14px 18px; border-radius: 11px;
+    line-height: 1.55; touch-action: manipulation;
+  }
+  details p { margin: 0 18px 14px; }
+  details p + p { margin-top: 8px; }
+  @media (max-width: 680px) {
+    .contact { padding: 14px 16px; margin: 20px 0 28px; }
+    details summary { padding: 14px 16px; }
+    details p { margin-left: 16px; margin-right: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <p class="eyebrow"><img src="./app-icon.png" alt="" width="22" height="22" />ND Masking</p>
+      <h1 data-i18n="heading">Support</h1>
+      <p class="sub" data-i18n="subtitle">Find and cover private details in your images before you share them, on your device.</p>
+    </header>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+      <button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+      <button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+      <button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <div class="contact">
+        <span>📧</span>
+        <span>Email us at <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — we reply as soon as we can. Please cover private details in any screenshots you attach.</span>
+      </div>
+
+      <h2>Getting started</h2>
+      <details>
+        <summary>How do I mask my first image?</summary>
+        <p>Choose an image from your photo library or the Files app, or try the built-in example. ND Masking detects private details on your device and shows suggested regions. Review them, cover anything that was missed, then save or share the result.</p>
+      </details>
+      <details>
+        <summary>Which languages can it read?</summary>
+        <p>English, Simplified Chinese, Traditional Chinese, Japanese and Korean. The language in each image is detected automatically. To choose languages yourself, turn off automatic recognition in Settings → Text recognition languages.</p>
+      </details>
+
+      <h2>Editing</h2>
+      <details>
+        <summary>Detection missed something. What should I do?</summary>
+        <p>Use the rectangle or brush tool to cover it, leaving a margin around the text. Zoom in and check names, addresses, group titles, backgrounds and handwriting.</p>
+        <p>The risk list only shows what the detectors found. An empty list does not mean an image contains no private information.</p>
+      </details>
+      <details>
+        <summary>Which mask style should I use?</summary>
+        <p>Use the solid style for sensitive information; it replaces the pixels with an opaque color. Pixelation, blur and the translucent marker keep some visual structure that may be recoverable, so ID numbers, bank cards and other high-risk items need a solid mask.</p>
+      </details>
+
+      <h2>Saving and sharing</h2>
+      <details>
+        <summary>What's the difference between Save a copy, Save, and Share and delete original?</summary>
+        <p>Save a copy creates a new image and keeps the original. Save updates a photo opened from your library, and you can revert it in Photos. Share and delete original removes the original only after sharing succeeds and the system asks you to confirm.</p>
+      </details>
+      <details>
+        <summary>Is location data removed from my photo?</summary>
+        <p>EXIF metadata supported by the output format is kept by default. Turn on Remove EXIF metadata when exporting to remove location, device and other metadata. Thumbnails embedded in the original are never copied.</p>
+      </details>
+      <details>
+        <summary>A photo stored in iCloud won't open</summary>
+        <p>The original needs to be available on your device. Open it in Photos or Files so it downloads, then import it again. ND Masking does not download images itself.</p>
+      </details>
+
+      <h2>Lifetime Pro</h2>
+      <details>
+        <summary>What does Pro unlock?</summary>
+        <p>Lifetime Pro is a one-time purchase that removes the ND Masking watermark from exported images. Detection, all editing tools and your own custom text watermark are free.</p>
+      </details>
+      <details>
+        <summary>I bought Pro but it isn't showing. How do I restore it?</summary>
+        <p>Open Settings → Membership → Restore purchases while signed in with the Apple Account you used to buy it. Purchase status is verified with the App Store through StoreKit.</p>
+      </details>
+
+      <h2>Troubleshooting</h2>
+      <details>
+        <summary>How do I clear temporary files?</summary>
+        <p>Go to Settings → Clear temporary files. This removes unsaved edits and exports. Originals in your library, saved copies, stickers and settings are kept.</p>
+      </details>
+      <details>
+        <summary>How do I report a problem?</summary>
+        <p>Tap Settings → Product feedback to open an email draft, or write to the address above. Include the app version, your iOS version and the steps to reproduce the problem. Nothing is sent automatically.</p>
+      </details>
+
+      <h2>Legal</h2>
+      <p>See our <a href="./privacy.html" data-page-link="./privacy.html">Privacy Policy</a> for details on what data ND Masking does (and does not) handle.</p>
+    </section>
+
+    <section data-lang="zh" lang="zh-Hans">
+      <div class="contact">
+        <span>📧</span>
+        <span>邮箱联系：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>，我们会尽快回复。附上截图前，请先遮盖其中的敏感信息。</span>
+      </div>
+
+      <h2>快速上手</h2>
+      <details>
+        <summary>怎么给第一张图片打码？</summary>
+        <p>从相册或「文件」App 中选择图片，也可以先试试内置示例。ND Masking 会在本机识别隐私信息并标出候选区域。逐项确认，补充遮盖遗漏的内容，再保存或分享。</p>
+      </details>
+      <details>
+        <summary>支持识别哪些语言的文字？</summary>
+        <p>英语、简体中文、繁体中文、日语和韩语。默认自动判断图片中的文字语言；如需手动指定，可在"设置 → 文字识别语言"中关闭自动识别。</p>
+      </details>
+
+      <h2>编辑</h2>
+      <details>
+        <summary>自动识别漏掉了内容怎么办？</summary>
+        <p>用矩形或画笔工具补充遮盖，并在文字周围留出余量。放大检查姓名、地址、群名、背景和手写字。</p>
+        <p>风险列表只列出当前识别到的内容；列表为空不代表图片没有隐私风险。</p>
+      </details>
+      <details>
+        <summary>应该用哪种遮盖样式？</summary>
+        <p>敏感信息请使用实色遮盖，它会用不透明的颜色替换像素。像素化、模糊和半透明马克笔会保留部分结构，可能被推测或恢复，因此身份证号、银行卡号等高风险内容必须使用实色。</p>
+      </details>
+
+      <h2>保存与分享</h2>
+      <details>
+        <summary>"保存副本""保存"和"分享并删除原图"有什么区别？</summary>
+        <p>"保存副本"会生成新图片并保留原图；"保存"会更新从相册打开的照片，可在系统相册中还原；"分享并删除原图"只在分享成功且系统确认后才删除原图。</p>
+      </details>
+      <details>
+        <summary>照片里的位置信息会被删除吗？</summary>
+        <p>默认保留输出格式支持的 EXIF 信息。导出时开启"移除 EXIF 信息"，即可移除位置、设备等附带信息。原图内嵌缩略图始终不会被复制。</p>
+      </details>
+      <details>
+        <summary>存在 iCloud 中的照片打不开</summary>
+        <p>原片需要先下载到本机。请在相册或「文件」App 中打开该图片完成下载，再重新导入。ND Masking 本身不会下载图片。</p>
+      </details>
+
+      <h2>永久会员</h2>
+      <details>
+        <summary>会员能解锁什么？</summary>
+        <p>永久会员为一次性买断，可关闭导出图片上的 ND Masking 标识水印。自动识别、所有编辑工具以及你自己的自定义文字水印均可免费使用。</p>
+      </details>
+      <details>
+        <summary>已购买会员但没有生效，怎么恢复？</summary>
+        <p>使用购买时的 Apple 账户，打开"设置 → 会员 → 找回购买"。购买状态会通过 StoreKit 直接向 App Store 核实。</p>
+      </details>
+
+      <h2>常见问题排查</h2>
+      <details>
+        <summary>如何清理临时文件？</summary>
+        <p>进入"设置 → 立即清理临时文件"。这会删除尚未保存的编辑和输出，不会删除相册原图、已保存的副本、贴纸或设置。</p>
+      </details>
+      <details>
+        <summary>如何反馈问题？</summary>
+        <p>点击"设置 → 产品反馈"打开邮件草稿，或直接发邮件到上方地址。请注明应用版本、iOS 版本和复现步骤。应用不会自动发送任何内容。</p>
+      </details>
+
+      <h2>法律</h2>
+      <p>数据处理方式详见<a href="./privacy.html" data-page-link="./privacy.html">隐私政策</a>。</p>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant">
+      <div class="contact">
+        <span>📧</span>
+        <span>電子郵件聯絡：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>，我們會盡快回覆。附上截圖前，請先遮蓋其中的敏感資訊。</span>
+      </div>
+
+      <h2>快速入門</h2>
+      <details>
+        <summary>如何遮蓋第一張圖片？</summary>
+        <p>從照片圖庫或「檔案」App 選擇圖片，也可以先試試內建範例。ND Masking 會在裝置上辨識隱私資訊並標出候選區域。逐項確認、補上遺漏的部分後，再儲存或分享。</p>
+      </details>
+      <details>
+        <summary>可以辨識哪些語言的文字？</summary>
+        <p>英文、簡體中文、繁體中文、日文和韓文。預設會自動判斷圖片中的文字語言；如需自行指定，可在「設定 → 文字辨識語言」中關閉自動辨識。</p>
+      </details>
+
+      <h2>編輯</h2>
+      <details>
+        <summary>自動辨識漏掉了內容怎麼辦？</summary>
+        <p>使用矩形或筆刷工具補上遮蓋，並在文字周圍留出餘量。放大檢查姓名、地址、群組名稱、背景和手寫字。</p>
+        <p>風險列表只會列出目前辨識到的內容；列表為空不代表圖片沒有隱私風險。</p>
+      </details>
+      <details>
+        <summary>應該使用哪種遮蓋樣式？</summary>
+        <p>敏感資訊請使用實色遮蓋，它會以不透明的顏色取代像素。像素化、模糊和半透明標記筆會保留部分結構，可能被推測或還原，因此身分證號、銀行卡號等高風險內容必須使用實色。</p>
+      </details>
+
+      <h2>儲存與分享</h2>
+      <details>
+        <summary>「儲存副本」、「儲存」和「分享並刪除原圖」有何不同？</summary>
+        <p>「儲存副本」會建立新圖片並保留原圖；「儲存」會更新從相簿開啟的照片，可在「照片」App 中還原；「分享並刪除原圖」只會在分享成功且系統確認後才刪除原圖。</p>
+      </details>
+      <details>
+        <summary>照片中的位置資訊會被移除嗎？</summary>
+        <p>預設保留輸出格式支援的 EXIF 資訊。匯出時開啟「移除 EXIF 資訊」，即可移除位置、裝置等中繼資料。原圖內嵌縮圖一律不會複製。</p>
+      </details>
+      <details>
+        <summary>儲存在 iCloud 的照片無法開啟</summary>
+        <p>原圖需要先下載到裝置上。請在「照片」或「檔案」App 中開啟該圖片完成下載，再重新匯入。ND Masking 本身不會下載圖片。</p>
+      </details>
+
+      <h2>永久 Pro</h2>
+      <details>
+        <summary>Pro 可以解鎖什麼？</summary>
+        <p>永久 Pro 為一次性購買，可關閉匯出圖片上的 ND Masking 標識浮水印。自動辨識、所有編輯工具以及你自己的自訂文字浮水印都可免費使用。</p>
+      </details>
+      <details>
+        <summary>已購買 Pro 但未生效，如何恢復？</summary>
+        <p>使用購買時的 Apple 帳號，開啟「設定 → 會員 → 恢復購買」。購買狀態會透過 StoreKit 直接向 App Store 驗證。</p>
+      </details>
+
+      <h2>疑難排解</h2>
+      <details>
+        <summary>如何清理暫存檔案？</summary>
+        <p>前往「設定 → 立即清理暫存檔案」。這會刪除尚未儲存的編輯和輸出，不會刪除相簿原圖、已儲存的副本、貼圖或設定。</p>
+      </details>
+      <details>
+        <summary>如何回報問題？</summary>
+        <p>點選「設定 → 產品回饋」開啟郵件草稿，或直接寄信至上方地址。請註明 App 版本、iOS 版本和重現步驟。App 不會自動傳送任何內容。</p>
+      </details>
+
+      <h2>法律資訊</h2>
+      <p>請參閱<a href="./privacy.html" data-page-link="./privacy.html">隱私權政策</a>，了解 ND Masking 處理及不處理哪些資料。</p>
+    </section>
+
+    <section data-lang="ko" lang="ko">
+      <div class="contact">
+        <span>📧</span>
+        <span>이메일 문의: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — 최대한 빠르게 답변해 드리겠습니다. 스크린샷을 첨부하기 전에 민감한 정보를 가려 주세요.</span>
+      </div>
+
+      <h2>시작하기</h2>
+      <details>
+        <summary>첫 이미지는 어떻게 가리나요?</summary>
+        <p>사진 보관함이나 파일 앱에서 이미지를 선택하거나 기본 제공 예시를 사용해 보세요. ND Masking이 기기에서 개인정보를 감지해 가릴 영역을 제안합니다. 하나씩 확인하고 놓친 부분을 가린 다음 저장하거나 공유하세요.</p>
+      </details>
+      <details>
+        <summary>어떤 언어의 텍스트를 인식하나요?</summary>
+        <p>영어, 중국어 간체, 중국어 번체, 일본어, 한국어를 인식합니다. 이미지 속 텍스트 언어는 자동으로 감지됩니다. 직접 언어를 선택하려면 설정 → 문자 인식 언어에서 자동 인식을 끄세요.</p>
+      </details>
+
+      <h2>편집</h2>
+      <details>
+        <summary>자동 감지가 놓친 부분이 있어요</summary>
+        <p>사각형이나 브러시 도구로 가리고, 텍스트 주위에 여유를 두세요. 이미지를 확대해 이름, 주소, 그룹 이름, 배경, 손글씨를 확인하세요.</p>
+        <p>위험 목록에는 감지된 항목만 표시됩니다. 목록이 비어 있어도 이미지에 개인정보가 없다는 뜻은 아닙니다.</p>
+      </details>
+      <details>
+        <summary>어떤 가리기 스타일을 사용해야 하나요?</summary>
+        <p>민감한 정보에는 불투명 스타일을 사용하세요. 해당 픽셀을 불투명한 색으로 바꿉니다. 픽셀화, 흐림, 반투명 마커는 일부 형태가 남아 복원될 수 있으므로 신분증 번호, 은행 카드 등 위험도가 높은 정보에는 불투명 가리기가 필요합니다.</p>
+      </details>
+
+      <h2>저장 및 공유</h2>
+      <details>
+        <summary>사본 저장, 저장, 공유 후 원본 삭제는 어떻게 다른가요?</summary>
+        <p>사본 저장은 새 이미지를 만들고 원본을 유지합니다. 저장은 보관함에서 연 사진을 업데이트하며, 사진 앱에서 되돌릴 수 있습니다. 공유 후 원본 삭제는 공유가 성공하고 시스템에서 확인한 후에만 원본을 삭제합니다.</p>
+      </details>
+      <details>
+        <summary>사진의 위치 정보가 삭제되나요?</summary>
+        <p>출력 형식에서 지원하는 EXIF 정보는 기본적으로 유지됩니다. 내보낼 때 EXIF 정보 삭제를 켜면 위치, 기기 및 기타 메타데이터가 제거됩니다. 원본에 포함된 썸네일은 항상 복사하지 않습니다.</p>
+      </details>
+      <details>
+        <summary>iCloud에 저장된 사진이 열리지 않아요</summary>
+        <p>원본이 기기에 다운로드되어 있어야 합니다. 사진 앱이나 파일 앱에서 이미지를 열어 다운로드한 다음 다시 가져오세요. ND Masking은 직접 이미지를 다운로드하지 않습니다.</p>
+      </details>
+
+      <h2>평생 Pro</h2>
+      <details>
+        <summary>Pro로 무엇을 이용할 수 있나요?</summary>
+        <p>평생 Pro는 한 번 구매로 내보낸 이미지의 ND Masking 워터마크를 끌 수 있습니다. 자동 감지, 모든 편집 도구, 직접 만드는 텍스트 워터마크는 무료입니다.</p>
+      </details>
+      <details>
+        <summary>Pro를 구매했는데 표시되지 않습니다. 어떻게 복원하나요?</summary>
+        <p>구매에 사용한 Apple 계정으로 로그인한 상태에서 설정 → 멤버십 → 구매 복원으로 이동하세요. 구매 상태는 StoreKit을 통해 App Store에서 직접 확인합니다.</p>
+      </details>
+
+      <h2>문제 해결</h2>
+      <details>
+        <summary>임시 파일은 어떻게 삭제하나요?</summary>
+        <p>설정 → 임시 파일 삭제로 이동하세요. 저장하지 않은 편집 내용과 출력 파일이 삭제되며, 보관함의 원본, 저장한 사본, 스티커, 설정은 유지됩니다.</p>
+      </details>
+      <details>
+        <summary>문제는 어떻게 신고하나요?</summary>
+        <p>설정 → 제품 피드백을 탭해 이메일 초안을 열거나 위 주소로 직접 보내 주세요. 앱 버전, iOS 버전, 문제 재현 단계를 포함해 주세요. 앱은 아무것도 자동으로 전송하지 않습니다.</p>
+      </details>
+
+      <h2>법률 정보</h2>
+      <p>ND Masking의 데이터 처리 방식에 대한 자세한 내용은 <a href="./privacy.html" data-page-link="./privacy.html">개인정보 처리방침</a>을 확인하세요.</p>
+    </section>
+
+    <section data-lang="ja" lang="ja">
+      <div class="contact">
+        <span>📧</span>
+        <span>メールでのお問い合わせ：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>— できるだけ早く返信いたします。スクリーンショットを添付する前に、機密情報を隠してください。</span>
+      </div>
+
+      <h2>使いはじめるには</h2>
+      <details>
+        <summary>最初の画像をマスクするには？</summary>
+        <p>写真ライブラリまたは「ファイル」アプリから画像を選ぶか、内蔵のサンプルを試してください。ND Masking が端末内でプライバシー情報を検出し、候補の領域を表示します。一つずつ確認し、見落としを隠してから、保存または共有してください。</p>
+      </details>
+      <details>
+        <summary>どの言語の文字を認識できますか？</summary>
+        <p>英語、簡体字中国語、繁体字中国語、日本語、韓国語に対応しています。画像内の文字の言語は自動で判別します。言語を自分で選ぶには、「設定 → 文字認識の言語」で自動認識をオフにしてください。</p>
+      </details>
+
+      <h2>編集</h2>
+      <details>
+        <summary>自動検出で見落としがあった場合は？</summary>
+        <p>四角形またはブラシツールで、文字の周囲に余白を設けて覆ってください。画像を拡大し、氏名、住所、グループ名、背景、手書き文字を確認してください。</p>
+        <p>リスク一覧には検出された項目しか表示されません。一覧が空でも、画像にプライバシー情報がないとは限りません。</p>
+      </details>
+      <details>
+        <summary>どのマスクスタイルを使えばいいですか？</summary>
+        <p>機密情報には「塗りつぶし」を使ってください。対象のピクセルを不透明な色に置き換えます。モザイク、ぼかし、半透明のマーカーは形の一部が残り、復元される可能性があるため、身分証番号や銀行カード番号などリスクの高い情報には塗りつぶしが必要です。</p>
+      </details>
+
+      <h2>保存と共有</h2>
+      <details>
+        <summary>「コピーを保存」「保存」「共有して元画像を削除」の違いは？</summary>
+        <p>「コピーを保存」は新しい画像を作成し、元の写真を残します。「保存」はライブラリから開いた写真を更新し、「写真」アプリで元に戻せます。「共有して元画像を削除」は、共有が成功し、システムで確認した後にのみ元の写真を削除します。</p>
+      </details>
+      <details>
+        <summary>写真の位置情報は削除されますか？</summary>
+        <p>出力形式で対応する EXIF 情報は標準で保持されます。書き出し時に「EXIF 情報を削除」をオンにすると、位置情報、デバイス情報などのメタデータを削除します。元画像の埋め込みサムネイルは常にコピーしません。</p>
+      </details>
+      <details>
+        <summary>iCloud に保存した写真を開けない場合</summary>
+        <p>元の写真を端末にダウンロードしておく必要があります。「写真」または「ファイル」アプリで画像を開いてダウンロードしてから、もう一度読み込んでください。ND Masking 自体が画像をダウンロードすることはありません。</p>
+      </details>
+
+      <h2>買い切り Pro</h2>
+      <details>
+        <summary>Pro で何ができますか？</summary>
+        <p>買い切り Pro は一度の購入で、書き出した画像の ND Masking ウォーターマークをオフにできます。自動検出、すべての編集ツール、自分で設定する文字ウォーターマークは無料で使えます。</p>
+      </details>
+      <details>
+        <summary>Pro を購入したのに反映されません。復元するには？</summary>
+        <p>購入時の Apple アカウントでサインインした状態で、「設定 → メンバーシップ → 購入したものを復元する」を開いてください。購入状態は StoreKit を通じて App Store で直接確認されます。</p>
+      </details>
+
+      <h2>トラブルシューティング</h2>
+      <details>
+        <summary>一時ファイルを削除するには？</summary>
+        <p>「設定 → 一時ファイルを削除」に進んでください。未保存の編集内容と出力ファイルが削除されます。ライブラリの元の写真、保存済みのコピー、ステッカー、設定は残ります。</p>
+      </details>
+      <details>
+        <summary>問題を報告するには？</summary>
+        <p>「設定 → 製品のフィードバック」をタップしてメールの下書きを開くか、上記のアドレスに直接ご連絡ください。アプリのバージョン、iOS のバージョン、問題を再現する手順を記載してください。アプリが自動で何かを送信することはありません。</p>
+      </details>
+
+      <h2>法的情報</h2>
+      <p>ND Masking が扱うデータや扱わないデータの詳細は、<a href="./privacy.html" data-page-link="./privacy.html">プライバシーポリシー</a>をご確認ください。</p>
+    </section>
+
+    <footer class="page">
+      <p>© 2026 Next Dawn Technologies · <a href="./index.html" data-page-link="./index.html">ND Masking</a> · <a href="./privacy.html" data-page-link="./privacy.html" data-i18n="privacy">Privacy Policy</a></p>
+    </footer>
+  </div>
+
+  <script>
+
+    (function () {
+      var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND Masking — Support",
+    "description": "Get help with ND Masking: detection, manual masks, saving and sharing, Lifetime Pro and feedback.",
+    "heading": "Support",
+    "subtitle": "Find and cover private details in your images before you share them, on your device."
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND Masking — 支持与帮助",
+    "description": "获取 ND Masking 帮助：自动识别、手动遮盖、保存与分享、永久会员及问题反馈。",
+    "heading": "支持与帮助",
+    "subtitle": "分享图片之前，在本机找出并遮盖隐私信息。"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND Masking — 支援與說明",
+    "description": "取得 ND Masking 使用說明：自動辨識、手動遮蓋、儲存與分享、永久 Pro 及問題回報。",
+    "heading": "支援與說明",
+    "subtitle": "分享圖片之前，在裝置上找出並遮蓋隱私資訊。"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND Masking — 지원",
+    "description": "ND Masking 도움말: 자동 감지, 수동 가리기, 저장 및 공유, 평생 Pro, 피드백.",
+    "heading": "지원",
+    "subtitle": "이미지를 공유하기 전에 기기에서 개인정보를 찾아 가리세요."
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND Masking — サポート",
+    "description": "ND Masking のヘルプ：自動検出、手動マスク、保存と共有、買い切り Pro、フィードバック。",
+    "heading": "サポート",
+    "subtitle": "画像を共有する前に、端末内でプライバシー情報を見つけて隠せます。"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-masking-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>

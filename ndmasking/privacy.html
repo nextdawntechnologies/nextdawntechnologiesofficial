@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Masking — Privacy Policy</title>
+<meta name="description" content="Privacy Policy for ND Masking, an on-device image privacy tool by NextDawn." />
+<link rel="icon" href="./app-icon.png" />
+<link rel="apple-touch-icon" href="./app-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #087aff;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #5aa5ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 28px; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+  .eyebrow img { width: 22px; height: 22px; border-radius: 5px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  .contact {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin: 24px 0 36px;
+  }
+  .contact a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  h2 { font-size: 18px; margin: 32px 0 10px; }
+  details {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 10px;
+  }
+  details summary { cursor: pointer; font-weight: 600; font-size: 15.5px; }
+  details p { margin: 10px 0 0; color: var(--fg); font-size: 15px; }
+  details p + p { margin-top: 8px; }
+  a { color: var(--accent); }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .lang-toggle button {
+    appearance: none; border: 1px solid var(--border); background: var(--card);
+    color: var(--fg); border-radius: 999px; padding: 6px 16px; font-size: 14px; cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  .contact { align-items: flex-start; }
+  .contact > span:first-child { flex: 0 0 auto; }
+  .contact > span:last-child { min-width: 0; }
+  .contact a { overflow-wrap: anywhere; }
+  details { padding: 0; }
+  details summary {
+    min-height: 48px; padding: 14px 18px; border-radius: 11px;
+    line-height: 1.55; touch-action: manipulation;
+  }
+  details p { margin: 0 18px 14px; }
+  details p + p { margin-top: 8px; }
+  @media (max-width: 680px) {
+    .contact { padding: 14px 16px; margin: 20px 0 28px; }
+    details summary { padding: 14px 16px; }
+    details p { margin-left: 16px; margin-right: 16px; }
+  }
+
+  p.lead { font-size: 16px; color: var(--muted); margin: 0 0 20px; }
+  section[data-lang] > p { margin: 0 0 14px; font-size: 15.5px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 20px; margin-bottom: 14px;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 16px; }
+  .card p { margin: 0; font-size: 15px; color: var(--fg); }
+  @media (max-width: 680px) {
+    .card { padding: 16px; }
+    .lang-toggle { margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <p class="eyebrow"><img src="./app-icon.png" alt="" width="22" height="22" />ND Masking</p>
+      <h1 data-i18n="heading">Privacy Policy</h1>
+      <p class="sub" data-i18n="subtitle">Last updated September 29, 2026 · Published by Next Dawn Technologies</p>
+    </header>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+      <button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+      <button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+      <button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <p class="lead">This policy describes how ND Masking, developed by NextDawn, handles images, local data and feedback you choose to provide. Available features may differ by operating system and version.</p>
+
+      <div class="card">
+        <h3>On-device image processing</h3>
+        <p>Detection, editing, rendering and final checks run on the current device. The app has no image or recognition-result upload feature, does not use this content to train cloud models, and has no ND Masking accounts, advertising tracking, usage analytics, cloud project sync or runtime recognition-model downloads.</p>
+      </div>
+
+      <div class="card">
+        <h3>Images and recognition data</h3>
+        <p>With permission, the iOS home screen reads permitted photo thumbnails. Images are imported when selected or through optional automatic editing of recent photos. Imported copies, previews, recognized text, masks and temporary outputs are used for local editing and checks. Recognized text may be sensitive.</p>
+      </div>
+
+      <div class="card">
+        <h3>Local settings and sticker data</h3>
+        <p>Interface language, appearance, detectors, OCR language and editing defaults are stored on your device. The sticker library separately stores imported sticker images, favorite status and recent-use records for reuse. Clearing temporary files does not delete the sticker library or settings. Avoid keeping sensitive images in your sticker library.</p>
+      </div>
+
+      <div class="card">
+        <h3>System permissions and photo access</h3>
+        <p>Import uses the home gallery or system picker. Browsing, saving, editing or deleting photos may request the relevant permission or system confirmation. You can decline or change access. ND Masking does not request contacts, microphone or location access.</p>
+      </div>
+
+      <div class="card">
+        <h3>Saving, sharing and originals</h3>
+        <p>Export creates a new image. EXIF metadata supported by the output format is kept by default. Enable Remove EXIF metadata to remove location, device and other metadata. Embedded source thumbnails are never copied. Visible text, addresses and other clues still need your review. Save a copy keeps the original. On supported systems, Save can update a library photo, and Share and delete original removes it after successful sharing and system confirmation as described in the interface. Check the selected action and any recoverable originals or recently deleted items in your photo library.</p>
+      </div>
+
+      <div class="card">
+        <h3>Temporary data retention and clearing</h3>
+        <p>Temporary session data stays on the device and is configured to be excluded from system backup. Cleanup runs as applicable when sessions end, expire or the app starts again. You can clear temporary files in local data settings; this ends related processing and removes unsaved edits and exports. Projects cannot be restored across app launches. Cleanup does not delete library originals, saved results, stickers or settings, and cannot recall shared files.</p>
+      </div>
+
+      <div class="card">
+        <h3>Purchases and restoring purchases</h3>
+        <p>In iOS versions offering Pro purchases, product information, payment and purchase restoration are handled by Apple App Store and StoreKit. The app reads system-verified entitlements to display purchase status and does not receive your card number or payment password. Purchases, restoration and entitlement updates may use Apple network services and are subject to Apple’s policies.</p>
+      </div>
+
+      <div class="card">
+        <h3>System services and third-party recipients</h3>
+        <p>Image processing uses iOS Vision or recognition components bundled on Android. The system or file provider may download cloud originals, and your photo library may sync saved images according to your device settings. Sharing sends the output to your chosen app, which controls its storage, transmission and retention. Email, app stores and system services have their own data practices. Local image processing does not mean these external services operate offline.</p>
+      </div>
+
+      <div class="card">
+        <h3>Feedback and information you provide</h3>
+        <p>Product feedback opens an email draft without automatically sending images or recognized content. If you send it, NextDawn receives your email address, message and any attachments you choose to include for communication and troubleshooting. Your email service also processes the message. Prefer masked examples and avoid sending identity documents, passwords or other people’s sensitive information. Contact the address below to request deletion of feedback emails.</p>
+      </div>
+
+      <h2>Your choices and contact</h2>
+      <p>You can stop importing images, adjust system permissions, clear temporary files or remove the app and its local data through your operating system. Saved photos, files shared with other apps and sent emails must be handled separately. For privacy questions, feedback deletion requests or questions about this policy, contact NextDawn at <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>. Describe your request without sending identity documents.</p>
+
+      <h2>Policy updates</h2>
+      <p>When features or data practices change, we will update this page and its revision date. Review the latest information after app updates. Any future feature requiring separate authorization will explain the processing and request your choice where needed.</p>
+
+      <h2>Publisher</h2>
+      <p>Next Dawn Technologies (NextDawn)<br />Email: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="zh" lang="zh-Hans">
+      <p class="lead">本政策说明 NextDawn 开发的“ND Masking”应用如何处理图片、本地资料和你主动提供的反馈。不同系统和版本支持的功能可能不同，请以当前应用中可用的功能为准。</p>
+
+      <div class="card">
+        <h3>图片在本机处理</h3>
+        <p>图片识别、编辑、渲染和最终复检在当前设备上完成。应用没有图片或识别结果上传功能，不使用这些内容训练云端模型，不设置 ND Masking 账号、广告追踪、使用行为分析或云端项目同步，也不在使用时下载识别模型。</p>
+      </div>
+
+      <div class="card">
+        <h3>处理哪些图片与识别信息</h3>
+        <p>获得相册权限后，iOS 首页读取授权范围内的照片缩略图；选择图片或启用自动编辑最新照片后，才导入图片进行处理。导入副本、预览、识别文字、遮罩和临时输出仅用于本机编辑与复检。识别文字可能包含敏感信息。</p>
+      </div>
+
+      <div class="card">
+        <h3>本地设置与贴纸资料</h3>
+        <p>界面语言、外观、识别类别、OCR 语言和编辑默认选项等设置保存在设备上。贴纸功能会单独保存你导入的贴纸图片、收藏状态和最近使用记录，以便再次使用。贴纸库与编辑临时文件分开存储，清理临时文件不会删除贴纸库或设置；请不要将含有敏感信息的图片长期保存在贴纸库中。</p>
+      </div>
+
+      <div class="card">
+        <h3>系统权限与照片访问</h3>
+        <p>可通过首页相册或系统选择器导入图片。浏览相册、保存、更新或删除照片时，会按操作请求权限或系统确认；你可拒绝或调整授权。应用不为图片打码请求通讯录、麦克风或定位权限。</p>
+      </div>
+
+      <div class="card">
+        <h3>保存、分享与原图</h3>
+        <p>导出会重新生成图片。默认保留输出格式支持的 EXIF 信息；开启“移除 EXIF 信息”后，会移除位置、设备等附带信息。原图内嵌缩略图始终不会复制。画面中可见的文字、地址或其他线索仍需手动检查。“保存副本”保留原图；在支持的系统上，“保存”可更新相册照片，“分享并删除原图”会按界面提示在分享成功及系统确认后删除原图。请在操作前确认选项，并检查系统相册中的还原记录或最近删除项目。</p>
+      </div>
+
+      <div class="card">
+        <h3>临时资料保留与清理</h3>
+        <p>编辑会话的临时资料存放在本机并设置为排除系统备份，应用会在结束会话、到期或下次启动时执行相应清理。你也可以在本地资料设置中立即清理；这会结束相关处理并删除尚未保存的编辑和输出。当前不提供跨启动恢复的历史项目。清理不会删除相册原图、已保存的结果、贴纸库或设置，也不能撤回已分享的文件。</p>
+      </div>
+
+      <div class="card">
+        <h3>购买与恢复购买</h3>
+        <p>在提供 Pro 购买的 iOS 版本中，商品信息、付款及恢复购买由 Apple App Store 与 StoreKit 处理。应用读取系统验证的购买权益以显示购买状态，不接收你的银行卡号或支付密码。购买、恢复和权益更新可能涉及 Apple 的网络服务，其数据处理适用 Apple 的相关政策。</p>
+      </div>
+
+      <div class="card">
+        <h3>系统服务与第三方接收方</h3>
+        <p>图片处理使用 iOS 系统 Vision 或 Android 随包识别组件。云端原片可能由系统或文件提供方下载；系统相册可能按照你的设备设置同步已保存的图片。你主动分享后，所选应用会接收输出文件，其存储、传输和保留方式由该应用决定。邮件、应用商店和系统服务也有各自的数据处理规则。本机图片处理不代表这些外部服务离线运行。</p>
+      </div>
+
+      <div class="card">
+        <h3>反馈邮件与主动提供的信息</h3>
+        <p>点击“产品反馈”只会打开邮件草稿，不会自动发送图片或识别内容。若你发送邮件，NextDawn 会收到你的邮箱地址、正文和主动附上的文件，用于沟通和排查问题；邮件也由你使用的邮件服务处理。请尽量使用已打码的示例，避免发送身份证件、密码或他人的敏感信息。有关反馈邮件的删除请求，可通过下方邮箱联系。</p>
+      </div>
+
+      <h2>你的选择与联系方式</h2>
+      <p>你可以停止导入图片、调整系统权限、清理临时资料，或通过系统删除应用及其本地数据。已保存到相册、已分享给其他应用或已经发送的邮件需要分别处理。隐私问题、反馈资料删除请求或本政策疑问，请联系 NextDawn：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>。说明问题即可，请勿为验证身份额外发送身份证件。</p>
+
+      <h2>政策更新</h2>
+      <p>当功能或数据处理方式变化时，我们会更新本页面及更新日期。请在应用更新后查看最新说明；如未来增加需要另行授权的数据处理功能，会在相应功能中说明并按需征求你的选择。</p>
+
+      <h2>发布者</h2>
+      <p>Next Dawn Technologies (NextDawn)<br />邮箱：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant">
+      <p class="lead">本政策說明 NextDawn 開發的 ND Masking 如何處理圖片、本機資料和你主動提供的意見。可用功能可能因作業系統和版本而異。</p>
+
+      <div class="card">
+        <h3>圖片在本機處理</h3>
+        <p>辨識、編輯、繪製和最終檢查都在目前裝置上執行。App 沒有圖片或辨識結果上傳功能，不會使用這些內容訓練雲端模型，也沒有 ND Masking 帳號、廣告追蹤、使用行為分析、雲端專案同步或使用期間的辨識模型下載。</p>
+      </div>
+
+      <div class="card">
+        <h3>圖片與辨識資料</h3>
+        <p>獲得相簿權限後，iOS 首頁讀取授權範圍內的照片縮圖；選取圖片或啟用自動編輯最近照片後才匯入處理。副本、預覽、辨識文字、遮罩和暫存輸出僅用於本機編輯與複檢。辨識文字可能包含敏感資訊。</p>
+      </div>
+
+      <div class="card">
+        <h3>本機設定與貼圖資料</h3>
+        <p>介面語言、外觀、辨識類別、OCR 語言和編輯預設值保存在你的裝置上。貼圖庫另行儲存匯入的貼圖圖片、收藏狀態和最近使用記錄，以供再次使用。清理暫存檔案不會刪除貼圖庫或設定。請避免在貼圖庫中保留含有敏感資訊的圖片。</p>
+      </div>
+
+      <div class="card">
+        <h3>系統權限與照片存取</h3>
+        <p>可透過首頁相簿或系統選擇器匯入圖片。瀏覽、儲存、修改或刪除照片會依操作請求權限或系統確認；你可拒絕或調整授權。打碼不需要通訊錄、麥克風或定位權限。</p>
+      </div>
+
+      <div class="card">
+        <h3>儲存、分享與原圖</h3>
+        <p>匯出會建立新圖片。預設保留輸出格式支援的 EXIF 資訊；開啟「移除 EXIF 資訊」後，會移除位置、裝置等中繼資料。原圖內嵌縮圖一律不會複製。畫面中可見的文字、地址和其他線索仍需要你檢查。「儲存副本」會保留原圖。在支援的系統上，「儲存」可以更新相簿照片；「分享並刪除原圖」會依介面說明，在分享成功及系統確認後刪除原圖。請確認所選操作，並檢查相簿中可回復的原圖或最近刪除的項目。</p>
+      </div>
+
+      <div class="card">
+        <h3>暫存資料保留與清理</h3>
+        <p>工作階段暫存資料保存在裝置上，並設定為排除系統備份。工作階段結束、到期或 App 重新啟動時會執行相應清理。你可以在本機資料設定中清理暫存檔案；這會結束相關處理並刪除尚未儲存的編輯和匯出。App 重新啟動後無法還原專案。清理不會刪除相簿原圖、已儲存的結果、貼圖或設定，也無法撤回已分享的檔案。</p>
+      </div>
+
+      <div class="card">
+        <h3>購買與回復購買</h3>
+        <p>在提供 Pro 購買的 iOS 版本中，商品資訊、付款和回復購買由 Apple App Store 與 StoreKit 處理。App 讀取經系統驗證的購買權益以顯示購買狀態，不會取得你的卡號或付款密碼。購買、回復和權益更新可能使用 Apple 網路服務，並受 Apple 政策約束。</p>
+      </div>
+
+      <div class="card">
+        <h3>系統服務與第三方接收者</h3>
+        <p>圖片處理使用 iOS Vision 或 Android 內建的辨識元件。系統或檔案提供者可能下載雲端原圖，相簿也可能依裝置設定同步已儲存的圖片。分享會將輸出傳送至你選擇的 App，由該 App 控制儲存、傳輸和保留方式。電子郵件、應用程式商店與系統服務各自有其資料處理方式。本機圖片處理不表示這些外部服務也離線運作。</p>
+      </div>
+
+      <div class="card">
+        <h3>意見回饋與你提供的資訊</h3>
+        <p>「產品意見回饋」會開啟郵件草稿，不會自動傳送圖片或辨識內容。若你傳送郵件，NextDawn 會收到你的電子郵件地址、訊息及你主動附上的附件，用於聯絡與排除問題。你的郵件服務也會處理該訊息。請優先使用已遮蓋的範例，避免傳送身分證件、密碼或他人的敏感資訊。如需刪除意見回饋郵件，請聯絡下方地址。</p>
+      </div>
+
+      <h2>你的選擇與聯絡方式</h2>
+      <p>你可以停止匯入圖片、調整系統權限、清理暫存檔案，或透過作業系統移除 App 及其本機資料。已儲存的照片、分享給其他 App 的檔案和已傳送的郵件需要另行處理。如有隱私問題、意見回饋刪除請求或本政策相關疑問，請透過 <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> 聯絡 NextDawn。說明請求時請勿傳送身分證件。</p>
+
+      <h2>政策更新</h2>
+      <p>功能或資料處理方式變更時，我們會更新本頁及修訂日期。請在 App 更新後查看最新資訊。未來若有需要額外授權的功能，會說明處理方式，並在需要時請你作出選擇。</p>
+
+      <h2>發行者</h2>
+      <p>Next Dawn Technologies (NextDawn)<br />電子郵件：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ko" lang="ko">
+      <p class="lead">이 정책은 NextDawn이 개발한 ND Masking이 이미지, 로컬 데이터, 사용자가 직접 제공하는 의견을 처리하는 방식을 설명합니다. 사용 가능한 기능은 운영체제와 버전에 따라 다를 수 있습니다.</p>
+
+      <div class="card">
+        <h3>기기 내 이미지 처리</h3>
+        <p>감지, 편집, 렌더링, 최종 검사는 현재 기기에서 실행됩니다. 앱에는 이미지나 인식 결과를 업로드하는 기능이 없고, 이 콘텐츠를 클라우드 모델 학습에 사용하지 않습니다. ND Masking 계정, 광고 추적, 사용 분석, 클라우드 프로젝트 동기화, 실행 중 인식 모델 다운로드도 없습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>이미지 및 인식 데이터</h3>
+        <p>권한이 있으면 iOS 홈에서 허용된 썸네일을 읽습니다. 선택하거나 최근 사진 자동 편집을 켠 경우 이미지를 가져옵니다. 사본, 미리보기, 인식된 텍스트, 마스크 및 임시 출력은 기기 내 편집·검사에 사용됩니다. 인식된 텍스트는 민감할 수 있습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>로컬 설정 및 스티커 데이터</h3>
+        <p>인터페이스 언어, 화면 모드, 감지 유형, OCR 언어, 편집 기본값은 기기에 저장됩니다. 스티커 보관함에는 다시 사용할 수 있도록 가져온 스티커 이미지, 즐겨찾기 상태, 최근 사용 기록이 별도로 저장됩니다. 임시 파일을 삭제해도 스티커 보관함이나 설정은 삭제되지 않습니다. 민감한 이미지를 스티커 보관함에 보관하지 마세요.</p>
+      </div>
+
+      <div class="card">
+        <h3>시스템 권한 및 사진 접근</h3>
+        <p>홈 갤러리나 시스템 선택기로 가져옵니다. 사진 보기·저장·편집·삭제 시 권한이나 시스템 확인을 요청할 수 있습니다. 거부하거나 접근을 변경할 수 있습니다. 마스킹에는 연락처, 마이크, 위치 권한을 요청하지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>저장, 공유 및 원본</h3>
+        <p>내보내기는 새 이미지를 만듭니다. 출력 형식에서 지원하는 EXIF 메타데이터는 기본적으로 유지됩니다. EXIF 메타데이터 제거를 켜면 위치, 기기 및 기타 메타데이터가 제거됩니다. 원본에 포함된 썸네일은 항상 복사하지 않습니다. 보이는 텍스트, 주소, 기타 단서는 직접 확인해야 합니다. 사본 저장은 원본을 유지합니다. 지원되는 시스템에서는 저장으로 보관함의 사진을 업데이트할 수 있고, 공유 후 원본 삭제는 화면 안내에 따라 공유가 성공하고 시스템에서 확인한 후 원본을 삭제합니다. 선택한 작업과 사진 보관함에서 복원할 수 있는 원본 또는 최근 삭제된 항목을 확인하세요.</p>
+      </div>
+
+      <div class="card">
+        <h3>임시 데이터 보관 및 삭제</h3>
+        <p>임시 세션 데이터는 기기에 보관되며 시스템 백업에서 제외되도록 설정됩니다. 세션이 끝나거나 만료되거나 앱이 다시 시작될 때 해당 정리가 실행됩니다. 로컬 데이터 설정에서 임시 파일을 삭제하면 관련 처리가 종료되고 저장하지 않은 편집 내용과 내보낸 파일이 제거됩니다. 앱을 다시 시작하면 프로젝트를 복원할 수 없습니다. 정리는 보관함의 원본, 저장한 결과, 스티커, 설정을 삭제하지 않으며 공유한 파일을 회수할 수 없습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>구매 및 구매 복원</h3>
+        <p>Pro 구매를 제공하는 iOS 버전에서는 상품 정보, 결제, 구매 복원을 Apple App Store와 StoreKit이 처리합니다. 앱은 시스템에서 검증한 이용 권한을 읽어 구매 상태를 표시하며 카드 번호나 결제 비밀번호를 받지 않습니다. 구매, 복원, 이용 권한 업데이트에는 Apple 네트워크 서비스가 사용될 수 있으며 Apple 정책이 적용됩니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>시스템 서비스 및 제삼자 수신자</h3>
+        <p>이미지 처리는 iOS Vision 또는 Android에 포함된 인식 구성 요소를 사용합니다. 시스템이나 파일 제공자가 클라우드 원본을 다운로드할 수 있으며 사진 보관함은 기기 설정에 따라 저장된 이미지를 동기화할 수 있습니다. 공유하면 선택한 앱으로 결과가 전송되며 해당 앱이 저장, 전송, 보관을 관리합니다. 이메일, 앱 스토어, 시스템 서비스에는 각각의 데이터 처리 방식이 있습니다. 기기 내 이미지 처리가 이러한 외부 서비스의 오프라인 작동을 의미하지는 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>의견 및 사용자가 제공하는 정보</h3>
+        <p>제품 피드백은 이메일 초안을 열며 이미지나 인식된 콘텐츠를 자동으로 전송하지 않습니다. 이메일을 보내면 NextDawn은 소통과 문제 해결을 위해 이메일 주소, 메시지, 사용자가 선택하여 포함한 첨부 파일을 받습니다. 이메일 서비스도 메시지를 처리합니다. 민감한 내용을 가린 예시를 사용하고 신분증, 비밀번호, 타인의 민감한 정보를 보내지 마세요. 피드백 이메일 삭제를 요청하려면 아래 주소로 연락하세요.</p>
+      </div>
+
+      <h2>사용자의 선택 및 연락처</h2>
+      <p>이미지 가져오기를 중단하거나 시스템 권한을 조정하고 임시 파일을 삭제하거나 운영체제를 통해 앱과 로컬 데이터를 제거할 수 있습니다. 저장된 사진, 다른 앱에 공유한 파일, 보낸 이메일은 별도로 처리해야 합니다. 개인정보 관련 문의, 피드백 삭제 요청, 이 정책에 대한 질문은 <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>으로 NextDawn에 연락하세요. 신분증을 보내지 말고 요청 내용을 설명하세요.</p>
+
+      <h2>정책 업데이트</h2>
+      <p>기능이나 데이터 처리 방식이 변경되면 이 페이지와 수정 날짜를 업데이트합니다. 앱 업데이트 후 최신 정보를 확인하세요. 향후 별도 승인이 필요한 기능은 처리 방식을 설명하고 필요한 경우 사용자의 선택을 요청합니다.</p>
+
+      <h2>발행자</h2>
+      <p>Next Dawn Technologies (NextDawn)<br />이메일: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ja" lang="ja">
+      <p class="lead">本ポリシーでは、NextDawn が開発した ND Masking における画像、端末内のデータ、お客様が提供するフィードバックの取り扱いを説明します。利用できる機能は、OS やバージョンによって異なる場合があります。</p>
+
+      <div class="card">
+        <h3>端末内での画像処理</h3>
+        <p>検出、編集、描画、最終チェックは現在の端末内で行われます。画像や認識結果のアップロード機能はなく、この内容をクラウドモデルの学習に使用しません。ND Masking アカウント、広告トラッキング、利用状況の分析、クラウドへのプロジェクト同期、実行時の認識モデルのダウンロードもありません。</p>
+      </div>
+
+      <div class="card">
+        <h3>画像と認識データ</h3>
+        <p>許可後、iOSのホームは許可範囲内のサムネイルを読み取ります。選択時または任意の最近の写真の自動編集で画像を取り込みます。コピー、プレビュー、認識文字、マスク、一時出力は端末内の編集・検査に使用します。認識文字には機密情報が含まれる場合があります。</p>
+      </div>
+
+      <div class="card">
+        <h3>端末内の設定とステッカーデータ</h3>
+        <p>表示言語、外観、検出の種類、OCR 言語、編集の初期設定は端末内に保存されます。ステッカーライブラリには、再利用のために読み込んだステッカー画像、お気に入りの状態、最近の使用履歴を別途保存します。一時ファイルを削除しても、ステッカーライブラリや設定は削除されません。機密性の高い画像をステッカーライブラリに残さないようにしてください。</p>
+      </div>
+
+      <div class="card">
+        <h3>システム権限と写真へのアクセス</h3>
+        <p>ホームのギャラリーまたはシステム選択画面から取り込みます。写真の表示・保存・編集・削除には対応する許可やシステム確認が必要な場合があります。許可は拒否・変更できます。マスク処理に連絡先・マイク・位置情報へのアクセスは求めません。</p>
+      </div>
+
+      <div class="card">
+        <h3>保存、共有、元の写真</h3>
+        <p>書き出しでは新しい画像を作成します。出力形式で対応する EXIF メタデータは標準で保持されます。「EXIF メタデータを削除」を有効にすると、位置情報、デバイス情報などのメタデータを削除します。元画像の埋め込みサムネイルは常にコピーしません。画面に見える文字、住所、その他の手がかりはご自身で確認してください。「コピーを保存」は元の写真を保持します。対応するシステムでは「保存」でライブラリの写真を更新でき、「共有して元の写真を削除」は画面の説明に従い、共有の成功とシステムでの確認後に元の写真を削除します。選択した操作と、写真ライブラリ内で復元可能な原本や「最近削除した項目」を確認してください。</p>
+      </div>
+
+      <div class="card">
+        <h3>一時データの保持と削除</h3>
+        <p>一時セッションのデータは端末内に保存され、システムのバックアップから除外する設定になっています。セッションの終了、有効期限切れ、アプリの再起動時に、必要に応じて削除します。端末内データの設定から一時ファイルを削除すると、関連する処理を終了し、未保存の編集や書き出しを消去します。アプリの再起動後にプロジェクトを復元することはできません。削除しても、ライブラリの原本、保存済みの結果、ステッカー、設定は残り、共有済みのファイルを回収することはできません。</p>
+      </div>
+
+      <div class="card">
+        <h3>購入と購入の復元</h3>
+        <p>Pro の購入を提供する iOS 版では、商品情報、支払い、購入の復元を Apple App Store と StoreKit が処理します。アプリはシステムで検証された利用権限を読み取って購入状態を表示し、カード番号や決済用パスワードは受け取りません。購入、復元、利用権限の更新では Apple のネットワークサービスを利用する場合があり、Apple のポリシーが適用されます。</p>
+      </div>
+
+      <div class="card">
+        <h3>システムサービスと第三者の受信先</h3>
+        <p>画像処理には iOS Vision、または Android 版に同梱された認識コンポーネントを使用します。システムやファイル提供元がクラウドの原本をダウンロードしたり、端末の設定に従って写真ライブラリが保存済み画像を同期したりする場合があります。共有すると、選択したアプリに出力を渡し、そのアプリが保存、転送、保持を管理します。メール、アプリストア、システムサービスには、それぞれのデータ取り扱い方針があります。画像を端末内で処理していても、これらの外部サービスがオフラインで動作するとは限りません。</p>
+      </div>
+
+      <div class="card">
+        <h3>フィードバックとお客様が提供する情報</h3>
+        <p>「製品へのフィードバック」はメールの下書きを開き、画像や認識した内容を自動送信しません。送信した場合、NextDawn は連絡や問題解決のために、メールアドレス、本文、お客様が添付したファイルを受け取ります。メールサービスもメッセージを処理します。機密情報を隠した例を使用し、身分証明書、パスワード、他の人の機密情報は送らないでください。フィードバックのメールの削除は、以下のアドレスにご依頼ください。</p>
+      </div>
+
+      <h2>お客様の選択とお問い合わせ</h2>
+      <p>画像の読み込みをやめる、システム権限を変更する、一時ファイルを削除する、OS からアプリと端末内のデータを削除するといった操作ができます。保存済みの写真、他のアプリに共有したファイル、送信済みのメールは別途対応が必要です。プライバシーに関する質問、フィードバックの削除依頼、本ポリシーに関するお問い合わせは、<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> で NextDawn までご連絡ください。身分証明書を送らずに、ご依頼の内容を説明してください。</p>
+
+      <h2>ポリシーの更新</h2>
+      <p>機能やデータの取り扱いが変わる場合は、このページと改訂日を更新します。アプリの更新後に最新情報をご確認ください。今後、別途許可が必要な機能を追加する場合は、処理内容を説明し、必要に応じてお客様の選択を求めます。</p>
+
+      <h2>発行者</h2>
+      <p>Next Dawn Technologies (NextDawn)<br />メール：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <footer class="page">
+      <p>© 2026 Next Dawn Technologies · <a href="./index.html" data-page-link="./index.html">ND Masking</a> · <a href="./support.html" data-page-link="./support.html" data-i18n="support">Support</a></p>
+    </footer>
+  </div>
+
+  <script>
+
+    (function () {
+      var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND Masking — Privacy Policy",
+    "description": "Privacy Policy for ND Masking, an on-device image privacy tool by NextDawn.",
+    "heading": "Privacy Policy",
+    "subtitle": "Last updated September 29, 2026 · Published by Next Dawn Technologies"
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND Masking — 隐私政策",
+    "description": "NextDawn 开发的本机图片隐私工具 ND Masking 的隐私政策。",
+    "heading": "隐私政策",
+    "subtitle": "更新日期：2026 年 9 月 29 日 · 发布者：Next Dawn Technologies"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND Masking — 隱私權政策",
+    "description": "NextDawn 開發的裝置端圖片隱私工具 ND Masking 的隱私權政策。",
+    "heading": "隱私權政策",
+    "subtitle": "更新日期：2026 年 9 月 29 日 · 發行者：Next Dawn Technologies"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND Masking — 개인정보 처리방침",
+    "description": "NextDawn이 개발한 기기 내 이미지 개인정보 보호 도구 ND Masking의 개인정보 처리방침.",
+    "heading": "개인정보 처리방침",
+    "subtitle": "최종 업데이트: 2026년 9월 29일 · 발행자: Next Dawn Technologies"
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND Masking — プライバシーポリシー",
+    "description": "NextDawn が開発した、端末内で処理する画像プライバシー保護ツール ND Masking のプライバシーポリシー。",
+    "heading": "プライバシーポリシー",
+    "subtitle": "最終更新日：2026 年 9 月 29 日 · 発行者：Next Dawn Technologies"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-masking-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>
