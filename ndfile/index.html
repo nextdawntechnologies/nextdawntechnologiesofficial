@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ND File — Your Files. Your Library.</title>
 <meta name="description" content="ND File browses and plays the videos and photos on your phone, NAS, and network drives — no account, no cloud." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 <style>
   :root {
     --bg: #ffffff;
@@ -44,6 +46,10 @@
   section[data-lang].active { display: block; }
 
   .hero { text-align: center; padding: 56px 0 40px; }
+  .hero .app-icon {
+    display: block; width: 112px; height: 112px; margin: 0 auto 20px;
+    border-radius: 25px; box-shadow: 0 10px 28px rgba(10, 92, 220, 0.28), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  }
   .hero .badge {
     display: inline-block; font-size: 13px; color: var(--muted);
     border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; margin-bottom: 18px;
@@ -126,6 +132,7 @@
   }
   @media (max-width: 680px) {
     .hero { padding: 36px 0 28px; }
+    .hero .app-icon { width: 88px; height: 88px; border-radius: 20px; margin-bottom: 16px; }
     .hero h1 { font-size: clamp(28px, 7.5vw, 36px); line-height: 1.3; }
     .hero p.lead { font-size: 16px; margin-bottom: 24px; }
     .cta-row { gap: 10px; }
@@ -157,6 +164,7 @@
 
     <section data-lang="en" lang="en" class="active">
       <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND File" />
         <span class="badge">iOS</span>
         <h1>Your Files. Your Library.</h1>
         <p class="lead">ND File browses and plays the videos and photos on your phone, your NAS, and your network drives. No account, no cloud upload.</p>
@@ -213,6 +221,7 @@
 
     <section data-lang="zh" lang="zh-Hans">
       <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND File" />
         <span class="badge">iOS</span>
         <h1>只属于你的影音库</h1>
         <p class="lead">ND File 直接浏览和播放手机、NAS 与局域网中的视频和照片，无需账号，不上传云端。</p>
@@ -269,6 +278,7 @@
 
     <section data-lang="zh-Hant" lang="zh-Hant">
       <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND File" />
         <span class="badge">iOS</span>
         <h1>只屬於你的影音庫</h1>
         <p class="lead">ND File 直接瀏覽和播放手機、NAS 與網路磁碟中的影片和照片，無需帳號，不上傳雲端。</p>
@@ -325,6 +335,7 @@
 
     <section data-lang="ko" lang="ko">
       <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND File" />
         <span class="badge">iOS</span>
         <h1>나만의 파일, 나만의 미디어 라이브러리.</h1>
         <p class="lead">ND File로 휴대폰, NAS, 네트워크 드라이브에 있는 동영상과 사진을 탐색하고 재생하세요. 계정이 필요 없으며 클라우드에 업로드하지 않습니다.</p>
@@ -381,6 +392,7 @@
 
     <section data-lang="ja" lang="ja">
       <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND File" />
         <span class="badge">iOS</span>
         <h1>あなたのファイルを、あなたのライブラリに。</h1>
         <p class="lead">ND File は、スマートフォン、NAS、ネットワークドライブにある動画や写真を閲覧・再生できます。アカウントは不要で、クラウドへのアップロードもありません。</p>
