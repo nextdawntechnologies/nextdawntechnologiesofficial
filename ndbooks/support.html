@@ -1,0 +1,2314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Books — Support</title>
+<meta name="description" content="Get help with ND Books: importing books, Wi-Fi transfer, formats, listening, PRO, iCloud sync and backups." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1d1b19;
+    --muted: #625c56;
+    --card: #f7f4f0;
+    --border: #e8e2db;
+    --accent: #b5482f;
+    --on-accent: #ffffff;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141312;
+      --fg: #f3f0ec;
+      --muted: #aaa39b;
+      --card: #1e1c1a;
+      --border: #2f2b28;
+      --accent: #f0947a;
+      --on-accent: #1d1b19;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+  a { color: var(--accent); }
+
+  .lang-picker {
+    position: relative; display: inline-flex; align-items: center; gap: 8px;
+    min-height: 44px; max-width: 100%; padding: 0 14px;
+    border: 1px solid var(--border); background: var(--card); border-radius: 999px;
+  }
+  .lang-picker::after {
+    content: ""; position: absolute; inset-inline-end: 16px; top: 50%;
+    width: 7px; height: 7px; margin-top: -5px;
+    border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+    transform: rotate(45deg); pointer-events: none;
+  }
+  .lang-picker select {
+    appearance: none; -webkit-appearance: none; border: 0; background: transparent;
+    color: var(--fg); font: inherit; font-size: 15px; min-height: 42px; max-width: 100%;
+    padding-inline-end: 22px; cursor: pointer; touch-action: manipulation;
+  }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%; max-width: var(--maxw); margin: 0 auto;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  select:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  .wrap { padding-top: 48px; padding-bottom: 80px; }
+  header.page { margin-bottom: 28px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: inherit; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0; }
+  h1 { font-size: 28px; margin: 0 0 6px; line-height: 1.35; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  .lang-row { margin-bottom: 8px; }
+  h2 { font-size: 18px; margin: 32px 0 10px; }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+  .contact {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin: 24px 0 36px;
+  }
+  .contact > span:first-child { flex: 0 0 auto; }
+  .contact > span:last-child { min-width: 0; }
+  .contact a { font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .contact a:hover { text-decoration: underline; }
+  details { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
+  details summary {
+    cursor: pointer; font-weight: 600; font-size: 15.5px;
+    min-height: 48px; padding: 14px 18px; border-radius: 11px; line-height: 1.55; touch-action: manipulation;
+  }
+  details p { margin: 0 18px 14px; font-size: 15px; }
+  details p + p { margin-top: 8px; }
+  @media (max-width: 680px) {
+    .contact { padding: 14px 16px; margin: 20px 0 28px; }
+    details summary { padding: 14px 16px; }
+    details p { margin-left: 16px; margin-right: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <a class="brand" href="./index.html" data-page-link="./index.html"><img src="./apple-touch-icon.png" width="36" height="36" alt="" /><span class="eyebrow">ND Books</span></a>
+      <h1 data-i18n="heading">Support</h1>
+      <p class="sub" data-i18n="subtitle">An offline ebook reader for iPhone and iPad.</p>
+    </header>
+
+    <div class="lang-row">
+    <label class="lang-picker">
+      <span aria-hidden="true">🌐</span>
+      <select data-lang-select aria-label="Language">
+        <option value="en" lang="en">English</option>
+        <option value="de" lang="de">Deutsch</option>
+        <option value="ja" lang="ja">日本語</option>
+        <option value="fr" lang="fr">Français</option>
+        <option value="es" lang="es">Español</option>
+        <option value="pt" lang="pt">Português</option>
+        <option value="ko" lang="ko">한국어</option>
+        <option value="zh-Hans" lang="zh-Hans">简体中文</option>
+        <option value="zh-Hant" lang="zh-Hant">繁體中文</option>
+        <option value="it" lang="it">Italiano</option>
+        <option value="nl" lang="nl">Nederlands</option>
+        <option value="sv" lang="sv">Svenska</option>
+        <option value="da" lang="da">Dansk</option>
+        <option value="nb" lang="nb">Norsk bokmål</option>
+        <option value="fi" lang="fi">Suomi</option>
+        <option value="pl" lang="pl">Polski</option>
+        <option value="cs" lang="cs">Čeština</option>
+        <option value="tr" lang="tr">Türkçe</option>
+        <option value="ru" lang="ru">Русский</option>
+        <option value="uk" lang="uk">Українська</option>
+        <option value="ar" lang="ar">العربية</option>
+        <option value="th" lang="th">ไทย</option>
+        <option value="vi" lang="vi">Tiếng Việt</option>
+        <option value="id" lang="id">Bahasa Indonesia</option>
+        <option value="ms" lang="ms">Bahasa Melayu</option>
+        <option value="hi" lang="hi">हिन्दी</option>
+        <option value="ro" lang="ro">Română</option>
+        <option value="hu" lang="hu">Magyar</option>
+        <option value="el" lang="el">Ελληνικά</option>
+        <option value="he" lang="he">עברית</option>
+      </select>
+    </label>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <div class="contact">
+        <span>📧</span>
+        <span>Email us at <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — we reply as soon as we can.</span>
+      </div>
+
+      <h2>Getting started</h2>
+      <details>
+        <summary>How do I add books?</summary>
+        <p>Tap <strong>Import Books</strong> in your library and choose one or more files from the Files app. Each file can be up to 100 MB. Added books appear in your library right away.</p>
+      </details>
+      <details>
+        <summary>How do I send books from my computer?</summary>
+        <p>Connect your iPhone or iPad and your computer to the same Wi-Fi network, then tap <strong>Start Wi-Fi Transfer</strong>. Open the full address shown on your device in your computer's browser and upload your books.</p>
+        <p>The transfer uses a temporary connection on your local network. It stops when the app moves to the background, the network changes, or after 30 minutes. Each session has a new address and access code.</p>
+      </details>
+      <details>
+        <summary>Which formats are supported?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM-free MOBI, AZW and AZW3, and common image files. DRM-protected books can't be opened, and KFX, DjVu, CHM and legacy DOC files aren't supported.</p>
+      </details>
+
+      <h2>Reading</h2>
+      <details>
+        <summary>How do I listen to a book?</summary>
+        <p>While reading, tap the middle of the page to show the menu, then tap <strong>Listen</strong>. Books are read with the voices installed on your device, and you can change the voice and speed. Listening offline depends on the voices downloaded in iOS Settings.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>What does PRO include?</summary>
+        <p>Reading, an unlimited library, Wi-Fi transfer and full backups are free. PRO is a one-time purchase that adds automatic PDF margin cropping, PDF highlights and notes with export, on-device text recognition for scanned PDFs, text reflow and read-aloud for PDFs, and iCloud sync.</p>
+      </details>
+      <details>
+        <summary>I bought PRO but it isn't showing. How do I restore it?</summary>
+        <p>Go to <strong>Settings</strong> → <strong>PRO</strong> → <strong>Restore Purchase</strong> while signed in with the App Store account you used to buy it. Your purchase is verified directly with the App Store.</p>
+      </details>
+      <details>
+        <summary>How does iCloud sync work?</summary>
+        <p>After unlocking PRO, turn it on in <strong>Settings</strong> → <strong>iCloud Sync</strong> on each device. Books, reading positions, bookmarks and notes sync between iPhones and iPads signed in to the same iCloud account.</p>
+        <p>Buying PRO doesn't upload anything by itself. Sync carries changes and deletions across your devices, so keep a separate full backup as well.</p>
+      </details>
+
+      <h2>Backups and troubleshooting</h2>
+      <details>
+        <summary>How do I back up or move my library?</summary>
+        <p>Go to <strong>Settings</strong> → <strong>Export Full Backup</strong> to save a ZIP file with your books, notes, bookmarks, reading positions and settings. Restoring a backup replaces the current library rather than merging with it. Backups aren't encrypted, so keep them somewhere safe.</p>
+      </details>
+      <details>
+        <summary>A book won't open or doesn't look right</summary>
+        <p>Make sure the file isn't DRM-protected and is within the size limit. Reflowable formats keep the text but may not keep complex layouts; PDFs always show their original pages. If a file still fails, email it to us with a short description.</p>
+      </details>
+      <details>
+        <summary>How do I send feedback?</summary>
+        <p>Tap <strong>Settings</strong> → <strong>Send Feedback</strong> to write us an email, or use the address above. Please include your device model and iOS version.</p>
+      </details>
+
+      <h2>Legal</h2>
+      <p>See our <a href="./privacy.html" data-page-link="./privacy.html">Privacy Policy</a> for details on what data ND Books does and doesn't handle.</p>
+    </section>
+
+    <section data-lang="de" lang="de" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Schreib uns an <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> – wir antworten so schnell wie möglich.</span>
+      </div>
+
+      <h2>Erste Schritte</h2>
+      <details>
+        <summary>Wie füge ich Bücher hinzu?</summary>
+        <p>Tippe in deiner Bibliothek auf <strong>Bücher importieren</strong> und wähle eine oder mehrere Dateien in der Dateien-App aus. Jede Datei darf bis zu 100 MB groß sein. Hinzugefügte Bücher erscheinen sofort in deiner Bibliothek.</p>
+      </details>
+      <details>
+        <summary>Wie übertrage ich Bücher von meinem Computer?</summary>
+        <p>Verbinde dein iPhone oder iPad und deinen Computer mit demselben WLAN und tippe auf <strong>WLAN-Übertragung starten</strong>. Öffne die auf dem Gerät angezeigte vollständige Adresse im Browser deines Computers und lade deine Bücher hoch.</p>
+        <p>Die Übertragung nutzt eine temporäre Verbindung in deinem lokalen Netzwerk. Sie endet, wenn die App in den Hintergrund wechselt, sich das Netzwerk ändert oder nach 30 Minuten. Jede Sitzung erhält eine neue Adresse und einen neuen Zugangscode.</p>
+      </details>
+      <details>
+        <summary>Welche Formate werden unterstützt?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM-freie MOBI-, AZW- und AZW3-Dateien sowie gängige Bilddateien. DRM-geschützte Bücher lassen sich nicht öffnen; KFX, DjVu, CHM und ältere DOC-Dateien werden nicht unterstützt.</p>
+      </details>
+
+      <h2>Lesen</h2>
+      <details>
+        <summary>Wie lasse ich mir ein Buch vorlesen?</summary>
+        <p>Tippe beim Lesen in die Seitenmitte, um das Menü einzublenden, und dann auf <strong>Buch anhören</strong>. Vorgelesen wird mit den auf deinem Gerät installierten Stimmen; Stimme und Tempo kannst du ändern. Ob das offline funktioniert, hängt von den in den iOS-Einstellungen geladenen Stimmen ab.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Was ist in PRO enthalten?</summary>
+        <p>Lesen, eine unbegrenzte Bibliothek, WLAN-Übertragung und vollständige Backups sind kostenlos. PRO ist ein Einmalkauf und ergänzt automatisches Zuschneiden von PDF-Rändern, PDF-Markierungen und -Notizen mit Export, Texterkennung auf dem Gerät für gescannte PDFs, Textumbruch und Vorlesen für PDFs sowie iCloud-Synchronisierung.</p>
+      </details>
+      <details>
+        <summary>Ich habe PRO gekauft, aber es wird nicht angezeigt. Wie stelle ich es wieder her?</summary>
+        <p>Öffne <strong>Einstellungen</strong> → <strong>PRO</strong> → <strong>Käufe wiederherstellen</strong>, während du mit dem App Store-Account angemeldet bist, mit dem du gekauft hast. Dein Kauf wird direkt beim App Store überprüft.</p>
+      </details>
+      <details>
+        <summary>Wie funktioniert die iCloud-Synchronisierung?</summary>
+        <p>Aktiviere sie nach dem Freischalten von PRO auf jedem Gerät unter <strong>Einstellungen</strong> → <strong>iCloud-Synchronisierung</strong>. Bücher, Lesepositionen, Lesezeichen und Notizen werden zwischen iPhones und iPads mit demselben iCloud-Account synchronisiert.</p>
+        <p>Der Kauf von PRO lädt nichts automatisch hoch. Die Synchronisierung überträgt Änderungen und Löschungen auf alle Geräte – bewahre daher zusätzlich ein vollständiges Backup auf.</p>
+      </details>
+
+      <h2>Backups und Fehlerbehebung</h2>
+      <details>
+        <summary>Wie sichere oder übertrage ich meine Bibliothek?</summary>
+        <p>Öffne <strong>Einstellungen</strong> → <strong>Vollständiges Backup exportieren</strong>, um eine ZIP-Datei mit deinen Büchern, Notizen, Lesezeichen, Lesepositionen und Einstellungen zu speichern. Beim Wiederherstellen wird die aktuelle Bibliothek ersetzt, nicht zusammengeführt. Backups sind nicht verschlüsselt, bewahre sie also sicher auf.</p>
+      </details>
+      <details>
+        <summary>Ein Buch lässt sich nicht öffnen oder wird falsch angezeigt</summary>
+        <p>Prüfe, ob die Datei DRM-frei ist und die Größenbeschränkung einhält. Umbrechbare Formate behalten den Text, aber nicht unbedingt komplexe Layouts; PDFs zeigen immer die Originalseiten. Klappt es weiterhin nicht, schick uns die Datei mit einer kurzen Beschreibung.</p>
+      </details>
+      <details>
+        <summary>Wie sende ich Feedback?</summary>
+        <p>Tippe auf <strong>Einstellungen</strong> → <strong>Feedback und Vorschläge</strong>, um uns eine E-Mail zu schreiben, oder nutze die Adresse oben. Gib bitte dein Gerätemodell und deine iOS-Version an.</p>
+      </details>
+
+      <h2>Rechtliches</h2>
+      <p>In unserer <a href="./privacy.html" data-page-link="./privacy.html">Datenschutzerklärung</a> erfährst du, welche Daten ND Books verarbeitet und welche nicht.</p>
+    </section>
+
+    <section data-lang="ja" lang="ja" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>メールでのお問い合わせ：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — できるだけ早く返信いたします。</span>
+      </div>
+
+      <h2>使いはじめるには</h2>
+      <details>
+        <summary>本を追加するには？</summary>
+        <p>ライブラリで<strong>本を読み込む</strong>をタップし、「ファイル」アプリから 1 冊または複数の本を選びます。1 ファイルあたり最大 100 MB です。追加した本はすぐにライブラリに表示されます。</p>
+      </details>
+      <details>
+        <summary>パソコンから本を送るには？</summary>
+        <p>iPhone または iPad とパソコンを同じ Wi-Fi ネットワークに接続し、<strong>Wi-Fi転送を開始</strong>をタップします。デバイスに表示された完全なアドレスをパソコンのブラウザで開き、本をアップロードしてください。</p>
+        <p>転送にはローカルネットワーク内の一時的な接続を使います。アプリがバックグラウンドに移ったとき、ネットワークが変わったとき、または 30 分経過すると停止します。開始するたびに新しいアドレスとアクセスコードが発行されます。</p>
+      </details>
+      <details>
+        <summary>対応している形式は？</summary>
+        <p>EPUB、PDF、TXT、Markdown、HTML、FB2、DOCX、RTF、CBZ、CBR、DRM なしの MOBI・AZW・AZW3、一般的な画像ファイルに対応しています。DRM で保護された本は開けません。KFX、DjVu、CHM、旧形式の DOC には対応していません。</p>
+      </details>
+
+      <h2>読書</h2>
+      <details>
+        <summary>本を聴くには？</summary>
+        <p>読書中にページの中央をタップしてメニューを表示し、<strong>本を聴く</strong>をタップします。デバイスにインストールされている音声で読み上げ、声と速度を変更できます。オフラインで聴けるかどうかは、iOS の設定でダウンロード済みの音声によります。</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>PRO の内容は？</summary>
+        <p>読書、冊数無制限のライブラリ、Wi-Fi 転送、完全バックアップは無料です。PRO は買い切りで、PDF の余白自動トリミング、PDF のハイライトとメモおよび書き出し、スキャンした PDF のデバイス上での文字認識、PDF のテキストリフローと読み上げ、iCloud 同期が加わります。</p>
+      </details>
+      <details>
+        <summary>PRO を購入したのに反映されません。復元するには？</summary>
+        <p>購入に使った App Store アカウントでサインインした状態で、<strong>設定</strong> → <strong>PRO</strong> → <strong>購入を復元</strong>に進んでください。購入状況は App Store に直接確認されます。</p>
+      </details>
+      <details>
+        <summary>iCloud 同期の仕組みは？</summary>
+        <p>PRO を解除したあと、各デバイスで<strong>設定</strong> → <strong>iCloud同期</strong>をオンにします。同じ iCloud アカウントにサインインした iPhone と iPad の間で、本、読書位置、ブックマーク、メモが同期されます。</p>
+        <p>PRO を購入しただけでは何もアップロードされません。同期では変更や削除も各デバイスに反映されるため、完全バックアップも別に保管してください。</p>
+      </details>
+
+      <h2>バックアップとトラブルシューティング</h2>
+      <details>
+        <summary>ライブラリをバックアップ・移行するには？</summary>
+        <p><strong>設定</strong> → <strong>完全バックアップを書き出す</strong>に進み、本、メモ、ブックマーク、読書位置、設定を含む ZIP ファイルを保存します。バックアップを復元すると、現在のライブラリは統合されず置き換えられます。バックアップは暗号化されないため、安全な場所に保管してください。</p>
+      </details>
+      <details>
+        <summary>本が開けない・表示がおかしい場合</summary>
+        <p>ファイルが DRM で保護されていないこと、サイズの上限を超えていないことを確認してください。リフロー形式では文字は保たれますが、複雑なレイアウトは再現されない場合があります。PDF は常に元のページで表示されます。それでも開けない場合は、ファイルと簡単な説明をメールでお送りください。</p>
+      </details>
+      <details>
+        <summary>ご意見を送るには？</summary>
+        <p><strong>設定</strong> → <strong>ご意見・ご要望</strong>をタップしてメールを作成するか、上記のアドレスに直接お送りください。デバイスの機種と iOS のバージョンも添えてください。</p>
+      </details>
+
+      <h2>法的情報</h2>
+      <p>ND Books が扱うデータと扱わないデータの詳細は、<a href="./privacy.html" data-page-link="./privacy.html">プライバシーポリシー</a>をご確認ください。</p>
+    </section>
+
+    <section data-lang="fr" lang="fr" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Écrivez-nous à <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — nous répondons dès que possible.</span>
+      </div>
+
+      <h2>Premiers pas</h2>
+      <details>
+        <summary>Comment ajouter des livres ?</summary>
+        <p>Touchez <strong>Importer des livres</strong> dans votre bibliothèque et choisissez un ou plusieurs fichiers dans l'app Fichiers. Chaque fichier peut peser jusqu'à 100 Mo. Les livres ajoutés apparaissent aussitôt dans votre bibliothèque.</p>
+      </details>
+      <details>
+        <summary>Comment envoyer des livres depuis mon ordinateur ?</summary>
+        <p>Connectez votre iPhone ou iPad et votre ordinateur au même réseau Wi-Fi, puis touchez <strong>Lancer le transfert Wi-Fi</strong>. Ouvrez l'adresse complète affichée sur votre appareil dans le navigateur de l'ordinateur et importez vos livres.</p>
+        <p>Le transfert utilise une connexion temporaire sur votre réseau local. Il s'arrête lorsque l'app passe en arrière-plan, que le réseau change ou au bout de 30 minutes. Chaque session dispose d'une nouvelle adresse et d'un nouveau code d'accès.</p>
+      </details>
+      <details>
+        <summary>Quels formats sont pris en charge ?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, les fichiers MOBI, AZW et AZW3 sans DRM, ainsi que les images courantes. Les livres protégés par DRM ne peuvent pas être ouverts, et les fichiers KFX, DjVu, CHM et DOC anciens ne sont pas pris en charge.</p>
+      </details>
+
+      <h2>Lecture</h2>
+      <details>
+        <summary>Comment écouter un livre ?</summary>
+        <p>Pendant la lecture, touchez le centre de la page pour afficher le menu, puis touchez <strong>Écouter le livre</strong>. Le texte est lu avec les voix installées sur votre appareil, et vous pouvez changer de voix et de vitesse. L'écoute hors ligne dépend des voix téléchargées dans les Réglages d'iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Que comprend PRO ?</summary>
+        <p>La lecture, une bibliothèque illimitée, le transfert Wi-Fi et les sauvegardes complètes sont gratuits. PRO est un achat unique qui ajoute le rognage automatique des marges PDF, le surlignage et les notes sur PDF avec export, la reconnaissance de texte sur l'appareil pour les PDF numérisés, la remise en forme du texte et la lecture à voix haute des PDF, ainsi que la synchronisation iCloud.</p>
+      </details>
+      <details>
+        <summary>J'ai acheté PRO mais il n'apparaît pas. Comment le restaurer ?</summary>
+        <p>Ouvrez <strong>Réglages</strong> → <strong>PRO</strong> → <strong>Restaurer les achats</strong> en étant connecté avec le compte App Store utilisé pour l'achat. Votre achat est vérifié directement auprès de l'App Store.</p>
+      </details>
+      <details>
+        <summary>Comment fonctionne la synchronisation iCloud ?</summary>
+        <p>Après avoir débloqué PRO, activez-la dans <strong>Réglages</strong> → <strong>Synchronisation iCloud</strong> sur chaque appareil. Les livres, positions de lecture, signets et notes se synchronisent entre les iPhone et iPad connectés au même compte iCloud.</p>
+        <p>L'achat de PRO n'envoie rien à lui seul. La synchronisation répercute les modifications et les suppressions sur tous vos appareils : conservez aussi une sauvegarde complète à part.</p>
+      </details>
+
+      <h2>Sauvegardes et dépannage</h2>
+      <details>
+        <summary>Comment sauvegarder ou transférer ma bibliothèque ?</summary>
+        <p>Ouvrez <strong>Réglages</strong> → <strong>Exporter une sauvegarde complète</strong> pour enregistrer un fichier ZIP contenant vos livres, notes, signets, positions de lecture et réglages. La restauration d'une sauvegarde remplace la bibliothèque actuelle au lieu de la fusionner. Les sauvegardes ne sont pas chiffrées : conservez-les en lieu sûr.</p>
+      </details>
+      <details>
+        <summary>Un livre ne s'ouvre pas ou s'affiche mal</summary>
+        <p>Vérifiez que le fichier n'est pas protégé par DRM et respecte la taille maximale. Les formats recomposables conservent le texte mais pas toujours les mises en page complexes ; les PDF affichent toujours leurs pages d'origine. Si le problème persiste, envoyez-nous le fichier avec une courte description.</p>
+      </details>
+      <details>
+        <summary>Comment envoyer un avis ?</summary>
+        <p>Touchez <strong>Réglages</strong> → <strong>Avis et suggestions</strong> pour nous écrire un e-mail, ou utilisez l'adresse ci-dessus. Indiquez le modèle de votre appareil et votre version d'iOS.</p>
+      </details>
+
+      <h2>Mentions légales</h2>
+      <p>Consultez notre <a href="./privacy.html" data-page-link="./privacy.html">Politique de confidentialité</a> pour savoir quelles données ND Books traite ou non.</p>
+    </section>
+
+    <section data-lang="es" lang="es" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Escríbenos a <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> y te responderemos lo antes posible.</span>
+      </div>
+
+      <h2>Primeros pasos</h2>
+      <details>
+        <summary>¿Cómo añado libros?</summary>
+        <p>Toca <strong>Importar libros</strong> en tu biblioteca y elige uno o varios archivos en la app Archivos. Cada archivo puede ocupar hasta 100 MB. Los libros añadidos aparecen en tu biblioteca al instante.</p>
+      </details>
+      <details>
+        <summary>¿Cómo envío libros desde mi ordenador?</summary>
+        <p>Conecta tu iPhone o iPad y tu ordenador a la misma red Wi-Fi y toca <strong>Iniciar transferencia Wi-Fi</strong>. Abre en el navegador del ordenador la dirección completa que aparece en tu dispositivo y sube tus libros.</p>
+        <p>La transferencia usa una conexión temporal en tu red local. Se detiene cuando la app pasa a segundo plano, cambia la red o transcurren 30 minutos. Cada sesión tiene una dirección y un código de acceso nuevos.</p>
+      </details>
+      <details>
+        <summary>¿Qué formatos son compatibles?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, archivos MOBI, AZW y AZW3 sin DRM, y archivos de imagen habituales. Los libros protegidos con DRM no se pueden abrir, y no se admiten KFX, DjVu, CHM ni archivos DOC antiguos.</p>
+      </details>
+
+      <h2>Lectura</h2>
+      <details>
+        <summary>¿Cómo escucho un libro?</summary>
+        <p>Mientras lees, toca el centro de la página para mostrar el menú y luego toca <strong>Escuchar el libro</strong>. El libro se lee con las voces instaladas en tu dispositivo, y puedes cambiar la voz y la velocidad. Escuchar sin conexión depende de las voces descargadas en Ajustes de iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>¿Qué incluye PRO?</summary>
+        <p>La lectura, una biblioteca ilimitada, la transferencia por Wi-Fi y las copias completas son gratuitas. PRO es una compra única que añade recorte automático de márgenes en PDF, resaltados y notas en PDF con exportación, reconocimiento de texto en el dispositivo para PDF escaneados, texto adaptable y lectura en voz alta de PDF, y sincronización con iCloud.</p>
+      </details>
+      <details>
+        <summary>Compré PRO pero no aparece. ¿Cómo lo restauro?</summary>
+        <p>Ve a <strong>Ajustes</strong> → <strong>PRO</strong> → <strong>Restaurar compras</strong> con la sesión iniciada en la cuenta del App Store con la que compraste. La compra se verifica directamente con el App Store.</p>
+      </details>
+      <details>
+        <summary>¿Cómo funciona la sincronización con iCloud?</summary>
+        <p>Tras desbloquear PRO, actívala en <strong>Ajustes</strong> → <strong>Sincronización con iCloud</strong> en cada dispositivo. Los libros, posiciones de lectura, marcadores y notas se sincronizan entre los iPhone y iPad que usan la misma cuenta de iCloud.</p>
+        <p>Comprar PRO no sube nada por sí solo. La sincronización lleva los cambios y las eliminaciones a todos tus dispositivos, así que guarda también una copia completa aparte.</p>
+      </details>
+
+      <h2>Copias de seguridad y solución de problemas</h2>
+      <details>
+        <summary>¿Cómo hago una copia de seguridad o traslado mi biblioteca?</summary>
+        <p>Ve a <strong>Ajustes</strong> → <strong>Exportar copia completa</strong> para guardar un archivo ZIP con tus libros, notas, marcadores, posiciones de lectura y ajustes. Al restaurar una copia se reemplaza la biblioteca actual en lugar de combinarla. Las copias no están cifradas, así que guárdalas en un lugar seguro.</p>
+      </details>
+      <details>
+        <summary>Un libro no se abre o no se ve bien</summary>
+        <p>Comprueba que el archivo no tenga DRM y no supere el tamaño máximo. Los formatos adaptables conservan el texto, pero no siempre los diseños complejos; los PDF siempre muestran sus páginas originales. Si sigue fallando, envíanos el archivo con una breve descripción.</p>
+      </details>
+      <details>
+        <summary>¿Cómo envío comentarios?</summary>
+        <p>Toca <strong>Ajustes</strong> → <strong>Comentarios y sugerencias</strong> para escribirnos un correo, o usa la dirección de arriba. Incluye el modelo de tu dispositivo y la versión de iOS.</p>
+      </details>
+
+      <h2>Información legal</h2>
+      <p>Consulta nuestra <a href="./privacy.html" data-page-link="./privacy.html">Política de privacidad</a> para saber qué datos trata ND Books y cuáles no.</p>
+    </section>
+
+    <section data-lang="pt" lang="pt" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Escreva-nos para <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — respondemos o mais depressa possível.</span>
+      </div>
+
+      <h2>Primeiros passos</h2>
+      <details>
+        <summary>Como adiciono livros?</summary>
+        <p>Toque em <strong>Importar livros</strong> na biblioteca e escolha um ou mais ficheiros na app Ficheiros. Cada ficheiro pode ter até 100 MB. Os livros adicionados aparecem logo na biblioteca.</p>
+      </details>
+      <details>
+        <summary>Como envio livros a partir do computador?</summary>
+        <p>Ligue o iPhone ou iPad e o computador à mesma rede Wi-Fi e toque em <strong>Ativar transferência por Wi-Fi</strong>. Abra no navegador do computador o endereço completo apresentado no dispositivo e carregue os livros.</p>
+        <p>A transferência usa uma ligação temporária na sua rede local. Termina quando a app passa para segundo plano, a rede muda ou ao fim de 30 minutos. Cada sessão tem um novo endereço e um novo código de acesso.</p>
+      </details>
+      <details>
+        <summary>Que formatos são suportados?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, ficheiros MOBI, AZW e AZW3 sem DRM, e ficheiros de imagem comuns. Os livros protegidos por DRM não podem ser abertos, e KFX, DjVu, CHM e ficheiros DOC antigos não são suportados.</p>
+      </details>
+
+      <h2>Leitura</h2>
+      <details>
+        <summary>Como ouço um livro?</summary>
+        <p>Durante a leitura, toque no centro da página para mostrar o menu e, depois, em <strong>Ouvir o livro</strong>. O livro é lido com as vozes instaladas no dispositivo, e pode mudar a voz e a velocidade. Ouvir offline depende das vozes transferidas nas Definições do iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>O que inclui o PRO?</summary>
+        <p>A leitura, uma biblioteca ilimitada, a transferência por Wi-Fi e as cópias completas são gratuitas. O PRO é uma compra única que acrescenta recorte automático de margens em PDF, destaques e notas em PDF com exportação, reconhecimento de texto no dispositivo para PDF digitalizados, texto reajustável e leitura em voz alta de PDF, e sincronização com iCloud.</p>
+      </details>
+      <details>
+        <summary>Comprei o PRO, mas não aparece. Como o restauro?</summary>
+        <p>Aceda a <strong>Definições</strong> → <strong>PRO</strong> → <strong>Restaurar compras</strong> com sessão iniciada na conta da App Store usada na compra. A compra é verificada diretamente com a App Store.</p>
+      </details>
+      <details>
+        <summary>Como funciona a sincronização com iCloud?</summary>
+        <p>Depois de desbloquear o PRO, ative-a em <strong>Definições</strong> → <strong>Sincronização com iCloud</strong> em cada dispositivo. Livros, posições de leitura, marcadores e notas são sincronizados entre iPhone e iPad com a mesma conta iCloud.</p>
+        <p>Comprar o PRO não carrega nada por si só. A sincronização leva alterações e eliminações a todos os dispositivos, por isso guarde também uma cópia completa à parte.</p>
+      </details>
+
+      <h2>Cópias de segurança e resolução de problemas</h2>
+      <details>
+        <summary>Como faço uma cópia ou transfiro a minha biblioteca?</summary>
+        <p>Aceda a <strong>Definições</strong> → <strong>Exportar cópia completa</strong> para guardar um ficheiro ZIP com livros, notas, marcadores, posições de leitura e definições. Restaurar uma cópia substitui a biblioteca atual em vez de a combinar. As cópias não são encriptadas, por isso guarde-as num local seguro.</p>
+      </details>
+      <details>
+        <summary>Um livro não abre ou não aparece corretamente</summary>
+        <p>Confirme que o ficheiro não tem DRM e não excede o tamanho máximo. Os formatos reajustáveis mantêm o texto, mas nem sempre os esquemas complexos; os PDF mostram sempre as páginas originais. Se continuar a falhar, envie-nos o ficheiro com uma breve descrição.</p>
+      </details>
+      <details>
+        <summary>Como envio comentários?</summary>
+        <p>Toque em <strong>Definições</strong> → <strong>Comentários e sugestões</strong> para nos escrever um e-mail, ou use o endereço acima. Indique o modelo do dispositivo e a versão do iOS.</p>
+      </details>
+
+      <h2>Informação legal</h2>
+      <p>Consulte a nossa <a href="./privacy.html" data-page-link="./privacy.html">Política de Privacidade</a> para saber que dados o ND Books trata e não trata.</p>
+    </section>
+
+    <section data-lang="ko" lang="ko" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>이메일 문의: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — 최대한 빠르게 답변해 드리겠습니다.</span>
+      </div>
+
+      <h2>시작하기</h2>
+      <details>
+        <summary>책은 어떻게 추가하나요?</summary>
+        <p>서재에서 <strong>책 가져오기</strong>를 탭하고 파일 앱에서 책을 하나 또는 여러 권 선택하세요. 파일당 최대 100MB이며, 추가한 책은 바로 서재에 표시됩니다.</p>
+      </details>
+      <details>
+        <summary>컴퓨터에서 책을 보내려면 어떻게 하나요?</summary>
+        <p>iPhone 또는 iPad와 컴퓨터를 같은 Wi-Fi 네트워크에 연결한 뒤 <strong>Wi-Fi 전송 시작</strong>을 탭하세요. 기기에 표시된 전체 주소를 컴퓨터 브라우저에서 열고 책을 업로드하면 됩니다.</p>
+        <p>전송은 로컬 네트워크의 임시 연결을 사용합니다. 앱이 백그라운드로 전환되거나 네트워크가 바뀌거나 30분이 지나면 중지되며, 시작할 때마다 새 주소와 접근 코드가 만들어집니다.</p>
+      </details>
+      <details>
+        <summary>어떤 형식을 지원하나요?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM이 없는 MOBI·AZW·AZW3, 일반 이미지 파일을 지원합니다. DRM으로 보호된 책은 열 수 없으며, KFX, DjVu, CHM, 구형 DOC 파일은 지원하지 않습니다.</p>
+      </details>
+
+      <h2>읽기</h2>
+      <details>
+        <summary>책을 들으려면 어떻게 하나요?</summary>
+        <p>읽는 중에 페이지 가운데를 탭해 메뉴를 표시한 뒤 <strong>책 듣기</strong>를 탭하세요. 기기에 설치된 음성으로 읽어 주며, 음성과 속도를 바꿀 수 있습니다. 오프라인 듣기는 iOS 설정에서 다운로드한 음성에 따라 달라집니다.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>PRO에는 무엇이 포함되나요?</summary>
+        <p>읽기, 권수 제한 없는 서재, Wi-Fi 전송, 전체 백업은 무료입니다. PRO는 한 번 구입으로 PDF 여백 자동 자르기, PDF 하이라이트와 메모 및 내보내기, 스캔한 PDF의 기기 내 텍스트 인식, PDF 텍스트 리플로우와 읽어 주기, iCloud 동기화를 추가합니다.</p>
+      </details>
+      <details>
+        <summary>PRO를 구입했는데 표시되지 않습니다. 어떻게 복원하나요?</summary>
+        <p>구입할 때 사용한 App Store 계정으로 로그인한 상태에서 <strong>설정</strong> → <strong>PRO</strong> → <strong>구입 복원</strong>으로 이동하세요. 구입 내역은 App Store에서 직접 확인합니다.</p>
+      </details>
+      <details>
+        <summary>iCloud 동기화는 어떻게 작동하나요?</summary>
+        <p>PRO를 잠금 해제한 뒤 각 기기에서 <strong>설정</strong> → <strong>iCloud 동기화</strong>를 켜세요. 같은 iCloud 계정에 로그인한 iPhone과 iPad 사이에서 책, 읽던 위치, 책갈피, 메모가 동기화됩니다.</p>
+        <p>PRO를 구입하는 것만으로는 아무것도 업로드되지 않습니다. 동기화는 변경 사항과 삭제도 모든 기기에 반영하므로 전체 백업도 따로 보관하세요.</p>
+      </details>
+
+      <h2>백업 및 문제 해결</h2>
+      <details>
+        <summary>서재를 백업하거나 옮기려면 어떻게 하나요?</summary>
+        <p><strong>설정</strong> → <strong>전체 백업 내보내기</strong>로 이동해 책, 메모, 책갈피, 읽던 위치, 설정이 담긴 ZIP 파일을 저장하세요. 백업을 복원하면 현재 서재와 합쳐지지 않고 대체됩니다. 백업은 암호화되지 않으므로 안전한 곳에 보관하세요.</p>
+      </details>
+      <details>
+        <summary>책이 열리지 않거나 이상하게 보여요</summary>
+        <p>파일이 DRM으로 보호되어 있지 않은지, 크기 제한을 넘지 않았는지 확인하세요. 리플로우 형식은 텍스트는 유지하지만 복잡한 레이아웃은 유지하지 못할 수 있으며, PDF는 항상 원본 페이지로 표시됩니다. 그래도 열리지 않으면 파일과 간단한 설명을 이메일로 보내 주세요.</p>
+      </details>
+      <details>
+        <summary>의견은 어떻게 보내나요?</summary>
+        <p><strong>설정</strong> → <strong>의견과 제안</strong>을 탭해 이메일을 작성하거나 위 주소로 직접 보내 주세요. 기기 모델과 iOS 버전도 함께 알려 주세요.</p>
+      </details>
+
+      <h2>법률 정보</h2>
+      <p>ND Books가 처리하는 데이터와 처리하지 않는 데이터에 대한 자세한 내용은 <a href="./privacy.html" data-page-link="./privacy.html">개인정보 처리방침</a>을 확인하세요.</p>
+    </section>
+
+    <section data-lang="zh-Hans" lang="zh-Hans" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>邮箱联系：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>，我们会尽快回复。</span>
+      </div>
+
+      <h2>快速上手</h2>
+      <details>
+        <summary>怎么添加书籍？</summary>
+        <p>在书库中点按<strong>导入书籍</strong>，从「文件」App 中选择一本或多本书。单个文件最大 100 MB，添加后会立即出现在书库中。</p>
+      </details>
+      <details>
+        <summary>怎么从电脑传书？</summary>
+        <p>让 iPhone 或 iPad 与电脑连接同一 Wi-Fi，点按<strong>开启 Wi-Fi 传书</strong>，在电脑浏览器中打开设备上显示的完整地址，然后上传书籍。</p>
+        <p>传书使用局域网内的临时连接。App 进入后台、网络变化或满 30 分钟后会自动停止；每次开启都会生成新的地址和访问码。</p>
+      </details>
+      <details>
+        <summary>支持哪些格式？</summary>
+        <p>EPUB、PDF、TXT、Markdown、HTML、FB2、DOCX、RTF、CBZ、CBR，无 DRM 的 MOBI、AZW、AZW3，以及常见图片文件。带 DRM 保护的书籍无法打开，暂不支持 KFX、DjVu、CHM 和旧版 DOC。</p>
+      </details>
+
+      <h2>阅读</h2>
+      <details>
+        <summary>怎么听书？</summary>
+        <p>阅读时点按页面中间显示菜单，再点按<strong>听书</strong>。书籍会用设备上已安装的语音朗读，可以切换音色和调整语速。能否离线朗读取决于你是否已在 iOS 设置中下载对应语音。</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>PRO 包含什么？</summary>
+        <p>阅读、不限数量的书库、Wi-Fi 传书和完整备份都是免费的。PRO 为一次性买断，增加 PDF 自动裁白边、PDF 划线笔记及导出、扫描版 PDF 设备端文字识别、PDF 文字重排与朗读，以及 iCloud 同步。</p>
+      </details>
+      <details>
+        <summary>已购买 PRO 但没有生效，怎么恢复？</summary>
+        <p>请使用购买时的 App Store 账户，进入<strong>设置</strong> → <strong>会员中心</strong> → <strong>恢复购买</strong>。购买状态会直接向 App Store 核实。</p>
+      </details>
+      <details>
+        <summary>iCloud 同步如何使用？</summary>
+        <p>解锁 PRO 后，在每台设备上进入<strong>设置</strong> → <strong>iCloud 同步</strong>并开启。登录同一 iCloud 账户的 iPhone 和 iPad 之间会同步书籍、阅读位置、书签和笔记。</p>
+        <p>购买 PRO 不会自动上传任何内容。同步会把修改和删除带到各台设备上，建议另外保留一份完整备份。</p>
+      </details>
+
+      <h2>备份与问题排查</h2>
+      <details>
+        <summary>怎么备份或迁移书库？</summary>
+        <p>进入<strong>设置</strong> → <strong>导出完整备份</strong>，保存包含书籍、笔记、书签、阅读位置和设置的 ZIP 文件。恢复备份会替换当前书库，不会合并。备份未加密，请妥善保管。</p>
+      </details>
+      <details>
+        <summary>书籍无法打开或显示不正常</summary>
+        <p>请确认文件没有 DRM 保护，且未超过大小限制。可重排格式会保留文字，但可能无法保留复杂版式；PDF 始终显示原版页面。如果仍然无法打开，请把文件和简单说明发邮件给我们。</p>
+      </details>
+      <details>
+        <summary>怎么提交反馈？</summary>
+        <p>点按<strong>设置</strong> → <strong>反馈与建议</strong>给我们写邮件，也可以直接发送到上方邮箱。请附上设备型号和 iOS 版本。</p>
+      </details>
+
+      <h2>法律</h2>
+      <p>关于 ND Books 处理和不处理哪些数据，请参阅<a href="./privacy.html" data-page-link="./privacy.html">隐私政策</a>。</p>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>電子郵件聯絡：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>，我們會盡快回覆。</span>
+      </div>
+
+      <h2>快速入門</h2>
+      <details>
+        <summary>如何加入書籍？</summary>
+        <p>在書庫中點選<strong>匯入書籍</strong>，從「檔案」App 選擇一本或多本書。單一檔案最大 100 MB，加入後會立即出現在書庫中。</p>
+      </details>
+      <details>
+        <summary>如何從電腦傳書？</summary>
+        <p>讓 iPhone 或 iPad 與電腦連上同一個 Wi-Fi 網路，點選<strong>開啟 Wi-Fi 傳書</strong>，在電腦瀏覽器開啟裝置上顯示的完整位址，再上傳書籍。</p>
+        <p>傳書使用區域網路內的臨時連線。App 進入背景、網路變更或滿 30 分鐘後會自動停止；每次開啟都會產生新的位址和存取碼。</p>
+      </details>
+      <details>
+        <summary>支援哪些格式？</summary>
+        <p>EPUB、PDF、TXT、Markdown、HTML、FB2、DOCX、RTF、CBZ、CBR，無 DRM 的 MOBI、AZW、AZW3，以及常見圖片檔。受 DRM 保護的書籍無法開啟，目前不支援 KFX、DjVu、CHM 和舊版 DOC。</p>
+      </details>
+
+      <h2>閱讀</h2>
+      <details>
+        <summary>如何聆聽書籍？</summary>
+        <p>閱讀時點選頁面中央顯示選單，再點選<strong>聆聽</strong>。書籍會以裝置上已安裝的語音朗讀，可以切換聲音和調整語速。能否離線朗讀取決於你是否已在 iOS 設定中下載對應語音。</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>PRO 包含哪些功能？</summary>
+        <p>閱讀、不限數量的書庫、Wi-Fi 傳書和完整備份皆為免費。PRO 為一次性買斷，增加 PDF 自動裁切白邊、PDF 畫線筆記及匯出、掃描版 PDF 的裝置端文字辨識、PDF 文字重排與朗讀，以及 iCloud 同步。</p>
+      </details>
+      <details>
+        <summary>已購買 PRO 但未生效，如何回復？</summary>
+        <p>請使用購買時的 App Store 帳號，前往<strong>設定</strong> → <strong>會員中心</strong> → <strong>回復購買項目</strong>。購買狀態會直接向 App Store 驗證。</p>
+      </details>
+      <details>
+        <summary>iCloud 同步如何使用？</summary>
+        <p>解鎖 PRO 後，在每部裝置上前往<strong>設定</strong> → <strong>iCloud 同步</strong>並開啟。登入同一個 iCloud 帳號的 iPhone 和 iPad 之間會同步書籍、閱讀位置、書籤和筆記。</p>
+        <p>購買 PRO 不會自動上傳任何內容。同步會把修改和刪除帶到各部裝置，建議另外保留一份完整備份。</p>
+      </details>
+
+      <h2>備份與疑難排解</h2>
+      <details>
+        <summary>如何備份或搬移書庫？</summary>
+        <p>前往<strong>設定</strong> → <strong>匯出完整備份</strong>，儲存包含書籍、筆記、書籤、閱讀位置和設定的 ZIP 檔。回復備份會取代目前的書庫，不會合併。備份未加密，請妥善保管。</p>
+      </details>
+      <details>
+        <summary>書籍無法開啟或顯示異常</summary>
+        <p>請確認檔案沒有 DRM 保護，且未超過大小限制。可重排格式會保留文字，但可能無法保留複雜版面；PDF 一律顯示原始頁面。若仍無法開啟，請將檔案和簡短說明寄給我們。</p>
+      </details>
+      <details>
+        <summary>如何提供意見？</summary>
+        <p>點選<strong>設定</strong> → <strong>傳送意見回饋</strong>寫信給我們，也可以直接寄到上方信箱。請附上裝置型號和 iOS 版本。</p>
+      </details>
+
+      <h2>法律資訊</h2>
+      <p>關於 ND Books 處理及不處理哪些資料，請參閱<a href="./privacy.html" data-page-link="./privacy.html">隱私權政策</a>。</p>
+    </section>
+
+    <section data-lang="it" lang="it" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Scrivici a <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>: ti risponderemo il prima possibile.</span>
+      </div>
+
+      <h2>Per iniziare</h2>
+      <details>
+        <summary>Come aggiungo dei libri?</summary>
+        <p>Tocca <strong>Importa libri</strong> nella libreria e scegli uno o più file dall'app File. Ogni file può arrivare a 100 MB. I libri aggiunti compaiono subito nella libreria.</p>
+      </details>
+      <details>
+        <summary>Come invio libri dal computer?</summary>
+        <p>Collega iPhone o iPad e computer alla stessa rete Wi-Fi, poi tocca <strong>Attiva trasferimento Wi-Fi</strong>. Apri nel browser del computer l'indirizzo completo mostrato sul dispositivo e carica i tuoi libri.</p>
+        <p>Il trasferimento usa una connessione temporanea sulla rete locale. Si interrompe quando l'app passa in background, quando cambia la rete o dopo 30 minuti. Ogni sessione ha un nuovo indirizzo e un nuovo codice di accesso.</p>
+      </details>
+      <details>
+        <summary>Quali formati sono supportati?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, file MOBI, AZW e AZW3 senza DRM e i file immagine più comuni. I libri protetti da DRM non si possono aprire; KFX, DjVu, CHM e i vecchi file DOC non sono supportati.</p>
+      </details>
+
+      <h2>Lettura</h2>
+      <details>
+        <summary>Come ascolto un libro?</summary>
+        <p>Durante la lettura tocca il centro della pagina per mostrare il menu, poi tocca <strong>Ascolta il libro</strong>. Il libro viene letto con le voci installate sul dispositivo e puoi cambiare voce e velocità. L'ascolto offline dipende dalle voci scaricate nelle Impostazioni di iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Cosa include PRO?</summary>
+        <p>Lettura, libreria illimitata, trasferimento Wi-Fi e backup completi sono gratuiti. PRO è un acquisto una tantum che aggiunge ritaglio automatico dei margini dei PDF, evidenziazioni e note nei PDF con esportazione, riconoscimento del testo sul dispositivo per i PDF scansionati, testo adattabile e lettura ad alta voce dei PDF, e sincronizzazione iCloud.</p>
+      </details>
+      <details>
+        <summary>Ho acquistato PRO ma non risulta. Come lo ripristino?</summary>
+        <p>Vai su <strong>Impostazioni</strong> → <strong>PRO</strong> → <strong>Ripristina acquisti</strong> dopo aver effettuato l'accesso con l'account App Store usato per l'acquisto. L'acquisto viene verificato direttamente con App Store.</p>
+      </details>
+      <details>
+        <summary>Come funziona la sincronizzazione iCloud?</summary>
+        <p>Dopo aver sbloccato PRO, attivala su ogni dispositivo in <strong>Impostazioni</strong> → <strong>Sincronizzazione iCloud</strong>. Libri, posizioni di lettura, segnalibri e note si sincronizzano tra iPhone e iPad collegati allo stesso account iCloud.</p>
+        <p>L'acquisto di PRO non carica nulla da solo. La sincronizzazione riporta modifiche ed eliminazioni su tutti i dispositivi, quindi conserva anche un backup completo separato.</p>
+      </details>
+
+      <h2>Backup e risoluzione dei problemi</h2>
+      <details>
+        <summary>Come eseguo il backup o trasferisco la libreria?</summary>
+        <p>Vai su <strong>Impostazioni</strong> → <strong>Esporta backup completo</strong> per salvare un file ZIP con libri, note, segnalibri, posizioni di lettura e impostazioni. Il ripristino di un backup sostituisce la libreria attuale invece di unirla. I backup non sono cifrati: conservali in un luogo sicuro.</p>
+      </details>
+      <details>
+        <summary>Un libro non si apre o non viene visualizzato correttamente</summary>
+        <p>Verifica che il file non sia protetto da DRM e rientri nel limite di dimensione. I formati adattabili mantengono il testo ma non sempre i layout complessi; i PDF mostrano sempre le pagine originali. Se il problema persiste, inviaci il file con una breve descrizione.</p>
+      </details>
+      <details>
+        <summary>Come invio un feedback?</summary>
+        <p>Tocca <strong>Impostazioni</strong> → <strong>Commenti e suggerimenti</strong> per scriverci un'email, oppure usa l'indirizzo qui sopra. Indica il modello del dispositivo e la versione di iOS.</p>
+      </details>
+
+      <h2>Note legali</h2>
+      <p>Consulta la nostra <a href="./privacy.html" data-page-link="./privacy.html">Informativa sulla privacy</a> per sapere quali dati ND Books tratta e quali no.</p>
+    </section>
+
+    <section data-lang="nl" lang="nl" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Mail ons via <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — we reageren zo snel mogelijk.</span>
+      </div>
+
+      <h2>Aan de slag</h2>
+      <details>
+        <summary>Hoe voeg ik boeken toe?</summary>
+        <p>Tik in je bibliotheek op <strong>Boeken importeren</strong> en kies een of meer bestanden in de Bestanden-app. Elk bestand mag maximaal 100 MB zijn. Toegevoegde boeken verschijnen meteen in je bibliotheek.</p>
+      </details>
+      <details>
+        <summary>Hoe stuur ik boeken vanaf mijn computer?</summary>
+        <p>Verbind je iPhone of iPad en je computer met hetzelfde wifinetwerk en tik op <strong>Wifi-overdracht starten</strong>. Open het volledige adres dat op je apparaat staat in de browser van je computer en upload je boeken.</p>
+        <p>De overdracht gebruikt een tijdelijke verbinding in je lokale netwerk. Ze stopt als de app naar de achtergrond gaat, het netwerk verandert of na 30 minuten. Elke sessie krijgt een nieuw adres en een nieuwe toegangscode.</p>
+      </details>
+      <details>
+        <summary>Welke formaten worden ondersteund?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM-vrije MOBI-, AZW- en AZW3-bestanden en gangbare afbeeldingsbestanden. Boeken met DRM kunnen niet worden geopend, en KFX, DjVu, CHM en oude DOC-bestanden worden niet ondersteund.</p>
+      </details>
+
+      <h2>Lezen</h2>
+      <details>
+        <summary>Hoe beluister ik een boek?</summary>
+        <p>Tik tijdens het lezen midden op de pagina om het menu te tonen en tik dan op <strong>Boek beluisteren</strong>. Het boek wordt voorgelezen met de stemmen op je apparaat; je kunt stem en tempo aanpassen. Offline luisteren hangt af van de stemmen die je in de iOS-instellingen hebt gedownload.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Wat zit er in PRO?</summary>
+        <p>Lezen, een onbeperkte bibliotheek, wifi-overdracht en volledige back-ups zijn gratis. PRO is een eenmalige aankoop die automatisch bijsnijden van PDF-marges, markeringen en notities in PDF's met export, tekstherkenning op het apparaat voor gescande PDF's, herschikbare tekst en voorlezen voor PDF's, en iCloud-synchronisatie toevoegt.</p>
+      </details>
+      <details>
+        <summary>Ik heb PRO gekocht, maar het verschijnt niet. Hoe herstel ik het?</summary>
+        <p>Ga naar <strong>Instellingen</strong> → <strong>PRO</strong> → <strong>Aankopen herstellen</strong> terwijl je bent ingelogd met het App Store-account waarmee je hebt gekocht. Je aankoop wordt rechtstreeks bij de App Store gecontroleerd.</p>
+      </details>
+      <details>
+        <summary>Hoe werkt iCloud-synchronisatie?</summary>
+        <p>Zet het na het ontgrendelen van PRO op elk apparaat aan via <strong>Instellingen</strong> → <strong>iCloud-synchronisatie</strong>. Boeken, leesposities, bladwijzers en notities worden gesynchroniseerd tussen iPhones en iPads met hetzelfde iCloud-account.</p>
+        <p>Het kopen van PRO uploadt op zichzelf niets. Synchronisatie neemt wijzigingen en verwijderingen mee naar al je apparaten, dus bewaar ook een aparte volledige back-up.</p>
+      </details>
+
+      <h2>Back-ups en probleemoplossing</h2>
+      <details>
+        <summary>Hoe maak ik een back-up of verhuis ik mijn bibliotheek?</summary>
+        <p>Ga naar <strong>Instellingen</strong> → <strong>Volledige back-up exporteren</strong> om een ZIP-bestand met je boeken, notities, bladwijzers, leesposities en instellingen te bewaren. Als je een back-up terugzet, wordt de huidige bibliotheek vervangen in plaats van samengevoegd. Back-ups zijn niet versleuteld, dus bewaar ze op een veilige plek.</p>
+      </details>
+      <details>
+        <summary>Een boek opent niet of ziet er niet goed uit</summary>
+        <p>Controleer of het bestand DRM-vrij is en binnen de maximale grootte valt. Herschikbare formaten behouden de tekst, maar niet altijd complexe opmaak; PDF's tonen altijd hun oorspronkelijke pagina's. Lukt het nog steeds niet, mail ons dan het bestand met een korte beschrijving.</p>
+      </details>
+      <details>
+        <summary>Hoe stuur ik feedback?</summary>
+        <p>Tik op <strong>Instellingen</strong> → <strong>Feedback en suggesties</strong> om ons te mailen, of gebruik het adres hierboven. Vermeld je apparaatmodel en iOS-versie.</p>
+      </details>
+
+      <h2>Juridisch</h2>
+      <p>Lees ons <a href="./privacy.html" data-page-link="./privacy.html">Privacybeleid</a> voor details over welke gegevens ND Books wel en niet verwerkt.</p>
+    </section>
+
+    <section data-lang="sv" lang="sv" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Mejla oss på <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> – vi svarar så snart vi kan.</span>
+      </div>
+
+      <h2>Kom igång</h2>
+      <details>
+        <summary>Hur lägger jag till böcker?</summary>
+        <p>Tryck på <strong>Importera böcker</strong> i biblioteket och välj en eller flera filer i appen Filer. Varje fil får vara upp till 100 MB. Tillagda böcker visas direkt i biblioteket.</p>
+      </details>
+      <details>
+        <summary>Hur skickar jag böcker från datorn?</summary>
+        <p>Anslut iPhone eller iPad och datorn till samma Wi-Fi-nätverk och tryck på <strong>Starta Wi-Fi-överföring</strong>. Öppna den fullständiga adress som visas på enheten i datorns webbläsare och ladda upp böckerna.</p>
+        <p>Överföringen använder en tillfällig anslutning i ditt lokala nätverk. Den avslutas när appen hamnar i bakgrunden, när nätverket ändras eller efter 30 minuter. Varje session får en ny adress och en ny åtkomstkod.</p>
+      </details>
+      <details>
+        <summary>Vilka format stöds?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM-fria MOBI-, AZW- och AZW3-filer samt vanliga bildfiler. DRM-skyddade böcker kan inte öppnas, och KFX, DjVu, CHM och äldre DOC-filer stöds inte.</p>
+      </details>
+
+      <h2>Läsning</h2>
+      <details>
+        <summary>Hur lyssnar jag på en bok?</summary>
+        <p>Tryck mitt på sidan under läsningen för att visa menyn och tryck sedan på <strong>Lyssna på boken</strong>. Boken läses upp med rösterna som finns på enheten, och du kan byta röst och tempo. Om det fungerar offline beror på vilka röster du har laddat ned i iOS-inställningarna.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Vad ingår i PRO?</summary>
+        <p>Läsning, ett obegränsat bibliotek, Wi-Fi-överföring och fullständiga säkerhetskopior är gratis. PRO är ett engångsköp som lägger till automatisk beskärning av PDF-marginaler, markeringar och anteckningar i PDF med export, textigenkänning på enheten för skannade PDF:er, flytande text och uppläsning för PDF:er samt iCloud-synkronisering.</p>
+      </details>
+      <details>
+        <summary>Jag har köpt PRO men det syns inte. Hur återställer jag det?</summary>
+        <p>Gå till <strong>Inställningar</strong> → <strong>PRO</strong> → <strong>Återställ köp</strong> medan du är inloggad med det App Store-konto du köpte med. Köpet kontrolleras direkt mot App Store.</p>
+      </details>
+      <details>
+        <summary>Hur fungerar iCloud-synkronisering?</summary>
+        <p>Slå på den under <strong>Inställningar</strong> → <strong>iCloud-synkronisering</strong> på varje enhet när du har låst upp PRO. Böcker, läspositioner, bokmärken och anteckningar synkas mellan iPhone och iPad som är inloggade på samma iCloud-konto.</p>
+        <p>Köpet av PRO laddar inte upp något av sig självt. Synkroniseringen för över ändringar och raderingar till alla enheter, så spara även en separat fullständig säkerhetskopia.</p>
+      </details>
+
+      <h2>Säkerhetskopior och felsökning</h2>
+      <details>
+        <summary>Hur säkerhetskopierar eller flyttar jag biblioteket?</summary>
+        <p>Gå till <strong>Inställningar</strong> → <strong>Exportera fullständig säkerhetskopia</strong> för att spara en ZIP-fil med böcker, anteckningar, bokmärken, läspositioner och inställningar. När du återställer en säkerhetskopia ersätts det nuvarande biblioteket i stället för att slås ihop. Säkerhetskopior är inte krypterade, så förvara dem säkert.</p>
+      </details>
+      <details>
+        <summary>En bok öppnas inte eller ser fel ut</summary>
+        <p>Kontrollera att filen är DRM-fri och inte överskrider storleksgränsen. Flytande format behåller texten men inte alltid komplexa layouter; PDF:er visar alltid sina originalsidor. Om det fortfarande inte fungerar kan du mejla oss filen med en kort beskrivning.</p>
+      </details>
+      <details>
+        <summary>Hur skickar jag synpunkter?</summary>
+        <p>Tryck på <strong>Inställningar</strong> → <strong>Synpunkter och förslag</strong> för att mejla oss, eller använd adressen ovan. Ange gärna enhetsmodell och iOS-version.</p>
+      </details>
+
+      <h2>Juridisk information</h2>
+      <p>Läs vår <a href="./privacy.html" data-page-link="./privacy.html">Integritetspolicy</a> för information om vilka uppgifter ND Books hanterar och inte hanterar.</p>
+    </section>
+
+    <section data-lang="da" lang="da" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Skriv til os på <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> – vi svarer så hurtigt som muligt.</span>
+      </div>
+
+      <h2>Kom i gang</h2>
+      <details>
+        <summary>Hvordan tilføjer jeg bøger?</summary>
+        <p>Tryk på <strong>Importer bøger</strong> i biblioteket, og vælg en eller flere filer i appen Filer. Hver fil må fylde op til 100 MB. Tilføjede bøger vises med det samme i biblioteket.</p>
+      </details>
+      <details>
+        <summary>Hvordan sender jeg bøger fra min computer?</summary>
+        <p>Forbind din iPhone eller iPad og computeren til det samme Wi-Fi-netværk, og tryk på <strong>Start Wi-Fi-overførsel</strong>. Åbn den fulde adresse, der vises på enheden, i computerens browser, og upload dine bøger.</p>
+        <p>Overførslen bruger en midlertidig forbindelse på dit lokale netværk. Den stopper, når appen går i baggrunden, netværket skifter, eller efter 30 minutter. Hver session får en ny adresse og en ny adgangskode.</p>
+      </details>
+      <details>
+        <summary>Hvilke formater understøttes?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM-fri MOBI-, AZW- og AZW3-filer samt almindelige billedfiler. DRM-beskyttede bøger kan ikke åbnes, og KFX, DjVu, CHM og ældre DOC-filer understøttes ikke.</p>
+      </details>
+
+      <h2>Læsning</h2>
+      <details>
+        <summary>Hvordan lytter jeg til en bog?</summary>
+        <p>Tryk midt på siden, mens du læser, for at vise menuen, og tryk derefter på <strong>Lyt til bogen</strong>. Bogen læses op med de stemmer, der er installeret på enheden, og du kan skifte stemme og tempo. Om det virker offline, afhænger af de stemmer, du har hentet i iOS-indstillingerne.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Hvad indeholder PRO?</summary>
+        <p>Læsning, et ubegrænset bibliotek, Wi-Fi-overførsel og fulde sikkerhedskopier er gratis. PRO er et engangskøb, der tilføjer automatisk beskæring af PDF-margener, fremhævninger og noter i PDF med eksport, tekstgenkendelse på enheden til scannede PDF'er, tilpasset tekstvisning og oplæsning af PDF'er samt iCloud-synkronisering.</p>
+      </details>
+      <details>
+        <summary>Jeg har købt PRO, men det vises ikke. Hvordan gendanner jeg det?</summary>
+        <p>Gå til <strong>Indstillinger</strong> → <strong>PRO</strong> → <strong>Gendan køb</strong>, mens du er logget ind med den App Store-konto, du købte med. Købet kontrolleres direkte hos App Store.</p>
+      </details>
+      <details>
+        <summary>Hvordan fungerer iCloud-synkronisering?</summary>
+        <p>Slå den til under <strong>Indstillinger</strong> → <strong>iCloud-synkronisering</strong> på hver enhed, når du har låst PRO op. Bøger, læsepositioner, bogmærker og noter synkroniseres mellem iPhones og iPads, der er logget ind på samme iCloud-konto.</p>
+        <p>Køb af PRO uploader ikke noget af sig selv. Synkroniseringen overfører ændringer og sletninger til alle enheder, så gem også en separat fuld sikkerhedskopi.</p>
+      </details>
+
+      <h2>Sikkerhedskopier og fejlfinding</h2>
+      <details>
+        <summary>Hvordan tager jeg backup af eller flytter mit bibliotek?</summary>
+        <p>Gå til <strong>Indstillinger</strong> → <strong>Eksporter fuld sikkerhedskopi</strong> for at gemme en ZIP-fil med bøger, noter, bogmærker, læsepositioner og indstillinger. Gendannelse af en sikkerhedskopi erstatter det nuværende bibliotek i stedet for at flette det. Sikkerhedskopier er ikke krypterede, så opbevar dem sikkert.</p>
+      </details>
+      <details>
+        <summary>En bog kan ikke åbnes eller ser forkert ud</summary>
+        <p>Kontrollér, at filen er DRM-fri og ikke overskrider størrelsesgrænsen. Tilpasningsbare formater bevarer teksten, men ikke altid komplekse layouts; PDF'er viser altid de originale sider. Hvis det stadig ikke virker, så send os filen med en kort beskrivelse.</p>
+      </details>
+      <details>
+        <summary>Hvordan sender jeg feedback?</summary>
+        <p>Tryk på <strong>Indstillinger</strong> → <strong>Feedback og forslag</strong> for at skrive en e-mail til os, eller brug adressen ovenfor. Oplys gerne enhedsmodel og iOS-version.</p>
+      </details>
+
+      <h2>Juridisk</h2>
+      <p>Læs vores <a href="./privacy.html" data-page-link="./privacy.html">Privatlivspolitik</a> for at se, hvilke data ND Books behandler og ikke behandler.</p>
+    </section>
+
+    <section data-lang="nb" lang="nb" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Send oss en e-post på <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> – vi svarer så snart vi kan.</span>
+      </div>
+
+      <h2>Kom i gang</h2>
+      <details>
+        <summary>Hvordan legger jeg til bøker?</summary>
+        <p>Trykk på <strong>Importer bøker</strong> i biblioteket, og velg én eller flere filer i Filer-appen. Hver fil kan være opptil 100 MB. Bøker du legger til, vises med en gang i biblioteket.</p>
+      </details>
+      <details>
+        <summary>Hvordan sender jeg bøker fra datamaskinen?</summary>
+        <p>Koble iPhone eller iPad og datamaskinen til samme Wi-Fi-nettverk, og trykk på <strong>Start Wi-Fi-overføring</strong>. Åpne den fullstendige adressen som vises på enheten, i nettleseren på datamaskinen, og last opp bøkene.</p>
+        <p>Overføringen bruker en midlertidig tilkobling i det lokale nettverket. Den stopper når appen går i bakgrunnen, nettverket endres eller etter 30 minutter. Hver økt får ny adresse og ny tilgangskode.</p>
+      </details>
+      <details>
+        <summary>Hvilke formater støttes?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM-frie MOBI-, AZW- og AZW3-filer og vanlige bildefiler. DRM-beskyttede bøker kan ikke åpnes, og KFX, DjVu, CHM og eldre DOC-filer støttes ikke.</p>
+      </details>
+
+      <h2>Lesing</h2>
+      <details>
+        <summary>Hvordan lytter jeg til en bok?</summary>
+        <p>Trykk midt på siden mens du leser for å vise menyen, og trykk deretter på <strong>Lytt til boken</strong>. Boken leses opp med stemmene som er installert på enheten, og du kan endre stemme og tempo. Om det fungerer uten nett, avhenger av stemmene du har lastet ned i iOS-innstillingene.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Hva inneholder PRO?</summary>
+        <p>Lesing, et ubegrenset bibliotek, Wi-Fi-overføring og fulle sikkerhetskopier er gratis. PRO er et engangskjøp som legger til automatisk beskjæring av PDF-marger, uthevinger og notater i PDF med eksport, tekstgjenkjenning på enheten for skannede PDF-er, flytende tekst og opplesning for PDF-er, samt iCloud-synkronisering.</p>
+      </details>
+      <details>
+        <summary>Jeg har kjøpt PRO, men det vises ikke. Hvordan gjenoppretter jeg det?</summary>
+        <p>Gå til <strong>Innstillinger</strong> → <strong>PRO</strong> → <strong>Gjenopprett kjøp</strong> mens du er logget på med App Store-kontoen du kjøpte med. Kjøpet bekreftes direkte hos App Store.</p>
+      </details>
+      <details>
+        <summary>Hvordan fungerer iCloud-synkronisering?</summary>
+        <p>Slå den på under <strong>Innstillinger</strong> → <strong>iCloud-synkronisering</strong> på hver enhet etter at du har låst opp PRO. Bøker, leseposisjoner, bokmerker og notater synkroniseres mellom iPhone og iPad som er logget på samme iCloud-konto.</p>
+        <p>Kjøp av PRO laster ikke opp noe av seg selv. Synkroniseringen tar med endringer og slettinger til alle enhetene, så ta også vare på en separat full sikkerhetskopi.</p>
+      </details>
+
+      <h2>Sikkerhetskopier og feilsøking</h2>
+      <details>
+        <summary>Hvordan sikkerhetskopierer eller flytter jeg biblioteket?</summary>
+        <p>Gå til <strong>Innstillinger</strong> → <strong>Eksporter full sikkerhetskopi</strong> for å lagre en ZIP-fil med bøker, notater, bokmerker, leseposisjoner og innstillinger. Når du gjenoppretter en sikkerhetskopi, erstattes det nåværende biblioteket i stedet for å slås sammen. Sikkerhetskopier er ikke kryptert, så oppbevar dem trygt.</p>
+      </details>
+      <details>
+        <summary>En bok åpnes ikke eller ser feil ut</summary>
+        <p>Sjekk at filen er DRM-fri og innenfor størrelsesgrensen. Flytende formater beholder teksten, men ikke alltid komplekse oppsett; PDF-er viser alltid de opprinnelige sidene. Hvis det fortsatt ikke fungerer, kan du sende oss filen med en kort beskrivelse.</p>
+      </details>
+      <details>
+        <summary>Hvordan sender jeg tilbakemelding?</summary>
+        <p>Trykk på <strong>Innstillinger</strong> → <strong>Tilbakemeldinger og forslag</strong> for å sende oss en e-post, eller bruk adressen ovenfor. Oppgi gjerne enhetsmodell og iOS-versjon.</p>
+      </details>
+
+      <h2>Juridisk</h2>
+      <p>Se <a href="./privacy.html" data-page-link="./privacy.html">Personvernerklæring</a> for detaljer om hvilke data ND Books behandler og ikke behandler.</p>
+    </section>
+
+    <section data-lang="fi" lang="fi" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Lähetä sähköpostia osoitteeseen <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> – vastaamme mahdollisimman pian.</span>
+      </div>
+
+      <h2>Aloittaminen</h2>
+      <details>
+        <summary>Miten lisään kirjoja?</summary>
+        <p>Napauta kirjastossa <strong>Tuo kirjoja</strong> ja valitse yksi tai useampi tiedosto Tiedostot-apista. Kunkin tiedoston enimmäiskoko on 100 Mt. Lisätyt kirjat näkyvät kirjastossa heti.</p>
+      </details>
+      <details>
+        <summary>Miten lähetän kirjoja tietokoneelta?</summary>
+        <p>Yhdistä iPhone tai iPad ja tietokone samaan Wi-Fi-verkkoon ja napauta <strong>Käynnistä Wi-Fi-siirto</strong>. Avaa laitteessa näkyvä täydellinen osoite tietokoneen selaimessa ja lataa kirjat.</p>
+        <p>Siirto käyttää väliaikaista yhteyttä lähiverkossa. Se päättyy, kun appi siirtyy taustalle, verkko vaihtuu tai 30 minuuttia on kulunut. Jokainen istunto saa uuden osoitteen ja pääsykoodin.</p>
+      </details>
+      <details>
+        <summary>Mitä tiedostomuotoja tuetaan?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM-vapaat MOBI-, AZW- ja AZW3-tiedostot sekä yleiset kuvatiedostot. DRM-suojattuja kirjoja ei voi avata, eikä KFX-, DjVu-, CHM- tai vanhoja DOC-tiedostoja tueta.</p>
+      </details>
+
+      <h2>Lukeminen</h2>
+      <details>
+        <summary>Miten kuuntelen kirjaa?</summary>
+        <p>Napauta lukiessasi sivun keskikohtaa, jotta valikko tulee näkyviin, ja napauta sitten <strong>Kuuntele kirjaa</strong>. Kirja luetaan laitteeseen asennetuilla äänillä, ja voit vaihtaa ääntä ja nopeutta. Kuuntelu ilman verkkoyhteyttä riippuu iOS-asetuksista ladatuista äänistä.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Mitä PRO sisältää?</summary>
+        <p>Lukeminen, rajaton kirjasto, Wi-Fi-siirto ja täydelliset varmuuskopiot ovat maksuttomia. PRO on kertaosto, joka tuo PDF-marginaalien automaattisen rajauksen, PDF-korostukset ja -muistiinpanot vientimahdollisuuksineen, skannattujen PDF-tiedostojen tekstintunnistuksen laitteella, PDF-tekstin mukautuvan asettelun ja ääneenluvun sekä iCloud-synkronoinnin.</p>
+      </details>
+      <details>
+        <summary>Ostin PRO:n, mutta se ei näy. Miten palautan sen?</summary>
+        <p>Siirry kohtaan <strong>Asetukset</strong> → <strong>PRO</strong> → <strong>Palauta ostokset</strong>, kun olet kirjautunut App Store -tilille, jolla teit ostoksen. Osto tarkistetaan suoraan App Storesta.</p>
+      </details>
+      <details>
+        <summary>Miten iCloud-synkronointi toimii?</summary>
+        <p>Kun PRO on avattu, ota synkronointi käyttöön jokaisella laitteella kohdassa <strong>Asetukset</strong> → <strong>iCloud-synkronointi</strong>. Kirjat, lukukohdat, kirjanmerkit ja muistiinpanot synkronoidaan saman iCloud-tilin iPhonien ja iPadien välillä.</p>
+        <p>PRO:n ostaminen ei itsessään lähetä mitään. Synkronointi vie muutokset ja poistot kaikille laitteille, joten säilytä myös erillinen täydellinen varmuuskopio.</p>
+      </details>
+
+      <h2>Varmuuskopiot ja vianmääritys</h2>
+      <details>
+        <summary>Miten varmuuskopioin tai siirrän kirjastoni?</summary>
+        <p>Siirry kohtaan <strong>Asetukset</strong> → <strong>Vie täydellinen varmuuskopio</strong> ja tallenna ZIP-tiedosto, jossa ovat kirjat, muistiinpanot, kirjanmerkit, lukukohdat ja asetukset. Varmuuskopion palauttaminen korvaa nykyisen kirjaston eikä yhdistä niitä. Varmuuskopioita ei salata, joten säilytä ne turvallisessa paikassa.</p>
+      </details>
+      <details>
+        <summary>Kirja ei aukea tai näyttää väärältä</summary>
+        <p>Varmista, ettei tiedostossa ole DRM-suojausta ja että se mahtuu kokorajaan. Mukautuvat muodot säilyttävät tekstin mutta eivät aina monimutkaista asettelua; PDF-tiedostot näytetään aina alkuperäisinä sivuina. Jos ongelma jatkuu, lähetä tiedosto meille lyhyen kuvauksen kanssa.</p>
+      </details>
+      <details>
+        <summary>Miten lähetän palautetta?</summary>
+        <p>Napauta <strong>Asetukset</strong> → <strong>Palaute ja ehdotukset</strong> kirjoittaaksesi meille sähköpostia tai käytä yllä olevaa osoitetta. Kerro myös laitteesi malli ja iOS-versio.</p>
+      </details>
+
+      <h2>Oikeudelliset tiedot</h2>
+      <p>Katso sivulta <a href="./privacy.html" data-page-link="./privacy.html">Tietosuojakäytäntö</a>, mitä tietoja ND Books käsittelee ja mitä ei.</p>
+    </section>
+
+    <section data-lang="pl" lang="pl" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Napisz do nas na adres <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> – odpowiemy najszybciej, jak to możliwe.</span>
+      </div>
+
+      <h2>Pierwsze kroki</h2>
+      <details>
+        <summary>Jak dodać książki?</summary>
+        <p>Stuknij <strong>Importuj książki</strong> w bibliotece i wybierz jeden lub kilka plików w aplikacji Pliki. Każdy plik może mieć do 100 MB. Dodane książki od razu pojawiają się w bibliotece.</p>
+      </details>
+      <details>
+        <summary>Jak przesłać książki z komputera?</summary>
+        <p>Połącz iPhone'a lub iPada i komputer z tą samą siecią Wi-Fi, a następnie stuknij <strong>Uruchom transfer przez Wi-Fi</strong>. Otwórz w przeglądarce na komputerze pełny adres widoczny na urządzeniu i prześlij książki.</p>
+        <p>Transfer korzysta z tymczasowego połączenia w sieci lokalnej. Kończy się, gdy aplikacja przejdzie w tło, sieć się zmieni lub po 30 minutach. Każda sesja ma nowy adres i nowy kod dostępu.</p>
+      </details>
+      <details>
+        <summary>Jakie formaty są obsługiwane?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, pliki MOBI, AZW i AZW3 bez DRM oraz popularne pliki graficzne. Książek chronionych DRM nie da się otworzyć, a pliki KFX, DjVu, CHM i starsze DOC nie są obsługiwane.</p>
+      </details>
+
+      <h2>Czytanie</h2>
+      <details>
+        <summary>Jak słuchać książki?</summary>
+        <p>Podczas czytania stuknij środek strony, aby wyświetlić menu, a potem stuknij <strong>Słuchaj książki</strong>. Książka jest czytana głosami zainstalowanymi na urządzeniu; możesz zmienić głos i tempo. Słuchanie offline zależy od głosów pobranych w Ustawieniach iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Co obejmuje PRO?</summary>
+        <p>Czytanie, nieograniczona biblioteka, transfer przez Wi-Fi i pełne kopie zapasowe są bezpłatne. PRO to jednorazowy zakup, który dodaje automatyczne przycinanie marginesów PDF, zaznaczenia i notatki w PDF z eksportem, rozpoznawanie tekstu na urządzeniu w zeskanowanych PDF, przepływ tekstu i czytanie na głos dla PDF oraz synchronizację iCloud.</p>
+      </details>
+      <details>
+        <summary>Zakupione PRO nie jest widoczne. Jak je przywrócić?</summary>
+        <p>Przejdź do <strong>Ustawienia</strong> → <strong>PRO</strong> → <strong>Przywróć zakupy</strong>, będąc zalogowanym na konto App Store użyte do zakupu. Zakup jest weryfikowany bezpośrednio w App Store.</p>
+      </details>
+      <details>
+        <summary>Jak działa synchronizacja iCloud?</summary>
+        <p>Po odblokowaniu PRO włącz ją na każdym urządzeniu w <strong>Ustawienia</strong> → <strong>Synchronizacja iCloud</strong>. Książki, miejsca czytania, zakładki i notatki synchronizują się między iPhone'ami i iPadami zalogowanymi na to samo konto iCloud.</p>
+        <p>Sam zakup PRO niczego nie wysyła. Synchronizacja przenosi zmiany i usunięcia na wszystkie urządzenia, dlatego przechowuj też osobną pełną kopię zapasową.</p>
+      </details>
+
+      <h2>Kopie zapasowe i rozwiązywanie problemów</h2>
+      <details>
+        <summary>Jak zrobić kopię zapasową lub przenieść bibliotekę?</summary>
+        <p>Przejdź do <strong>Ustawienia</strong> → <strong>Eksportuj pełną kopię zapasową</strong>, aby zapisać plik ZIP z książkami, notatkami, zakładkami, miejscami czytania i ustawieniami. Przywrócenie kopii zastępuje bieżącą bibliotekę zamiast ją scalać. Kopie nie są szyfrowane, więc przechowuj je w bezpiecznym miejscu.</p>
+      </details>
+      <details>
+        <summary>Książka się nie otwiera lub źle wygląda</summary>
+        <p>Sprawdź, czy plik nie ma zabezpieczeń DRM i nie przekracza limitu rozmiaru. Formaty z przepływem tekstu zachowują treść, ale nie zawsze złożony układ; pliki PDF zawsze pokazują oryginalne strony. Jeśli problem nie ustępuje, wyślij nam plik z krótkim opisem.</p>
+      </details>
+      <details>
+        <summary>Jak przesłać opinię?</summary>
+        <p>Stuknij <strong>Ustawienia</strong> → <strong>Opinie i sugestie</strong>, aby napisać do nas e-mail, lub użyj adresu powyżej. Podaj model urządzenia i wersję iOS.</p>
+      </details>
+
+      <h2>Informacje prawne</h2>
+      <p>Zapoznaj się z dokumentem <a href="./privacy.html" data-page-link="./privacy.html">Polityka prywatności</a>, aby dowiedzieć się, jakie dane ND Books przetwarza, a jakich nie.</p>
+    </section>
+
+    <section data-lang="cs" lang="cs" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Napište nám na <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> – odpovíme co nejdříve.</span>
+      </div>
+
+      <h2>Začínáme</h2>
+      <details>
+        <summary>Jak přidám knihy?</summary>
+        <p>V knihovně klepněte na <strong>Importovat knihy</strong> a v aplikaci Soubory vyberte jeden nebo více souborů. Každý soubor může mít až 100 MB. Přidané knihy se hned objeví v knihovně.</p>
+      </details>
+      <details>
+        <summary>Jak pošlu knihy z počítače?</summary>
+        <p>Připojte iPhone nebo iPad a počítač ke stejné síti Wi-Fi a klepněte na <strong>Spustit přenos přes Wi-Fi</strong>. V prohlížeči v počítači otevřete úplnou adresu zobrazenou v zařízení a nahrajte knihy.</p>
+        <p>Přenos využívá dočasné připojení v místní síti. Ukončí se, když aplikace přejde na pozadí, změní se síť nebo po 30 minutách. Každá relace má novou adresu a nový přístupový kód.</p>
+      </details>
+      <details>
+        <summary>Jaké formáty jsou podporované?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, soubory MOBI, AZW a AZW3 bez DRM a běžné obrázky. Knihy chráněné DRM nelze otevřít a soubory KFX, DjVu, CHM ani starší DOC nejsou podporované.</p>
+      </details>
+
+      <h2>Čtení</h2>
+      <details>
+        <summary>Jak si nechám knihu předčítat?</summary>
+        <p>Při čtení klepněte doprostřed stránky, aby se zobrazila nabídka, a potom klepněte na <strong>Poslouchat knihu</strong>. Kniha se předčítá hlasy nainstalovanými v zařízení a můžete změnit hlas i rychlost. Poslech offline závisí na hlasech stažených v Nastavení iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Co obsahuje PRO?</summary>
+        <p>Čtení, neomezená knihovna, přenos přes Wi-Fi a úplné zálohy jsou zdarma. PRO je jednorázový nákup, který přidává automatické ořezávání okrajů PDF, zvýraznění a poznámky v PDF s exportem, rozpoznávání textu přímo v zařízení u naskenovaných PDF, přeformátování textu a předčítání PDF a synchronizaci iCloud.</p>
+      </details>
+      <details>
+        <summary>Zakoupené PRO se nezobrazuje. Jak ho obnovím?</summary>
+        <p>Přejděte do <strong>Nastavení</strong> → <strong>PRO</strong> → <strong>Obnovit nákupy</strong> a buďte přihlášeni k účtu App Store, kterým jste nákup provedli. Nákup se ověří přímo v App Storu.</p>
+      </details>
+      <details>
+        <summary>Jak funguje synchronizace iCloud?</summary>
+        <p>Po odemknutí PRO ji zapněte v každém zařízení v <strong>Nastavení</strong> → <strong>Synchronizace iCloud</strong>. Knihy, pozice čtení, záložky a poznámky se synchronizují mezi iPhony a iPady přihlášenými ke stejnému účtu iCloud.</p>
+        <p>Samotný nákup PRO nic nenahrává. Synchronizace přenáší změny i smazání do všech zařízení, proto si uchovávejte i samostatnou úplnou zálohu.</p>
+      </details>
+
+      <h2>Zálohy a řešení problémů</h2>
+      <details>
+        <summary>Jak zálohovat nebo přenést knihovnu?</summary>
+        <p>Přejděte do <strong>Nastavení</strong> → <strong>Exportovat úplnou zálohu</strong> a uložte soubor ZIP s knihami, poznámkami, záložkami, pozicemi čtení a nastavením. Obnovení zálohy nahradí současnou knihovnu, nesloučí je. Zálohy nejsou šifrované, proto je uchovávejte na bezpečném místě.</p>
+      </details>
+      <details>
+        <summary>Kniha se neotevře nebo vypadá špatně</summary>
+        <p>Ověřte, že soubor není chráněný DRM a nepřekračuje limit velikosti. Přeformátovatelné formáty zachovají text, ale ne vždy složité rozvržení; PDF vždy zobrazují původní stránky. Pokud problém přetrvá, pošlete nám soubor s krátkým popisem.</p>
+      </details>
+      <details>
+        <summary>Jak poslat zpětnou vazbu?</summary>
+        <p>Klepněte na <strong>Nastavení</strong> → <strong>Zpětná vazba a návrhy</strong> a napište nám e-mail, nebo použijte adresu výše. Uveďte model zařízení a verzi iOS.</p>
+      </details>
+
+      <h2>Právní informace</h2>
+      <p>Podrobnosti o tom, jaká data ND Books zpracovává a jaká ne, najdete v dokumentu <a href="./privacy.html" data-page-link="./privacy.html">Zásady ochrany soukromí</a>.</p>
+    </section>
+
+    <section data-lang="tr" lang="tr" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Bize <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> adresinden yazın; en kısa sürede yanıt veririz.</span>
+      </div>
+
+      <h2>Başlarken</h2>
+      <details>
+        <summary>Kitap nasıl eklerim?</summary>
+        <p>Kütüphanenizde <strong>Kitapları içe aktar</strong> seçeneğine dokunun ve Dosyalar uygulamasından bir ya da birden fazla dosya seçin. Her dosya en fazla 100 MB olabilir. Eklenen kitaplar hemen kütüphanenizde görünür.</p>
+      </details>
+      <details>
+        <summary>Bilgisayarımdan nasıl kitap gönderirim?</summary>
+        <p>iPhone veya iPad'inizi ve bilgisayarınızı aynı Wi-Fi ağına bağlayın, ardından <strong>Wi-Fi aktarımını başlat</strong> seçeneğine dokunun. Cihazınızda gösterilen tam adresi bilgisayarınızın tarayıcısında açın ve kitaplarınızı yükleyin.</p>
+        <p>Aktarım, yerel ağınızda geçici bir bağlantı kullanır. Uygulama arka plana geçtiğinde, ağ değiştiğinde veya 30 dakika sonra durur. Her oturumda yeni bir adres ve erişim kodu oluşturulur.</p>
+      </details>
+      <details>
+        <summary>Hangi biçimler destekleniyor?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM'siz MOBI, AZW ve AZW3 dosyaları ile yaygın görüntü dosyaları. DRM korumalı kitaplar açılamaz; KFX, DjVu, CHM ve eski DOC dosyaları desteklenmez.</p>
+      </details>
+
+      <h2>Okuma</h2>
+      <details>
+        <summary>Bir kitabı nasıl dinlerim?</summary>
+        <p>Okurken menüyü göstermek için sayfanın ortasına, ardından <strong>Kitabı dinle</strong> seçeneğine dokunun. Kitap, cihazınızda yüklü seslerle okunur; sesi ve hızı değiştirebilirsiniz. Çevrimdışı dinleme, iOS Ayarlar'da indirdiğiniz seslere bağlıdır.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>PRO neleri içerir?</summary>
+        <p>Okuma, sınırsız kütüphane, Wi-Fi aktarımı ve tam yedekler ücretsizdir. PRO tek seferlik bir satın alımdır; otomatik PDF kenar boşluğu kırpma, dışa aktarılabilen PDF vurgu ve notları, taranmış PDF'ler için cihaz üzerinde metin tanıma, PDF'ler için metin akışı ve sesli okuma ile iCloud eşzamanlama ekler.</p>
+      </details>
+      <details>
+        <summary>PRO satın aldım ama görünmüyor. Nasıl geri yüklerim?</summary>
+        <p>Satın alırken kullandığınız App Store hesabıyla oturum açmışken <strong>Ayarlar</strong> → <strong>PRO</strong> → <strong>Satın alımları geri yükle</strong> yolunu izleyin. Satın alımınız doğrudan App Store üzerinden doğrulanır.</p>
+      </details>
+      <details>
+        <summary>iCloud eşzamanlama nasıl çalışır?</summary>
+        <p>PRO'nun kilidini açtıktan sonra her cihazda <strong>Ayarlar</strong> → <strong>iCloud eşzamanlama</strong> bölümünden açın. Kitaplar, okuma konumları, yer imleri ve notlar aynı iCloud hesabına giriş yapmış iPhone ve iPad'ler arasında eşzamanlanır.</p>
+        <p>PRO satın almak tek başına hiçbir şey yüklemez. Eşzamanlama değişiklikleri ve silmeleri tüm cihazlarınıza taşır; bu yüzden ayrıca tam bir yedek saklayın.</p>
+      </details>
+
+      <h2>Yedekler ve sorun giderme</h2>
+      <details>
+        <summary>Kütüphanemi nasıl yedeklerim veya taşırım?</summary>
+        <p>Kitaplarınızı, notlarınızı, yer imlerinizi, okuma konumlarınızı ve ayarlarınızı içeren bir ZIP dosyası kaydetmek için <strong>Ayarlar</strong> → <strong>Tam yedeği dışa aktar</strong> yolunu izleyin. Bir yedeği geri yüklemek mevcut kütüphaneyle birleştirmez, onu değiştirir. Yedekler şifrelenmez; güvenli bir yerde saklayın.</p>
+      </details>
+      <details>
+        <summary>Bir kitap açılmıyor veya düzgün görünmüyor</summary>
+        <p>Dosyanın DRM korumalı olmadığından ve boyut sınırını aşmadığından emin olun. Yeniden akışlı biçimler metni korur ancak karmaşık düzenleri her zaman korumayabilir; PDF'ler her zaman özgün sayfalarıyla gösterilir. Sorun sürerse dosyayı kısa bir açıklamayla bize e-postayla gönderin.</p>
+      </details>
+      <details>
+        <summary>Nasıl geri bildirim gönderirim?</summary>
+        <p>Bize e-posta yazmak için <strong>Ayarlar</strong> → <strong>Geri bildirim ve öneriler</strong> seçeneğine dokunun veya yukarıdaki adresi kullanın. Lütfen cihaz modelinizi ve iOS sürümünüzü belirtin.</p>
+      </details>
+
+      <h2>Yasal</h2>
+      <p>ND Books'un hangi verileri işlediğini ve işlemediğini öğrenmek için <a href="./privacy.html" data-page-link="./privacy.html">Gizlilik Politikası</a> sayfamıza bakın.</p>
+    </section>
+
+    <section data-lang="ru" lang="ru" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Напишите нам на <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — мы ответим как можно скорее.</span>
+      </div>
+
+      <h2>Начало работы</h2>
+      <details>
+        <summary>Как добавить книги?</summary>
+        <p>Нажмите <strong>Импорт книг</strong> в библиотеке и выберите один или несколько файлов в приложении «Файлы». Размер каждого файла — до 100 МБ. Добавленные книги сразу появляются в библиотеке.</p>
+      </details>
+      <details>
+        <summary>Как отправить книги с компьютера?</summary>
+        <p>Подключите iPhone или iPad и компьютер к одной сети Wi-Fi и нажмите <strong>Включить передачу по Wi-Fi</strong>. Откройте в браузере на компьютере полный адрес, показанный на устройстве, и загрузите книги.</p>
+        <p>Передача использует временное подключение в локальной сети. Она прекращается, когда приложение уходит в фон, меняется сеть или через 30 минут. Для каждого сеанса создаются новый адрес и код доступа.</p>
+      </details>
+      <details>
+        <summary>Какие форматы поддерживаются?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, файлы MOBI, AZW и AZW3 без DRM, а также распространённые форматы изображений. Книги с DRM открыть нельзя; KFX, DjVu, CHM и старые файлы DOC не поддерживаются.</p>
+      </details>
+
+      <h2>Чтение</h2>
+      <details>
+        <summary>Как слушать книгу?</summary>
+        <p>Во время чтения коснитесь середины страницы, чтобы открыть меню, затем нажмите <strong>Слушать книгу</strong>. Книга читается голосами, установленными на устройстве; голос и скорость можно изменить. Возможность слушать офлайн зависит от голосов, загруженных в настройках iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Что входит в PRO?</summary>
+        <p>Чтение, библиотека без ограничений, передача по Wi-Fi и полные резервные копии бесплатны. PRO — разовая покупка, которая добавляет автоматическую обрезку полей PDF, выделения и заметки в PDF с экспортом, распознавание текста в отсканированных PDF прямо на устройстве, перекомпоновку текста и чтение вслух для PDF, а также синхронизацию iCloud.</p>
+      </details>
+      <details>
+        <summary>PRO куплен, но не отображается. Как его восстановить?</summary>
+        <p>Откройте <strong>Настройки</strong> → <strong>PRO</strong> → <strong>Восстановить покупки</strong>, войдя в учётную запись App Store, с которой была совершена покупка. Покупка проверяется напрямую через App Store.</p>
+      </details>
+      <details>
+        <summary>Как работает синхронизация iCloud?</summary>
+        <p>После разблокировки PRO включите её на каждом устройстве в разделе <strong>Настройки</strong> → <strong>Синхронизация iCloud</strong>. Книги, позиции чтения, закладки и заметки синхронизируются между iPhone и iPad с одной учётной записью iCloud.</p>
+        <p>Сама покупка PRO ничего не загружает. Синхронизация переносит изменения и удаления на все устройства, поэтому храните также отдельную полную резервную копию.</p>
+      </details>
+
+      <h2>Резервные копии и решение проблем</h2>
+      <details>
+        <summary>Как создать резервную копию или перенести библиотеку?</summary>
+        <p>Откройте <strong>Настройки</strong> → <strong>Экспорт полной копии</strong>, чтобы сохранить ZIP-файл с книгами, заметками, закладками, позициями чтения и настройками. При восстановлении копии текущая библиотека заменяется, а не объединяется. Копии не шифруются, поэтому храните их в надёжном месте.</p>
+      </details>
+      <details>
+        <summary>Книга не открывается или отображается неправильно</summary>
+        <p>Убедитесь, что файл не защищён DRM и не превышает ограничение по размеру. Перекомпонуемые форматы сохраняют текст, но не всегда сложную вёрстку; PDF всегда показываются с исходными страницами. Если проблема сохраняется, пришлите нам файл с кратким описанием.</p>
+      </details>
+      <details>
+        <summary>Как отправить отзыв?</summary>
+        <p>Нажмите <strong>Настройки</strong> → <strong>Отзывы и предложения</strong>, чтобы написать нам письмо, или используйте адрес выше. Укажите модель устройства и версию iOS.</p>
+      </details>
+
+      <h2>Правовая информация</h2>
+      <p>Подробнее о том, какие данные ND Books обрабатывает, а какие нет, — в документе <a href="./privacy.html" data-page-link="./privacy.html">Политика конфиденциальности</a>.</p>
+    </section>
+
+    <section data-lang="uk" lang="uk" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Напишіть нам на <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — ми відповімо якнайшвидше.</span>
+      </div>
+
+      <h2>Початок роботи</h2>
+      <details>
+        <summary>Як додати книжки?</summary>
+        <p>Торкніться <strong>Імпортувати книги</strong> у бібліотеці й виберіть один чи кілька файлів у застосунку «Файли». Розмір кожного файлу — до 100 МБ. Додані книжки одразу з'являються в бібліотеці.</p>
+      </details>
+      <details>
+        <summary>Як надіслати книжки з комп'ютера?</summary>
+        <p>Підключіть iPhone чи iPad і комп'ютер до однієї мережі Wi-Fi та торкніться <strong>Увімкнути передавання через Wi-Fi</strong>. Відкрийте в браузері на комп'ютері повну адресу, показану на пристрої, і завантажте книжки.</p>
+        <p>Передавання використовує тимчасове з'єднання в локальній мережі. Воно припиняється, коли застосунок переходить у фон, змінюється мережа або минає 30 хвилин. Для кожного сеансу створюються нові адреса й код доступу.</p>
+      </details>
+      <details>
+        <summary>Які формати підтримуються?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, файли MOBI, AZW і AZW3 без DRM, а також поширені формати зображень. Книжки з DRM відкрити не можна; KFX, DjVu, CHM і старі файли DOC не підтримуються.</p>
+      </details>
+
+      <h2>Читання</h2>
+      <details>
+        <summary>Як слухати книжку?</summary>
+        <p>Під час читання торкніться середини сторінки, щоб відкрити меню, а тоді торкніться <strong>Слухати книгу</strong>. Книжку читають голоси, встановлені на пристрої; голос і швидкість можна змінити. Можливість слухати офлайн залежить від голосів, завантажених у Параметрах iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Що входить до PRO?</summary>
+        <p>Читання, бібліотека без обмежень, передавання через Wi-Fi і повні резервні копії безкоштовні. PRO — одноразова покупка, що додає автоматичне обрізання полів PDF, виділення й нотатки в PDF з експортом, розпізнавання тексту у сканованих PDF просто на пристрої, перекомпонування тексту й читання вголос для PDF, а також синхронізацію iCloud.</p>
+      </details>
+      <details>
+        <summary>PRO придбано, але він не відображається. Як його відновити?</summary>
+        <p>Відкрийте <strong>Налаштування</strong> → <strong>PRO</strong> → <strong>Відновити покупки</strong>, увійшовши в обліковий запис App Store, з якого було здійснено покупку. Покупку перевіряють безпосередньо через App Store.</p>
+      </details>
+      <details>
+        <summary>Як працює синхронізація iCloud?</summary>
+        <p>Після розблокування PRO увімкніть її на кожному пристрої в розділі <strong>Налаштування</strong> → <strong>Синхронізація iCloud</strong>. Книжки, позиції читання, закладки й нотатки синхронізуються між iPhone та iPad з одним обліковим записом iCloud.</p>
+        <p>Сама покупка PRO нічого не завантажує. Синхронізація переносить зміни й видалення на всі пристрої, тож зберігайте також окрему повну резервну копію.</p>
+      </details>
+
+      <h2>Резервні копії та розв'язання проблем</h2>
+      <details>
+        <summary>Як створити резервну копію або перенести бібліотеку?</summary>
+        <p>Відкрийте <strong>Налаштування</strong> → <strong>Експортувати повну копію</strong>, щоб зберегти ZIP-файл із книжками, нотатками, закладками, позиціями читання й налаштуваннями. Відновлення копії замінює поточну бібліотеку, а не об'єднує її. Копії не шифруються, тож зберігайте їх у надійному місці.</p>
+      </details>
+      <details>
+        <summary>Книжка не відкривається або відображається неправильно</summary>
+        <p>Переконайтеся, що файл не захищено DRM і він не перевищує обмеження розміру. Формати з перекомпонуванням зберігають текст, але не завжди складну верстку; PDF завжди показуються з оригінальними сторінками. Якщо проблема не зникає, надішліть нам файл із коротким описом.</p>
+      </details>
+      <details>
+        <summary>Як надіслати відгук?</summary>
+        <p>Торкніться <strong>Налаштування</strong> → <strong>Відгуки та пропозиції</strong>, щоб написати нам листа, або скористайтеся адресою вище. Вкажіть модель пристрою та версію iOS.</p>
+      </details>
+
+      <h2>Правова інформація</h2>
+      <p>Докладніше про те, які дані ND Books обробляє, а які ні, — у документі <a href="./privacy.html" data-page-link="./privacy.html">Політика конфіденційності</a>.</p>
+    </section>
+
+    <section data-lang="ar" lang="ar" dir="rtl" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>راسلنا على <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> وسنرد عليك في أقرب وقت ممكن.</span>
+      </div>
+
+      <h2>البدء</h2>
+      <details>
+        <summary>كيف أضيف الكتب؟</summary>
+        <p>اضغط على <strong>استيراد كتب</strong> في المكتبة واختر ملفًا واحدًا أو أكثر من تطبيق الملفات. يمكن أن يصل حجم كل ملف إلى 100 MB، وتظهر الكتب المضافة في مكتبتك فورًا.</p>
+      </details>
+      <details>
+        <summary>كيف أرسل الكتب من الكمبيوتر؟</summary>
+        <p>صِل جهاز iPhone أو iPad والكمبيوتر بشبكة Wi-Fi نفسها، ثم اضغط على <strong>بدء النقل عبر Wi-Fi</strong>. افتح العنوان الكامل الظاهر على جهازك في متصفح الكمبيوتر وارفع كتبك.</p>
+        <p>يستخدم النقل اتصالًا مؤقتًا على شبكتك المحلية، ويتوقف عند انتقال التطبيق إلى الخلفية أو تغيّر الشبكة أو بعد 30 دقيقة. تحصل كل جلسة على عنوان ورمز وصول جديدين.</p>
+      </details>
+      <details>
+        <summary>ما الصيغ المدعومة؟</summary>
+        <p>EPUB وPDF وTXT وMarkdown وHTML وFB2 وDOCX وRTF وCBZ وCBR، وملفات MOBI وAZW وAZW3 الخالية من DRM، وملفات الصور الشائعة. لا يمكن فتح الكتب المحمية بتقنية DRM، ولا تُدعم ملفات KFX وDjVu وCHM وملفات DOC القديمة.</p>
+      </details>
+
+      <h2>القراءة</h2>
+      <details>
+        <summary>كيف أستمع إلى كتاب؟</summary>
+        <p>أثناء القراءة، اضغط على منتصف الصفحة لإظهار القائمة، ثم اضغط على <strong>الاستماع إلى الكتاب</strong>. يُقرأ الكتاب بالأصوات المثبّتة على جهازك، ويمكنك تغيير الصوت والسرعة. يعتمد الاستماع بلا اتصال على الأصوات التي نزّلتها من إعدادات iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>ماذا يتضمن PRO؟</summary>
+        <p>القراءة والمكتبة غير المحدودة والنقل عبر Wi-Fi والنسخ الاحتياطية الكاملة مجانية. أما PRO فهو شراء لمرة واحدة يضيف قص هوامش PDF تلقائيًا، وتظليل ملفات PDF وتدوين الملاحظات عليها مع التصدير، والتعرّف على النص في ملفات PDF الممسوحة ضوئيًا على الجهاز، وإعادة تدفق نص PDF وقراءته بصوت عالٍ، ومزامنة iCloud.</p>
+      </details>
+      <details>
+        <summary>اشتريت PRO لكنه لا يظهر. كيف أستعيده؟</summary>
+        <p>انتقل إلى <strong>الإعدادات</strong> ← <strong>PRO</strong> ← <strong>استعادة المشتريات</strong> وأنت مسجّل الدخول بحساب App Store الذي استخدمته في الشراء. يجري التحقق من عملية الشراء مباشرةً عبر App Store.</p>
+      </details>
+      <details>
+        <summary>كيف تعمل مزامنة iCloud؟</summary>
+        <p>بعد فتح PRO، فعّلها على كل جهاز من <strong>الإعدادات</strong> ← <strong>مزامنة iCloud</strong>. تُزامَن الكتب ومواضع القراءة والإشارات المرجعية والملاحظات بين أجهزة iPhone وiPad المسجّلة بحساب iCloud نفسه.</p>
+        <p>شراء PRO وحده لا يرفع أي شيء. تنقل المزامنة التعديلات وعمليات الحذف إلى جميع أجهزتك، لذا احتفظ أيضًا بنسخة احتياطية كاملة منفصلة.</p>
+      </details>
+
+      <h2>النسخ الاحتياطية وحل المشكلات</h2>
+      <details>
+        <summary>كيف أنسخ مكتبتي احتياطيًا أو أنقلها؟</summary>
+        <p>انتقل إلى <strong>الإعدادات</strong> ← <strong>تصدير نسخة احتياطية كاملة</strong> لحفظ ملف ZIP يضم كتبك وملاحظاتك وإشاراتك المرجعية ومواضع القراءة والإعدادات. استعادة النسخة الاحتياطية تستبدل المكتبة الحالية بدلًا من دمجها. النسخ الاحتياطية غير مشفّرة، فاحفظها في مكان آمن.</p>
+      </details>
+      <details>
+        <summary>لا يُفتح الكتاب أو يظهر بشكل غير صحيح</summary>
+        <p>تأكد من أن الملف غير محمي بتقنية DRM ولا يتجاوز الحد الأقصى للحجم. تحتفظ الصيغ القابلة لإعادة التدفق بالنص، لكنها قد لا تحتفظ بالتنسيقات المعقّدة، بينما تُعرض ملفات PDF دائمًا بصفحاتها الأصلية. إذا استمرت المشكلة، فأرسل إلينا الملف مع وصف قصير.</p>
+      </details>
+      <details>
+        <summary>كيف أرسل ملاحظاتي؟</summary>
+        <p>اضغط على <strong>الإعدادات</strong> ← <strong>الملاحظات والاقتراحات</strong> لكتابة رسالة إلينا، أو استخدم العنوان أعلاه. يُرجى ذكر طراز جهازك وإصدار iOS.</p>
+      </details>
+
+      <h2>المعلومات القانونية</h2>
+      <p>راجع <a href="./privacy.html" data-page-link="./privacy.html">سياسة الخصوصية</a> لمعرفة البيانات التي يتعامل معها ND Books والتي لا يتعامل معها.</p>
+    </section>
+
+    <section data-lang="th" lang="th" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>ส่งอีเมลถึงเราได้ที่ <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> เราจะตอบกลับโดยเร็วที่สุด</span>
+      </div>
+
+      <h2>เริ่มต้นใช้งาน</h2>
+      <details>
+        <summary>เพิ่มหนังสืออย่างไร</summary>
+        <p>แตะ <strong>นำเข้าหนังสือ</strong> ในคลังหนังสือ แล้วเลือกไฟล์หนึ่งไฟล์หรือหลายไฟล์จากแอปไฟล์ แต่ละไฟล์มีขนาดได้สูงสุด 100 MB หนังสือที่เพิ่มจะแสดงในคลังทันที</p>
+      </details>
+      <details>
+        <summary>ส่งหนังสือจากคอมพิวเตอร์อย่างไร</summary>
+        <p>เชื่อมต่อ iPhone หรือ iPad และคอมพิวเตอร์กับ Wi-Fi เครือข่ายเดียวกัน แล้วแตะ <strong>เปิดการส่งหนังสือผ่าน Wi-Fi</strong> เปิดที่อยู่แบบเต็มที่แสดงบนอุปกรณ์ในเบราว์เซอร์ของคอมพิวเตอร์ แล้วอัปโหลดหนังสือ</p>
+        <p>การส่งใช้การเชื่อมต่อชั่วคราวในเครือข่ายท้องถิ่น และจะหยุดเมื่อแอปเข้าสู่พื้นหลัง เครือข่ายเปลี่ยน หรือครบ 30 นาที แต่ละครั้งจะได้ที่อยู่และรหัสเข้าถึงใหม่</p>
+      </details>
+      <details>
+        <summary>รองรับไฟล์รูปแบบใดบ้าง</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, ไฟล์ MOBI, AZW และ AZW3 ที่ไม่มี DRM และไฟล์รูปภาพทั่วไป หนังสือที่มีการป้องกัน DRM จะเปิดไม่ได้ และยังไม่รองรับ KFX, DjVu, CHM และไฟล์ DOC รุ่นเก่า</p>
+      </details>
+
+      <h2>การอ่าน</h2>
+      <details>
+        <summary>ฟังหนังสืออย่างไร</summary>
+        <p>ระหว่างอ่าน ให้แตะกลางหน้าเพื่อแสดงเมนู แล้วแตะ <strong>ฟังหนังสือ</strong> หนังสือจะถูกอ่านออกเสียงด้วยเสียงที่ติดตั้งในอุปกรณ์ และเปลี่ยนเสียงหรือความเร็วได้ การฟังแบบออฟไลน์ขึ้นอยู่กับเสียงที่ดาวน์โหลดไว้ในการตั้งค่า iOS</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>PRO มีอะไรบ้าง</summary>
+        <p>การอ่าน คลังหนังสือไม่จำกัด การส่งผ่าน Wi-Fi และการสำรองข้อมูลทั้งหมดใช้ได้ฟรี PRO เป็นการซื้อครั้งเดียวที่เพิ่มการตัดขอบ PDF อัตโนมัติ ไฮไลต์และโน้ตบน PDF พร้อมส่งออก การรู้จำข้อความในอุปกรณ์สำหรับ PDF ที่สแกน การจัดข้อความ PDF ใหม่และอ่านออกเสียง รวมถึงการซิงค์กับ iCloud</p>
+      </details>
+      <details>
+        <summary>ซื้อ PRO แล้วแต่ไม่แสดง จะกู้คืนอย่างไร</summary>
+        <p>ไปที่ <strong>การตั้งค่า</strong> → <strong>PRO</strong> → <strong>กู้คืนการซื้อ</strong> ขณะลงชื่อเข้าใช้บัญชี App Store ที่ใช้ซื้อ ระบบจะตรวจสอบการซื้อกับ App Store โดยตรง</p>
+      </details>
+      <details>
+        <summary>การซิงค์กับ iCloud ทำงานอย่างไร</summary>
+        <p>หลังปลดล็อก PRO ให้เปิดใช้งานที่ <strong>การตั้งค่า</strong> → <strong>ซิงค์กับ iCloud</strong> บนอุปกรณ์แต่ละเครื่อง หนังสือ ตำแหน่งที่อ่าน ที่คั่นหน้า และโน้ตจะซิงค์ระหว่าง iPhone และ iPad ที่ลงชื่อเข้าใช้บัญชี iCloud เดียวกัน</p>
+        <p>การซื้อ PRO เพียงอย่างเดียวจะไม่อัปโหลดสิ่งใด การซิงค์จะนำการแก้ไขและการลบไปยังทุกอุปกรณ์ จึงควรเก็บข้อมูลสำรองทั้งหมดแยกไว้ด้วย</p>
+      </details>
+
+      <h2>การสำรองข้อมูลและการแก้ปัญหา</h2>
+      <details>
+        <summary>สำรองหรือย้ายคลังหนังสืออย่างไร</summary>
+        <p>ไปที่ <strong>การตั้งค่า</strong> → <strong>ส่งออกข้อมูลสำรองทั้งหมด</strong> เพื่อบันทึกไฟล์ ZIP ที่มีหนังสือ โน้ต ที่คั่นหน้า ตำแหน่งที่อ่าน และการตั้งค่า การกู้คืนข้อมูลสำรองจะแทนที่คลังปัจจุบันแทนการรวมเข้าด้วยกัน ข้อมูลสำรองไม่ได้เข้ารหัส จึงควรเก็บไว้ในที่ปลอดภัย</p>
+      </details>
+      <details>
+        <summary>หนังสือเปิดไม่ได้หรือแสดงผลไม่ถูกต้อง</summary>
+        <p>ตรวจสอบว่าไฟล์ไม่มีการป้องกัน DRM และไม่เกินขนาดที่กำหนด รูปแบบที่จัดหน้าใหม่ได้จะเก็บข้อความไว้ แต่อาจไม่คงเลย์เอาต์ที่ซับซ้อน ส่วน PDF จะแสดงหน้าต้นฉบับเสมอ หากยังเปิดไม่ได้ โปรดส่งไฟล์พร้อมคำอธิบายสั้น ๆ มาทางอีเมล</p>
+      </details>
+      <details>
+        <summary>ส่งความคิดเห็นอย่างไร</summary>
+        <p>แตะ <strong>การตั้งค่า</strong> → <strong>ความคิดเห็นและข้อเสนอแนะ</strong> เพื่อเขียนอีเมลถึงเรา หรือใช้ที่อยู่ด้านบน โปรดระบุรุ่นอุปกรณ์และเวอร์ชัน iOS</p>
+      </details>
+
+      <h2>ข้อมูลทางกฎหมาย</h2>
+      <p>ดู<a href="./privacy.html" data-page-link="./privacy.html">นโยบายความเป็นส่วนตัว</a>เพื่อทราบว่า ND Books จัดการและไม่จัดการข้อมูลใดบ้าง</p>
+    </section>
+
+    <section data-lang="vi" lang="vi" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Gửi email cho chúng tôi tại <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — chúng tôi sẽ phản hồi sớm nhất có thể.</span>
+      </div>
+
+      <h2>Bắt đầu</h2>
+      <details>
+        <summary>Làm sao để thêm sách?</summary>
+        <p>Chạm vào <strong>Nhập sách</strong> trong thư viện và chọn một hoặc nhiều tệp từ ứng dụng Tệp. Mỗi tệp có thể lên đến 100 MB. Sách đã thêm sẽ xuất hiện ngay trong thư viện.</p>
+      </details>
+      <details>
+        <summary>Làm sao để gửi sách từ máy tính?</summary>
+        <p>Kết nối iPhone hoặc iPad và máy tính với cùng một mạng Wi-Fi, rồi chạm vào <strong>Bật chuyển sách qua Wi-Fi</strong>. Mở địa chỉ đầy đủ hiển thị trên thiết bị bằng trình duyệt trên máy tính và tải sách lên.</p>
+        <p>Việc chuyển sách dùng kết nối tạm thời trong mạng cục bộ. Kết nối sẽ dừng khi ứng dụng chuyển sang nền, khi mạng thay đổi hoặc sau 30 phút. Mỗi phiên có địa chỉ và mã truy cập mới.</p>
+      </details>
+      <details>
+        <summary>Hỗ trợ những định dạng nào?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, tệp MOBI, AZW và AZW3 không có DRM, cùng các tệp hình ảnh phổ biến. Không thể mở sách được bảo vệ bằng DRM; các tệp KFX, DjVu, CHM và DOC cũ không được hỗ trợ.</p>
+      </details>
+
+      <h2>Đọc sách</h2>
+      <details>
+        <summary>Làm sao để nghe sách?</summary>
+        <p>Khi đang đọc, chạm vào giữa trang để hiện menu, rồi chạm vào <strong>Nghe sách</strong>. Sách được đọc bằng các giọng đã cài trên thiết bị, và bạn có thể đổi giọng cũng như tốc độ. Việc nghe ngoại tuyến phụ thuộc vào các giọng đã tải trong Cài đặt iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>PRO gồm những gì?</summary>
+        <p>Đọc sách, thư viện không giới hạn, chuyển sách qua Wi-Fi và sao lưu đầy đủ đều miễn phí. PRO là gói mua một lần, bổ sung tự động cắt lề PDF, đánh dấu và ghi chú trên PDF kèm xuất, nhận dạng văn bản ngay trên thiết bị cho PDF scan, dàn lại văn bản và đọc to cho PDF, cùng đồng bộ iCloud.</p>
+      </details>
+      <details>
+        <summary>Tôi đã mua PRO nhưng không thấy hiển thị. Làm sao để khôi phục?</summary>
+        <p>Vào <strong>Cài đặt</strong> → <strong>PRO</strong> → <strong>Khôi phục giao dịch mua</strong> khi đang đăng nhập tài khoản App Store đã dùng để mua. Giao dịch được xác minh trực tiếp với App Store.</p>
+      </details>
+      <details>
+        <summary>Đồng bộ iCloud hoạt động thế nào?</summary>
+        <p>Sau khi mở khóa PRO, hãy bật tính năng này trên từng thiết bị tại <strong>Cài đặt</strong> → <strong>Đồng bộ iCloud</strong>. Sách, vị trí đọc, dấu trang và ghi chú sẽ đồng bộ giữa các iPhone và iPad đăng nhập cùng tài khoản iCloud.</p>
+        <p>Chỉ mua PRO thì không có gì được tải lên. Đồng bộ sẽ đưa cả thay đổi lẫn thao tác xóa sang mọi thiết bị, vì vậy hãy giữ thêm một bản sao lưu đầy đủ riêng.</p>
+      </details>
+
+      <h2>Sao lưu và khắc phục sự cố</h2>
+      <details>
+        <summary>Làm sao để sao lưu hoặc chuyển thư viện?</summary>
+        <p>Vào <strong>Cài đặt</strong> → <strong>Xuất bản sao lưu đầy đủ</strong> để lưu tệp ZIP chứa sách, ghi chú, dấu trang, vị trí đọc và cài đặt. Khôi phục bản sao lưu sẽ thay thế thư viện hiện tại thay vì gộp chung. Bản sao lưu không được mã hóa, vì vậy hãy cất giữ ở nơi an toàn.</p>
+      </details>
+      <details>
+        <summary>Sách không mở được hoặc hiển thị không đúng</summary>
+        <p>Hãy kiểm tra tệp không có DRM và không vượt quá giới hạn dung lượng. Các định dạng dàn trang lại giữ nguyên văn bản nhưng có thể không giữ được bố cục phức tạp; PDF luôn hiển thị trang gốc. Nếu vẫn không được, hãy gửi tệp kèm mô tả ngắn cho chúng tôi qua email.</p>
+      </details>
+      <details>
+        <summary>Làm sao để gửi góp ý?</summary>
+        <p>Chạm vào <strong>Cài đặt</strong> → <strong>Góp ý và phản hồi</strong> để viết email cho chúng tôi, hoặc dùng địa chỉ ở trên. Vui lòng cho biết kiểu máy và phiên bản iOS.</p>
+      </details>
+
+      <h2>Thông tin pháp lý</h2>
+      <p>Xem <a href="./privacy.html" data-page-link="./privacy.html">Chính sách quyền riêng tư</a> để biết ND Books xử lý và không xử lý những dữ liệu nào.</p>
+    </section>
+
+    <section data-lang="id" lang="id" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Kirim email ke <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — kami akan membalas secepatnya.</span>
+      </div>
+
+      <h2>Memulai</h2>
+      <details>
+        <summary>Bagaimana cara menambahkan buku?</summary>
+        <p>Ketuk <strong>Impor buku</strong> di perpustakaan, lalu pilih satu atau beberapa file dari app File. Setiap file bisa berukuran hingga 100 MB. Buku yang ditambahkan langsung muncul di perpustakaan.</p>
+      </details>
+      <details>
+        <summary>Bagaimana cara mengirim buku dari komputer?</summary>
+        <p>Hubungkan iPhone atau iPad dan komputer ke jaringan Wi-Fi yang sama, lalu ketuk <strong>Mulai transfer Wi-Fi</strong>. Buka alamat lengkap yang ditampilkan di perangkat melalui browser komputer, lalu unggah buku Anda.</p>
+        <p>Transfer menggunakan koneksi sementara di jaringan lokal. Transfer berhenti saat app masuk ke latar belakang, jaringan berubah, atau setelah 30 menit. Setiap sesi mendapat alamat dan kode akses baru.</p>
+      </details>
+      <details>
+        <summary>Format apa saja yang didukung?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, file MOBI, AZW, dan AZW3 tanpa DRM, serta file gambar umum. Buku yang dilindungi DRM tidak dapat dibuka, dan file KFX, DjVu, CHM, serta DOC lama tidak didukung.</p>
+      </details>
+
+      <h2>Membaca</h2>
+      <details>
+        <summary>Bagaimana cara mendengarkan buku?</summary>
+        <p>Saat membaca, ketuk bagian tengah halaman untuk menampilkan menu, lalu ketuk <strong>Dengarkan buku</strong>. Buku dibacakan dengan suara yang terpasang di perangkat, dan Anda bisa mengganti suara serta kecepatannya. Mendengarkan secara offline bergantung pada suara yang sudah diunduh di Pengaturan iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Apa saja yang termasuk dalam PRO?</summary>
+        <p>Membaca, perpustakaan tanpa batas, transfer Wi-Fi, dan cadangan lengkap gratis. PRO adalah pembelian satu kali yang menambahkan pemangkasan margin PDF otomatis, sorotan dan catatan PDF beserta ekspor, pengenalan teks di perangkat untuk PDF hasil pindai, tata ulang teks dan pembacaan untuk PDF, serta sinkronisasi iCloud.</p>
+      </details>
+      <details>
+        <summary>Saya sudah membeli PRO tetapi tidak muncul. Bagaimana cara memulihkannya?</summary>
+        <p>Buka <strong>Pengaturan</strong> → <strong>PRO</strong> → <strong>Pulihkan pembelian</strong> saat masuk dengan akun App Store yang digunakan untuk membeli. Pembelian diverifikasi langsung dengan App Store.</p>
+      </details>
+      <details>
+        <summary>Bagaimana sinkronisasi iCloud bekerja?</summary>
+        <p>Setelah membuka PRO, aktifkan di setiap perangkat melalui <strong>Pengaturan</strong> → <strong>Sinkronisasi iCloud</strong>. Buku, posisi baca, penanda, dan catatan akan tersinkron di antara iPhone dan iPad yang masuk ke akun iCloud yang sama.</p>
+        <p>Membeli PRO saja tidak mengunggah apa pun. Sinkronisasi membawa perubahan dan penghapusan ke semua perangkat, jadi simpan juga cadangan lengkap secara terpisah.</p>
+      </details>
+
+      <h2>Cadangan dan pemecahan masalah</h2>
+      <details>
+        <summary>Bagaimana cara mencadangkan atau memindahkan perpustakaan?</summary>
+        <p>Buka <strong>Pengaturan</strong> → <strong>Ekspor cadangan lengkap</strong> untuk menyimpan file ZIP berisi buku, catatan, penanda, posisi baca, dan pengaturan. Memulihkan cadangan akan mengganti perpustakaan saat ini, bukan menggabungkannya. Cadangan tidak dienkripsi, jadi simpan di tempat yang aman.</p>
+      </details>
+      <details>
+        <summary>Buku tidak bisa dibuka atau tampilannya tidak sesuai</summary>
+        <p>Pastikan file tidak dilindungi DRM dan tidak melebihi batas ukuran. Format yang dapat ditata ulang mempertahankan teks, tetapi tidak selalu tata letak yang rumit; PDF selalu ditampilkan dengan halaman aslinya. Jika masih gagal, kirimkan file beserta deskripsi singkat kepada kami lewat email.</p>
+      </details>
+      <details>
+        <summary>Bagaimana cara mengirim masukan?</summary>
+        <p>Ketuk <strong>Pengaturan</strong> → <strong>Masukan dan saran</strong> untuk menulis email kepada kami, atau gunakan alamat di atas. Sertakan model perangkat dan versi iOS Anda.</p>
+      </details>
+
+      <h2>Informasi hukum</h2>
+      <p>Lihat <a href="./privacy.html" data-page-link="./privacy.html">Kebijakan Privasi</a> kami untuk mengetahui data apa saja yang ditangani dan tidak ditangani oleh ND Books.</p>
+    </section>
+
+    <section data-lang="ms" lang="ms" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>E-mel kami di <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — kami akan membalas secepat mungkin.</span>
+      </div>
+
+      <h2>Bermula</h2>
+      <details>
+        <summary>Bagaimanakah saya menambah buku?</summary>
+        <p>Ketik <strong>Import buku</strong> dalam pustaka dan pilih satu atau beberapa fail daripada app Fail. Setiap fail boleh bersaiz sehingga 100 MB. Buku yang ditambah akan terus muncul dalam pustaka.</p>
+      </details>
+      <details>
+        <summary>Bagaimanakah saya menghantar buku dari komputer?</summary>
+        <p>Sambungkan iPhone atau iPad dan komputer ke rangkaian Wi-Fi yang sama, kemudian ketik <strong>Mulakan pemindahan Wi-Fi</strong>. Buka alamat penuh yang dipaparkan pada peranti dalam pelayar komputer dan muat naik buku anda.</p>
+        <p>Pemindahan menggunakan sambungan sementara dalam rangkaian setempat. Ia berhenti apabila app beralih ke latar belakang, rangkaian berubah atau selepas 30 minit. Setiap sesi mendapat alamat dan kod akses baharu.</p>
+      </details>
+      <details>
+        <summary>Format apakah yang disokong?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, fail MOBI, AZW dan AZW3 tanpa DRM, serta fail imej biasa. Buku yang dilindungi DRM tidak boleh dibuka, dan fail KFX, DjVu, CHM serta DOC lama tidak disokong.</p>
+      </details>
+
+      <h2>Membaca</h2>
+      <details>
+        <summary>Bagaimanakah saya mendengar buku?</summary>
+        <p>Semasa membaca, ketik bahagian tengah halaman untuk memaparkan menu, kemudian ketik <strong>Dengarkan buku</strong>. Buku dibacakan dengan suara yang dipasang pada peranti, dan anda boleh menukar suara serta kelajuan. Mendengar di luar talian bergantung pada suara yang dimuat turun dalam Tetapan iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Apakah yang terkandung dalam PRO?</summary>
+        <p>Membaca, pustaka tanpa had, pemindahan Wi-Fi dan sandaran penuh adalah percuma. PRO ialah pembelian sekali sahaja yang menambah pemangkasan margin PDF automatik, serlahan dan nota PDF berserta eksport, pengecaman teks pada peranti untuk PDF imbasan, susun semula teks dan bacaan kuat untuk PDF, serta penyegerakan iCloud.</p>
+      </details>
+      <details>
+        <summary>Saya telah membeli PRO tetapi ia tidak dipaparkan. Bagaimanakah cara memulihkannya?</summary>
+        <p>Pergi ke <strong>Tetapan</strong> → <strong>PRO</strong> → <strong>Pulihkan pembelian</strong> semasa log masuk dengan akaun App Store yang digunakan untuk membeli. Pembelian anda disahkan terus dengan App Store.</p>
+      </details>
+      <details>
+        <summary>Bagaimanakah penyegerakan iCloud berfungsi?</summary>
+        <p>Selepas membuka kunci PRO, hidupkannya pada setiap peranti di <strong>Tetapan</strong> → <strong>Penyegerakan iCloud</strong>. Buku, kedudukan bacaan, penanda buku dan nota disegerakkan antara iPhone dan iPad yang log masuk ke akaun iCloud yang sama.</p>
+        <p>Membeli PRO sahaja tidak memuat naik apa-apa. Penyegerakan membawa perubahan dan pemadaman ke semua peranti, jadi simpan juga sandaran penuh yang berasingan.</p>
+      </details>
+
+      <h2>Sandaran dan penyelesaian masalah</h2>
+      <details>
+        <summary>Bagaimanakah saya membuat sandaran atau memindahkan pustaka?</summary>
+        <p>Pergi ke <strong>Tetapan</strong> → <strong>Eksport sandaran penuh</strong> untuk menyimpan fail ZIP yang mengandungi buku, nota, penanda buku, kedudukan bacaan dan tetapan. Memulihkan sandaran akan menggantikan pustaka semasa, bukan menggabungkannya. Sandaran tidak disulitkan, jadi simpan di tempat yang selamat.</p>
+      </details>
+      <details>
+        <summary>Buku tidak dapat dibuka atau tidak dipaparkan dengan betul</summary>
+        <p>Pastikan fail tidak dilindungi DRM dan tidak melebihi had saiz. Format yang boleh disusun semula mengekalkan teks tetapi tidak selalu mengekalkan reka letak yang kompleks; PDF sentiasa memaparkan halaman asalnya. Jika masih gagal, e-melkan fail itu kepada kami bersama penerangan ringkas.</p>
+      </details>
+      <details>
+        <summary>Bagaimanakah saya menghantar maklum balas?</summary>
+        <p>Ketik <strong>Tetapan</strong> → <strong>Maklum balas dan cadangan</strong> untuk menulis e-mel kepada kami, atau gunakan alamat di atas. Sila nyatakan model peranti dan versi iOS anda.</p>
+      </details>
+
+      <h2>Maklumat undang-undang</h2>
+      <p>Lihat <a href="./privacy.html" data-page-link="./privacy.html">Dasar Privasi</a> kami untuk mengetahui data yang dikendalikan dan tidak dikendalikan oleh ND Books.</p>
+    </section>
+
+    <section data-lang="hi" lang="hi" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>हमें <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> पर ईमेल करें — हम जल्द से जल्द जवाब देंगे।</span>
+      </div>
+
+      <h2>शुरुआत करें</h2>
+      <details>
+        <summary>किताबें कैसे जोड़ें?</summary>
+        <p>लाइब्रेरी में <strong>किताबें आयात करें</strong> पर टैप करें और Files ऐप से एक या अधिक फ़ाइलें चुनें। हर फ़ाइल 100 MB तक की हो सकती है। जोड़ी गई किताबें तुरंत लाइब्रेरी में दिखती हैं।</p>
+      </details>
+      <details>
+        <summary>कंप्यूटर से किताबें कैसे भेजें?</summary>
+        <p>iPhone या iPad और कंप्यूटर को एक ही Wi-Fi नेटवर्क से जोड़ें, फिर <strong>Wi-Fi से किताबें भेजना चालू करें</strong> पर टैप करें। डिवाइस पर दिखा पूरा पता कंप्यूटर के ब्राउज़र में खोलें और किताबें अपलोड करें।</p>
+        <p>किताबें भेजने के लिए लोकल नेटवर्क पर एक अस्थायी कनेक्शन इस्तेमाल होता है। ऐप के बैकग्राउंड में जाने, नेटवर्क बदलने या 30 मिनट बाद यह बंद हो जाता है। हर सत्र में नया पता और नया एक्सेस कोड मिलता है।</p>
+      </details>
+      <details>
+        <summary>कौन-से फ़ॉर्मैट समर्थित हैं?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, बिना DRM वाली MOBI, AZW और AZW3 फ़ाइलें और आम इमेज फ़ाइलें। DRM से सुरक्षित किताबें नहीं खुलतीं, और KFX, DjVu, CHM व पुरानी DOC फ़ाइलें समर्थित नहीं हैं।</p>
+      </details>
+
+      <h2>पढ़ना</h2>
+      <details>
+        <summary>किताब कैसे सुनें?</summary>
+        <p>पढ़ते समय मेन्यू दिखाने के लिए पेज के बीच में टैप करें, फिर <strong>किताब सुनें</strong> पर टैप करें। किताब डिवाइस पर इंस्टॉल आवाज़ों में पढ़ी जाती है, और आप आवाज़ व गति बदल सकते हैं। ऑफ़लाइन सुनना इस पर निर्भर करता है कि आपने iOS सेटिंग्स में कौन-सी आवाज़ें डाउनलोड की हैं।</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>PRO में क्या शामिल है?</summary>
+        <p>पढ़ना, असीमित लाइब्रेरी, Wi-Fi से किताबें भेजना और पूरा बैकअप मुफ़्त हैं। PRO एक बार की खरीदारी है, जो PDF के मार्जिन अपने-आप काटना, PDF पर हाइलाइट और नोट्स व उनका निर्यात, स्कैन की गई PDF के लिए डिवाइस पर टेक्स्ट पहचान, PDF टेक्स्ट को दोबारा व्यवस्थित करना और पढ़कर सुनाना, और iCloud सिंक जोड़ती है।</p>
+      </details>
+      <details>
+        <summary>मैंने PRO ख़रीदा है, पर दिख नहीं रहा। इसे कैसे बहाल करें?</summary>
+        <p>जिस App Store खाते से ख़रीदारी की थी, उसमें साइन इन रहते हुए <strong>सेटिंग्स</strong> → <strong>PRO</strong> → <strong>खरीदारी बहाल करें</strong> पर जाएँ। आपकी ख़रीदारी सीधे App Store से सत्यापित होती है।</p>
+      </details>
+      <details>
+        <summary>iCloud सिंक कैसे काम करता है?</summary>
+        <p>PRO अनलॉक करने के बाद हर डिवाइस पर <strong>सेटिंग्स</strong> → <strong>iCloud सिंक</strong> में इसे चालू करें। एक ही iCloud खाते से साइन इन iPhone और iPad के बीच किताबें, पढ़ने की जगह, बुकमार्क और नोट्स सिंक होते हैं।</p>
+        <p>सिर्फ़ PRO ख़रीदने से कुछ भी अपलोड नहीं होता। सिंक बदलावों और हटाई गई चीज़ों को सभी डिवाइस तक पहुँचाता है, इसलिए एक अलग पूरा बैकअप भी रखें।</p>
+      </details>
+
+      <h2>बैकअप और समस्या समाधान</h2>
+      <details>
+        <summary>अपनी लाइब्रेरी का बैकअप कैसे लें या उसे दूसरे डिवाइस पर कैसे ले जाएँ?</summary>
+        <p><strong>सेटिंग्स</strong> → <strong>पूरा बैकअप निर्यात करें</strong> पर जाकर किताबों, नोट्स, बुकमार्क, पढ़ने की जगह और सेटिंग्स वाली ZIP फ़ाइल सहेजें। बैकअप बहाल करने पर मौजूदा लाइब्रेरी उसके साथ मिलाई नहीं जाती, बल्कि बदल दी जाती है। बैकअप एन्क्रिप्ट नहीं होते, इसलिए उन्हें सुरक्षित जगह पर रखें।</p>
+      </details>
+      <details>
+        <summary>किताब नहीं खुल रही या ठीक से नहीं दिख रही</summary>
+        <p>जाँचें कि फ़ाइल DRM से सुरक्षित न हो और आकार की सीमा से बड़ी न हो। रीफ़्लो होने वाले फ़ॉर्मैट टेक्स्ट बनाए रखते हैं, पर हमेशा जटिल लेआउट नहीं; PDF हमेशा अपने मूल पेजों में दिखती है। फिर भी दिक्कत हो, तो फ़ाइल और छोटा-सा विवरण हमें ईमेल करें।</p>
+      </details>
+      <details>
+        <summary>राय कैसे भेजें?</summary>
+        <p>हमें ईमेल लिखने के लिए <strong>सेटिंग्स</strong> → <strong>राय और सुझाव</strong> पर टैप करें, या ऊपर दिए पते का इस्तेमाल करें। कृपया अपने डिवाइस का मॉडल और iOS संस्करण बताएँ।</p>
+      </details>
+
+      <h2>क़ानूनी जानकारी</h2>
+      <p>ND Books कौन-सा डेटा संभालता है और कौन-सा नहीं, यह जानने के लिए हमारी <a href="./privacy.html" data-page-link="./privacy.html">निजता नीति</a> देखें।</p>
+    </section>
+
+    <section data-lang="ro" lang="ro" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Scrie-ne la <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — îți răspundem cât mai repede.</span>
+      </div>
+
+      <h2>Primii pași</h2>
+      <details>
+        <summary>Cum adaug cărți?</summary>
+        <p>Atinge <strong>Importă cărți</strong> în bibliotecă și alege unul sau mai multe fișiere din aplicația Fișiere. Fiecare fișier poate avea până la 100 MB. Cărțile adăugate apar imediat în bibliotecă.</p>
+      </details>
+      <details>
+        <summary>Cum trimit cărți de pe calculator?</summary>
+        <p>Conectează iPhone-ul sau iPad-ul și calculatorul la aceeași rețea Wi-Fi, apoi atinge <strong>Pornește transferul Wi-Fi</strong>. Deschide în browserul calculatorului adresa completă afișată pe dispozitiv și încarcă cărțile.</p>
+        <p>Transferul folosește o conexiune temporară în rețeaua locală. Se oprește când aplicația trece în fundal, când se schimbă rețeaua sau după 30 de minute. Fiecare sesiune primește o adresă și un cod de acces noi.</p>
+      </details>
+      <details>
+        <summary>Ce formate sunt acceptate?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, fișiere MOBI, AZW și AZW3 fără DRM, precum și fișiere imagine uzuale. Cărțile protejate prin DRM nu pot fi deschise, iar KFX, DjVu, CHM și fișierele DOC vechi nu sunt acceptate.</p>
+      </details>
+
+      <h2>Lectură</h2>
+      <details>
+        <summary>Cum ascult o carte?</summary>
+        <p>În timpul lecturii, atinge mijlocul paginii pentru a afișa meniul, apoi atinge <strong>Ascultă cartea</strong>. Cartea este citită cu vocile instalate pe dispozitiv și poți schimba vocea și viteza. Ascultarea offline depinde de vocile descărcate în Configurări iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Ce include PRO?</summary>
+        <p>Lectura, biblioteca nelimitată, transferul prin Wi-Fi și copiile complete sunt gratuite. PRO este o achiziție unică ce adaugă decuparea automată a marginilor PDF, evidențieri și notițe în PDF cu export, recunoașterea textului pe dispozitiv pentru PDF-uri scanate, text adaptabil și citire cu voce tare pentru PDF-uri, precum și sincronizare iCloud.</p>
+      </details>
+      <details>
+        <summary>Am cumpărat PRO, dar nu apare. Cum îl restaurez?</summary>
+        <p>Conectează-te cu contul App Store folosit la cumpărare și mergi la <strong>Setări</strong> → <strong>PRO</strong> → <strong>Restaurează achizițiile</strong>. Achiziția este verificată direct cu App Store.</p>
+      </details>
+      <details>
+        <summary>Cum funcționează sincronizarea iCloud?</summary>
+        <p>După deblocarea PRO, activeaz-o pe fiecare dispozitiv din <strong>Setări</strong> → <strong>Sincronizare iCloud</strong>. Cărțile, pozițiile de lectură, semnele de carte și notițele se sincronizează între iPhone-urile și iPad-urile conectate la același cont iCloud.</p>
+        <p>Cumpărarea PRO nu încarcă nimic de la sine. Sincronizarea transmite modificările și ștergerile pe toate dispozitivele, așa că păstrează și o copie completă separată.</p>
+      </details>
+
+      <h2>Copii de rezervă și depanare</h2>
+      <details>
+        <summary>Cum fac o copie de rezervă sau îmi mut biblioteca?</summary>
+        <p>Mergi la <strong>Setări</strong> → <strong>Exportă copia completă</strong> pentru a salva un fișier ZIP cu cărțile, notițele, semnele de carte, pozițiile de lectură și configurările. Restaurarea unei copii înlocuiește biblioteca actuală în loc să o combine. Copiile nu sunt criptate, așa că păstrează-le într-un loc sigur.</p>
+      </details>
+      <details>
+        <summary>O carte nu se deschide sau nu arată corect</summary>
+        <p>Verifică dacă fișierul nu are DRM și nu depășește limita de dimensiune. Formatele adaptabile păstrează textul, dar nu întotdeauna aranjamentele complexe; PDF-urile afișează mereu paginile originale. Dacă problema persistă, trimite-ne fișierul cu o scurtă descriere.</p>
+      </details>
+      <details>
+        <summary>Cum trimit feedback?</summary>
+        <p>Atinge <strong>Setări</strong> → <strong>Feedback și sugestii</strong> pentru a ne scrie un e-mail sau folosește adresa de mai sus. Menționează modelul dispozitivului și versiunea iOS.</p>
+      </details>
+
+      <h2>Informații juridice</h2>
+      <p>Consultă <a href="./privacy.html" data-page-link="./privacy.html">Politica de confidențialitate</a> pentru detalii despre datele pe care ND Books le prelucrează și pe care nu le prelucrează.</p>
+    </section>
+
+    <section data-lang="hu" lang="hu" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Írj nekünk a(z) <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> címre – a lehető leghamarabb válaszolunk.</span>
+      </div>
+
+      <h2>Első lépések</h2>
+      <details>
+        <summary>Hogyan adhatok hozzá könyveket?</summary>
+        <p>Koppints a könyvtárban a(z) <strong>Könyvek importálása</strong> gombra, és válassz ki egy vagy több fájlt a Fájlok appban. Egy fájl legfeljebb 100 MB lehet. A hozzáadott könyvek azonnal megjelennek a könyvtárban.</p>
+      </details>
+      <details>
+        <summary>Hogyan küldhetek könyveket a számítógépemről?</summary>
+        <p>Csatlakoztasd az iPhone-t vagy iPadet és a számítógépet ugyanarra a Wi-Fi-hálózatra, majd koppints a(z) <strong>Wi-Fi-átvitel indítása</strong> gombra. Nyisd meg a számítógép böngészőjében az eszközön megjelenő teljes címet, és töltsd fel a könyveket.</p>
+        <p>Az átvitel ideiglenes kapcsolatot használ a helyi hálózaton. Leáll, ha az app a háttérbe kerül, ha megváltozik a hálózat, vagy 30 perc elteltével. Minden munkamenet új címet és új hozzáférési kódot kap.</p>
+      </details>
+      <details>
+        <summary>Milyen formátumok támogatottak?</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, DRM-mentes MOBI-, AZW- és AZW3-fájlok, valamint a gyakori képfájlok. A DRM-mel védett könyvek nem nyithatók meg, a KFX, DjVu, CHM és a régi DOC fájlok pedig nem támogatottak.</p>
+      </details>
+
+      <h2>Olvasás</h2>
+      <details>
+        <summary>Hogyan hallgathatok meg egy könyvet?</summary>
+        <p>Olvasás közben koppints az oldal közepére a menü megjelenítéséhez, majd a(z) <strong>Könyv meghallgatása</strong> lehetőségre. A könyvet az eszközre telepített hangok olvassák fel, a hangot és a sebességet módosíthatod. Az offline hallgatás az iOS Beállításokban letöltött hangoktól függ.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Mit tartalmaz a PRO?</summary>
+        <p>Az olvasás, a korlátlan könyvtár, a Wi-Fi-átvitel és a teljes mentések ingyenesek. A PRO egyszeri vásárlás, amely automatikus PDF-margóvágást, exportálható PDF-kiemeléseket és -jegyzeteket, beolvasott PDF-ek eszközön végzett szövegfelismerését, PDF-ek szövegének újratördelését és felolvasását, valamint iCloud-szinkronizálást ad.</p>
+      </details>
+      <details>
+        <summary>Megvásároltam a PRO-t, de nem jelenik meg. Hogyan állíthatom vissza?</summary>
+        <p>Nyisd meg a(z) <strong>Beállítások</strong> → <strong>PRO</strong> → <strong>Vásárlások visszaállítása</strong> menüt, miközben a vásárláshoz használt App Store-fiókkal vagy bejelentkezve. A vásárlást közvetlenül az App Store ellenőrzi.</p>
+      </details>
+      <details>
+        <summary>Hogyan működik az iCloud-szinkronizálás?</summary>
+        <p>A PRO feloldása után kapcsold be minden eszközön a(z) <strong>Beállítások</strong> → <strong>iCloud-szinkronizálás</strong> menüben. A könyvek, olvasási pozíciók, könyvjelzők és jegyzetek szinkronizálódnak az ugyanazzal az iCloud-fiókkal bejelentkezett iPhone-ok és iPadek között.</p>
+        <p>A PRO megvásárlása önmagában semmit sem tölt fel. A szinkronizálás a módosításokat és törléseket is átviszi minden eszközre, ezért őrizz meg külön teljes mentést is.</p>
+      </details>
+
+      <h2>Mentések és hibaelhárítás</h2>
+      <details>
+        <summary>Hogyan menthetem vagy költöztethetem a könyvtáramat?</summary>
+        <p>Nyisd meg a(z) <strong>Beállítások</strong> → <strong>Teljes mentés exportálása</strong> menüt, és ments egy ZIP-fájlt a könyveiddel, jegyzeteiddel, könyvjelzőiddel, olvasási pozícióiddal és beállításaiddal. A mentés visszaállítása lecseréli a jelenlegi könyvtárat, nem egyesíti vele. A mentések nincsenek titkosítva, ezért tárold őket biztonságos helyen.</p>
+      </details>
+      <details>
+        <summary>Egy könyv nem nyílik meg, vagy rosszul jelenik meg</summary>
+        <p>Ellenőrizd, hogy a fájl DRM-mentes-e, és nem lépi-e túl a méretkorlátot. Az újratördelhető formátumok megőrzik a szöveget, de az összetett elrendezést nem mindig; a PDF-ek mindig eredeti oldalaikkal jelennek meg. Ha a hiba továbbra is fennáll, küldd el nekünk a fájlt egy rövid leírással.</p>
+      </details>
+      <details>
+        <summary>Hogyan küldhetek visszajelzést?</summary>
+        <p>Koppints a(z) <strong>Beállítások</strong> → <strong>Visszajelzések és javaslatok</strong> lehetőségre, és írj nekünk e-mailt, vagy használd a fenti címet. Add meg az eszköz típusát és az iOS verzióját.</p>
+      </details>
+
+      <h2>Jogi információk</h2>
+      <p>Arról, hogy az ND Books milyen adatokat kezel és milyeneket nem, az <a href="./privacy.html" data-page-link="./privacy.html">Adatvédelmi irányelvek</a> oldalon olvashatsz.</p>
+    </section>
+
+    <section data-lang="el" lang="el" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>Στείλτε μας email στο <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — θα απαντήσουμε το συντομότερο δυνατό.</span>
+      </div>
+
+      <h2>Πρώτα βήματα</h2>
+      <details>
+        <summary>Πώς προσθέτω βιβλία;</summary>
+        <p>Αγγίξτε <strong>Εισαγωγή βιβλίων</strong> στη βιβλιοθήκη και επιλέξτε ένα ή περισσότερα αρχεία από την εφαρμογή Αρχεία. Κάθε αρχείο μπορεί να έχει έως 100 MB. Τα βιβλία που προσθέτετε εμφανίζονται αμέσως στη βιβλιοθήκη.</p>
+      </details>
+      <details>
+        <summary>Πώς στέλνω βιβλία από τον υπολογιστή μου;</summary>
+        <p>Συνδέστε το iPhone ή το iPad και τον υπολογιστή στο ίδιο δίκτυο Wi-Fi και αγγίξτε <strong>Έναρξη μεταφοράς Wi-Fi</strong>. Ανοίξτε την πλήρη διεύθυνση που εμφανίζεται στη συσκευή σας στο πρόγραμμα περιήγησης του υπολογιστή και ανεβάστε τα βιβλία σας.</p>
+        <p>Η μεταφορά χρησιμοποιεί προσωρινή σύνδεση στο τοπικό σας δίκτυο. Σταματά όταν η εφαρμογή μεταβεί στο παρασκήνιο, όταν αλλάξει το δίκτυο ή μετά από 30 λεπτά. Κάθε συνεδρία έχει νέα διεύθυνση και νέο κωδικό πρόσβασης.</p>
+      </details>
+      <details>
+        <summary>Ποιες μορφές υποστηρίζονται;</summary>
+        <p>EPUB, PDF, TXT, Markdown, HTML, FB2, DOCX, RTF, CBZ, CBR, αρχεία MOBI, AZW και AZW3 χωρίς DRM, καθώς και συνηθισμένα αρχεία εικόνας. Τα βιβλία με προστασία DRM δεν ανοίγουν, ενώ τα KFX, DjVu, CHM και τα παλιά αρχεία DOC δεν υποστηρίζονται.</p>
+      </details>
+
+      <h2>Ανάγνωση</h2>
+      <details>
+        <summary>Πώς ακούω ένα βιβλίο;</summary>
+        <p>Κατά την ανάγνωση, αγγίξτε το κέντρο της σελίδας για να εμφανιστεί το μενού και έπειτα αγγίξτε <strong>Ακρόαση βιβλίου</strong>. Το βιβλίο διαβάζεται με τις φωνές που είναι εγκατεστημένες στη συσκευή και μπορείτε να αλλάξετε φωνή και ταχύτητα. Η ακρόαση εκτός σύνδεσης εξαρτάται από τις φωνές που έχετε κατεβάσει στις Ρυθμίσεις του iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>Τι περιλαμβάνει το PRO;</summary>
+        <p>Η ανάγνωση, η απεριόριστη βιβλιοθήκη, η μεταφορά μέσω Wi-Fi και τα πλήρη αντίγραφα ασφαλείας είναι δωρεάν. Το PRO είναι εφάπαξ αγορά που προσθέτει αυτόματη περικοπή περιθωρίων PDF, επισημάνσεις και σημειώσεις σε PDF με εξαγωγή, αναγνώριση κειμένου στη συσκευή για σαρωμένα PDF, αναδιάταξη κειμένου και ανάγνωση φωναχτά για PDF, καθώς και συγχρονισμό iCloud.</p>
+      </details>
+      <details>
+        <summary>Αγόρασα το PRO αλλά δεν εμφανίζεται. Πώς το επαναφέρω;</summary>
+        <p>Μεταβείτε στα <strong>Ρυθμίσεις</strong> → <strong>PRO</strong> → <strong>Επαναφορά αγορών</strong> ενώ είστε συνδεδεμένοι με τον λογαριασμό App Store που χρησιμοποιήσατε για την αγορά. Η αγορά επαληθεύεται απευθείας με το App Store.</p>
+      </details>
+      <details>
+        <summary>Πώς λειτουργεί ο συγχρονισμός iCloud;</summary>
+        <p>Αφού ξεκλειδώσετε το PRO, ενεργοποιήστε τον σε κάθε συσκευή από <strong>Ρυθμίσεις</strong> → <strong>Συγχρονισμός iCloud</strong>. Βιβλία, θέσεις ανάγνωσης, σελιδοδείκτες και σημειώσεις συγχρονίζονται μεταξύ iPhone και iPad που χρησιμοποιούν τον ίδιο λογαριασμό iCloud.</p>
+        <p>Η αγορά του PRO δεν ανεβάζει τίποτα από μόνη της. Ο συγχρονισμός μεταφέρει αλλαγές και διαγραφές σε όλες τις συσκευές σας, γι' αυτό κρατήστε και ένα ξεχωριστό πλήρες αντίγραφο ασφαλείας.</p>
+      </details>
+
+      <h2>Αντίγραφα ασφαλείας και αντιμετώπιση προβλημάτων</h2>
+      <details>
+        <summary>Πώς δημιουργώ αντίγραφο ασφαλείας ή μεταφέρω τη βιβλιοθήκη μου;</summary>
+        <p>Μεταβείτε στα <strong>Ρυθμίσεις</strong> → <strong>Εξαγωγή πλήρους αντιγράφου</strong> για να αποθηκεύσετε ένα αρχείο ZIP με τα βιβλία, τις σημειώσεις, τους σελιδοδείκτες, τις θέσεις ανάγνωσης και τις ρυθμίσεις σας. Η επαναφορά αντιγράφου αντικαθιστά την τρέχουσα βιβλιοθήκη αντί να τη συγχωνεύει. Τα αντίγραφα δεν είναι κρυπτογραφημένα, γι' αυτό φυλάξτε τα σε ασφαλές μέρος.</p>
+      </details>
+      <details>
+        <summary>Ένα βιβλίο δεν ανοίγει ή δεν εμφανίζεται σωστά</summary>
+        <p>Βεβαιωθείτε ότι το αρχείο δεν έχει προστασία DRM και δεν υπερβαίνει το όριο μεγέθους. Οι μορφές με αναδιάταξη διατηρούν το κείμενο, αλλά όχι πάντα σύνθετες διατάξεις· τα PDF εμφανίζουν πάντα τις αρχικές τους σελίδες. Αν το πρόβλημα παραμένει, στείλτε μας το αρχείο με μια σύντομη περιγραφή.</p>
+      </details>
+      <details>
+        <summary>Πώς στέλνω σχόλια;</summary>
+        <p>Αγγίξτε <strong>Ρυθμίσεις</strong> → <strong>Σχόλια και προτάσεις</strong> για να μας γράψετε email ή χρησιμοποιήστε την παραπάνω διεύθυνση. Αναφέρετε το μοντέλο της συσκευής και την έκδοση του iOS.</p>
+      </details>
+
+      <h2>Νομικά</h2>
+      <p>Δείτε την ενότητα <a href="./privacy.html" data-page-link="./privacy.html">Πολιτική απορρήτου</a> για λεπτομέρειες σχετικά με τα δεδομένα που χειρίζεται και δεν χειρίζεται το ND Books.</p>
+    </section>
+
+    <section data-lang="he" lang="he" dir="rtl" hidden>
+      <div class="contact">
+        <span>📧</span>
+        <span>אפשר לכתוב לנו בכתובת <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — נשיב בהקדם האפשרי.</span>
+      </div>
+
+      <h2>תחילת העבודה</h2>
+      <details>
+        <summary>איך מוסיפים ספרים?</summary>
+        <p>יש להקיש על <strong>ייבוא ספרים</strong> בספרייה ולבחור קובץ אחד או יותר ביישום ״קבצים״. גודל כל קובץ יכול להגיע עד 100 MB. ספרים שנוספו מופיעים בספרייה מיד.</p>
+      </details>
+      <details>
+        <summary>איך שולחים ספרים מהמחשב?</summary>
+        <p>יש לחבר את ה-iPhone או ה-iPad ואת המחשב לאותה רשת Wi-Fi ולהקיש על <strong>הפעלת העברה ב-Wi-Fi</strong>. אחר כך פותחים בדפדפן במחשב את הכתובת המלאה שמוצגת במכשיר ומעלים את הספרים.</p>
+        <p>ההעברה משתמשת בחיבור זמני ברשת המקומית. היא נעצרת כשהיישום עובר לרקע, כשהרשת משתנה או אחרי 30 דקות. לכל הפעלה נוצרים כתובת וקוד גישה חדשים.</p>
+      </details>
+      <details>
+        <summary>אילו פורמטים נתמכים?</summary>
+        <p>EPUB,‏ PDF,‏ TXT,‏ Markdown,‏ HTML,‏ FB2,‏ DOCX,‏ RTF,‏ CBZ,‏ CBR, קובצי MOBI,‏ AZW ו-AZW3 ללא DRM וקובצי תמונה נפוצים. אי אפשר לפתוח ספרים המוגנים ב-DRM, וקובצי KFX,‏ DjVu,‏ CHM ו-DOC ישנים אינם נתמכים.</p>
+      </details>
+
+      <h2>קריאה</h2>
+      <details>
+        <summary>איך מאזינים לספר?</summary>
+        <p>בזמן הקריאה מקישים על מרכז העמוד כדי להציג את התפריט, ואז על <strong>האזנה לספר</strong>. הספר מוקרא בקולות שמותקנים במכשיר, ואפשר לשנות את הקול ואת המהירות. האזנה בלי חיבור תלויה בקולות שהורדו בהגדרות iOS.</p>
+      </details>
+
+      <h2>PRO</h2>
+      <details>
+        <summary>מה כלול ב-PRO?</summary>
+        <p>קריאה, ספרייה ללא הגבלה, העברה ב-Wi-Fi וגיבויים מלאים הם בחינם. PRO הוא רכישה חד-פעמית שמוסיפה חיתוך אוטומטי של שולי PDF, הדגשות והערות ב-PDF עם ייצוא, זיהוי טקסט במכשיר עבור קובצי PDF סרוקים, זרימה מחדש של טקסט והקראה עבור PDF, וסנכרון iCloud.</p>
+      </details>
+      <details>
+        <summary>רכישת PRO לא מופיעה. איך משחזרים אותה?</summary>
+        <p>יש לעבור אל <strong>הגדרות</strong> ← <strong>PRO</strong> ← <strong>שחזור רכישות</strong> כשמחוברים לחשבון App Store שבו בוצעה הרכישה. הרכישה מאומתת ישירות מול App Store.</p>
+      </details>
+      <details>
+        <summary>איך עובד סנכרון iCloud?</summary>
+        <p>אחרי פתיחת PRO, מפעילים אותו בכל מכשיר דרך <strong>הגדרות</strong> ← <strong>סנכרון iCloud</strong>. ספרים, מיקומי קריאה, סימניות והערות מסתנכרנים בין מכשירי iPhone ו-iPad המחוברים לאותו חשבון iCloud.</p>
+        <p>רכישת PRO כשלעצמה לא מעלה דבר. הסנכרון מעביר שינויים ומחיקות לכל המכשירים, ולכן כדאי לשמור גם גיבוי מלא נפרד.</p>
+      </details>
+
+      <h2>גיבויים ופתרון בעיות</h2>
+      <details>
+        <summary>איך מגבים או מעבירים את הספרייה?</summary>
+        <p>יש לעבור אל <strong>הגדרות</strong> ← <strong>ייצוא גיבוי מלא</strong> כדי לשמור קובץ ZIP עם הספרים, ההערות, הסימניות, מיקומי הקריאה וההגדרות. שחזור גיבוי מחליף את הספרייה הנוכחית ואינו ממזג איתה. הגיבויים אינם מוצפנים, ולכן כדאי לשמור אותם במקום בטוח.</p>
+      </details>
+      <details>
+        <summary>ספר לא נפתח או לא מוצג כראוי</summary>
+        <p>יש לוודא שהקובץ אינו מוגן ב-DRM ואינו חורג ממגבלת הגודל. פורמטים בזרימה חופשית שומרים על הטקסט, אך לא תמיד על פריסות מורכבות; קובצי PDF מוצגים תמיד בעמודים המקוריים. אם הבעיה נמשכת, אפשר לשלוח לנו את הקובץ עם תיאור קצר.</p>
+      </details>
+      <details>
+        <summary>איך שולחים משוב?</summary>
+        <p>יש להקיש על <strong>הגדרות</strong> ← <strong>משוב והצעות</strong> כדי לכתוב לנו דוא״ל, או להשתמש בכתובת שלמעלה. כדאי לציין את דגם המכשיר ואת גרסת iOS.</p>
+      </details>
+
+      <h2>מידע משפטי</h2>
+      <p>פרטים על המידע ש-ND Books מטפל בו ושאינו מטפל בו מופיעים ב<a href="./privacy.html" data-page-link="./privacy.html">מדיניות פרטיות</a>.</p>
+    </section>
+
+    <footer class="page">
+      <p>© 2026 Next Dawn Technologies · <a href="./index.html" data-page-link="./index.html">ND Books</a> · <a href="./privacy.html" data-page-link="./privacy.html" data-i18n="privacy">Privacy Policy</a></p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var translations = {
+        "en": {
+          "language": "Language",
+          "support": "Support",
+          "privacy": "Privacy Policy",
+          "title": "ND Books — Support",
+          "description": "Get help with ND Books: importing books, Wi-Fi transfer, formats, listening, PRO, iCloud sync and backups.",
+          "heading": "Support",
+          "subtitle": "An offline ebook reader for iPhone and iPad."
+        },
+        "de": {
+          "language": "Sprache",
+          "support": "Support",
+          "privacy": "Datenschutzerklärung",
+          "title": "ND Books — Support",
+          "description": "Hilfe zu ND Books: Bücher importieren, WLAN-Übertragung, Formate, Vorlesen, PRO, iCloud-Synchronisierung und Backups.",
+          "heading": "Support",
+          "subtitle": "Ein Offline-E-Book-Reader für iPhone und iPad."
+        },
+        "ja": {
+          "language": "言語",
+          "support": "サポート",
+          "privacy": "プライバシーポリシー",
+          "title": "ND Books — サポート",
+          "description": "ND Books のヘルプ：本の読み込み、Wi-Fi 転送、対応形式、読み上げ、PRO、iCloud 同期、バックアップ。",
+          "heading": "サポート",
+          "subtitle": "iPhone と iPad のためのオフライン電子書籍リーダー。"
+        },
+        "fr": {
+          "language": "Langue",
+          "support": "Assistance",
+          "privacy": "Politique de confidentialité",
+          "title": "ND Books — Assistance",
+          "description": "Aide pour ND Books : importer des livres, transfert Wi-Fi, formats, lecture à voix haute, PRO, synchronisation iCloud et sauvegardes.",
+          "heading": "Assistance",
+          "subtitle": "Une liseuse hors ligne pour iPhone et iPad."
+        },
+        "es": {
+          "language": "Idioma",
+          "support": "Soporte",
+          "privacy": "Política de privacidad",
+          "title": "ND Books — Soporte",
+          "description": "Ayuda de ND Books: importar libros, transferencia por Wi-Fi, formatos, lectura en voz alta, PRO, sincronización con iCloud y copias de seguridad.",
+          "heading": "Soporte",
+          "subtitle": "Un lector de libros electrónicos sin conexión para iPhone y iPad."
+        },
+        "pt": {
+          "language": "Idioma",
+          "support": "Suporte",
+          "privacy": "Política de Privacidade",
+          "title": "ND Books — Suporte",
+          "description": "Ajuda do ND Books: importar livros, transferência por Wi-Fi, formatos, leitura em voz alta, PRO, sincronização com iCloud e cópias de segurança.",
+          "heading": "Suporte",
+          "subtitle": "Um leitor de e-books offline para iPhone e iPad."
+        },
+        "ko": {
+          "language": "언어",
+          "support": "지원",
+          "privacy": "개인정보 처리방침",
+          "title": "ND Books — 지원",
+          "description": "ND Books 도움말: 책 가져오기, Wi-Fi 전송, 지원 형식, 책 듣기, PRO, iCloud 동기화, 백업.",
+          "heading": "지원",
+          "subtitle": "iPhone과 iPad용 오프라인 전자책 리더."
+        },
+        "zh-Hans": {
+          "language": "语言",
+          "support": "支持与帮助",
+          "privacy": "隐私政策",
+          "title": "ND Books — 支持与帮助",
+          "description": "获取 ND Books 帮助：导入书籍、Wi-Fi 传书、支持格式、听书、PRO、iCloud 同步与备份。",
+          "heading": "支持与帮助",
+          "subtitle": "适用于 iPhone 和 iPad 的离线电子书阅读器。"
+        },
+        "zh-Hant": {
+          "language": "語言",
+          "support": "支援與說明",
+          "privacy": "隱私權政策",
+          "title": "ND Books — 支援與說明",
+          "description": "取得 ND Books 使用說明：匯入書籍、Wi-Fi 傳書、支援格式、聆聽、PRO、iCloud 同步與備份。",
+          "heading": "支援與說明",
+          "subtitle": "適用於 iPhone 和 iPad 的離線電子書閱讀器。"
+        },
+        "it": {
+          "language": "Lingua",
+          "support": "Assistenza",
+          "privacy": "Informativa sulla privacy",
+          "title": "ND Books — Assistenza",
+          "description": "Assistenza per ND Books: importare libri, trasferimento Wi-Fi, formati, lettura ad alta voce, PRO, sincronizzazione iCloud e backup.",
+          "heading": "Assistenza",
+          "subtitle": "Un lettore di ebook offline per iPhone e iPad."
+        },
+        "nl": {
+          "language": "Taal",
+          "support": "Ondersteuning",
+          "privacy": "Privacybeleid",
+          "title": "ND Books — Ondersteuning",
+          "description": "Hulp bij ND Books: boeken importeren, wifi-overdracht, formaten, voorlezen, PRO, iCloud-synchronisatie en back-ups.",
+          "heading": "Ondersteuning",
+          "subtitle": "Een offline e-booklezer voor iPhone en iPad."
+        },
+        "sv": {
+          "language": "Språk",
+          "support": "Support",
+          "privacy": "Integritetspolicy",
+          "title": "ND Books — Support",
+          "description": "Hjälp för ND Books: importera böcker, Wi-Fi-överföring, format, uppläsning, PRO, iCloud-synkronisering och säkerhetskopior.",
+          "heading": "Support",
+          "subtitle": "En offlineläsare för e-böcker på iPhone och iPad."
+        },
+        "da": {
+          "language": "Sprog",
+          "support": "Support",
+          "privacy": "Privatlivspolitik",
+          "title": "ND Books — Support",
+          "description": "Hjælp til ND Books: import af bøger, Wi-Fi-overførsel, formater, oplæsning, PRO, iCloud-synkronisering og sikkerhedskopier.",
+          "heading": "Support",
+          "subtitle": "En offline e-bogslæser til iPhone og iPad."
+        },
+        "nb": {
+          "language": "Språk",
+          "support": "Brukerstøtte",
+          "privacy": "Personvernerklæring",
+          "title": "ND Books — Brukerstøtte",
+          "description": "Hjelp til ND Books: importere bøker, Wi-Fi-overføring, formater, opplesning, PRO, iCloud-synkronisering og sikkerhetskopier.",
+          "heading": "Brukerstøtte",
+          "subtitle": "En offline e-bokleser for iPhone og iPad."
+        },
+        "fi": {
+          "language": "Kieli",
+          "support": "Tuki",
+          "privacy": "Tietosuojakäytäntö",
+          "title": "ND Books — Tuki",
+          "description": "ND Books -ohjeet: kirjojen tuonti, Wi-Fi-siirto, tiedostomuodot, ääneenluku, PRO, iCloud-synkronointi ja varmuuskopiot.",
+          "heading": "Tuki",
+          "subtitle": "Offline-e-kirjanlukija iPhonelle ja iPadille."
+        },
+        "pl": {
+          "language": "Język",
+          "support": "Pomoc",
+          "privacy": "Polityka prywatności",
+          "title": "ND Books — Pomoc",
+          "description": "Pomoc ND Books: importowanie książek, transfer przez Wi-Fi, formaty, czytanie na głos, PRO, synchronizacja iCloud i kopie zapasowe.",
+          "heading": "Pomoc",
+          "subtitle": "Czytnik e-booków offline na iPhone'a i iPada."
+        },
+        "cs": {
+          "language": "Jazyk",
+          "support": "Podpora",
+          "privacy": "Zásady ochrany soukromí",
+          "title": "ND Books — Podpora",
+          "description": "Nápověda k ND Books: import knih, přenos přes Wi-Fi, formáty, předčítání, PRO, synchronizace iCloud a zálohy.",
+          "heading": "Podpora",
+          "subtitle": "Offline čtečka e-knih pro iPhone a iPad."
+        },
+        "tr": {
+          "language": "Dil",
+          "support": "Destek",
+          "privacy": "Gizlilik Politikası",
+          "title": "ND Books — Destek",
+          "description": "ND Books yardımı: kitap içe aktarma, Wi-Fi aktarımı, biçimler, sesli okuma, PRO, iCloud eşzamanlama ve yedekler.",
+          "heading": "Destek",
+          "subtitle": "iPhone ve iPad için çevrimdışı e-kitap okuyucu."
+        },
+        "ru": {
+          "language": "Язык",
+          "support": "Поддержка",
+          "privacy": "Политика конфиденциальности",
+          "title": "ND Books — Поддержка",
+          "description": "Справка ND Books: импорт книг, передача по Wi-Fi, форматы, чтение вслух, PRO, синхронизация iCloud и резервные копии.",
+          "heading": "Поддержка",
+          "subtitle": "Офлайн-читалка электронных книг для iPhone и iPad."
+        },
+        "uk": {
+          "language": "Мова",
+          "support": "Підтримка",
+          "privacy": "Політика конфіденційності",
+          "title": "ND Books — Підтримка",
+          "description": "Довідка ND Books: імпорт книжок, передавання через Wi-Fi, формати, читання вголос, PRO, синхронізація iCloud і резервні копії.",
+          "heading": "Підтримка",
+          "subtitle": "Офлайн-читалка електронних книжок для iPhone та iPad."
+        },
+        "ar": {
+          "language": "اللغة",
+          "support": "الدعم",
+          "privacy": "سياسة الخصوصية",
+          "title": "ND Books — الدعم",
+          "description": "مساعدة ND Books: استيراد الكتب، والنقل عبر Wi-Fi، والصيغ، والقراءة بصوت عالٍ، وPRO، ومزامنة iCloud، والنسخ الاحتياطية.",
+          "heading": "الدعم",
+          "subtitle": "قارئ كتب إلكترونية يعمل بلا اتصال على iPhone وiPad."
+        },
+        "th": {
+          "language": "ภาษา",
+          "support": "ฝ่ายสนับสนุน",
+          "privacy": "นโยบายความเป็นส่วนตัว",
+          "title": "ND Books — ฝ่ายสนับสนุน",
+          "description": "วิธีใช้ ND Books: นำเข้าหนังสือ ส่งผ่าน Wi-Fi รูปแบบไฟล์ การอ่านออกเสียง PRO การซิงค์กับ iCloud และการสำรองข้อมูล",
+          "heading": "ฝ่ายสนับสนุน",
+          "subtitle": "แอปอ่านอีบุ๊กแบบออฟไลน์สำหรับ iPhone และ iPad"
+        },
+        "vi": {
+          "language": "Ngôn ngữ",
+          "support": "Hỗ trợ",
+          "privacy": "Chính sách quyền riêng tư",
+          "title": "ND Books — Hỗ trợ",
+          "description": "Trợ giúp ND Books: nhập sách, chuyển sách qua Wi-Fi, định dạng, đọc to, PRO, đồng bộ iCloud và sao lưu.",
+          "heading": "Hỗ trợ",
+          "subtitle": "Ứng dụng đọc sách điện tử ngoại tuyến cho iPhone và iPad."
+        },
+        "id": {
+          "language": "Bahasa",
+          "support": "Dukungan",
+          "privacy": "Kebijakan Privasi",
+          "title": "ND Books — Dukungan",
+          "description": "Bantuan ND Books: mengimpor buku, transfer Wi-Fi, format, membacakan teks, PRO, sinkronisasi iCloud, dan cadangan.",
+          "heading": "Dukungan",
+          "subtitle": "Pembaca e-book offline untuk iPhone dan iPad."
+        },
+        "ms": {
+          "language": "Bahasa",
+          "support": "Sokongan",
+          "privacy": "Dasar Privasi",
+          "title": "ND Books — Sokongan",
+          "description": "Bantuan ND Books: mengimport buku, pemindahan Wi-Fi, format, bacaan kuat, PRO, penyegerakan iCloud dan sandaran.",
+          "heading": "Sokongan",
+          "subtitle": "Pembaca e-buku luar talian untuk iPhone dan iPad."
+        },
+        "hi": {
+          "language": "भाषा",
+          "support": "सहायता",
+          "privacy": "निजता नीति",
+          "title": "ND Books — सहायता",
+          "description": "ND Books सहायता: किताबें आयात करना, Wi-Fi से किताबें भेजना, फ़ॉर्मैट, किताब सुनना, PRO, iCloud सिंक और बैकअप।",
+          "heading": "सहायता",
+          "subtitle": "iPhone और iPad के लिए ऑफ़लाइन ई-बुक रीडर।"
+        },
+        "ro": {
+          "language": "Limbă",
+          "support": "Asistență",
+          "privacy": "Politica de confidențialitate",
+          "title": "ND Books — Asistență",
+          "description": "Ajutor pentru ND Books: importul cărților, transfer prin Wi-Fi, formate, citire cu voce tare, PRO, sincronizare iCloud și copii de rezervă.",
+          "heading": "Asistență",
+          "subtitle": "Un cititor de cărți electronice offline pentru iPhone și iPad."
+        },
+        "hu": {
+          "language": "Nyelv",
+          "support": "Támogatás",
+          "privacy": "Adatvédelmi irányelvek",
+          "title": "ND Books — Támogatás",
+          "description": "ND Books súgó: könyvek importálása, Wi-Fi-átvitel, formátumok, felolvasás, PRO, iCloud-szinkronizálás és mentések.",
+          "heading": "Támogatás",
+          "subtitle": "Offline e-könyv-olvasó iPhone-ra és iPadre."
+        },
+        "el": {
+          "language": "Γλώσσα",
+          "support": "Υποστήριξη",
+          "privacy": "Πολιτική απορρήτου",
+          "title": "ND Books — Υποστήριξη",
+          "description": "Βοήθεια για το ND Books: εισαγωγή βιβλίων, μεταφορά μέσω Wi-Fi, μορφές, ανάγνωση φωναχτά, PRO, συγχρονισμός iCloud και αντίγραφα ασφαλείας.",
+          "heading": "Υποστήριξη",
+          "subtitle": "Αναγνώστης ηλεκτρονικών βιβλίων εκτός σύνδεσης για iPhone και iPad."
+        },
+        "he": {
+          "language": "שפה",
+          "support": "תמיכה",
+          "privacy": "מדיניות פרטיות",
+          "title": "ND Books — תמיכה",
+          "description": "עזרה ב-ND Books: ייבוא ספרים, העברה ב-Wi-Fi, פורמטים, הקראה, PRO, סנכרון iCloud וגיבויים.",
+          "heading": "תמיכה",
+          "subtitle": "קורא ספרים אלקטרוניים שעובד בלי חיבור ל-iPhone ול-iPad."
+        }
+      };
+      var rtl = { ar: true, he: true };
+      var storageKey = 'nd-books-language';
+      var select = document.querySelector('[data-lang-select]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = String(value).toLowerCase().replace(/_/g, '-');
+        if (/^zh-(hant|tw|hk|mo)/.test(value)) return 'zh-Hant';
+        if (/^zh/.test(value)) return 'zh-Hans';
+        if (/^(nb|no|nn)(-|$)/.test(value)) return 'nb';
+        if (value === 'iw' || value.indexOf('iw-') === 0) return 'he';
+        if (value === 'in' || value.indexOf('in-') === 0) return 'id';
+        if (Object.prototype.hasOwnProperty.call(translations, value)) return value;
+        var base = value.split('-')[0];
+        return Object.prototype.hasOwnProperty.call(translations, base) ? base : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = lang;
+        document.documentElement.dir = rtl[lang] ? 'rtl' : 'ltr';
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        select.value = lang;
+        select.setAttribute('aria-label', copy.language);
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      select.addEventListener('change', function () {
+        setLanguage(select.value);
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the browser language. */ }
+      }
+      if (!initialLanguage) {
+        var preferred = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+        for (var i = 0; i < preferred.length && !initialLanguage; i++) initialLanguage = normalizeLanguage(preferred[i]);
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>

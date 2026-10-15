@@ -1,0 +1,2391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Books — Your Books, Offline</title>
+<meta name="description" content="ND Books is an offline ebook reader for iPhone and iPad. Read EPUB, PDF, MOBI and more — no account, no ads, no tracking." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1d1b19;
+    --muted: #625c56;
+    --card: #f7f4f0;
+    --border: #e8e2db;
+    --accent: #b5482f;
+    --on-accent: #ffffff;
+    --maxw: 920px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141312;
+      --fg: #f3f0ec;
+      --muted: #aaa39b;
+      --card: #1e1c1a;
+      --border: #2f2b28;
+      --accent: #f0947a;
+      --on-accent: #1d1b19;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+  a { color: var(--accent); }
+
+  .lang-picker {
+    position: relative; display: inline-flex; align-items: center; gap: 8px;
+    min-height: 44px; max-width: 100%; padding: 0 14px;
+    border: 1px solid var(--border); background: var(--card); border-radius: 999px;
+  }
+  .lang-picker::after {
+    content: ""; position: absolute; inset-inline-end: 16px; top: 50%;
+    width: 7px; height: 7px; margin-top: -5px;
+    border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+    transform: rotate(45deg); pointer-events: none;
+  }
+  .lang-picker select {
+    appearance: none; -webkit-appearance: none; border: 0; background: transparent;
+    color: var(--fg); font: inherit; font-size: 15px; min-height: 42px; max-width: 100%;
+    padding-inline-end: 22px; cursor: pointer; touch-action: manipulation;
+  }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%; max-width: var(--maxw); margin: 0 auto;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  select:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  .top { padding: 20px 0 0; }
+  .hero { text-align: center; padding: 56px 0 40px; }
+  .hero .app-icon {
+    display: block; width: 112px; height: 112px; margin: 0 auto 20px;
+    border-radius: 25px; box-shadow: 0 10px 28px rgba(120, 70, 40, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+  .hero .badge {
+    display: inline-block; font-size: 13px; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; margin-bottom: 18px;
+  }
+  .hero h1 { font-size: 40px; margin: 0 0 14px; letter-spacing: -0.01em; line-height: 1.25; }
+  .hero p.lead { font-size: 18px; color: var(--muted); max-width: 580px; margin: 0 auto 28px; }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; padding: 12px 24px; border-radius: 12px; font-weight: 600; font-size: 15.5px;
+    text-decoration: none; border: 1px solid transparent; touch-action: manipulation;
+  }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-secondary { background: var(--card); color: var(--fg); border-color: var(--border); }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 24px 0 56px; }
+  .grid > *, .cta-row > * { min-width: 0; }
+  .feature { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .feature .icon { font-size: 26px; margin-bottom: 10px; }
+  .feature h3 { font-size: 16.5px; margin: 0 0 6px; }
+  .feature p { font-size: 14.5px; color: var(--muted); margin: 0; }
+
+  .formats { text-align: center; padding-bottom: 56px; }
+  .formats p.label { color: var(--muted); font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+  .chip-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .chip { border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 6px 16px; font-size: 14px; }
+
+  footer.page {
+    border-top: 1px solid var(--border); padding: 24px 0 48px; color: var(--muted); font-size: 13.5px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  footer.page a { color: var(--muted); }
+
+  @media (min-width: 681px) and (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 680px) {
+    .hero { padding: 36px 0 28px; }
+    .hero .app-icon { width: 88px; height: 88px; border-radius: 20px; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(28px, 7.5vw, 36px); line-height: 1.3; }
+    .hero p.lead { font-size: 16px; margin-bottom: 24px; }
+    .cta-row { gap: 10px; }
+    .btn { padding: 12px 18px; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 16px 0 36px; }
+    .feature { padding: 18px; border-radius: 14px; }
+    .formats { padding-bottom: 32px; }
+    .chip { padding: 6px 12px; }
+    footer.page {
+      flex-direction: column; align-items: flex-start; gap: 6px;
+      padding: 20px 0 calc(32px + env(safe-area-inset-bottom));
+    }
+  }
+  @media (max-width: 480px) {
+    .cta-row { flex-direction: column; align-items: stretch; }
+    .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+    <label class="lang-picker">
+      <span aria-hidden="true">🌐</span>
+      <select data-lang-select aria-label="Language">
+        <option value="en" lang="en">English</option>
+        <option value="de" lang="de">Deutsch</option>
+        <option value="ja" lang="ja">日本語</option>
+        <option value="fr" lang="fr">Français</option>
+        <option value="es" lang="es">Español</option>
+        <option value="pt" lang="pt">Português</option>
+        <option value="ko" lang="ko">한국어</option>
+        <option value="zh-Hans" lang="zh-Hans">简体中文</option>
+        <option value="zh-Hant" lang="zh-Hant">繁體中文</option>
+        <option value="it" lang="it">Italiano</option>
+        <option value="nl" lang="nl">Nederlands</option>
+        <option value="sv" lang="sv">Svenska</option>
+        <option value="da" lang="da">Dansk</option>
+        <option value="nb" lang="nb">Norsk bokmål</option>
+        <option value="fi" lang="fi">Suomi</option>
+        <option value="pl" lang="pl">Polski</option>
+        <option value="cs" lang="cs">Čeština</option>
+        <option value="tr" lang="tr">Türkçe</option>
+        <option value="ru" lang="ru">Русский</option>
+        <option value="uk" lang="uk">Українська</option>
+        <option value="ar" lang="ar">العربية</option>
+        <option value="th" lang="th">ไทย</option>
+        <option value="vi" lang="vi">Tiếng Việt</option>
+        <option value="id" lang="id">Bahasa Indonesia</option>
+        <option value="ms" lang="ms">Bahasa Melayu</option>
+        <option value="hi" lang="hi">हिन्दी</option>
+        <option value="ro" lang="ro">Română</option>
+        <option value="hu" lang="hu">Magyar</option>
+        <option value="el" lang="el">Ελληνικά</option>
+        <option value="he" lang="he">עברית</option>
+      </select>
+    </label>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Your books, ready offline.</h1>
+        <p class="lead">ND Books is an ebook reader for iPhone and iPad. Your books, notes and reading progress stay on your device. No account, no ads.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">View on the App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Support</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Reads the formats you have</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, comics and more, in one library with no book limit.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Read your way</h3>
+          <p>Page turns or scrolling, reading themes, fonts, spacing and one-handed tap zones.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Bookmarks and notes</h3>
+          <p>Highlight passages, write notes, export them as Markdown and see your reading time.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi transfer</h3>
+          <p>Send books from your computer's browser to your iPhone or iPad over the same Wi-Fi network.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Listen to books</h3>
+          <p>Have books read aloud with your device's voices, at the speed you like.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Private by design</h3>
+          <p>No account, no ads, no tracking. Export a full backup of your library whenever you want.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Supported formats</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="de" lang="de" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Deine Bücher, jederzeit offline.</h1>
+        <p class="lead">ND Books ist ein E-Book-Reader für iPhone und iPad. Bücher, Notizen und Lesefortschritt bleiben auf deinem Gerät. Kein Konto, keine Werbung.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Im App Store ansehen</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Support</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Liest deine Formate</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, Comics und mehr in einer Bibliothek ohne Buchlimit.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Lies, wie du willst</h3>
+          <p>Blättern oder Scrollen, Lesethemen, Schriften, Abstände und Tippzonen für die Bedienung mit einer Hand.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Lesezeichen und Notizen</h3>
+          <p>Markiere Textstellen, schreibe Notizen, exportiere sie als Markdown und behalte deine Lesezeit im Blick.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>WLAN-Übertragung</h3>
+          <p>Schicke Bücher im selben WLAN aus dem Browser deines Computers auf dein iPhone oder iPad.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Bücher anhören</h3>
+          <p>Lass dir Bücher mit den Stimmen deines Geräts vorlesen – in deinem Tempo.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privatsphäre zuerst</h3>
+          <p>Kein Konto, keine Werbung, kein Tracking. Exportiere jederzeit ein vollständiges Backup deiner Bibliothek.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Unterstützte Formate</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="ja" lang="ja" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>あなたの本を、オフラインでいつでも。</h1>
+        <p class="lead">ND Books は iPhone と iPad のための電子書籍リーダーです。本、メモ、読書の進み具合はデバイスに保存されます。アカウントも広告もありません。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">App Store で見る</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">サポート</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>手持ちの形式をそのまま</h3>
+          <p>EPUB、PDF、MOBI、AZW3、TXT、DOCX、コミックなどをひとつのライブラリに。冊数の上限はありません。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>好みのスタイルで読む</h3>
+          <p>ページめくりやスクロール、テーマ、フォント、間隔、片手操作用のタップ領域を選べます。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>ブックマークとメモ</h3>
+          <p>文章をハイライトしてメモを書き、Markdown で書き出せます。読書時間も確認できます。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi 転送</h3>
+          <p>同じ Wi-Fi ネットワークで、パソコンのブラウザから iPhone や iPad に本を送れます。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>本を聴く</h3>
+          <p>デバイスの音声で本を読み上げます。速度もお好みで調整できます。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>プライバシー重視</h3>
+          <p>アカウント不要、広告もトラッキングもなし。ライブラリの完全バックアップはいつでも書き出せます。</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">対応フォーマット</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="fr" lang="fr" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Vos livres, prêts hors ligne.</h1>
+        <p class="lead">ND Books est une liseuse pour iPhone et iPad. Vos livres, vos notes et votre progression restent sur votre appareil. Sans compte ni publicité.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Voir sur l'App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Assistance</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Lit les formats que vous avez</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, bandes dessinées et plus, dans une seule bibliothèque sans limite de livres.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Lisez à votre façon</h3>
+          <p>Pages ou défilement, thèmes de lecture, polices, espacements et zones de toucher pour une main.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Signets et notes</h3>
+          <p>Surlignez des passages, prenez des notes, exportez-les en Markdown et suivez votre temps de lecture.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Transfert Wi-Fi</h3>
+          <p>Envoyez des livres depuis le navigateur de votre ordinateur vers votre iPhone ou iPad sur le même réseau Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Écouter vos livres</h3>
+          <p>Faites lire vos livres à voix haute avec les voix de votre appareil, à la vitesse de votre choix.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Confidentialité avant tout</h3>
+          <p>Sans compte, sans publicité, sans pistage. Exportez une sauvegarde complète de votre bibliothèque quand vous le souhaitez.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Formats pris en charge</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="es" lang="es" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Tus libros, listos sin conexión.</h1>
+        <p class="lead">ND Books es un lector de libros electrónicos para iPhone y iPad. Tus libros, notas y progreso de lectura se quedan en tu dispositivo. Sin cuenta y sin anuncios.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Ver en el App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Soporte</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Lee los formatos que tienes</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, cómics y más, en una sola biblioteca sin límite de libros.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Lee a tu manera</h3>
+          <p>Pasa páginas o desplázate, y elige temas, fuentes, espaciado y zonas táctiles para usar con una mano.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Marcadores y notas</h3>
+          <p>Resalta pasajes, escribe notas, expórtalas en Markdown y consulta tu tiempo de lectura.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Transferencia por Wi-Fi</h3>
+          <p>Envía libros desde el navegador de tu ordenador a tu iPhone o iPad en la misma red Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Escucha tus libros</h3>
+          <p>Escucha los libros en voz alta con las voces de tu dispositivo, a la velocidad que prefieras.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privacidad ante todo</h3>
+          <p>Sin cuenta, sin anuncios, sin rastreo. Exporta una copia completa de tu biblioteca cuando quieras.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Formatos compatibles</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="pt" lang="pt" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Os seus livros, prontos offline.</h1>
+        <p class="lead">O ND Books é um leitor de e-books para iPhone e iPad. Os seus livros, notas e progresso de leitura ficam no seu dispositivo. Sem conta e sem anúncios.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Ver na App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Suporte</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Lê os formatos que tem</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, banda desenhada e muito mais, numa só biblioteca sem limite de livros.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Leia à sua maneira</h3>
+          <p>Virar páginas ou deslocar, temas de leitura, tipos de letra, espaçamento e zonas de toque para uma só mão.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Marcadores e notas</h3>
+          <p>Destaque passagens, escreva notas, exporte-as em Markdown e veja o seu tempo de leitura.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Transferência por Wi-Fi</h3>
+          <p>Envie livros do navegador do computador para o iPhone ou iPad na mesma rede Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Ouça os seus livros</h3>
+          <p>Ouça os livros lidos em voz alta com as vozes do dispositivo, à velocidade que preferir.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privacidade em primeiro lugar</h3>
+          <p>Sem conta, sem anúncios, sem rastreamento. Exporte uma cópia completa da biblioteca quando quiser.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Formatos suportados</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="ko" lang="ko" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>내 책을 언제든 오프라인으로.</h1>
+        <p class="lead">ND Books는 iPhone과 iPad용 전자책 리더입니다. 책, 메모, 읽기 진행 상황은 기기에 저장됩니다. 계정도 광고도 없습니다.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">App Store에서 보기</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">지원</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>가지고 있는 형식 그대로</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, 만화 등을 권수 제한 없이 하나의 서재에서 읽으세요.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>원하는 방식으로 읽기</h3>
+          <p>페이지 넘김 또는 스크롤, 테마, 글꼴, 간격, 한 손 탭 영역을 선택할 수 있습니다.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>책갈피와 메모</h3>
+          <p>문장에 하이라이트하고 메모를 남긴 뒤 Markdown으로 내보내고, 읽은 시간도 확인하세요.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi 전송</h3>
+          <p>같은 Wi-Fi 네트워크에서 컴퓨터 브라우저로 iPhone이나 iPad에 책을 보내세요.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>책 듣기</h3>
+          <p>기기의 음성으로 책을 읽어 주며, 속도도 원하는 대로 조절할 수 있습니다.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>개인정보 보호 중심</h3>
+          <p>계정, 광고, 추적이 없습니다. 언제든 서재 전체를 백업으로 내보낼 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">지원 형식</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="zh-Hans" lang="zh-Hans" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>你的书，离线随时读。</h1>
+        <p class="lead">ND Books 是适用于 iPhone 和 iPad 的电子书阅读器。书籍、笔记和阅读进度都保存在你的设备上，无需账号，没有广告。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">前往 App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">支持与帮助</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>常见格式都能读</h3>
+          <p>EPUB、PDF、MOBI、AZW3、TXT、DOCX、漫画等格式统一放进书库，不限书籍数量。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>按你的习惯阅读</h3>
+          <p>分页或滚动阅读，可调主题、字体、间距，并提供单手点按区域。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>书签与笔记</h3>
+          <p>划线摘录、写笔记，导出为 Markdown，并查看阅读时长。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi 传书</h3>
+          <p>在同一 Wi-Fi 下，用电脑浏览器把书传到 iPhone 或 iPad。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>听书</h3>
+          <p>用设备上的系统语音朗读书籍，语速随你调整。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>隐私为先</h3>
+          <p>无需账号，没有广告，不追踪。随时导出完整书库备份。</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">支持的格式</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>你的書，離線隨時讀。</h1>
+        <p class="lead">ND Books 是適用於 iPhone 和 iPad 的電子書閱讀器。書籍、筆記和閱讀進度都儲存在你的裝置上，無需帳號，沒有廣告。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">前往 App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">支援與說明</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>常見格式都能讀</h3>
+          <p>EPUB、PDF、MOBI、AZW3、TXT、DOCX、漫畫等格式集中在同一個書庫，不限書籍數量。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>依你的習慣閱讀</h3>
+          <p>分頁或捲動閱讀，可調整主題、字體、間距，並提供單手點按區域。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>書籤與筆記</h3>
+          <p>畫線摘錄、撰寫筆記、匯出為 Markdown，並查看閱讀時間。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi 傳書</h3>
+          <p>在同一個 Wi-Fi 網路下，用電腦瀏覽器把書傳到 iPhone 或 iPad。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>聆聽書籍</h3>
+          <p>以裝置上的系統語音朗讀書籍，語速隨你調整。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>隱私優先</h3>
+          <p>無需帳號，沒有廣告，不追蹤。隨時匯出完整書庫備份。</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">支援的格式</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="it" lang="it" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>I tuoi libri, pronti offline.</h1>
+        <p class="lead">ND Books è un lettore di ebook per iPhone e iPad. Libri, note e progressi di lettura restano sul tuo dispositivo. Nessun account, nessuna pubblicità.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Vedi su App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Assistenza</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Legge i formati che hai</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, fumetti e altro in un'unica libreria senza limiti di libri.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Leggi come preferisci</h3>
+          <p>Pagine o scorrimento, temi di lettura, font, spaziature e zone di tocco per l'uso con una mano.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Segnalibri e note</h3>
+          <p>Evidenzia passaggi, scrivi note, esportale in Markdown e consulta il tuo tempo di lettura.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Trasferimento Wi-Fi</h3>
+          <p>Invia libri dal browser del computer a iPhone o iPad sulla stessa rete Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Ascolta i libri</h3>
+          <p>Fatti leggere i libri ad alta voce con le voci del dispositivo, alla velocità che preferisci.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privacy prima di tutto</h3>
+          <p>Nessun account, nessuna pubblicità, nessun tracciamento. Esporta un backup completo della libreria quando vuoi.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Formati supportati</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="nl" lang="nl" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Je boeken, altijd offline klaar.</h1>
+        <p class="lead">ND Books is een e-booklezer voor iPhone en iPad. Je boeken, notities en leesvoortgang blijven op je apparaat. Geen account, geen advertenties.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Bekijk in de App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Ondersteuning</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Leest de formaten die je hebt</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, strips en meer in één bibliotheek zonder boekenlimiet.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Lees zoals jij wilt</h3>
+          <p>Bladeren of scrollen, leesthema's, lettertypen, witruimte en tikzones voor bediening met één hand.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Bladwijzers en notities</h3>
+          <p>Markeer passages, schrijf notities, exporteer ze als Markdown en bekijk je leestijd.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wifi-overdracht</h3>
+          <p>Stuur boeken vanuit de browser op je computer naar je iPhone of iPad via hetzelfde wifinetwerk.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Boeken beluisteren</h3>
+          <p>Laat boeken voorlezen met de stemmen van je apparaat, in het tempo dat jij wilt.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privacy voorop</h3>
+          <p>Geen account, geen advertenties, geen tracking. Exporteer wanneer je wilt een volledige back-up van je bibliotheek.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Ondersteunde formaten</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="sv" lang="sv" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Dina böcker, redo offline.</h1>
+        <p class="lead">ND Books är en e-boksläsare för iPhone och iPad. Dina böcker, anteckningar och läsframsteg stannar på enheten. Inget konto, inga annonser.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Visa i App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Support</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Läser formaten du har</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, serier med mera i ett bibliotek utan bokgräns.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Läs på ditt sätt</h3>
+          <p>Bläddra eller skrolla, välj lästema, typsnitt, avstånd och tryckzoner för enhandsläge.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Bokmärken och anteckningar</h3>
+          <p>Markera stycken, skriv anteckningar, exportera dem som Markdown och se din lästid.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi-överföring</h3>
+          <p>Skicka böcker från datorns webbläsare till iPhone eller iPad i samma Wi-Fi-nätverk.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Lyssna på böcker</h3>
+          <p>Få böcker upplästa med enhetens röster, i den takt du vill.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Integritet först</h3>
+          <p>Inget konto, inga annonser, ingen spårning. Exportera en fullständig säkerhetskopia av biblioteket när du vill.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Format som stöds</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="da" lang="da" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Dine bøger, klar offline.</h1>
+        <p class="lead">ND Books er en e-bogslæser til iPhone og iPad. Dine bøger, noter og læsefremskridt bliver på din enhed. Ingen konto, ingen reklamer.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Se i App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Support</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Læser de formater, du har</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, tegneserier og mere i ét bibliotek uden grænse for antal bøger.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Læs på din måde</h3>
+          <p>Bladr eller rul, og vælg læsetemaer, skrifttyper, afstande og trykzoner til brug med én hånd.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Bogmærker og noter</h3>
+          <p>Fremhæv passager, skriv noter, eksportér dem som Markdown og se din læsetid.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi-overførsel</h3>
+          <p>Send bøger fra computerens browser til din iPhone eller iPad på samme Wi-Fi-netværk.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Lyt til bøger</h3>
+          <p>Få bøger læst højt med enhedens stemmer i det tempo, du foretrækker.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privatliv først</h3>
+          <p>Ingen konto, ingen reklamer, ingen sporing. Eksportér en fuld sikkerhedskopi af biblioteket, når du vil.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Understøttede formater</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="nb" lang="nb" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Bøkene dine, klare offline.</h1>
+        <p class="lead">ND Books er en e-bokleser for iPhone og iPad. Bøkene, notatene og lesefremdriften din blir på enheten. Ingen konto, ingen reklame.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Se i App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Brukerstøtte</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Leser formatene du har</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, tegneserier og mer i ett bibliotek uten grense for antall bøker.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Les slik du vil</h3>
+          <p>Bla eller rull, og velg lesetemaer, skrifttyper, avstand og trykksoner for bruk med én hånd.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Bokmerker og notater</h3>
+          <p>Uthev avsnitt, skriv notater, eksporter dem som Markdown og se lesetiden din.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi-overføring</h3>
+          <p>Send bøker fra nettleseren på datamaskinen til iPhone eller iPad på samme Wi-Fi-nettverk.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Lytt til bøker</h3>
+          <p>Få bøker lest høyt med stemmene på enheten, i tempoet du foretrekker.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Personvern først</h3>
+          <p>Ingen konto, ingen reklame, ingen sporing. Eksporter en full sikkerhetskopi av biblioteket når du vil.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Støttede formater</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="fi" lang="fi" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Kirjasi valmiina offline-tilassa.</h1>
+        <p class="lead">ND Books on e-kirjanlukija iPhonelle ja iPadille. Kirjat, muistiinpanot ja lukemisen edistyminen pysyvät laitteellasi. Ei tiliä, ei mainoksia.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Katso App Storessa</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Tuki</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Lukee omat tiedostomuotosi</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, sarjakuvat ja muut yhdessä kirjastossa ilman kirjamäärän rajaa.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Lue omalla tavallasi</h3>
+          <p>Sivu kerrallaan tai vierittäen, lukuteemat, fontit, välistykset ja yhden käden napautusalueet.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Kirjanmerkit ja muistiinpanot</h3>
+          <p>Korosta kohtia, kirjoita muistiinpanoja, vie ne Markdown-muodossa ja seuraa lukuaikaasi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi-siirto</h3>
+          <p>Lähetä kirjoja tietokoneen selaimesta iPhoneen tai iPadiin samassa Wi-Fi-verkossa.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Kuuntele kirjoja</h3>
+          <p>Anna laitteen äänten lukea kirjat ääneen haluamallasi nopeudella.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Yksityisyys edellä</h3>
+          <p>Ei tiliä, ei mainoksia, ei seurantaa. Vie kirjastosta täydellinen varmuuskopio milloin haluat.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Tuetut muodot</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="pl" lang="pl" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Twoje książki zawsze gotowe offline.</h1>
+        <p class="lead">ND Books to czytnik e-booków na iPhone'a i iPada. Książki, notatki i postęp czytania zostają na Twoim urządzeniu. Bez konta i bez reklam.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Zobacz w App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Pomoc</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Czyta formaty, które masz</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, komiksy i więcej w jednej bibliotece bez limitu książek.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Czytaj po swojemu</h3>
+          <p>Przewracanie stron lub przewijanie, motywy, czcionki, odstępy i strefy dotyku do obsługi jedną ręką.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Zakładki i notatki</h3>
+          <p>Zaznaczaj fragmenty, pisz notatki, eksportuj je do Markdown i sprawdzaj czas czytania.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Transfer przez Wi-Fi</h3>
+          <p>Przesyłaj książki z przeglądarki na komputerze na iPhone'a lub iPada w tej samej sieci Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Słuchaj książek</h3>
+          <p>Słuchaj książek czytanych głosami urządzenia w wybranym tempie.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Prywatność przede wszystkim</h3>
+          <p>Bez konta, bez reklam, bez śledzenia. Eksportuj pełną kopię zapasową biblioteki, kiedy chcesz.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Obsługiwane formaty</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="cs" lang="cs" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Vaše knihy, připravené offline.</h1>
+        <p class="lead">ND Books je čtečka e-knih pro iPhone a iPad. Knihy, poznámky a postup čtení zůstávají ve vašem zařízení. Žádný účet, žádné reklamy.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Zobrazit v App Storu</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Podpora</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Čte formáty, které máte</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, komiksy a další v jedné knihovně bez omezení počtu knih.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Čtěte po svém</h3>
+          <p>Listování nebo posouvání, motivy čtení, písma, rozestupy a zóny klepnutí pro ovládání jednou rukou.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Záložky a poznámky</h3>
+          <p>Zvýrazňujte pasáže, pište poznámky, exportujte je do Markdownu a sledujte čas čtení.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Přenos přes Wi-Fi</h3>
+          <p>Posílejte knihy z prohlížeče v počítači do iPhonu nebo iPadu ve stejné síti Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Poslech knih</h3>
+          <p>Nechte si knihy předčítat hlasy zařízení rychlostí, která vám vyhovuje.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Soukromí na prvním místě</h3>
+          <p>Žádný účet, žádné reklamy, žádné sledování. Úplnou zálohu knihovny můžete exportovat kdykoli.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Podporované formáty</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="tr" lang="tr" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Kitaplarınız çevrimdışı da hazır.</h1>
+        <p class="lead">ND Books, iPhone ve iPad için bir e-kitap okuyucudur. Kitaplarınız, notlarınız ve okuma ilerlemeniz cihazınızda kalır. Hesap yok, reklam yok.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">App Store'da Gör</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Destek</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Elinizdeki biçimleri okur</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, çizgi romanlar ve daha fazlası, kitap sınırı olmayan tek bir kütüphanede.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Dilediğiniz gibi okuyun</h3>
+          <p>Sayfa çevirme ya da kaydırma, okuma temaları, yazı tipleri, aralıklar ve tek elle kullanım için dokunma alanları.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Yer imleri ve notlar</h3>
+          <p>Pasajları vurgulayın, not alın, notları Markdown olarak dışa aktarın ve okuma sürenizi görün.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi aktarımı</h3>
+          <p>Aynı Wi-Fi ağında bilgisayarınızın tarayıcısından iPhone veya iPad'inize kitap gönderin.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Kitap dinleyin</h3>
+          <p>Kitapları cihazınızın sesleriyle, istediğiniz hızda sesli dinleyin.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Önce gizlilik</h3>
+          <p>Hesap yok, reklam yok, takip yok. Kütüphanenizin tam yedeğini istediğiniz zaman dışa aktarın.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Desteklenen biçimler</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="ru" lang="ru" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Ваши книги всегда под рукой, даже офлайн.</h1>
+        <p class="lead">ND Books — читалка электронных книг для iPhone и iPad. Книги, заметки и прогресс чтения хранятся на вашем устройстве. Без аккаунта и рекламы.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Открыть в App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Поддержка</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Читает ваши форматы</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, комиксы и многое другое в одной библиотеке без ограничения на количество книг.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Читайте как удобно</h3>
+          <p>Листание или прокрутка, темы, шрифты, интервалы и зоны нажатия для управления одной рукой.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Закладки и заметки</h3>
+          <p>Выделяйте фрагменты, пишите заметки, экспортируйте их в Markdown и следите за временем чтения.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Передача по Wi-Fi</h3>
+          <p>Отправляйте книги из браузера на компьютере на iPhone или iPad в той же сети Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Слушайте книги</h3>
+          <p>Книги читаются вслух голосами вашего устройства с удобной скоростью.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Конфиденциальность прежде всего</h3>
+          <p>Без аккаунта, рекламы и отслеживания. Экспортируйте полную копию библиотеки в любой момент.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Поддерживаемые форматы</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="uk" lang="uk" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Ваші книжки завжди поруч, навіть офлайн.</h1>
+        <p class="lead">ND Books — читалка електронних книжок для iPhone та iPad. Книжки, нотатки й прогрес читання зберігаються на вашому пристрої. Без облікового запису та реклами.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Переглянути в App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Підтримка</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Читає ваші формати</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, комікси та інше в одній бібліотеці без обмеження кількості книжок.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Читайте як зручно</h3>
+          <p>Гортання або прокручування, теми, шрифти, інтервали та зони дотику для керування однією рукою.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Закладки й нотатки</h3>
+          <p>Виділяйте уривки, пишіть нотатки, експортуйте їх у Markdown і стежте за часом читання.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Передавання через Wi-Fi</h3>
+          <p>Надсилайте книжки з браузера на комп'ютері на iPhone чи iPad у тій самій мережі Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Слухайте книжки</h3>
+          <p>Книжки читаються вголос голосами вашого пристрою зі зручною швидкістю.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Конфіденційність понад усе</h3>
+          <p>Без облікового запису, реклами й стеження. Експортуйте повну копію бібліотеки будь-коли.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Підтримувані формати</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="ar" lang="ar" dir="rtl" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>كتبك جاهزة حتى بلا اتصال.</h1>
+        <p class="lead">ND Books قارئ كتب إلكترونية لجهازي iPhone وiPad. تبقى كتبك وملاحظاتك وتقدّم قراءتك على جهازك. بلا حساب وبلا إعلانات.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">عرض في App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">الدعم</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>يقرأ الصيغ التي لديك</h3>
+          <p>EPUB وPDF وMOBI وAZW3 وTXT وDOCX والقصص المصوّرة وغيرها في مكتبة واحدة بلا حد لعدد الكتب.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>اقرأ على طريقتك</h3>
+          <p>تقليب الصفحات أو التمرير، مع سمات القراءة والخطوط والتباعد ومناطق النقر للاستخدام بيد واحدة.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>الإشارات المرجعية والملاحظات</h3>
+          <p>ظلّل المقاطع واكتب الملاحظات وصدّرها بصيغة Markdown، وتابع وقت قراءتك.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>النقل عبر Wi-Fi</h3>
+          <p>أرسل الكتب من متصفح الكمبيوتر إلى iPhone أو iPad على شبكة Wi-Fi نفسها.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>استمع إلى الكتب</h3>
+          <p>استمع إلى الكتب مقروءة بأصوات جهازك وبالسرعة التي تفضّلها.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>الخصوصية أولًا</h3>
+          <p>بلا حساب ولا إعلانات ولا تتبع. صدّر نسخة احتياطية كاملة من مكتبتك متى شئت.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">الصيغ المدعومة</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="th" lang="th" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>หนังสือของคุณ พร้อมอ่านแม้ออฟไลน์</h1>
+        <p class="lead">ND Books คือแอปอ่านอีบุ๊กสำหรับ iPhone และ iPad หนังสือ โน้ต และความคืบหน้าการอ่านจะอยู่บนอุปกรณ์ของคุณ ไม่ต้องมีบัญชี และไม่มีโฆษณา</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">ดูใน App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">ฝ่ายสนับสนุน</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>อ่านได้ทุกรูปแบบที่คุณมี</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, การ์ตูน และอื่น ๆ รวมไว้ในคลังเดียวโดยไม่จำกัดจำนวนเล่ม</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>อ่านในแบบของคุณ</h3>
+          <p>เลือกพลิกหน้าหรือเลื่อนอ่าน ปรับธีม ฟอนต์ ระยะห่าง และพื้นที่แตะสำหรับใช้มือเดียว</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>ที่คั่นหน้าและโน้ต</h3>
+          <p>ไฮไลต์ข้อความ จดโน้ต ส่งออกเป็น Markdown และดูเวลาที่ใช้อ่าน</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>ส่งหนังสือผ่าน Wi-Fi</h3>
+          <p>ส่งหนังสือจากเบราว์เซอร์บนคอมพิวเตอร์ไปยัง iPhone หรือ iPad ผ่าน Wi-Fi เครือข่ายเดียวกัน</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>ฟังหนังสือ</h3>
+          <p>ให้อุปกรณ์อ่านหนังสือออกเสียงด้วยเสียงในเครื่อง ตามความเร็วที่คุณชอบ</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>ความเป็นส่วนตัวมาก่อน</h3>
+          <p>ไม่ต้องมีบัญชี ไม่มีโฆษณา ไม่มีการติดตาม ส่งออกข้อมูลสำรองทั้งคลังได้ทุกเมื่อ</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">รูปแบบที่รองรับ</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="vi" lang="vi" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Sách của bạn, sẵn sàng cả khi ngoại tuyến.</h1>
+        <p class="lead">ND Books là ứng dụng đọc sách điện tử cho iPhone và iPad. Sách, ghi chú và tiến độ đọc được lưu trên thiết bị của bạn. Không tài khoản, không quảng cáo.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Xem trên App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Hỗ trợ</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Đọc các định dạng bạn có</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, truyện tranh và nhiều hơn nữa trong một thư viện, không giới hạn số sách.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Đọc theo cách của bạn</h3>
+          <p>Lật trang hoặc cuộn, chủ đề đọc, phông chữ, giãn cách và vùng chạm dành cho thao tác một tay.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Dấu trang và ghi chú</h3>
+          <p>Đánh dấu đoạn văn, viết ghi chú, xuất ra Markdown và xem thời gian đọc.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Chuyển sách qua Wi-Fi</h3>
+          <p>Gửi sách từ trình duyệt trên máy tính sang iPhone hoặc iPad trong cùng mạng Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Nghe sách</h3>
+          <p>Nghe sách được đọc to bằng giọng đọc trên thiết bị, với tốc độ bạn thích.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Quyền riêng tư là trên hết</h3>
+          <p>Không tài khoản, không quảng cáo, không theo dõi. Xuất bản sao lưu đầy đủ thư viện bất cứ khi nào bạn muốn.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Định dạng được hỗ trợ</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="id" lang="id" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Buku Anda, siap dibaca offline.</h1>
+        <p class="lead">ND Books adalah pembaca e-book untuk iPhone dan iPad. Buku, catatan, dan progres membaca tetap tersimpan di perangkat Anda. Tanpa akun, tanpa iklan.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Lihat di App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Dukungan</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Membaca format yang Anda miliki</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, komik, dan lainnya dalam satu perpustakaan tanpa batas jumlah buku.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Membaca sesuka Anda</h3>
+          <p>Balik halaman atau gulir, tema bacaan, font, jarak, dan zona ketuk untuk penggunaan satu tangan.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Penanda dan catatan</h3>
+          <p>Sorot bagian teks, tulis catatan, ekspor sebagai Markdown, dan lihat waktu membaca Anda.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Transfer Wi-Fi</h3>
+          <p>Kirim buku dari browser komputer ke iPhone atau iPad di jaringan Wi-Fi yang sama.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Dengarkan buku</h3>
+          <p>Dengarkan buku dibacakan dengan suara di perangkat Anda, dengan kecepatan yang Anda suka.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privasi diutamakan</h3>
+          <p>Tanpa akun, tanpa iklan, tanpa pelacakan. Ekspor cadangan lengkap perpustakaan kapan saja.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Format yang didukung</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="ms" lang="ms" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Buku anda, sedia di luar talian.</h1>
+        <p class="lead">ND Books ialah pembaca e-buku untuk iPhone dan iPad. Buku, nota dan kemajuan bacaan anda kekal pada peranti. Tiada akaun, tiada iklan.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Lihat di App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Sokongan</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Membaca format yang anda ada</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, komik dan banyak lagi dalam satu pustaka tanpa had bilangan buku.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Baca mengikut cara anda</h3>
+          <p>Selak halaman atau tatal, tema bacaan, fon, jarak dan zon ketik untuk penggunaan sebelah tangan.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Penanda buku dan nota</h3>
+          <p>Serlahkan petikan, tulis nota, eksport sebagai Markdown dan lihat masa bacaan anda.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Pemindahan Wi-Fi</h3>
+          <p>Hantar buku dari pelayar komputer ke iPhone atau iPad pada rangkaian Wi-Fi yang sama.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Dengarkan buku</h3>
+          <p>Dengar buku dibacakan dengan suara pada peranti anda, pada kelajuan pilihan anda.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privasi diutamakan</h3>
+          <p>Tiada akaun, tiada iklan, tiada penjejakan. Eksport sandaran penuh pustaka anda bila-bila masa.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Format yang disokong</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="hi" lang="hi" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>आपकी किताबें, ऑफ़लाइन भी तैयार।</h1>
+        <p class="lead">ND Books, iPhone और iPad के लिए ई-बुक रीडर है। आपकी किताबें, नोट्स और पढ़ने की प्रगति आपके डिवाइस पर ही रहती है। न खाता, न विज्ञापन।</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">App Store पर देखें</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">सहायता</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>आपके फ़ॉर्मैट पढ़ता है</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, कॉमिक्स और बहुत कुछ, एक ही लाइब्रेरी में, किताबों की कोई सीमा नहीं।</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>अपने तरीके से पढ़ें</h3>
+          <p>पेज पलटें या स्क्रॉल करें, थीम, फ़ॉन्ट, स्पेसिंग और एक हाथ से इस्तेमाल के लिए टैप क्षेत्र चुनें।</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>बुकमार्क और नोट्स</h3>
+          <p>अंश हाइलाइट करें, नोट्स लिखें, उन्हें Markdown में निर्यात करें और पढ़ने का समय देखें।</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi से किताबें भेजें</h3>
+          <p>एक ही Wi-Fi नेटवर्क पर कंप्यूटर के ब्राउज़र से iPhone या iPad पर किताबें भेजें।</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>किताबें सुनें</h3>
+          <p>डिवाइस की आवाज़ों में किताबें सुनें, अपनी पसंद की गति से।</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>निजता सबसे पहले</h3>
+          <p>न खाता, न विज्ञापन, न ट्रैकिंग। जब चाहें अपनी लाइब्रेरी का पूरा बैकअप निर्यात करें।</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">समर्थित फ़ॉर्मैट</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="ro" lang="ro" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Cărțile tale, pregătite offline.</h1>
+        <p class="lead">ND Books este un cititor de cărți electronice pentru iPhone și iPad. Cărțile, notițele și progresul lecturii rămân pe dispozitivul tău. Fără cont, fără reclame.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Vezi în App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Asistență</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Citește formatele pe care le ai</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, benzi desenate și altele, într-o singură bibliotecă fără limită de cărți.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Citește în felul tău</h3>
+          <p>Pagini sau derulare, teme de lectură, fonturi, spațieri și zone de atingere pentru folosirea cu o mână.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Semne de carte și notițe</h3>
+          <p>Evidențiază pasaje, scrie notițe, exportă-le în Markdown și vezi timpul de lectură.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Transfer prin Wi-Fi</h3>
+          <p>Trimite cărți din browserul calculatorului pe iPhone sau iPad, în aceeași rețea Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Ascultă cărți</h3>
+          <p>Ascultă cărțile citite cu voce tare cu vocile dispozitivului, la viteza preferată.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Confidențialitatea pe primul loc</h3>
+          <p>Fără cont, fără reclame, fără urmărire. Exportă oricând o copie completă a bibliotecii.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Formate acceptate</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="hu" lang="hu" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>A könyveid offline is készen állnak.</h1>
+        <p class="lead">Az ND Books e-könyv-olvasó iPhone-ra és iPadre. A könyveid, jegyzeteid és az olvasási előrehaladásod az eszközödön maradnak. Nincs fiók, nincsenek hirdetések.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Megtekintés az App Store-ban</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Támogatás</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Olvassa a meglévő formátumaidat</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, képregények és sok más egyetlen könyvtárban, könyvszám-korlát nélkül.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Olvass a saját módodon</h3>
+          <p>Lapozás vagy görgetés, olvasási témák, betűtípusok, térközök és egykezes koppintási zónák.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Könyvjelzők és jegyzetek</h3>
+          <p>Emelj ki részleteket, írj jegyzeteket, exportáld őket Markdownba, és kövesd az olvasási idődet.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi-átvitel</h3>
+          <p>Küldj könyveket a számítógép böngészőjéből az iPhone-odra vagy iPadedre ugyanazon a Wi-Fi-hálózaton.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Hallgass könyveket</h3>
+          <p>Az eszköz hangjai felolvassák a könyveket, a kívánt sebességgel.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Az adatvédelem az első</h3>
+          <p>Nincs fiók, nincsenek hirdetések, nincs követés. A könyvtárad teljes mentését bármikor exportálhatod.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Támogatott formátumok</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="el" lang="el" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>Τα βιβλία σας, έτοιμα εκτός σύνδεσης.</h1>
+        <p class="lead">Το ND Books είναι ένας αναγνώστης ηλεκτρονικών βιβλίων για iPhone και iPad. Τα βιβλία, οι σημειώσεις και η πρόοδος ανάγνωσης μένουν στη συσκευή σας. Χωρίς λογαριασμό, χωρίς διαφημίσεις.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">Δείτε το στο App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Υποστήριξη</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>Διαβάζει τις μορφές που έχετε</h3>
+          <p>EPUB, PDF, MOBI, AZW3, TXT, DOCX, κόμικ και άλλα, σε μία βιβλιοθήκη χωρίς όριο βιβλίων.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>Διαβάστε με τον τρόπο σας</h3>
+          <p>Γύρισμα σελίδων ή κύλιση, θέματα ανάγνωσης, γραμματοσειρές, διάστιχα και ζώνες αγγίγματος για χρήση με το ένα χέρι.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>Σελιδοδείκτες και σημειώσεις</h3>
+          <p>Επισημάνετε αποσπάσματα, γράψτε σημειώσεις, εξαγάγετέ τες σε Markdown και δείτε τον χρόνο ανάγνωσής σας.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>Μεταφορά μέσω Wi-Fi</h3>
+          <p>Στείλτε βιβλία από το πρόγραμμα περιήγησης του υπολογιστή στο iPhone ή το iPad σας στο ίδιο δίκτυο Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>Ακούστε βιβλία</h3>
+          <p>Ακούστε τα βιβλία να διαβάζονται φωναχτά με τις φωνές της συσκευής σας, στην ταχύτητα που προτιμάτε.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Το απόρρητο πρώτα</h3>
+          <p>Χωρίς λογαριασμό, διαφημίσεις ή παρακολούθηση. Εξαγάγετε πλήρες αντίγραφο ασφαλείας της βιβλιοθήκης όποτε θέλετε.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">Υποστηριζόμενες μορφές</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="he" lang="he" dir="rtl" hidden>
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Books" />
+        <span class="badge">iPhone · iPad</span>
+        <h1>הספרים שלך מוכנים גם בלי חיבור.</h1>
+        <p class="lead">ND Books הוא קורא ספרים אלקטרוניים ל-iPhone ול-iPad. הספרים, ההערות והתקדמות הקריאה נשמרים במכשיר שלך. בלי חשבון ובלי פרסומות.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6821299971">הצגה ב-App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">תמיכה</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">📚</div>
+          <h3>קורא את הפורמטים שיש לך</h3>
+          <p>EPUB,‏ PDF,‏ MOBI,‏ AZW3,‏ TXT,‏ DOCX, קומיקס ועוד, בספרייה אחת בלי הגבלה על מספר הספרים.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📖</div>
+          <h3>לקרוא בדרך שלך</h3>
+          <p>דפדוף או גלילה, ערכות נושא לקריאה, גופנים, מרווחים ואזורי הקשה לשימוש ביד אחת.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔖</div>
+          <h3>סימניות והערות</h3>
+          <p>הדגשת קטעים, כתיבת הערות, ייצוא שלהן כ-Markdown ומעקב אחר זמן הקריאה.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📶</div>
+          <h3>העברה ב-Wi-Fi</h3>
+          <p>שליחת ספרים מהדפדפן במחשב ל-iPhone או ל-iPad באותה רשת Wi-Fi.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <h3>האזנה לספרים</h3>
+          <p>הספרים מוקראים בקולות של המכשיר, במהירות שנוחה לך.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>פרטיות קודם כול</h3>
+          <p>בלי חשבון, בלי פרסומות ובלי מעקב. אפשר לייצא גיבוי מלא של הספרייה בכל עת.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <p class="label">פורמטים נתמכים</p>
+        <div class="chip-row">
+          <span class="chip" dir="ltr">EPUB</span>
+          <span class="chip" dir="ltr">PDF</span>
+          <span class="chip" dir="ltr">MOBI</span>
+          <span class="chip" dir="ltr">AZW3</span>
+          <span class="chip" dir="ltr">TXT</span>
+          <span class="chip" dir="ltr">DOCX</span>
+          <span class="chip" dir="ltr">FB2</span>
+          <span class="chip" dir="ltr">RTF</span>
+          <span class="chip" dir="ltr">Markdown</span>
+          <span class="chip" dir="ltr">HTML</span>
+          <span class="chip" dir="ltr">CBZ</span>
+          <span class="chip" dir="ltr">CBR</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page">
+      <span>© 2026 Next Dawn Technologies</span>
+      <span><a href="./support.html" data-page-link="./support.html" data-i18n="support">Support</a> · <a href="./privacy.html" data-page-link="./privacy.html" data-i18n="privacy">Privacy Policy</a></span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var translations = {
+        "en": {
+          "language": "Language",
+          "support": "Support",
+          "privacy": "Privacy Policy",
+          "title": "ND Books — Your Books, Offline",
+          "description": "ND Books is an offline ebook reader for iPhone and iPad. Read EPUB, PDF, MOBI and more — no account, no ads, no tracking."
+        },
+        "de": {
+          "language": "Sprache",
+          "support": "Support",
+          "privacy": "Datenschutzerklärung",
+          "title": "ND Books — Deine Bücher, offline",
+          "description": "ND Books ist ein Offline-E-Book-Reader für iPhone und iPad. Lies EPUB, PDF, MOBI und mehr – ohne Konto, ohne Werbung, ohne Tracking."
+        },
+        "ja": {
+          "language": "言語",
+          "support": "サポート",
+          "privacy": "プライバシーポリシー",
+          "title": "ND Books — オフラインで読める本棚",
+          "description": "ND Books は iPhone と iPad のためのオフライン電子書籍リーダー。EPUB、PDF、MOBI などに対応し、アカウント不要、広告やトラッキングもありません。"
+        },
+        "fr": {
+          "language": "Langue",
+          "support": "Assistance",
+          "privacy": "Politique de confidentialité",
+          "title": "ND Books — Vos livres, hors ligne",
+          "description": "ND Books est une liseuse hors ligne pour iPhone et iPad. Lisez EPUB, PDF, MOBI et plus encore, sans compte, sans publicité ni pistage."
+        },
+        "es": {
+          "language": "Idioma",
+          "support": "Soporte",
+          "privacy": "Política de privacidad",
+          "title": "ND Books — Tus libros, sin conexión",
+          "description": "ND Books es un lector de libros electrónicos sin conexión para iPhone y iPad. Lee EPUB, PDF, MOBI y más, sin cuenta, sin anuncios y sin rastreo."
+        },
+        "pt": {
+          "language": "Idioma",
+          "support": "Suporte",
+          "privacy": "Política de Privacidade",
+          "title": "ND Books — Os seus livros, offline",
+          "description": "O ND Books é um leitor de e-books offline para iPhone e iPad. Leia EPUB, PDF, MOBI e muito mais, sem conta, sem anúncios e sem rastreamento."
+        },
+        "ko": {
+          "language": "언어",
+          "support": "지원",
+          "privacy": "개인정보 처리방침",
+          "title": "ND Books — 오프라인으로 읽는 나만의 서재",
+          "description": "ND Books는 iPhone과 iPad용 오프라인 전자책 리더입니다. EPUB, PDF, MOBI 등을 지원하며 계정, 광고, 추적이 없습니다."
+        },
+        "zh-Hans": {
+          "language": "语言",
+          "support": "支持与帮助",
+          "privacy": "隐私政策",
+          "title": "ND Books — 离线也能读的书库",
+          "description": "ND Books 是适用于 iPhone 和 iPad 的离线电子书阅读器，支持 EPUB、PDF、MOBI 等格式，无需账号，无广告，不追踪。"
+        },
+        "zh-Hant": {
+          "language": "語言",
+          "support": "支援與說明",
+          "privacy": "隱私權政策",
+          "title": "ND Books — 離線也能讀的書庫",
+          "description": "ND Books 是適用於 iPhone 和 iPad 的離線電子書閱讀器，支援 EPUB、PDF、MOBI 等格式，無需帳號，無廣告，不追蹤。"
+        },
+        "it": {
+          "language": "Lingua",
+          "support": "Assistenza",
+          "privacy": "Informativa sulla privacy",
+          "title": "ND Books — I tuoi libri, offline",
+          "description": "ND Books è un lettore di ebook offline per iPhone e iPad. Leggi EPUB, PDF, MOBI e altro ancora, senza account, pubblicità o tracciamento."
+        },
+        "nl": {
+          "language": "Taal",
+          "support": "Ondersteuning",
+          "privacy": "Privacybeleid",
+          "title": "ND Books — Je boeken, offline",
+          "description": "ND Books is een offline e-booklezer voor iPhone en iPad. Lees EPUB, PDF, MOBI en meer, zonder account, advertenties of tracking."
+        },
+        "sv": {
+          "language": "Språk",
+          "support": "Support",
+          "privacy": "Integritetspolicy",
+          "title": "ND Books — Dina böcker, offline",
+          "description": "ND Books är en offlineläsare för e-böcker på iPhone och iPad. Läs EPUB, PDF, MOBI med mera – utan konto, annonser eller spårning."
+        },
+        "da": {
+          "language": "Sprog",
+          "support": "Support",
+          "privacy": "Privatlivspolitik",
+          "title": "ND Books — Dine bøger, offline",
+          "description": "ND Books er en offline e-bogslæser til iPhone og iPad. Læs EPUB, PDF, MOBI og mere – uden konto, reklamer eller sporing."
+        },
+        "nb": {
+          "language": "Språk",
+          "support": "Brukerstøtte",
+          "privacy": "Personvernerklæring",
+          "title": "ND Books — Bøkene dine, offline",
+          "description": "ND Books er en offline e-bokleser for iPhone og iPad. Les EPUB, PDF, MOBI og mer – uten konto, reklame eller sporing."
+        },
+        "fi": {
+          "language": "Kieli",
+          "support": "Tuki",
+          "privacy": "Tietosuojakäytäntö",
+          "title": "ND Books — Kirjasi myös offline-tilassa",
+          "description": "ND Books on offline-e-kirjanlukija iPhonelle ja iPadille. Lue EPUB-, PDF- ja MOBI-tiedostoja ja muita ilman tiliä, mainoksia tai seurantaa."
+        },
+        "pl": {
+          "language": "Język",
+          "support": "Pomoc",
+          "privacy": "Polityka prywatności",
+          "title": "ND Books — Twoje książki offline",
+          "description": "ND Books to czytnik e-booków offline na iPhone'a i iPada. Czytaj EPUB, PDF, MOBI i inne – bez konta, reklam i śledzenia."
+        },
+        "cs": {
+          "language": "Jazyk",
+          "support": "Podpora",
+          "privacy": "Zásady ochrany soukromí",
+          "title": "ND Books — Vaše knihy i offline",
+          "description": "ND Books je offline čtečka e-knih pro iPhone a iPad. Čtěte EPUB, PDF, MOBI a další bez účtu, reklam a sledování."
+        },
+        "tr": {
+          "language": "Dil",
+          "support": "Destek",
+          "privacy": "Gizlilik Politikası",
+          "title": "ND Books — Kitaplarınız çevrimdışı",
+          "description": "ND Books, iPhone ve iPad için çevrimdışı bir e-kitap okuyucudur. EPUB, PDF, MOBI ve daha fazlasını hesap, reklam ve takip olmadan okuyun."
+        },
+        "ru": {
+          "language": "Язык",
+          "support": "Поддержка",
+          "privacy": "Политика конфиденциальности",
+          "title": "ND Books — ваши книги офлайн",
+          "description": "ND Books — офлайн-читалка электронных книг для iPhone и iPad. Читайте EPUB, PDF, MOBI и другие форматы без аккаунта, рекламы и отслеживания."
+        },
+        "uk": {
+          "language": "Мова",
+          "support": "Підтримка",
+          "privacy": "Політика конфіденційності",
+          "title": "ND Books — ваші книжки офлайн",
+          "description": "ND Books — офлайн-читалка електронних книжок для iPhone та iPad. Читайте EPUB, PDF, MOBI та інші формати без облікового запису, реклами й стеження."
+        },
+        "ar": {
+          "language": "اللغة",
+          "support": "الدعم",
+          "privacy": "سياسة الخصوصية",
+          "title": "ND Books — كتبك بلا اتصال",
+          "description": "ND Books قارئ كتب إلكترونية يعمل بلا اتصال على iPhone وiPad. اقرأ EPUB وPDF وMOBI وغيرها دون حساب أو إعلانات أو تتبع."
+        },
+        "th": {
+          "language": "ภาษา",
+          "support": "ฝ่ายสนับสนุน",
+          "privacy": "นโยบายความเป็นส่วนตัว",
+          "title": "ND Books — หนังสือของคุณ อ่านได้แม้ออฟไลน์",
+          "description": "ND Books คือแอปอ่านอีบุ๊กแบบออฟไลน์สำหรับ iPhone และ iPad อ่าน EPUB, PDF, MOBI และอื่น ๆ ได้โดยไม่ต้องมีบัญชี ไม่มีโฆษณา และไม่มีการติดตาม"
+        },
+        "vi": {
+          "language": "Ngôn ngữ",
+          "support": "Hỗ trợ",
+          "privacy": "Chính sách quyền riêng tư",
+          "title": "ND Books — Sách của bạn, đọc cả khi ngoại tuyến",
+          "description": "ND Books là ứng dụng đọc sách điện tử ngoại tuyến cho iPhone và iPad. Đọc EPUB, PDF, MOBI và nhiều định dạng khác mà không cần tài khoản, không quảng cáo, không theo dõi."
+        },
+        "id": {
+          "language": "Bahasa",
+          "support": "Dukungan",
+          "privacy": "Kebijakan Privasi",
+          "title": "ND Books — Buku Anda, tetap bisa dibaca offline",
+          "description": "ND Books adalah pembaca e-book offline untuk iPhone dan iPad. Baca EPUB, PDF, MOBI, dan lainnya tanpa akun, iklan, atau pelacakan."
+        },
+        "ms": {
+          "language": "Bahasa",
+          "support": "Sokongan",
+          "privacy": "Dasar Privasi",
+          "title": "ND Books — Buku anda, boleh dibaca di luar talian",
+          "description": "ND Books ialah pembaca e-buku luar talian untuk iPhone dan iPad. Baca EPUB, PDF, MOBI dan banyak lagi tanpa akaun, iklan atau penjejakan."
+        },
+        "hi": {
+          "language": "भाषा",
+          "support": "सहायता",
+          "privacy": "निजता नीति",
+          "title": "ND Books — आपकी किताबें, ऑफ़लाइन भी",
+          "description": "ND Books, iPhone और iPad के लिए ऑफ़लाइन ई-बुक रीडर है। बिना खाते, विज्ञापन या ट्रैकिंग के EPUB, PDF, MOBI और कई फ़ॉर्मैट पढ़ें।"
+        },
+        "ro": {
+          "language": "Limbă",
+          "support": "Asistență",
+          "privacy": "Politica de confidențialitate",
+          "title": "ND Books — Cărțile tale, offline",
+          "description": "ND Books este un cititor de cărți electronice offline pentru iPhone și iPad. Citește EPUB, PDF, MOBI și altele, fără cont, reclame sau urmărire."
+        },
+        "hu": {
+          "language": "Nyelv",
+          "support": "Támogatás",
+          "privacy": "Adatvédelmi irányelvek",
+          "title": "ND Books — A könyveid offline is",
+          "description": "Az ND Books offline e-könyv-olvasó iPhone-ra és iPadre. Olvass EPUB, PDF, MOBI és más formátumokat fiók, hirdetések és követés nélkül."
+        },
+        "el": {
+          "language": "Γλώσσα",
+          "support": "Υποστήριξη",
+          "privacy": "Πολιτική απορρήτου",
+          "title": "ND Books — Τα βιβλία σας, εκτός σύνδεσης",
+          "description": "Το ND Books είναι ένας αναγνώστης ηλεκτρονικών βιβλίων εκτός σύνδεσης για iPhone και iPad. Διαβάστε EPUB, PDF, MOBI και άλλα, χωρίς λογαριασμό, διαφημίσεις ή παρακολούθηση."
+        },
+        "he": {
+          "language": "שפה",
+          "support": "תמיכה",
+          "privacy": "מדיניות פרטיות",
+          "title": "ND Books — הספרים שלך, גם בלי חיבור",
+          "description": "ND Books הוא קורא ספרים אלקטרוניים שעובד בלי חיבור ל-iPhone ול-iPad. קריאת EPUB,‏ PDF,‏ MOBI ועוד, בלי חשבון, פרסומות או מעקב."
+        }
+      };
+      var rtl = { ar: true, he: true };
+      var storageKey = 'nd-books-language';
+      var select = document.querySelector('[data-lang-select]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = String(value).toLowerCase().replace(/_/g, '-');
+        if (/^zh-(hant|tw|hk|mo)/.test(value)) return 'zh-Hant';
+        if (/^zh/.test(value)) return 'zh-Hans';
+        if (/^(nb|no|nn)(-|$)/.test(value)) return 'nb';
+        if (value === 'iw' || value.indexOf('iw-') === 0) return 'he';
+        if (value === 'in' || value.indexOf('in-') === 0) return 'id';
+        if (Object.prototype.hasOwnProperty.call(translations, value)) return value;
+        var base = value.split('-')[0];
+        return Object.prototype.hasOwnProperty.call(translations, base) ? base : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = lang;
+        document.documentElement.dir = rtl[lang] ? 'rtl' : 'ltr';
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        select.value = lang;
+        select.setAttribute('aria-label', copy.language);
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      select.addEventListener('change', function () {
+        setLanguage(select.value);
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the browser language. */ }
+      }
+      if (!initialLanguage) {
+        var preferred = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+        for (var i = 0; i < preferred.length && !initialLanguage; i++) initialLanguage = normalizeLanguage(preferred[i]);
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,1703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Books — Privacy Policy</title>
+<meta name="description" content="Privacy Policy for ND Books, an offline ebook reader by Next Dawn Technologies." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1d1b19;
+    --muted: #625c56;
+    --card: #f7f4f0;
+    --border: #e8e2db;
+    --accent: #b5482f;
+    --on-accent: #ffffff;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141312;
+      --fg: #f3f0ec;
+      --muted: #aaa39b;
+      --card: #1e1c1a;
+      --border: #2f2b28;
+      --accent: #f0947a;
+      --on-accent: #1d1b19;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+  a { color: var(--accent); }
+
+  .lang-picker {
+    position: relative; display: inline-flex; align-items: center; gap: 8px;
+    min-height: 44px; max-width: 100%; padding: 0 14px;
+    border: 1px solid var(--border); background: var(--card); border-radius: 999px;
+  }
+  .lang-picker::after {
+    content: ""; position: absolute; inset-inline-end: 16px; top: 50%;
+    width: 7px; height: 7px; margin-top: -5px;
+    border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+    transform: rotate(45deg); pointer-events: none;
+  }
+  .lang-picker select {
+    appearance: none; -webkit-appearance: none; border: 0; background: transparent;
+    color: var(--fg); font: inherit; font-size: 15px; min-height: 42px; max-width: 100%;
+    padding-inline-end: 22px; cursor: pointer; touch-action: manipulation;
+  }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%; max-width: var(--maxw); margin: 0 auto;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  select:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  .wrap { padding-top: 48px; padding-bottom: 80px; }
+  header.page { margin-bottom: 28px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: inherit; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0; }
+  h1 { font-size: 28px; margin: 0 0 6px; line-height: 1.35; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  .lang-row { margin-bottom: 8px; }
+  h2 { font-size: 18px; margin: 32px 0 10px; }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+  .lang-row { margin-bottom: 28px; }
+  h2 { font-size: 19px; margin: 36px 0 10px; }
+  p { margin: 0 0 14px; font-size: 15.5px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; }
+  .card h3 { margin: 0 0 6px; font-size: 16px; }
+  .card p { margin: 0; }
+  @media (max-width: 680px) {
+    .card { padding: 16px; }
+    .lang-row { margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <a class="brand" href="./index.html" data-page-link="./index.html"><img src="./apple-touch-icon.png" width="36" height="36" alt="" /><span class="eyebrow">ND Books</span></a>
+      <h1 data-i18n="heading">Privacy Policy</h1>
+      <p class="sub" data-i18n="subtitle">Effective October 15, 2026 · Published by Next Dawn Technologies</p>
+    </header>
+
+    <div class="lang-row">
+    <label class="lang-picker">
+      <span aria-hidden="true">🌐</span>
+      <select data-lang-select aria-label="Language">
+        <option value="en" lang="en">English</option>
+        <option value="de" lang="de">Deutsch</option>
+        <option value="ja" lang="ja">日本語</option>
+        <option value="fr" lang="fr">Français</option>
+        <option value="es" lang="es">Español</option>
+        <option value="pt" lang="pt">Português</option>
+        <option value="ko" lang="ko">한국어</option>
+        <option value="zh-Hans" lang="zh-Hans">简体中文</option>
+        <option value="zh-Hant" lang="zh-Hant">繁體中文</option>
+        <option value="it" lang="it">Italiano</option>
+        <option value="nl" lang="nl">Nederlands</option>
+        <option value="sv" lang="sv">Svenska</option>
+        <option value="da" lang="da">Dansk</option>
+        <option value="nb" lang="nb">Norsk bokmål</option>
+        <option value="fi" lang="fi">Suomi</option>
+        <option value="pl" lang="pl">Polski</option>
+        <option value="cs" lang="cs">Čeština</option>
+        <option value="tr" lang="tr">Türkçe</option>
+        <option value="ru" lang="ru">Русский</option>
+        <option value="uk" lang="uk">Українська</option>
+        <option value="ar" lang="ar">العربية</option>
+        <option value="th" lang="th">ไทย</option>
+        <option value="vi" lang="vi">Tiếng Việt</option>
+        <option value="id" lang="id">Bahasa Indonesia</option>
+        <option value="ms" lang="ms">Bahasa Melayu</option>
+        <option value="hi" lang="hi">हिन्दी</option>
+        <option value="ro" lang="ro">Română</option>
+        <option value="hu" lang="hu">Magyar</option>
+        <option value="el" lang="el">Ελληνικά</option>
+        <option value="he" lang="he">עברית</option>
+      </select>
+    </label>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <p>ND Books is an offline-first ebook reader. It doesn't require an account, sell data, or track you across apps.</p>
+
+      <div class="card">
+        <h3>We Do Not Collect Your Data</h3>
+        <p>ND Books has no service that collects user data and includes no advertising or third-party analytics SDK. The developer doesn't receive your books, notes, bookmarks, reading progress or settings. The App Store handles PRO payments; the app receives only a verified StoreKit entitlement and never your payment details.</p>
+      </div>
+
+      <div class="card">
+        <h3>Your Library Stays on Your Device</h3>
+        <p>Books, original files, notes, bookmarks, reading positions, statistics and settings are stored in the app's private storage on your device. Full backups are unencrypted ZIP files saved only where you choose.</p>
+      </div>
+
+      <div class="card">
+        <h3>Optional iCloud Sync</h3>
+        <p>If you unlock PRO and turn on iCloud Sync, your books, reading positions, bookmarks and notes are stored in your own private iCloud database under your Apple Account. The developer can't access this data. Turning sync off keeps your local library and doesn't delete data from iCloud; you can manage it in your iCloud settings.</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi Transfer Stays on Your Network</h3>
+        <p>Local network access is used only while Wi-Fi transfer is running. Files go directly from your computer to your device over your local network, protected by a one-time access code, and never pass through our servers.</p>
+      </div>
+
+      <div class="card">
+        <h3>Listening and Text Recognition Stay on Your Device</h3>
+        <p>Read-aloud uses the speech voices built into iOS. Text recognition for scanned PDFs runs on your device with Apple's Vision framework; recognized text is cached on the device and isn't included in backups or sync.</p>
+      </div>
+
+      <div class="card">
+        <h3>You Control Your Data</h3>
+        <p>You can delete books, notes and bookmarks at any time, and deleting the app removes its local data. Feedback emails contain only what you choose to send.</p>
+      </div>
+
+      <h2>Policy Updates and Contact</h2>
+      <p>If these practices change materially, we'll update this page with a new effective date. For privacy questions, contact the developer at <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Publisher</h2>
+      <p>Next Dawn Technologies<br />Email: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="de" lang="de" hidden>
+      <p>ND Books ist ein E-Book-Reader, der zuerst offline arbeitet. Er erfordert kein Konto, verkauft keine Daten und verfolgt dich nicht über Apps hinweg.</p>
+
+      <div class="card">
+        <h3>Wir erfassen deine Daten nicht</h3>
+        <p>ND Books hat keinen Dienst, der Nutzerdaten erfasst, und enthält kein Werbe- oder Analyse-SDK von Drittanbietern. Der Entwickler erhält weder deine Bücher noch Notizen, Lesezeichen, Lesefortschritt oder Einstellungen. Zahlungen für PRO wickelt der App Store ab; die App erhält nur eine bestätigte StoreKit-Berechtigung und nie deine Zahlungsdaten.</p>
+      </div>
+
+      <div class="card">
+        <h3>Deine Bibliothek bleibt auf deinem Gerät</h3>
+        <p>Bücher, Originaldateien, Notizen, Lesezeichen, Lesepositionen, Statistiken und Einstellungen werden im privaten Speicher der App auf deinem Gerät abgelegt. Vollständige Backups sind unverschlüsselte ZIP-Dateien, die nur dort gespeichert werden, wo du es wählst.</p>
+      </div>
+
+      <div class="card">
+        <h3>Optionale iCloud-Synchronisierung</h3>
+        <p>Wenn du PRO freischaltest und die iCloud-Synchronisierung aktivierst, werden Bücher, Lesepositionen, Lesezeichen und Notizen in deiner eigenen privaten iCloud-Datenbank unter deinem Apple Account gespeichert. Der Entwickler hat darauf keinen Zugriff. Wenn du die Synchronisierung deaktivierst, bleibt deine lokale Bibliothek erhalten und Daten in iCloud werden nicht gelöscht; du kannst sie in deinen iCloud-Einstellungen verwalten.</p>
+      </div>
+
+      <div class="card">
+        <h3>WLAN-Übertragung bleibt in deinem Netzwerk</h3>
+        <p>Der Zugriff auf das lokale Netzwerk wird nur während einer laufenden WLAN-Übertragung genutzt. Dateien gelangen über dein lokales Netzwerk direkt vom Computer auf dein Gerät, geschützt durch einen einmaligen Zugangscode, und laufen nie über unsere Server.</p>
+      </div>
+
+      <div class="card">
+        <h3>Vorlesen und Texterkennung bleiben auf dem Gerät</h3>
+        <p>Zum Vorlesen werden die in iOS integrierten Stimmen verwendet. Die Texterkennung für gescannte PDFs läuft mit Apples Vision-Framework auf deinem Gerät; erkannter Text wird auf dem Gerät zwischengespeichert und nicht in Backups oder die Synchronisierung übernommen.</p>
+      </div>
+
+      <div class="card">
+        <h3>Du hast die Kontrolle über deine Daten</h3>
+        <p>Du kannst Bücher, Notizen und Lesezeichen jederzeit löschen; wenn du die App löschst, werden auch ihre lokalen Daten entfernt. Feedback-E-Mails enthalten nur, was du selbst sendest.</p>
+      </div>
+
+      <h2>Änderungen und Kontakt</h2>
+      <p>Ändern sich diese Praktiken wesentlich, aktualisieren wir diese Seite mit einem neuen Gültigkeitsdatum. Bei Fragen zum Datenschutz erreichst du den Entwickler unter <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Herausgeber</h2>
+      <p>Next Dawn Technologies<br />E-Mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ja" lang="ja" hidden>
+      <p>ND Books はオフラインを優先した電子書籍リーダーです。アカウントは不要で、データを販売したり、アプリをまたいでユーザーを追跡したりすることはありません。</p>
+
+      <div class="card">
+        <h3>データを収集しません</h3>
+        <p>ND Books にはユーザーデータを収集するサービスがなく、広告やサードパーティの分析 SDK も含まれていません。開発者があなたの本、メモ、ブックマーク、読書の進み具合、設定を受け取ることはありません。PRO の支払いは App Store が処理し、アプリが受け取るのは検証済みの StoreKit の権利情報だけで、支払い情報は受け取りません。</p>
+      </div>
+
+      <div class="card">
+        <h3>ライブラリはデバイスに保存されます</h3>
+        <p>本、元のファイル、メモ、ブックマーク、読書位置、統計、設定は、デバイス上のアプリ専用ストレージに保存されます。完全バックアップは暗号化されていない ZIP ファイルで、あなたが選んだ場所にのみ保存されます。</p>
+      </div>
+
+      <div class="card">
+        <h3>任意の iCloud 同期</h3>
+        <p>PRO を解除して iCloud 同期をオンにすると、本、読書位置、ブックマーク、メモはあなたの Apple アカウントのプライベートな iCloud データベースに保存されます。開発者はこのデータにアクセスできません。同期をオフにしてもローカルのライブラリは残り、iCloud 上のデータも削除されません。iCloud の設定から管理できます。</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi 転送はあなたのネットワーク内で完結</h3>
+        <p>ローカルネットワークは Wi-Fi 転送の実行中にのみ使用されます。ファイルはワンタイムのアクセスコードで保護され、ローカルネットワーク経由でパソコンからデバイスへ直接送られます。当社のサーバーを経由することはありません。</p>
+      </div>
+
+      <div class="card">
+        <h3>読み上げと文字認識はデバイス上で</h3>
+        <p>読み上げには iOS 内蔵の音声を使用します。スキャンした PDF の文字認識は Apple の Vision フレームワークによりデバイス上で行われ、認識結果はデバイスにキャッシュされ、バックアップや同期には含まれません。</p>
+      </div>
+
+      <div class="card">
+        <h3>データはあなたが管理します</h3>
+        <p>本、メモ、ブックマークはいつでも削除でき、アプリを削除するとローカルのデータも削除されます。ご意見のメールには、あなたが送ることを選んだ内容だけが含まれます。</p>
+      </div>
+
+      <h2>ポリシーの更新とお問い合わせ</h2>
+      <p>これらの取り扱いに大きな変更がある場合は、新しい施行日とともにこのページを更新します。プライバシーに関するお問い合わせは、開発者（<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>）までご連絡ください。</p>
+
+      <h2>発行者</h2>
+      <p>Next Dawn Technologies<br />メール: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="fr" lang="fr" hidden>
+      <p>ND Books est une liseuse conçue d'abord pour le hors ligne. Elle ne demande aucun compte, ne vend aucune donnée et ne vous suit pas d'une app à l'autre.</p>
+
+      <div class="card">
+        <h3>Nous ne collectons pas vos données</h3>
+        <p>ND Books ne dispose d'aucun service de collecte de données et n'intègre aucun SDK publicitaire ou d'analyse tiers. Le développeur ne reçoit ni vos livres, ni vos notes, signets, progression de lecture ou réglages. Les paiements PRO sont gérés par l'App Store ; l'app ne reçoit qu'un droit StoreKit vérifié, jamais vos informations de paiement.</p>
+      </div>
+
+      <div class="card">
+        <h3>Votre bibliothèque reste sur votre appareil</h3>
+        <p>Livres, fichiers d'origine, notes, signets, positions de lecture, statistiques et réglages sont stockés dans l'espace privé de l'app sur votre appareil. Les sauvegardes complètes sont des fichiers ZIP non chiffrés, enregistrés uniquement à l'endroit que vous choisissez.</p>
+      </div>
+
+      <div class="card">
+        <h3>Synchronisation iCloud facultative</h3>
+        <p>Si vous débloquez PRO et activez la synchronisation iCloud, vos livres, positions de lecture, signets et notes sont stockés dans votre propre base de données iCloud privée, liée à votre compte Apple. Le développeur ne peut pas y accéder. Désactiver la synchronisation conserve votre bibliothèque locale et ne supprime pas les données d'iCloud ; vous pouvez les gérer dans vos réglages iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Le transfert Wi-Fi reste sur votre réseau</h3>
+        <p>L'accès au réseau local n'est utilisé que pendant un transfert Wi-Fi. Les fichiers passent directement de votre ordinateur à votre appareil via votre réseau local, protégés par un code d'accès à usage unique, sans jamais transiter par nos serveurs.</p>
+      </div>
+
+      <div class="card">
+        <h3>Lecture à voix haute et reconnaissance de texte sur l'appareil</h3>
+        <p>La lecture à voix haute utilise les voix intégrées à iOS. La reconnaissance de texte des PDF numérisés s'effectue sur votre appareil avec le framework Vision d'Apple ; le texte reconnu est mis en cache sur l'appareil et n'est inclus ni dans les sauvegardes ni dans la synchronisation.</p>
+      </div>
+
+      <div class="card">
+        <h3>Vous gardez le contrôle</h3>
+        <p>Vous pouvez supprimer livres, notes et signets à tout moment, et supprimer l'app efface ses données locales. Les e-mails d'avis ne contiennent que ce que vous choisissez d'envoyer.</p>
+      </div>
+
+      <h2>Mises à jour et contact</h2>
+      <p>Si ces pratiques changent de manière importante, nous mettrons à jour cette page avec une nouvelle date d'entrée en vigueur. Pour toute question sur la confidentialité, contactez le développeur à <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Éditeur</h2>
+      <p>Next Dawn Technologies<br />E-mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="es" lang="es" hidden>
+      <p>ND Books es un lector de libros electrónicos pensado para funcionar sin conexión. No requiere cuenta, no vende datos y no te rastrea entre apps.</p>
+
+      <div class="card">
+        <h3>No recopilamos tus datos</h3>
+        <p>ND Books no tiene ningún servicio que recopile datos de usuario y no incluye SDK publicitarios ni de análisis de terceros. El desarrollador no recibe tus libros, notas, marcadores, progreso de lectura ni ajustes. El App Store gestiona los pagos de PRO; la app solo recibe un derecho de StoreKit verificado y nunca tus datos de pago.</p>
+      </div>
+
+      <div class="card">
+        <h3>Tu biblioteca se queda en tu dispositivo</h3>
+        <p>Los libros, archivos originales, notas, marcadores, posiciones de lectura, estadísticas y ajustes se guardan en el almacenamiento privado de la app en tu dispositivo. Las copias completas son archivos ZIP sin cifrar que se guardan solo donde tú elijas.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sincronización opcional con iCloud</h3>
+        <p>Si desbloqueas PRO y activas la sincronización con iCloud, tus libros, posiciones de lectura, marcadores y notas se guardan en tu propia base de datos privada de iCloud, asociada a tu cuenta de Apple. El desarrollador no puede acceder a ellos. Desactivar la sincronización conserva tu biblioteca local y no borra los datos de iCloud; puedes gestionarlos en los ajustes de iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>La transferencia por Wi-Fi no sale de tu red</h3>
+        <p>El acceso a la red local solo se usa mientras la transferencia por Wi-Fi está activa. Los archivos van directamente del ordenador a tu dispositivo a través de tu red local, protegidos por un código de acceso de un solo uso, y nunca pasan por nuestros servidores.</p>
+      </div>
+
+      <div class="card">
+        <h3>Lectura en voz alta y reconocimiento de texto en el dispositivo</h3>
+        <p>La lectura en voz alta usa las voces integradas en iOS. El reconocimiento de texto de los PDF escaneados se realiza en tu dispositivo con el framework Vision de Apple; el texto reconocido se guarda en caché en el dispositivo y no se incluye en copias de seguridad ni en la sincronización.</p>
+      </div>
+
+      <div class="card">
+        <h3>Tú controlas tus datos</h3>
+        <p>Puedes eliminar libros, notas y marcadores cuando quieras, y al eliminar la app se borran sus datos locales. Los correos de comentarios solo contienen lo que decidas enviar.</p>
+      </div>
+
+      <h2>Cambios y contacto</h2>
+      <p>Si estas prácticas cambian de forma importante, actualizaremos esta página con una nueva fecha de entrada en vigor. Para consultas sobre privacidad, escribe al desarrollador a <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Editor</h2>
+      <p>Next Dawn Technologies<br />Correo: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="pt" lang="pt" hidden>
+      <p>O ND Books é um leitor de e-books pensado primeiro para funcionar offline. Não exige conta, não vende dados nem o rastreia entre apps.</p>
+
+      <div class="card">
+        <h3>Não recolhemos os seus dados</h3>
+        <p>O ND Books não tem nenhum serviço que recolha dados de utilizadores e não inclui SDK de publicidade ou de análise de terceiros. O programador não recebe os seus livros, notas, marcadores, progresso de leitura ou definições. Os pagamentos do PRO são tratados pela App Store; a app recebe apenas um direito StoreKit verificado e nunca os seus dados de pagamento.</p>
+      </div>
+
+      <div class="card">
+        <h3>A sua biblioteca fica no seu dispositivo</h3>
+        <p>Livros, ficheiros originais, notas, marcadores, posições de leitura, estatísticas e definições são guardados no armazenamento privado da app no seu dispositivo. As cópias completas são ficheiros ZIP não encriptados, guardados apenas onde escolher.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sincronização opcional com iCloud</h3>
+        <p>Se desbloquear o PRO e ativar a sincronização com iCloud, os livros, posições de leitura, marcadores e notas são guardados na sua base de dados privada do iCloud, associada à sua Conta Apple. O programador não tem acesso a estes dados. Desativar a sincronização mantém a biblioteca local e não apaga dados do iCloud; pode geri-los nas definições do iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>A transferência por Wi-Fi fica na sua rede</h3>
+        <p>O acesso à rede local só é usado enquanto a transferência por Wi-Fi está ativa. Os ficheiros passam diretamente do computador para o dispositivo pela rede local, protegidos por um código de acesso de utilização única, e nunca passam pelos nossos servidores.</p>
+      </div>
+
+      <div class="card">
+        <h3>Leitura em voz alta e reconhecimento de texto no dispositivo</h3>
+        <p>A leitura em voz alta usa as vozes integradas no iOS. O reconhecimento de texto de PDF digitalizados é feito no dispositivo com a framework Vision da Apple; o texto reconhecido fica em cache no dispositivo e não é incluído nas cópias de segurança nem na sincronização.</p>
+      </div>
+
+      <div class="card">
+        <h3>O controlo dos dados é seu</h3>
+        <p>Pode eliminar livros, notas e marcadores a qualquer momento, e apagar a app remove os respetivos dados locais. Os e-mails de comentários contêm apenas o que decidir enviar.</p>
+      </div>
+
+      <h2>Alterações e contacto</h2>
+      <p>Se estas práticas mudarem de forma significativa, atualizaremos esta página com uma nova data de entrada em vigor. Para questões de privacidade, contacte o programador através de <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Editor</h2>
+      <p>Next Dawn Technologies<br />E-mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ko" lang="ko" hidden>
+      <p>ND Books는 오프라인 우선 전자책 리더입니다. 계정이 필요 없으며, 데이터를 판매하거나 앱 간에 사용자를 추적하지 않습니다.</p>
+
+      <div class="card">
+        <h3>사용자 데이터를 수집하지 않습니다</h3>
+        <p>ND Books에는 사용자 데이터를 수집하는 서비스가 없으며 광고나 제3자 분석 SDK도 포함되어 있지 않습니다. 개발자는 사용자의 책, 메모, 책갈피, 읽기 진행 상황, 설정을 받지 않습니다. PRO 결제는 App Store가 처리하며, 앱은 확인된 StoreKit 이용 권한만 받고 결제 정보는 받지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>서재는 기기에 보관됩니다</h3>
+        <p>책, 원본 파일, 메모, 책갈피, 읽던 위치, 통계, 설정은 기기의 앱 전용 저장 공간에 저장됩니다. 전체 백업은 암호화되지 않은 ZIP 파일이며 사용자가 선택한 위치에만 저장됩니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>선택 사항인 iCloud 동기화</h3>
+        <p>PRO를 잠금 해제하고 iCloud 동기화를 켜면 책, 읽던 위치, 책갈피, 메모가 사용자의 Apple 계정에 속한 비공개 iCloud 데이터베이스에 저장됩니다. 개발자는 이 데이터에 접근할 수 없습니다. 동기화를 꺼도 기기의 서재는 유지되며 iCloud의 데이터도 삭제되지 않습니다. iCloud 설정에서 관리할 수 있습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi 전송은 내 네트워크 안에서만</h3>
+        <p>로컬 네트워크는 Wi-Fi 전송이 실행되는 동안에만 사용됩니다. 파일은 일회용 접근 코드로 보호되어 로컬 네트워크를 통해 컴퓨터에서 기기로 바로 전송되며, 당사 서버를 거치지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>읽어 주기와 텍스트 인식은 기기에서</h3>
+        <p>읽어 주기에는 iOS에 내장된 음성을 사용합니다. 스캔한 PDF의 텍스트 인식은 Apple Vision 프레임워크로 기기에서 실행되며, 인식된 텍스트는 기기에 캐시되고 백업이나 동기화에 포함되지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>데이터는 사용자가 관리합니다</h3>
+        <p>책, 메모, 책갈피는 언제든 삭제할 수 있으며, 앱을 삭제하면 로컬 데이터도 함께 삭제됩니다. 의견 이메일에는 사용자가 보내기로 선택한 내용만 담깁니다.</p>
+      </div>
+
+      <h2>방침 변경 및 문의</h2>
+      <p>이러한 처리 방식이 크게 바뀌면 새 시행일과 함께 이 페이지를 업데이트합니다. 개인정보 관련 문의는 개발자(<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>)에게 연락해 주세요.</p>
+
+      <h2>게시자</h2>
+      <p>Next Dawn Technologies<br />이메일: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="zh-Hans" lang="zh-Hans" hidden>
+      <p>ND Books 是以离线为先的电子书阅读器。无需账号，不出售数据，也不会跨 App 追踪你。</p>
+
+      <div class="card">
+        <h3>我们不收集你的数据</h3>
+        <p>ND Books 没有收集用户数据的服务，也未接入任何广告或第三方分析 SDK。开发者不会收到你的书籍、笔记、书签、阅读进度或设置。PRO 的付款由 App Store 处理，App 只获得经过验证的 StoreKit 权益，不会获得你的付款信息。</p>
+      </div>
+
+      <div class="card">
+        <h3>书库保存在你的设备上</h3>
+        <p>书籍、原文件、笔记、书签、阅读位置、统计和设置都保存在设备上的 App 私有存储中。完整备份为未加密的 ZIP 文件，只保存在你选择的位置。</p>
+      </div>
+
+      <div class="card">
+        <h3>可选的 iCloud 同步</h3>
+        <p>如果你解锁 PRO 并开启 iCloud 同步，书籍、阅读位置、书签和笔记会存储在你 Apple 账户下私有的 iCloud 数据库中，开发者无法访问。关闭同步会保留本地书库，也不会删除 iCloud 中的数据；你可以在 iCloud 设置中管理这些数据。</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi 传书只在你的网络内进行</h3>
+        <p>只有在 Wi-Fi 传书运行期间才会使用本地网络。文件通过局域网直接从电脑传到你的设备，并受一次性访问码保护，不会经过我们的服务器。</p>
+      </div>
+
+      <div class="card">
+        <h3>听书与文字识别在设备上完成</h3>
+        <p>朗读使用 iOS 内置的语音。扫描版 PDF 的文字识别通过 Apple Vision 在设备上完成，识别结果缓存在设备中，不会进入备份或同步。</p>
+      </div>
+
+      <div class="card">
+        <h3>你掌控自己的数据</h3>
+        <p>你可以随时删除书籍、笔记和书签，删除 App 会一并移除其本地数据。反馈邮件只包含你自己选择发送的内容。</p>
+      </div>
+
+      <h2>政策更新与联系方式</h2>
+      <p>如果上述做法发生重大变化，我们会更新本页并标明新的生效日期。如有隐私问题，请联系开发者：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>。</p>
+
+      <h2>发布者</h2>
+      <p>Next Dawn Technologies<br />邮箱: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant" hidden>
+      <p>ND Books 是以離線為優先的電子書閱讀器。無需帳號，不出售資料，也不會跨 App 追蹤你。</p>
+
+      <div class="card">
+        <h3>我們不收集你的資料</h3>
+        <p>ND Books 沒有收集使用者資料的服務，也未使用任何廣告或第三方分析 SDK。開發者不會收到你的書籍、筆記、書籤、閱讀進度或設定。PRO 的付款由 App Store 處理，App 只會取得經過驗證的 StoreKit 權益，不會取得你的付款資訊。</p>
+      </div>
+
+      <div class="card">
+        <h3>書庫保存在你的裝置上</h3>
+        <p>書籍、原始檔案、筆記、書籤、閱讀位置、統計和設定都儲存在裝置上的 App 私有空間。完整備份為未加密的 ZIP 檔，只會儲存在你選擇的位置。</p>
+      </div>
+
+      <div class="card">
+        <h3>選用的 iCloud 同步</h3>
+        <p>如果你解鎖 PRO 並開啟 iCloud 同步，書籍、閱讀位置、書籤和筆記會儲存在你 Apple 帳號下私有的 iCloud 資料庫中，開發者無法存取。關閉同步會保留本機書庫，也不會刪除 iCloud 中的資料；你可以在 iCloud 設定中管理這些資料。</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi 傳書只在你的網路內進行</h3>
+        <p>只有在 Wi-Fi 傳書執行期間才會使用區域網路。檔案透過區域網路直接從電腦傳到你的裝置，並受一次性存取碼保護，不會經過我們的伺服器。</p>
+      </div>
+
+      <div class="card">
+        <h3>聆聽與文字辨識在裝置上完成</h3>
+        <p>朗讀使用 iOS 內建的語音。掃描版 PDF 的文字辨識透過 Apple Vision 在裝置上執行，辨識結果快取在裝置中，不會納入備份或同步。</p>
+      </div>
+
+      <div class="card">
+        <h3>你掌控自己的資料</h3>
+        <p>你可以隨時刪除書籍、筆記和書籤，刪除 App 也會一併移除其本機資料。意見回饋郵件只包含你自己選擇寄出的內容。</p>
+      </div>
+
+      <h2>政策更新與聯絡方式</h2>
+      <p>如果上述做法有重大變更，我們會更新本頁並標示新的生效日期。如有隱私問題，請聯絡開發者：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>。</p>
+
+      <h2>發布者</h2>
+      <p>Next Dawn Technologies<br />電子郵件: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="it" lang="it" hidden>
+      <p>ND Books è un lettore di ebook pensato per funzionare prima di tutto offline. Non richiede un account, non vende dati e non ti traccia tra le app.</p>
+
+      <div class="card">
+        <h3>Non raccogliamo i tuoi dati</h3>
+        <p>ND Books non ha alcun servizio che raccolga dati degli utenti e non include SDK pubblicitari o di analisi di terze parti. Lo sviluppatore non riceve i tuoi libri, note, segnalibri, progressi di lettura o impostazioni. I pagamenti di PRO sono gestiti da App Store; l'app riceve solo un diritto StoreKit verificato e mai i tuoi dati di pagamento.</p>
+      </div>
+
+      <div class="card">
+        <h3>La libreria resta sul tuo dispositivo</h3>
+        <p>Libri, file originali, note, segnalibri, posizioni di lettura, statistiche e impostazioni sono salvati nello spazio privato dell'app sul tuo dispositivo. I backup completi sono file ZIP non cifrati, salvati solo dove scegli tu.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sincronizzazione iCloud facoltativa</h3>
+        <p>Se sblocchi PRO e attivi la sincronizzazione iCloud, libri, posizioni di lettura, segnalibri e note vengono salvati nel tuo database iCloud privato, associato al tuo Account Apple. Lo sviluppatore non può accedervi. Disattivando la sincronizzazione la libreria locale resta e i dati su iCloud non vengono eliminati; puoi gestirli nelle impostazioni di iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Il trasferimento Wi-Fi resta nella tua rete</h3>
+        <p>L'accesso alla rete locale viene usato solo durante il trasferimento Wi-Fi. I file passano direttamente dal computer al dispositivo attraverso la rete locale, protetti da un codice di accesso monouso, e non transitano mai dai nostri server.</p>
+      </div>
+
+      <div class="card">
+        <h3>Lettura ad alta voce e riconoscimento del testo sul dispositivo</h3>
+        <p>La lettura ad alta voce usa le voci integrate in iOS. Il riconoscimento del testo nei PDF scansionati avviene sul dispositivo con il framework Vision di Apple; il testo riconosciuto viene memorizzato nella cache del dispositivo e non è incluso nei backup né nella sincronizzazione.</p>
+      </div>
+
+      <div class="card">
+        <h3>I tuoi dati sono sotto il tuo controllo</h3>
+        <p>Puoi eliminare libri, note e segnalibri in qualsiasi momento, ed eliminando l'app vengono rimossi i suoi dati locali. Le email di feedback contengono solo ciò che scegli di inviare.</p>
+      </div>
+
+      <h2>Aggiornamenti e contatti</h2>
+      <p>Se queste pratiche cambiano in modo significativo, aggiorneremo questa pagina con una nuova data di entrata in vigore. Per domande sulla privacy, contatta lo sviluppatore all'indirizzo <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Editore</h2>
+      <p>Next Dawn Technologies<br />Email: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="nl" lang="nl" hidden>
+      <p>ND Books is een e-booklezer die in de eerste plaats offline werkt. Er is geen account nodig, we verkopen geen gegevens en volgen je niet tussen apps.</p>
+
+      <div class="card">
+        <h3>We verzamelen je gegevens niet</h3>
+        <p>ND Books heeft geen dienst die gebruikersgegevens verzamelt en bevat geen advertentie- of analyse-SDK van derden. De ontwikkelaar ontvangt je boeken, notities, bladwijzers, leesvoortgang of instellingen niet. Betalingen voor PRO lopen via de App Store; de app ontvangt alleen een geverifieerd StoreKit-recht en nooit je betaalgegevens.</p>
+      </div>
+
+      <div class="card">
+        <h3>Je bibliotheek blijft op je apparaat</h3>
+        <p>Boeken, originele bestanden, notities, bladwijzers, leesposities, statistieken en instellingen worden opgeslagen in de privéopslag van de app op je apparaat. Volledige back-ups zijn onversleutelde ZIP-bestanden die alleen worden bewaard waar jij kiest.</p>
+      </div>
+
+      <div class="card">
+        <h3>Optionele iCloud-synchronisatie</h3>
+        <p>Als je PRO ontgrendelt en iCloud-synchronisatie aanzet, worden je boeken, leesposities, bladwijzers en notities opgeslagen in je eigen privé-iCloud-database onder je Apple Account. De ontwikkelaar heeft hier geen toegang toe. Als je synchronisatie uitzet, blijft je lokale bibliotheek bestaan en worden gegevens in iCloud niet verwijderd; je beheert ze in je iCloud-instellingen.</p>
+      </div>
+
+      <div class="card">
+        <h3>Wifi-overdracht blijft in je netwerk</h3>
+        <p>Toegang tot het lokale netwerk wordt alleen gebruikt zolang wifi-overdracht actief is. Bestanden gaan via je lokale netwerk rechtstreeks van je computer naar je apparaat, beschermd door een eenmalige toegangscode, en lopen nooit via onze servers.</p>
+      </div>
+
+      <div class="card">
+        <h3>Voorlezen en tekstherkenning op je apparaat</h3>
+        <p>Voorlezen gebruikt de stemmen die in iOS zijn ingebouwd. Tekstherkenning voor gescande PDF's gebeurt op je apparaat met het Vision-framework van Apple; herkende tekst wordt op het apparaat in de cache bewaard en niet opgenomen in back-ups of synchronisatie.</p>
+      </div>
+
+      <div class="card">
+        <h3>Jij beheert je gegevens</h3>
+        <p>Je kunt boeken, notities en bladwijzers op elk moment verwijderen, en als je de app verwijdert, worden ook de lokale gegevens gewist. Feedbackmails bevatten alleen wat jij besluit te versturen.</p>
+      </div>
+
+      <h2>Wijzigingen en contact</h2>
+      <p>Als deze werkwijze ingrijpend verandert, werken we deze pagina bij met een nieuwe ingangsdatum. Voor vragen over privacy kun je de ontwikkelaar mailen via <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Uitgever</h2>
+      <p>Next Dawn Technologies<br />E-mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="sv" lang="sv" hidden>
+      <p>ND Books är en e-boksläsare som är byggd för att fungera offline. Den kräver inget konto, säljer inga uppgifter och spårar dig inte mellan appar.</p>
+
+      <div class="card">
+        <h3>Vi samlar inte in dina uppgifter</h3>
+        <p>ND Books har ingen tjänst som samlar in användardata och innehåller inga SDK:er för annonser eller analys från tredje part. Utvecklaren får inte dina böcker, anteckningar, bokmärken, läsframsteg eller inställningar. Betalningar för PRO hanteras av App Store; appen får bara en verifierad StoreKit-behörighet och aldrig dina betalningsuppgifter.</p>
+      </div>
+
+      <div class="card">
+        <h3>Biblioteket stannar på din enhet</h3>
+        <p>Böcker, originalfiler, anteckningar, bokmärken, läspositioner, statistik och inställningar lagras i appens privata lagring på enheten. Fullständiga säkerhetskopior är okrypterade ZIP-filer som bara sparas där du väljer.</p>
+      </div>
+
+      <div class="card">
+        <h3>Valfri iCloud-synkronisering</h3>
+        <p>Om du låser upp PRO och slår på iCloud-synkronisering lagras böcker, läspositioner, bokmärken och anteckningar i din egen privata iCloud-databas under ditt Apple-konto. Utvecklaren har ingen åtkomst till dem. Om du stänger av synkroniseringen behålls det lokala biblioteket och inga uppgifter raderas från iCloud; du hanterar dem i iCloud-inställningarna.</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi-överföring stannar i ditt nätverk</h3>
+        <p>Åtkomst till lokalt nätverk används bara medan en Wi-Fi-överföring pågår. Filerna går direkt från datorn till enheten via ditt lokala nätverk, skyddade av en engångskod, och passerar aldrig våra servrar.</p>
+      </div>
+
+      <div class="card">
+        <h3>Uppläsning och textigenkänning sker på enheten</h3>
+        <p>Uppläsningen använder rösterna som är inbyggda i iOS. Textigenkänning för skannade PDF:er körs på enheten med Apples Vision-ramverk; igenkänd text cachas på enheten och ingår inte i säkerhetskopior eller synkronisering.</p>
+      </div>
+
+      <div class="card">
+        <h3>Du bestämmer över dina uppgifter</h3>
+        <p>Du kan när som helst radera böcker, anteckningar och bokmärken, och om du raderar appen tas dess lokala data bort. E-post med synpunkter innehåller bara det du själv väljer att skicka.</p>
+      </div>
+
+      <h2>Ändringar och kontakt</h2>
+      <p>Om rutinerna ändras väsentligt uppdaterar vi den här sidan med ett nytt giltighetsdatum. Kontakta utvecklaren på <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> vid frågor om integritet.</p>
+
+      <h2>Utgivare</h2>
+      <p>Next Dawn Technologies<br />E-post: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="da" lang="da" hidden>
+      <p>ND Books er en e-bogslæser, der først og fremmest fungerer offline. Den kræver ingen konto, sælger ingen data og sporer dig ikke på tværs af apps.</p>
+
+      <div class="card">
+        <h3>Vi indsamler ikke dine data</h3>
+        <p>ND Books har ingen tjeneste, der indsamler brugerdata, og indeholder ingen SDK'er til reklamer eller analyse fra tredjeparter. Udvikleren modtager ikke dine bøger, noter, bogmærker, læsefremskridt eller indstillinger. Betalinger for PRO håndteres af App Store; appen modtager kun en bekræftet StoreKit-rettighed og aldrig dine betalingsoplysninger.</p>
+      </div>
+
+      <div class="card">
+        <h3>Dit bibliotek bliver på din enhed</h3>
+        <p>Bøger, originalfiler, noter, bogmærker, læsepositioner, statistik og indstillinger gemmes i appens private lager på din enhed. Fulde sikkerhedskopier er ukrypterede ZIP-filer, der kun gemmes, hvor du vælger.</p>
+      </div>
+
+      <div class="card">
+        <h3>Valgfri iCloud-synkronisering</h3>
+        <p>Hvis du låser PRO op og slår iCloud-synkronisering til, gemmes dine bøger, læsepositioner, bogmærker og noter i din egen private iCloud-database under din Apple-konto. Udvikleren har ikke adgang til dem. Slår du synkroniseringen fra, bevares dit lokale bibliotek, og data i iCloud slettes ikke; du kan administrere dem i dine iCloud-indstillinger.</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi-overførsel bliver på dit netværk</h3>
+        <p>Adgang til lokalt netværk bruges kun, mens en Wi-Fi-overførsel kører. Filerne sendes direkte fra computeren til din enhed via det lokale netværk, beskyttet af en engangskode, og passerer aldrig vores servere.</p>
+      </div>
+
+      <div class="card">
+        <h3>Oplæsning og tekstgenkendelse sker på enheden</h3>
+        <p>Oplæsning bruger de stemmer, der er indbygget i iOS. Tekstgenkendelse af scannede PDF'er foregår på din enhed med Apples Vision-framework; genkendt tekst gemmes i enhedens cache og indgår ikke i sikkerhedskopier eller synkronisering.</p>
+      </div>
+
+      <div class="card">
+        <h3>Du styrer dine data</h3>
+        <p>Du kan til enhver tid slette bøger, noter og bogmærker, og sletter du appen, fjernes dens lokale data. Feedback-e-mails indeholder kun det, du selv vælger at sende.</p>
+      </div>
+
+      <h2>Ændringer og kontakt</h2>
+      <p>Hvis denne praksis ændres væsentligt, opdaterer vi siden med en ny ikrafttrædelsesdato. Spørgsmål om privatliv kan sendes til udvikleren på <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Udgiver</h2>
+      <p>Next Dawn Technologies<br />E-mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="nb" lang="nb" hidden>
+      <p>ND Books er en e-bokleser som først og fremst fungerer offline. Den krever ingen konto, selger ingen data og sporer deg ikke på tvers av apper.</p>
+
+      <div class="card">
+        <h3>Vi samler ikke inn dataene dine</h3>
+        <p>ND Books har ingen tjeneste som samler inn brukerdata, og inneholder ingen SDK-er for reklame eller analyse fra tredjeparter. Utvikleren mottar ikke bøkene, notatene, bokmerkene, lesefremdriften eller innstillingene dine. Betaling for PRO håndteres av App Store; appen mottar bare en bekreftet StoreKit-rettighet og aldri betalingsopplysningene dine.</p>
+      </div>
+
+      <div class="card">
+        <h3>Biblioteket blir på enheten din</h3>
+        <p>Bøker, originalfiler, notater, bokmerker, leseposisjoner, statistikk og innstillinger lagres i appens private lagring på enheten. Fulle sikkerhetskopier er ukrypterte ZIP-filer som bare lagres der du velger.</p>
+      </div>
+
+      <div class="card">
+        <h3>Valgfri iCloud-synkronisering</h3>
+        <p>Hvis du låser opp PRO og slår på iCloud-synkronisering, lagres bøker, leseposisjoner, bokmerker og notater i din egen private iCloud-database under Apple-kontoen din. Utvikleren har ikke tilgang til disse dataene. Hvis du slår av synkroniseringen, beholdes det lokale biblioteket, og data i iCloud slettes ikke; du kan administrere dem i iCloud-innstillingene.</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi-overføring blir i nettverket ditt</h3>
+        <p>Tilgang til lokalt nettverk brukes bare mens en Wi-Fi-overføring pågår. Filene går direkte fra datamaskinen til enheten via det lokale nettverket, beskyttet av en engangskode, og går aldri via våre servere.</p>
+      </div>
+
+      <div class="card">
+        <h3>Opplesning og tekstgjenkjenning skjer på enheten</h3>
+        <p>Opplesning bruker stemmene som er innebygd i iOS. Tekstgjenkjenning for skannede PDF-er kjøres på enheten med Apples Vision-rammeverk; gjenkjent tekst bufres på enheten og tas ikke med i sikkerhetskopier eller synkronisering.</p>
+      </div>
+
+      <div class="card">
+        <h3>Du styrer dataene dine</h3>
+        <p>Du kan når som helst slette bøker, notater og bokmerker, og sletter du appen, fjernes de lokale dataene. E-poster med tilbakemelding inneholder bare det du selv velger å sende.</p>
+      </div>
+
+      <h2>Endringer og kontakt</h2>
+      <p>Hvis denne praksisen endres vesentlig, oppdaterer vi siden med en ny ikrafttredelsesdato. Har du spørsmål om personvern, kan du kontakte utvikleren på <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Utgiver</h2>
+      <p>Next Dawn Technologies<br />E-post: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="fi" lang="fi" hidden>
+      <p>ND Books on ensisijaisesti offline-tilassa toimiva e-kirjanlukija. Se ei vaadi tiliä, ei myy tietoja eikä seuraa sinua appien välillä.</p>
+
+      <div class="card">
+        <h3>Emme kerää tietojasi</h3>
+        <p>ND Booksissa ei ole käyttäjätietoja keräävää palvelua, eikä siinä ole mainonta- tai analytiikka-SDK:ita kolmansilta osapuolilta. Kehittäjä ei saa kirjojasi, muistiinpanojasi, kirjanmerkkejäsi, lukemisen edistymistä tai asetuksiasi. App Store käsittelee PRO-maksut; appi saa vain vahvistetun StoreKit-oikeuden eikä koskaan maksutietojasi.</p>
+      </div>
+
+      <div class="card">
+        <h3>Kirjasto pysyy laitteellasi</h3>
+        <p>Kirjat, alkuperäiset tiedostot, muistiinpanot, kirjanmerkit, lukukohdat, tilastot ja asetukset tallennetaan apin yksityiseen tallennustilaan laitteellasi. Täydelliset varmuuskopiot ovat salaamattomia ZIP-tiedostoja, jotka tallennetaan vain valitsemaasi paikkaan.</p>
+      </div>
+
+      <div class="card">
+        <h3>Valinnainen iCloud-synkronointi</h3>
+        <p>Jos avaat PRO:n ja otat iCloud-synkronoinnin käyttöön, kirjat, lukukohdat, kirjanmerkit ja muistiinpanot tallennetaan omaan yksityiseen iCloud-tietokantaasi Apple-tilisi alle. Kehittäjällä ei ole pääsyä niihin. Kun poistat synkronoinnin käytöstä, paikallinen kirjasto säilyy eikä iCloudin tietoja poisteta; voit hallita niitä iCloud-asetuksissa.</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi-siirto pysyy verkossasi</h3>
+        <p>Lähiverkon käyttöoikeutta käytetään vain Wi-Fi-siirron aikana. Tiedostot siirtyvät lähiverkon kautta suoraan tietokoneelta laitteellesi kertakäyttöisen pääsykoodin suojaamina eivätkä koskaan kulje palvelimiemme kautta.</p>
+      </div>
+
+      <div class="card">
+        <h3>Ääneenluku ja tekstintunnistus tapahtuvat laitteella</h3>
+        <p>Ääneenluku käyttää iOS:n sisäänrakennettuja ääniä. Skannattujen PDF-tiedostojen tekstintunnistus tehdään laitteella Applen Vision-kehyksellä; tunnistettu teksti tallennetaan laitteen välimuistiin eikä sitä sisällytetä varmuuskopioihin tai synkronointiin.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sinä hallitset tietojasi</h3>
+        <p>Voit poistaa kirjoja, muistiinpanoja ja kirjanmerkkejä milloin tahansa, ja apin poistaminen poistaa sen paikalliset tiedot. Palautesähköpostit sisältävät vain sen, minkä itse päätät lähettää.</p>
+      </div>
+
+      <h2>Muutokset ja yhteystiedot</h2>
+      <p>Jos käytännöt muuttuvat olennaisesti, päivitämme tämän sivun uudella voimaantulopäivällä. Tietosuojaa koskevissa kysymyksissä voit ottaa yhteyttä kehittäjään osoitteessa <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Julkaisija</h2>
+      <p>Next Dawn Technologies<br />Sähköposti: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="pl" lang="pl" hidden>
+      <p>ND Books to czytnik e-booków zaprojektowany przede wszystkim do pracy offline. Nie wymaga konta, nie sprzedaje danych i nie śledzi Cię w innych aplikacjach.</p>
+
+      <div class="card">
+        <h3>Nie zbieramy Twoich danych</h3>
+        <p>ND Books nie ma żadnej usługi zbierającej dane użytkowników i nie zawiera zewnętrznych SDK reklamowych ani analitycznych. Deweloper nie otrzymuje Twoich książek, notatek, zakładek, postępu czytania ani ustawień. Płatności za PRO obsługuje App Store; aplikacja otrzymuje tylko zweryfikowane uprawnienie StoreKit, nigdy danych płatniczych.</p>
+      </div>
+
+      <div class="card">
+        <h3>Biblioteka zostaje na Twoim urządzeniu</h3>
+        <p>Książki, oryginalne pliki, notatki, zakładki, miejsca czytania, statystyki i ustawienia są przechowywane w prywatnej pamięci aplikacji na urządzeniu. Pełne kopie zapasowe to nieszyfrowane pliki ZIP zapisywane tylko w wybranym przez Ciebie miejscu.</p>
+      </div>
+
+      <div class="card">
+        <h3>Opcjonalna synchronizacja iCloud</h3>
+        <p>Jeśli odblokujesz PRO i włączysz synchronizację iCloud, książki, miejsca czytania, zakładki i notatki będą przechowywane w Twojej prywatnej bazie danych iCloud powiązanej z kontem Apple. Deweloper nie ma do nich dostępu. Wyłączenie synchronizacji zachowuje lokalną bibliotekę i nie usuwa danych z iCloud; możesz nimi zarządzać w ustawieniach iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Transfer przez Wi-Fi zostaje w Twojej sieci</h3>
+        <p>Dostęp do sieci lokalnej jest używany tylko podczas transferu przez Wi-Fi. Pliki trafiają bezpośrednio z komputera na urządzenie przez sieć lokalną, chronione jednorazowym kodem dostępu, i nigdy nie przechodzą przez nasze serwery.</p>
+      </div>
+
+      <div class="card">
+        <h3>Czytanie na głos i rozpoznawanie tekstu na urządzeniu</h3>
+        <p>Czytanie na głos korzysta z głosów wbudowanych w iOS. Rozpoznawanie tekstu w zeskanowanych PDF odbywa się na urządzeniu za pomocą frameworka Vision firmy Apple; rozpoznany tekst jest przechowywany w pamięci podręcznej urządzenia i nie trafia do kopii zapasowych ani synchronizacji.</p>
+      </div>
+
+      <div class="card">
+        <h3>Kontrolujesz swoje dane</h3>
+        <p>W każdej chwili możesz usunąć książki, notatki i zakładki, a usunięcie aplikacji usuwa jej dane lokalne. Wiadomości z opiniami zawierają tylko to, co sam zdecydujesz się wysłać.</p>
+      </div>
+
+      <h2>Zmiany i kontakt</h2>
+      <p>Jeśli te zasady istotnie się zmienią, zaktualizujemy tę stronę i podamy nową datę wejścia w życie. W sprawach prywatności skontaktuj się z deweloperem pod adresem <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Wydawca</h2>
+      <p>Next Dawn Technologies<br />E-mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="cs" lang="cs" hidden>
+      <p>ND Books je čtečka e-knih navržená především pro práci offline. Nevyžaduje účet, neprodává data a nesleduje vás napříč aplikacemi.</p>
+
+      <div class="card">
+        <h3>Vaše data neshromažďujeme</h3>
+        <p>ND Books nemá žádnou službu, která by shromažďovala uživatelská data, a neobsahuje reklamní ani analytické SDK třetích stran. Vývojář nedostává vaše knihy, poznámky, záložky, postup čtení ani nastavení. Platby za PRO zpracovává App Store; aplikace dostává pouze ověřené oprávnění StoreKit, nikdy vaše platební údaje.</p>
+      </div>
+
+      <div class="card">
+        <h3>Knihovna zůstává ve vašem zařízení</h3>
+        <p>Knihy, původní soubory, poznámky, záložky, pozice čtení, statistiky a nastavení se ukládají do soukromého úložiště aplikace ve vašem zařízení. Úplné zálohy jsou nešifrované soubory ZIP uložené pouze tam, kam určíte.</p>
+      </div>
+
+      <div class="card">
+        <h3>Volitelná synchronizace iCloud</h3>
+        <p>Pokud odemknete PRO a zapnete synchronizaci iCloud, knihy, pozice čtení, záložky a poznámky se uloží do vaší vlastní soukromé databáze iCloud pod vaším Apple účtem. Vývojář k nim nemá přístup. Vypnutím synchronizace zůstane místní knihovna zachována a data v iCloudu se nesmažou; spravovat je můžete v nastavení iCloudu.</p>
+      </div>
+
+      <div class="card">
+        <h3>Přenos přes Wi-Fi zůstává ve vaší síti</h3>
+        <p>Přístup k místní síti se používá jen během přenosu přes Wi-Fi. Soubory putují přes místní síť přímo z počítače do zařízení, chráněné jednorázovým přístupovým kódem, a nikdy neprocházejí našimi servery.</p>
+      </div>
+
+      <div class="card">
+        <h3>Předčítání a rozpoznávání textu probíhá v zařízení</h3>
+        <p>Předčítání využívá hlasy vestavěné v iOS. Rozpoznávání textu v naskenovaných PDF probíhá v zařízení pomocí frameworku Vision od Applu; rozpoznaný text se ukládá do mezipaměti zařízení a není součástí záloh ani synchronizace.</p>
+      </div>
+
+      <div class="card">
+        <h3>Svá data máte pod kontrolou</h3>
+        <p>Knihy, poznámky a záložky můžete kdykoli smazat a smazáním aplikace se odstraní i její místní data. E-maily se zpětnou vazbou obsahují jen to, co se rozhodnete poslat.</p>
+      </div>
+
+      <h2>Změny a kontakt</h2>
+      <p>Pokud se tyto postupy podstatně změní, aktualizujeme tuto stránku s novým datem účinnosti. S dotazy k ochraně soukromí se obracejte na vývojáře na adrese <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Vydavatel</h2>
+      <p>Next Dawn Technologies<br />E-mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="tr" lang="tr" hidden>
+      <p>ND Books, öncelikle çevrimdışı çalışan bir e-kitap okuyucudur. Hesap gerektirmez, veri satmaz ve sizi uygulamalar arasında takip etmez.</p>
+
+      <div class="card">
+        <h3>Verilerinizi toplamıyoruz</h3>
+        <p>ND Books'ta kullanıcı verisi toplayan bir hizmet yoktur ve reklam ya da üçüncü taraf analiz SDK'sı bulunmaz. Geliştirici kitaplarınızı, notlarınızı, yer imlerinizi, okuma ilerlemenizi veya ayarlarınızı almaz. PRO ödemelerini App Store yönetir; uygulama yalnızca doğrulanmış bir StoreKit hakkı alır, ödeme bilgilerinizi asla almaz.</p>
+      </div>
+
+      <div class="card">
+        <h3>Kütüphaneniz cihazınızda kalır</h3>
+        <p>Kitaplar, özgün dosyalar, notlar, yer imleri, okuma konumları, istatistikler ve ayarlar uygulamanın cihazınızdaki özel depolama alanında saklanır. Tam yedekler şifrelenmemiş ZIP dosyalarıdır ve yalnızca sizin seçtiğiniz yere kaydedilir.</p>
+      </div>
+
+      <div class="card">
+        <h3>İsteğe bağlı iCloud eşzamanlama</h3>
+        <p>PRO'nun kilidini açıp iCloud eşzamanlamayı etkinleştirirseniz kitaplarınız, okuma konumlarınız, yer imleriniz ve notlarınız Apple Hesabınıza bağlı özel iCloud veritabanınızda saklanır. Geliştirici bu verilere erişemez. Eşzamanlamayı kapatmak yerel kütüphanenizi korur ve iCloud'daki verileri silmez; bunları iCloud ayarlarınızdan yönetebilirsiniz.</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi aktarımı ağınızda kalır</h3>
+        <p>Yerel ağ erişimi yalnızca Wi-Fi aktarımı çalışırken kullanılır. Dosyalar tek kullanımlık bir erişim koduyla korunarak yerel ağınız üzerinden doğrudan bilgisayarınızdan cihazınıza gider ve hiçbir zaman sunucularımızdan geçmez.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sesli okuma ve metin tanıma cihazınızda gerçekleşir</h3>
+        <p>Sesli okuma iOS'un yerleşik seslerini kullanır. Taranmış PDF'lerde metin tanıma, Apple'ın Vision çerçevesiyle cihazınızda yapılır; tanınan metin cihazda önbelleğe alınır, yedeklere ve eşzamanlamaya dahil edilmez.</p>
+      </div>
+
+      <div class="card">
+        <h3>Verileriniz sizin kontrolünüzde</h3>
+        <p>Kitapları, notları ve yer imlerini istediğiniz zaman silebilirsiniz; uygulamayı silmek yerel verilerini de kaldırır. Geri bildirim e-postaları yalnızca göndermeyi seçtiğiniz içeriği barındırır.</p>
+      </div>
+
+      <h2>Politika güncellemeleri ve iletişim</h2>
+      <p>Bu uygulamalar önemli ölçüde değişirse bu sayfayı yeni bir yürürlük tarihiyle güncelleriz. Gizlilikle ilgili sorularınız için geliştiriciye <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> adresinden ulaşın.</p>
+
+      <h2>Yayımlayan</h2>
+      <p>Next Dawn Technologies<br />E-posta: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ru" lang="ru" hidden>
+      <p>ND Books — читалка электронных книг, рассчитанная прежде всего на работу офлайн. Она не требует аккаунта, не продаёт данные и не отслеживает вас в других приложениях.</p>
+
+      <div class="card">
+        <h3>Мы не собираем ваши данные</h3>
+        <p>У ND Books нет сервиса для сбора пользовательских данных, и в приложении нет рекламных или сторонних аналитических SDK. Разработчик не получает ваши книги, заметки, закладки, прогресс чтения или настройки. Оплату PRO обрабатывает App Store; приложение получает только подтверждённое право StoreKit и никогда — ваши платёжные данные.</p>
+      </div>
+
+      <div class="card">
+        <h3>Библиотека остаётся на устройстве</h3>
+        <p>Книги, исходные файлы, заметки, закладки, позиции чтения, статистика и настройки хранятся в закрытом хранилище приложения на вашем устройстве. Полные резервные копии — это незашифрованные ZIP-файлы, которые сохраняются только туда, куда вы выберете.</p>
+      </div>
+
+      <div class="card">
+        <h3>Необязательная синхронизация iCloud</h3>
+        <p>Если вы разблокируете PRO и включите синхронизацию iCloud, книги, позиции чтения, закладки и заметки будут храниться в вашей собственной закрытой базе данных iCloud, привязанной к вашему Аккаунту Apple. У разработчика нет к ним доступа. Отключение синхронизации сохраняет локальную библиотеку и не удаляет данные из iCloud; управлять ими можно в настройках iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Передача по Wi-Fi не выходит за пределы вашей сети</h3>
+        <p>Доступ к локальной сети используется только во время передачи по Wi-Fi. Файлы передаются напрямую с компьютера на устройство через локальную сеть, защищены одноразовым кодом доступа и никогда не проходят через наши серверы.</p>
+      </div>
+
+      <div class="card">
+        <h3>Чтение вслух и распознавание текста — на устройстве</h3>
+        <p>Для чтения вслух используются встроенные голоса iOS. Распознавание текста в отсканированных PDF выполняется на устройстве с помощью фреймворка Apple Vision; распознанный текст кэшируется на устройстве и не попадает в резервные копии и синхронизацию.</p>
+      </div>
+
+      <div class="card">
+        <h3>Вы управляете своими данными</h3>
+        <p>Вы можете в любой момент удалить книги, заметки и закладки, а при удалении приложения стираются и его локальные данные. Письма с отзывами содержат только то, что вы решили отправить.</p>
+      </div>
+
+      <h2>Изменения политики и контакты</h2>
+      <p>Если эти принципы существенно изменятся, мы обновим эту страницу и укажем новую дату вступления в силу. По вопросам конфиденциальности пишите разработчику: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Издатель</h2>
+      <p>Next Dawn Technologies<br />Эл. почта: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="uk" lang="uk" hidden>
+      <p>ND Books — читалка електронних книжок, створена насамперед для роботи офлайн. Вона не потребує облікового запису, не продає дані й не стежить за вами в інших застосунках.</p>
+
+      <div class="card">
+        <h3>Ми не збираємо ваші дані</h3>
+        <p>ND Books не має сервісу для збирання даних користувачів і не містить рекламних чи сторонніх аналітичних SDK. Розробник не отримує ваші книжки, нотатки, закладки, прогрес читання чи налаштування. Оплату PRO обробляє App Store; застосунок отримує лише підтверджене право StoreKit і ніколи — ваші платіжні дані.</p>
+      </div>
+
+      <div class="card">
+        <h3>Бібліотека залишається на пристрої</h3>
+        <p>Книжки, оригінальні файли, нотатки, закладки, позиції читання, статистика й налаштування зберігаються в приватному сховищі застосунку на вашому пристрої. Повні резервні копії — це незашифровані ZIP-файли, які зберігаються лише там, де ви оберете.</p>
+      </div>
+
+      <div class="card">
+        <h3>Необов'язкова синхронізація iCloud</h3>
+        <p>Якщо ви розблокуєте PRO й увімкнете синхронізацію iCloud, книжки, позиції читання, закладки й нотатки зберігатимуться у вашій власній приватній базі даних iCloud, прив'язаній до вашого облікового запису Apple. Розробник не має до них доступу. Вимкнення синхронізації зберігає локальну бібліотеку й не видаляє дані з iCloud; керувати ними можна в налаштуваннях iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Передавання через Wi-Fi не виходить за межі вашої мережі</h3>
+        <p>Доступ до локальної мережі використовується лише під час передавання через Wi-Fi. Файли надходять безпосередньо з комп'ютера на пристрій через локальну мережу, захищені одноразовим кодом доступу, і ніколи не проходять через наші сервери.</p>
+      </div>
+
+      <div class="card">
+        <h3>Читання вголос і розпізнавання тексту — на пристрої</h3>
+        <p>Для читання вголос використовуються вбудовані голоси iOS. Розпізнавання тексту у сканованих PDF виконується на пристрої за допомогою фреймворку Apple Vision; розпізнаний текст кешується на пристрої й не потрапляє до резервних копій і синхронізації.</p>
+      </div>
+
+      <div class="card">
+        <h3>Ви керуєте своїми даними</h3>
+        <p>Ви можете будь-коли видалити книжки, нотатки й закладки, а видалення застосунку стирає і його локальні дані. Листи з відгуками містять лише те, що ви вирішили надіслати.</p>
+      </div>
+
+      <h2>Зміни політики та контакти</h2>
+      <p>Якщо ці принципи суттєво зміняться, ми оновимо цю сторінку й зазначимо нову дату набрання чинності. З питань конфіденційності пишіть розробникові: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Видавець</h2>
+      <p>Next Dawn Technologies<br />Ел. пошта: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ar" lang="ar" dir="rtl" hidden>
+      <p>ND Books قارئ كتب إلكترونية مصمّم للعمل بلا اتصال أولًا. لا يتطلب حسابًا ولا يبيع البيانات ولا يتتبعك عبر التطبيقات.</p>
+
+      <div class="card">
+        <h3>لا نجمع بياناتك</h3>
+        <p>لا يملك ND Books أي خدمة لجمع بيانات المستخدمين، ولا يتضمن أي حزمة SDK إعلانية أو تحليلية من جهات خارجية. لا يتلقى المطوّر كتبك أو ملاحظاتك أو إشاراتك المرجعية أو تقدّم قراءتك أو إعداداتك. يتولى App Store مدفوعات PRO، ولا يتلقى التطبيق سوى استحقاق StoreKit موثّق، ولا يتلقى بيانات الدفع الخاصة بك أبدًا.</p>
+      </div>
+
+      <div class="card">
+        <h3>تبقى مكتبتك على جهازك</h3>
+        <p>تُخزَّن الكتب والملفات الأصلية والملاحظات والإشارات المرجعية ومواضع القراءة والإحصاءات والإعدادات في التخزين الخاص بالتطبيق على جهازك. النسخ الاحتياطية الكاملة ملفات ZIP غير مشفّرة، تُحفظ فقط في المكان الذي تختاره.</p>
+      </div>
+
+      <div class="card">
+        <h3>مزامنة iCloud اختيارية</h3>
+        <p>إذا فتحت PRO وفعّلت مزامنة iCloud، فستُخزَّن كتبك ومواضع القراءة والإشارات المرجعية والملاحظات في قاعدة بيانات iCloud الخاصة بك ضمن حساب Apple. لا يمكن للمطوّر الوصول إلى هذه البيانات. يحافظ إيقاف المزامنة على مكتبتك المحلية ولا يحذف البيانات من iCloud، ويمكنك إدارتها من إعدادات iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>يبقى النقل عبر Wi-Fi داخل شبكتك</h3>
+        <p>لا يُستخدم الوصول إلى الشبكة المحلية إلا أثناء تشغيل النقل عبر Wi-Fi. تنتقل الملفات مباشرةً من الكمبيوتر إلى جهازك عبر شبكتك المحلية، محميةً برمز وصول لمرة واحدة، ولا تمر أبدًا عبر خوادمنا.</p>
+      </div>
+
+      <div class="card">
+        <h3>القراءة بصوت عالٍ والتعرّف على النص على جهازك</h3>
+        <p>تستخدم القراءة بصوت عالٍ الأصوات المدمجة في iOS. ويجري التعرّف على النص في ملفات PDF الممسوحة ضوئيًا على جهازك باستخدام إطار Vision من Apple، ويُخزَّن النص المتعرَّف عليه مؤقتًا على الجهاز ولا يُضمَّن في النسخ الاحتياطية أو المزامنة.</p>
+      </div>
+
+      <div class="card">
+        <h3>أنت تتحكم في بياناتك</h3>
+        <p>يمكنك حذف الكتب والملاحظات والإشارات المرجعية في أي وقت، وحذف التطبيق يزيل بياناته المحلية. لا تحتوي رسائل الملاحظات إلا على ما تختار إرساله.</p>
+      </div>
+
+      <h2>تحديثات السياسة والتواصل</h2>
+      <p>إذا تغيّرت هذه الممارسات تغيّرًا جوهريًا، فسنحدّث هذه الصفحة بتاريخ سريان جديد. للاستفسارات المتعلقة بالخصوصية، تواصل مع المطوّر على <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>الناشر</h2>
+      <p>Next Dawn Technologies<br />البريد الإلكتروني: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="th" lang="th" hidden>
+      <p>ND Books คือแอปอ่านอีบุ๊กที่ออกแบบให้ทำงานแบบออฟไลน์เป็นหลัก ไม่ต้องมีบัญชี ไม่ขายข้อมูล และไม่ติดตามคุณข้ามแอป</p>
+
+      <div class="card">
+        <h3>เราไม่เก็บข้อมูลของคุณ</h3>
+        <p>ND Books ไม่มีบริการใดที่เก็บข้อมูลผู้ใช้ และไม่มี SDK โฆษณาหรือการวิเคราะห์จากบุคคลที่สาม นักพัฒนาจะไม่ได้รับหนังสือ โน้ต ที่คั่นหน้า ความคืบหน้าการอ่าน หรือการตั้งค่าของคุณ App Store เป็นผู้ดำเนินการชำระเงินสำหรับ PRO แอปจะได้รับเพียงสิทธิ์ StoreKit ที่ยืนยันแล้ว และไม่ได้รับข้อมูลการชำระเงินของคุณ</p>
+      </div>
+
+      <div class="card">
+        <h3>คลังหนังสืออยู่บนอุปกรณ์ของคุณ</h3>
+        <p>หนังสือ ไฟล์ต้นฉบับ โน้ต ที่คั่นหน้า ตำแหน่งที่อ่าน สถิติ และการตั้งค่าจะถูกเก็บไว้ในพื้นที่ส่วนตัวของแอปบนอุปกรณ์ ข้อมูลสำรองทั้งหมดเป็นไฟล์ ZIP ที่ไม่ได้เข้ารหัส และบันทึกเฉพาะในตำแหน่งที่คุณเลือก</p>
+      </div>
+
+      <div class="card">
+        <h3>การซิงค์กับ iCloud แบบเลือกได้</h3>
+        <p>หากคุณปลดล็อก PRO และเปิดการซิงค์กับ iCloud หนังสือ ตำแหน่งที่อ่าน ที่คั่นหน้า และโน้ตจะถูกเก็บในฐานข้อมูล iCloud ส่วนตัวภายใต้บัญชี Apple ของคุณ นักพัฒนาไม่สามารถเข้าถึงข้อมูลนี้ได้ การปิดซิงค์จะยังคงเก็บคลังในเครื่องไว้และไม่ลบข้อมูลใน iCloud คุณจัดการข้อมูลนี้ได้ในการตั้งค่า iCloud</p>
+      </div>
+
+      <div class="card">
+        <h3>การส่งผ่าน Wi-Fi อยู่ในเครือข่ายของคุณ</h3>
+        <p>แอปใช้สิทธิ์เข้าถึงเครือข่ายท้องถิ่นเฉพาะขณะส่งหนังสือผ่าน Wi-Fi ไฟล์จะส่งตรงจากคอมพิวเตอร์ไปยังอุปกรณ์ผ่านเครือข่ายท้องถิ่น โดยมีรหัสเข้าถึงแบบใช้ครั้งเดียวป้องกัน และไม่ผ่านเซิร์ฟเวอร์ของเรา</p>
+      </div>
+
+      <div class="card">
+        <h3>การอ่านออกเสียงและการรู้จำข้อความทำบนอุปกรณ์</h3>
+        <p>การอ่านออกเสียงใช้เสียงที่มีอยู่ใน iOS การรู้จำข้อความใน PDF ที่สแกนทำงานบนอุปกรณ์ด้วยเฟรมเวิร์ก Vision ของ Apple ข้อความที่รู้จำได้จะแคชไว้ในอุปกรณ์ และไม่รวมอยู่ในข้อมูลสำรองหรือการซิงค์</p>
+      </div>
+
+      <div class="card">
+        <h3>คุณควบคุมข้อมูลของตัวเอง</h3>
+        <p>คุณลบหนังสือ โน้ต และที่คั่นหน้าได้ทุกเมื่อ และการลบแอปจะลบข้อมูลในเครื่องของแอปด้วย อีเมลแสดงความคิดเห็นจะมีเฉพาะสิ่งที่คุณเลือกส่ง</p>
+      </div>
+
+      <h2>การปรับปรุงนโยบายและการติดต่อ</h2>
+      <p>หากแนวทางเหล่านี้เปลี่ยนแปลงอย่างมีนัยสำคัญ เราจะอัปเดตหน้านี้พร้อมวันที่มีผลใหม่ หากมีคำถามเกี่ยวกับความเป็นส่วนตัว โปรดติดต่อนักพัฒนาที่ <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+
+      <h2>ผู้เผยแพร่</h2>
+      <p>Next Dawn Technologies<br />อีเมล: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="vi" lang="vi" hidden>
+      <p>ND Books là ứng dụng đọc sách điện tử ưu tiên hoạt động ngoại tuyến. Ứng dụng không yêu cầu tài khoản, không bán dữ liệu và không theo dõi bạn qua các ứng dụng khác.</p>
+
+      <div class="card">
+        <h3>Chúng tôi không thu thập dữ liệu của bạn</h3>
+        <p>ND Books không có dịch vụ nào thu thập dữ liệu người dùng và không tích hợp SDK quảng cáo hay phân tích của bên thứ ba. Nhà phát triển không nhận sách, ghi chú, dấu trang, tiến độ đọc hay cài đặt của bạn. App Store xử lý thanh toán PRO; ứng dụng chỉ nhận quyền lợi StoreKit đã xác minh và không bao giờ nhận thông tin thanh toán của bạn.</p>
+      </div>
+
+      <div class="card">
+        <h3>Thư viện ở lại trên thiết bị của bạn</h3>
+        <p>Sách, tệp gốc, ghi chú, dấu trang, vị trí đọc, thống kê và cài đặt được lưu trong bộ nhớ riêng của ứng dụng trên thiết bị. Bản sao lưu đầy đủ là tệp ZIP không mã hóa, chỉ được lưu ở nơi bạn chọn.</p>
+      </div>
+
+      <div class="card">
+        <h3>Đồng bộ iCloud tùy chọn</h3>
+        <p>Nếu bạn mở khóa PRO và bật đồng bộ iCloud, sách, vị trí đọc, dấu trang và ghi chú sẽ được lưu trong cơ sở dữ liệu iCloud riêng tư thuộc Tài khoản Apple của bạn. Nhà phát triển không thể truy cập dữ liệu này. Tắt đồng bộ vẫn giữ thư viện trên máy và không xóa dữ liệu trên iCloud; bạn có thể quản lý dữ liệu đó trong cài đặt iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Chuyển sách qua Wi-Fi chỉ trong mạng của bạn</h3>
+        <p>Quyền truy cập mạng cục bộ chỉ được dùng khi đang chuyển sách qua Wi-Fi. Tệp được gửi trực tiếp từ máy tính sang thiết bị qua mạng cục bộ, được bảo vệ bằng mã truy cập dùng một lần và không bao giờ đi qua máy chủ của chúng tôi.</p>
+      </div>
+
+      <div class="card">
+        <h3>Đọc to và nhận dạng văn bản diễn ra trên thiết bị</h3>
+        <p>Tính năng đọc to dùng các giọng có sẵn trong iOS. Nhận dạng văn bản cho PDF scan chạy trên thiết bị bằng framework Vision của Apple; văn bản nhận dạng được lưu đệm trên thiết bị và không có trong bản sao lưu hay đồng bộ.</p>
+      </div>
+
+      <div class="card">
+        <h3>Bạn kiểm soát dữ liệu của mình</h3>
+        <p>Bạn có thể xóa sách, ghi chú và dấu trang bất cứ lúc nào, và xóa ứng dụng sẽ xóa dữ liệu cục bộ của ứng dụng. Email góp ý chỉ chứa những gì bạn chọn gửi.</p>
+      </div>
+
+      <h2>Cập nhật chính sách và liên hệ</h2>
+      <p>Nếu các cách thức này thay đổi đáng kể, chúng tôi sẽ cập nhật trang này kèm ngày có hiệu lực mới. Nếu có câu hỏi về quyền riêng tư, vui lòng liên hệ nhà phát triển tại <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Nhà phát hành</h2>
+      <p>Next Dawn Technologies<br />Email: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="id" lang="id" hidden>
+      <p>ND Books adalah pembaca e-book yang mengutamakan penggunaan offline. App ini tidak memerlukan akun, tidak menjual data, dan tidak melacak Anda di berbagai app.</p>
+
+      <div class="card">
+        <h3>Kami tidak mengumpulkan data Anda</h3>
+        <p>ND Books tidak memiliki layanan yang mengumpulkan data pengguna dan tidak menyertakan SDK iklan atau analitik pihak ketiga. Pengembang tidak menerima buku, catatan, penanda, progres membaca, atau pengaturan Anda. Pembayaran PRO ditangani oleh App Store; app hanya menerima hak StoreKit yang terverifikasi dan tidak pernah menerima detail pembayaran Anda.</p>
+      </div>
+
+      <div class="card">
+        <h3>Perpustakaan tetap di perangkat Anda</h3>
+        <p>Buku, file asli, catatan, penanda, posisi baca, statistik, dan pengaturan disimpan di penyimpanan pribadi app pada perangkat Anda. Cadangan lengkap berupa file ZIP tanpa enkripsi yang hanya disimpan di lokasi pilihan Anda.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sinkronisasi iCloud opsional</h3>
+        <p>Jika Anda membuka PRO dan mengaktifkan sinkronisasi iCloud, buku, posisi baca, penanda, dan catatan disimpan di database iCloud pribadi Anda di bawah Akun Apple Anda. Pengembang tidak dapat mengakses data ini. Menonaktifkan sinkronisasi tetap mempertahankan perpustakaan lokal dan tidak menghapus data dari iCloud; Anda dapat mengelolanya di pengaturan iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Transfer Wi-Fi tetap di jaringan Anda</h3>
+        <p>Akses jaringan lokal hanya digunakan saat transfer Wi-Fi berjalan. File dikirim langsung dari komputer ke perangkat melalui jaringan lokal, dilindungi kode akses sekali pakai, dan tidak pernah melewati server kami.</p>
+      </div>
+
+      <div class="card">
+        <h3>Pembacaan dan pengenalan teks berlangsung di perangkat</h3>
+        <p>Fitur membacakan teks menggunakan suara bawaan iOS. Pengenalan teks untuk PDF hasil pindai berjalan di perangkat dengan framework Vision dari Apple; teks yang dikenali disimpan di cache perangkat dan tidak disertakan dalam cadangan atau sinkronisasi.</p>
+      </div>
+
+      <div class="card">
+        <h3>Anda mengendalikan data Anda</h3>
+        <p>Anda dapat menghapus buku, catatan, dan penanda kapan saja, dan menghapus app akan menghapus data lokalnya. Email masukan hanya berisi apa yang Anda pilih untuk dikirim.</p>
+      </div>
+
+      <h2>Pembaruan kebijakan dan kontak</h2>
+      <p>Jika praktik ini berubah secara signifikan, kami akan memperbarui halaman ini dengan tanggal berlaku yang baru. Untuk pertanyaan privasi, hubungi pengembang di <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Penerbit</h2>
+      <p>Next Dawn Technologies<br />Email: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ms" lang="ms" hidden>
+      <p>ND Books ialah pembaca e-buku yang mengutamakan penggunaan luar talian. Ia tidak memerlukan akaun, tidak menjual data dan tidak menjejak anda merentas app.</p>
+
+      <div class="card">
+        <h3>Kami tidak mengumpul data anda</h3>
+        <p>ND Books tidak mempunyai sebarang perkhidmatan yang mengumpul data pengguna dan tidak menyertakan SDK iklan atau analitik pihak ketiga. Pembangun tidak menerima buku, nota, penanda buku, kemajuan bacaan atau tetapan anda. Bayaran PRO dikendalikan oleh App Store; app hanya menerima hak StoreKit yang disahkan dan tidak pernah menerima butiran pembayaran anda.</p>
+      </div>
+
+      <div class="card">
+        <h3>Pustaka anda kekal pada peranti</h3>
+        <p>Buku, fail asal, nota, penanda buku, kedudukan bacaan, statistik dan tetapan disimpan dalam storan peribadi app pada peranti anda. Sandaran penuh ialah fail ZIP tidak bersulit yang hanya disimpan di tempat yang anda pilih.</p>
+      </div>
+
+      <div class="card">
+        <h3>Penyegerakan iCloud pilihan</h3>
+        <p>Jika anda membuka kunci PRO dan menghidupkan penyegerakan iCloud, buku, kedudukan bacaan, penanda buku dan nota anda disimpan dalam pangkalan data iCloud peribadi anda di bawah Akaun Apple anda. Pembangun tidak dapat mengakses data ini. Mematikan penyegerakan mengekalkan pustaka setempat dan tidak memadam data daripada iCloud; anda boleh mengurusnya dalam tetapan iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Pemindahan Wi-Fi kekal dalam rangkaian anda</h3>
+        <p>Akses rangkaian setempat hanya digunakan semasa pemindahan Wi-Fi berjalan. Fail dihantar terus dari komputer ke peranti melalui rangkaian setempat, dilindungi kod akses sekali guna, dan tidak pernah melalui pelayan kami.</p>
+      </div>
+
+      <div class="card">
+        <h3>Bacaan kuat dan pengecaman teks berlaku pada peranti</h3>
+        <p>Bacaan kuat menggunakan suara terbina dalam iOS. Pengecaman teks untuk PDF imbasan dijalankan pada peranti dengan rangka kerja Vision Apple; teks yang dikenal pasti disimpan dalam cache peranti dan tidak dimasukkan dalam sandaran atau penyegerakan.</p>
+      </div>
+
+      <div class="card">
+        <h3>Anda mengawal data anda</h3>
+        <p>Anda boleh memadam buku, nota dan penanda buku pada bila-bila masa, dan memadam app akan mengalih keluar data setempatnya. E-mel maklum balas hanya mengandungi apa yang anda pilih untuk dihantar.</p>
+      </div>
+
+      <h2>Kemas kini dasar dan hubungan</h2>
+      <p>Jika amalan ini berubah dengan ketara, kami akan mengemas kini halaman ini dengan tarikh berkuat kuasa yang baharu. Untuk soalan privasi, hubungi pembangun di <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Penerbit</h2>
+      <p>Next Dawn Technologies<br />E-mel: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="hi" lang="hi" hidden>
+      <p>ND Books मुख्य रूप से ऑफ़लाइन काम करने वाला ई-बुक रीडर है। इसके लिए खाते की ज़रूरत नहीं है, यह डेटा नहीं बेचता और ऐप्स के बीच आपको ट्रैक नहीं करता।</p>
+
+      <div class="card">
+        <h3>हम आपका डेटा एकत्र नहीं करते</h3>
+        <p>ND Books में उपयोगकर्ता डेटा एकत्र करने वाली कोई सेवा नहीं है, और इसमें कोई विज्ञापन या थर्ड-पार्टी एनालिटिक्स SDK शामिल नहीं है। डेवलपर को आपकी किताबें, नोट्स, बुकमार्क, पढ़ने की प्रगति या सेटिंग्स नहीं मिलतीं। PRO का भुगतान App Store संभालता है; ऐप को केवल सत्यापित StoreKit अधिकार मिलता है, आपकी भुगतान जानकारी कभी नहीं।</p>
+      </div>
+
+      <div class="card">
+        <h3>आपकी लाइब्रेरी आपके डिवाइस पर रहती है</h3>
+        <p>किताबें, मूल फ़ाइलें, नोट्स, बुकमार्क, पढ़ने की जगह, आँकड़े और सेटिंग्स आपके डिवाइस पर ऐप के निजी स्टोरेज में रहते हैं। पूरे बैकअप बिना एन्क्रिप्शन वाली ZIP फ़ाइलें हैं, जो केवल आपकी चुनी हुई जगह पर सहेजी जाती हैं।</p>
+      </div>
+
+      <div class="card">
+        <h3>वैकल्पिक iCloud सिंक</h3>
+        <p>अगर आप PRO अनलॉक करके iCloud सिंक चालू करते हैं, तो आपकी किताबें, पढ़ने की जगह, बुकमार्क और नोट्स आपके Apple खाते के तहत आपके निजी iCloud डेटाबेस में रखे जाते हैं। डेवलपर इस डेटा तक नहीं पहुँच सकता। सिंक बंद करने पर लोकल लाइब्रेरी बनी रहती है और iCloud का डेटा नहीं हटता; आप उसे iCloud सेटिंग्स में प्रबंधित कर सकते हैं।</p>
+      </div>
+
+      <div class="card">
+        <h3>Wi-Fi से भेजना आपके नेटवर्क में ही रहता है</h3>
+        <p>लोकल नेटवर्क की अनुमति केवल तब इस्तेमाल होती है, जब Wi-Fi से किताबें भेजी जा रही हों। फ़ाइलें एक बार इस्तेमाल होने वाले एक्सेस कोड से सुरक्षित रहकर लोकल नेटवर्क से सीधे कंप्यूटर से डिवाइस पर आती हैं और कभी हमारे सर्वर से होकर नहीं गुज़रतीं।</p>
+      </div>
+
+      <div class="card">
+        <h3>पढ़कर सुनाना और टेक्स्ट पहचान डिवाइस पर होती है</h3>
+        <p>पढ़कर सुनाने के लिए iOS में मौजूद आवाज़ें इस्तेमाल होती हैं। स्कैन की गई PDF में टेक्स्ट पहचान Apple के Vision फ़्रेमवर्क से आपके डिवाइस पर ही होती है; पहचाना गया टेक्स्ट डिवाइस पर कैश होता है और बैकअप या सिंक में शामिल नहीं होता।</p>
+      </div>
+
+      <div class="card">
+        <h3>आपका डेटा आपके नियंत्रण में</h3>
+        <p>आप कभी भी किताबें, नोट्स और बुकमार्क हटा सकते हैं, और ऐप हटाने पर उसका लोकल डेटा भी हट जाता है। राय वाले ईमेल में सिर्फ़ वही होता है जो आप भेजना चुनते हैं।</p>
+      </div>
+
+      <h2>नीति में बदलाव और संपर्क</h2>
+      <p>अगर ये तरीके काफ़ी बदलते हैं, तो हम नई प्रभावी तिथि के साथ यह पेज अपडेट करेंगे। निजता से जुड़े सवालों के लिए डेवलपर से <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> पर संपर्क करें।</p>
+
+      <h2>प्रकाशक</h2>
+      <p>Next Dawn Technologies<br />ईमेल: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ro" lang="ro" hidden>
+      <p>ND Books este un cititor de cărți electronice gândit în primul rând pentru folosirea offline. Nu necesită cont, nu vinde date și nu te urmărește în alte aplicații.</p>
+
+      <div class="card">
+        <h3>Nu îți colectăm datele</h3>
+        <p>ND Books nu are niciun serviciu care să colecteze datele utilizatorilor și nu include SDK-uri de publicitate sau de analiză de la terți. Dezvoltatorul nu primește cărțile, notițele, semnele de carte, progresul lecturii sau configurările tale. Plățile pentru PRO sunt gestionate de App Store; aplicația primește doar un drept StoreKit verificat și niciodată datele tale de plată.</p>
+      </div>
+
+      <div class="card">
+        <h3>Biblioteca rămâne pe dispozitivul tău</h3>
+        <p>Cărțile, fișierele originale, notițele, semnele de carte, pozițiile de lectură, statisticile și configurările sunt stocate în spațiul privat al aplicației pe dispozitiv. Copiile complete sunt fișiere ZIP necriptate, salvate doar unde alegi tu.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sincronizare iCloud opțională</h3>
+        <p>Dacă deblochezi PRO și activezi sincronizarea iCloud, cărțile, pozițiile de lectură, semnele de carte și notițele sunt stocate în propria ta bază de date iCloud privată, asociată contului tău Apple. Dezvoltatorul nu are acces la ele. Dezactivarea sincronizării păstrează biblioteca locală și nu șterge datele din iCloud; le poți gestiona din configurările iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Transferul prin Wi-Fi rămâne în rețeaua ta</h3>
+        <p>Accesul la rețeaua locală este folosit doar cât timp rulează transferul prin Wi-Fi. Fișierele ajung direct de pe calculator pe dispozitiv prin rețeaua locală, protejate de un cod de acces de unică folosință, și nu trec niciodată prin serverele noastre.</p>
+      </div>
+
+      <div class="card">
+        <h3>Citirea cu voce tare și recunoașterea textului au loc pe dispozitiv</h3>
+        <p>Citirea cu voce tare folosește vocile integrate în iOS. Recunoașterea textului din PDF-urile scanate rulează pe dispozitiv cu framework-ul Vision de la Apple; textul recunoscut este păstrat în memoria cache a dispozitivului și nu este inclus în copiile de rezervă sau în sincronizare.</p>
+      </div>
+
+      <div class="card">
+        <h3>Tu controlezi datele</h3>
+        <p>Poți șterge oricând cărți, notițe și semne de carte, iar ștergerea aplicației elimină datele ei locale. E-mailurile cu feedback conțin doar ce alegi să trimiți.</p>
+      </div>
+
+      <h2>Actualizări și contact</h2>
+      <p>Dacă aceste practici se schimbă semnificativ, vom actualiza această pagină cu o nouă dată de intrare în vigoare. Pentru întrebări privind confidențialitatea, contactează dezvoltatorul la <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Editor</h2>
+      <p>Next Dawn Technologies<br />E-mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="hu" lang="hu" hidden>
+      <p>Az ND Books elsősorban offline használatra tervezett e-könyv-olvasó. Nem igényel fiókot, nem ad el adatokat, és nem követ más appokban.</p>
+
+      <div class="card">
+        <h3>Nem gyűjtjük az adataidat</h3>
+        <p>Az ND Booksnak nincs felhasználói adatokat gyűjtő szolgáltatása, és nem tartalmaz hirdetési vagy külső elemzési SDK-t. A fejlesztő nem kapja meg a könyveidet, jegyzeteidet, könyvjelzőidet, olvasási előrehaladásodat vagy beállításaidat. A PRO kifizetését az App Store kezeli; az app csak egy ellenőrzött StoreKit-jogosultságot kap, a fizetési adataidat soha.</p>
+      </div>
+
+      <div class="card">
+        <h3>A könyvtárad az eszközödön marad</h3>
+        <p>A könyvek, eredeti fájlok, jegyzetek, könyvjelzők, olvasási pozíciók, statisztikák és beállítások az app privát tárhelyén, az eszközödön tárolódnak. A teljes mentések titkosítatlan ZIP-fájlok, amelyek csak az általad választott helyre kerülnek.</p>
+      </div>
+
+      <div class="card">
+        <h3>Választható iCloud-szinkronizálás</h3>
+        <p>Ha feloldod a PRO-t és bekapcsolod az iCloud-szinkronizálást, a könyveid, olvasási pozícióid, könyvjelzőid és jegyzeteid a saját, Apple-fiókodhoz tartozó privát iCloud-adatbázisodban tárolódnak. A fejlesztő nem fér hozzájuk. A szinkronizálás kikapcsolása megtartja a helyi könyvtárat, és nem törli az iCloudban lévő adatokat; ezeket az iCloud-beállításokban kezelheted.</p>
+      </div>
+
+      <div class="card">
+        <h3>A Wi-Fi-átvitel a hálózatodon belül marad</h3>
+        <p>A helyi hálózati hozzáférést csak a Wi-Fi-átvitel ideje alatt használja az app. A fájlok a helyi hálózaton át közvetlenül a számítógépről az eszközre jutnak, egyszer használatos hozzáférési kóddal védve, és soha nem haladnak át a szervereinken.</p>
+      </div>
+
+      <div class="card">
+        <h3>A felolvasás és a szövegfelismerés az eszközön történik</h3>
+        <p>A felolvasás az iOS beépített hangjait használja. A beolvasott PDF-ek szövegfelismerése az Apple Vision keretrendszerével az eszközön fut; a felismert szöveg az eszköz gyorsítótárában marad, és nem kerül a mentésekbe vagy a szinkronizálásba.</p>
+      </div>
+
+      <div class="card">
+        <h3>Te rendelkezel az adataid felett</h3>
+        <p>A könyveket, jegyzeteket és könyvjelzőket bármikor törölheted, és az app törlésével a helyi adatai is törlődnek. A visszajelző e-mailek csak azt tartalmazzák, amit te magad elküldesz.</p>
+      </div>
+
+      <h2>Változások és kapcsolat</h2>
+      <p>Ha ezek a gyakorlatok lényegesen megváltoznak, új hatálybalépési dátummal frissítjük ezt az oldalt. Adatvédelmi kérdésekkel a fejlesztőhöz fordulhatsz a(z) <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> címen.</p>
+
+      <h2>Kiadó</h2>
+      <p>Next Dawn Technologies<br />E-mail: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="el" lang="el" hidden>
+      <p>Το ND Books είναι ένας αναγνώστης ηλεκτρονικών βιβλίων σχεδιασμένος πρώτα για χρήση εκτός σύνδεσης. Δεν απαιτεί λογαριασμό, δεν πουλά δεδομένα και δεν σας παρακολουθεί σε άλλες εφαρμογές.</p>
+
+      <div class="card">
+        <h3>Δεν συλλέγουμε τα δεδομένα σας</h3>
+        <p>Το ND Books δεν διαθέτει υπηρεσία συλλογής δεδομένων χρηστών και δεν περιλαμβάνει SDK διαφημίσεων ή ανάλυσης τρίτων. Ο προγραμματιστής δεν λαμβάνει τα βιβλία, τις σημειώσεις, τους σελιδοδείκτες, την πρόοδο ανάγνωσης ή τις ρυθμίσεις σας. Τις πληρωμές του PRO τις διαχειρίζεται το App Store· η εφαρμογή λαμβάνει μόνο ένα επαληθευμένο δικαίωμα StoreKit και ποτέ τα στοιχεία πληρωμής σας.</p>
+      </div>
+
+      <div class="card">
+        <h3>Η βιβλιοθήκη μένει στη συσκευή σας</h3>
+        <p>Βιβλία, αρχικά αρχεία, σημειώσεις, σελιδοδείκτες, θέσεις ανάγνωσης, στατιστικά και ρυθμίσεις αποθηκεύονται στον ιδιωτικό χώρο της εφαρμογής στη συσκευή σας. Τα πλήρη αντίγραφα ασφαλείας είναι μη κρυπτογραφημένα αρχεία ZIP που αποθηκεύονται μόνο όπου επιλέξετε.</p>
+      </div>
+
+      <div class="card">
+        <h3>Προαιρετικός συγχρονισμός iCloud</h3>
+        <p>Αν ξεκλειδώσετε το PRO και ενεργοποιήσετε τον συγχρονισμό iCloud, τα βιβλία, οι θέσεις ανάγνωσης, οι σελιδοδείκτες και οι σημειώσεις σας αποθηκεύονται στη δική σας ιδιωτική βάση δεδομένων iCloud, στον Λογαριασμό Apple σας. Ο προγραμματιστής δεν έχει πρόσβαση σε αυτά. Η απενεργοποίηση του συγχρονισμού διατηρεί την τοπική βιβλιοθήκη και δεν διαγράφει δεδομένα από το iCloud· μπορείτε να τα διαχειριστείτε από τις ρυθμίσεις iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>Η μεταφορά μέσω Wi-Fi μένει στο δίκτυό σας</h3>
+        <p>Η πρόσβαση στο τοπικό δίκτυο χρησιμοποιείται μόνο όσο εκτελείται η μεταφορά μέσω Wi-Fi. Τα αρχεία μεταφέρονται απευθείας από τον υπολογιστή στη συσκευή μέσω του τοπικού δικτύου, προστατευμένα με κωδικό πρόσβασης μίας χρήσης, και δεν περνούν ποτέ από τους διακομιστές μας.</p>
+      </div>
+
+      <div class="card">
+        <h3>Ανάγνωση φωναχτά και αναγνώριση κειμένου στη συσκευή</h3>
+        <p>Η ανάγνωση φωναχτά χρησιμοποιεί τις ενσωματωμένες φωνές του iOS. Η αναγνώριση κειμένου σε σαρωμένα PDF γίνεται στη συσκευή με το πλαίσιο Vision της Apple· το αναγνωρισμένο κείμενο αποθηκεύεται προσωρινά στη συσκευή και δεν περιλαμβάνεται σε αντίγραφα ασφαλείας ή στον συγχρονισμό.</p>
+      </div>
+
+      <div class="card">
+        <h3>Εσείς ελέγχετε τα δεδομένα σας</h3>
+        <p>Μπορείτε να διαγράψετε βιβλία, σημειώσεις και σελιδοδείκτες οποιαδήποτε στιγμή, και η διαγραφή της εφαρμογής αφαιρεί τα τοπικά της δεδομένα. Τα email με σχόλια περιέχουν μόνο ό,τι επιλέξετε να στείλετε.</p>
+      </div>
+
+      <h2>Αλλαγές πολιτικής και επικοινωνία</h2>
+      <p>Αν αυτές οι πρακτικές αλλάξουν ουσιωδώς, θα ενημερώσουμε αυτή τη σελίδα με νέα ημερομηνία ισχύος. Για ερωτήσεις σχετικά με το απόρρητο, επικοινωνήστε με τον προγραμματιστή στο <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Εκδότης</h2>
+      <p>Next Dawn Technologies<br />Email: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="he" lang="he" dir="rtl" hidden>
+      <p>ND Books הוא קורא ספרים אלקטרוניים שנועד לעבוד קודם כול בלי חיבור. הוא אינו דורש חשבון, אינו מוכר מידע ואינו עוקב אחריך בין יישומים.</p>
+
+      <div class="card">
+        <h3>איננו אוספים את המידע שלך</h3>
+        <p>ל-ND Books אין שירות שאוסף מידע על משתמשים, והוא אינו כולל SDK של פרסום או ניתוח נתונים מצד שלישי. המפתח אינו מקבל את הספרים, ההערות, הסימניות, התקדמות הקריאה או ההגדרות שלך. App Store מטפל בתשלומי PRO; היישום מקבל רק זכאות StoreKit מאומתת, ולעולם לא את פרטי התשלום שלך.</p>
+      </div>
+
+      <div class="card">
+        <h3>הספרייה נשארת במכשיר שלך</h3>
+        <p>ספרים, קבצים מקוריים, הערות, סימניות, מיקומי קריאה, נתונים סטטיסטיים והגדרות נשמרים באחסון הפרטי של היישום במכשיר. גיבויים מלאים הם קובצי ZIP לא מוצפנים שנשמרים רק במקום שבחרת.</p>
+      </div>
+
+      <div class="card">
+        <h3>סנכרון iCloud אופציונלי</h3>
+        <p>אם פתחת את PRO והפעלת סנכרון iCloud, הספרים, מיקומי הקריאה, הסימניות וההערות נשמרים במסד הנתונים הפרטי שלך ב-iCloud תחת חשבון Apple שלך. למפתח אין גישה למידע הזה. כיבוי הסנכרון שומר על הספרייה המקומית ואינו מוחק מידע מ-iCloud; אפשר לנהל אותו בהגדרות iCloud.</p>
+      </div>
+
+      <div class="card">
+        <h3>העברה ב-Wi-Fi נשארת ברשת שלך</h3>
+        <p>הגישה לרשת המקומית משמשת רק בזמן שהעברה ב-Wi-Fi פועלת. הקבצים עוברים ישירות מהמחשב למכשיר דרך הרשת המקומית, מוגנים בקוד גישה חד-פעמי, ואינם עוברים לעולם דרך השרתים שלנו.</p>
+      </div>
+
+      <div class="card">
+        <h3>הקראה וזיהוי טקסט מתבצעים במכשיר</h3>
+        <p>ההקראה משתמשת בקולות המובנים ב-iOS. זיהוי טקסט בקובצי PDF סרוקים מתבצע במכשיר באמצעות מסגרת Vision של Apple; הטקסט המזוהה נשמר במטמון המכשיר ואינו נכלל בגיבויים או בסנכרון.</p>
+      </div>
+
+      <div class="card">
+        <h3>השליטה במידע בידיים שלך</h3>
+        <p>אפשר למחוק ספרים, הערות וסימניות בכל עת, ומחיקת היישום מסירה את המידע המקומי שלו. הודעות משוב מכילות רק את מה שבחרת לשלוח.</p>
+      </div>
+
+      <h2>עדכוני מדיניות ויצירת קשר</h2>
+      <p>אם הנהלים האלה ישתנו באופן מהותי, נעדכן את הדף הזה עם תאריך תחולה חדש. בשאלות בנושא פרטיות אפשר לפנות למפתח בכתובת <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>המפרסם</h2>
+      <p>Next Dawn Technologies<br />דוא״ל: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <footer class="page">
+      <p>© 2026 Next Dawn Technologies · <a href="./index.html" data-page-link="./index.html">ND Books</a> · <a href="./support.html" data-page-link="./support.html" data-i18n="support">Support</a></p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var translations = {
+        "en": {
+          "language": "Language",
+          "support": "Support",
+          "privacy": "Privacy Policy",
+          "title": "ND Books — Privacy Policy",
+          "description": "Privacy Policy for ND Books, an offline ebook reader by Next Dawn Technologies.",
+          "heading": "Privacy Policy",
+          "subtitle": "Effective October 15, 2026 · Published by Next Dawn Technologies"
+        },
+        "de": {
+          "language": "Sprache",
+          "support": "Support",
+          "privacy": "Datenschutzerklärung",
+          "title": "ND Books — Datenschutzerklärung",
+          "description": "Datenschutzerklärung für ND Books, einen Offline-E-Book-Reader von Next Dawn Technologies.",
+          "heading": "Datenschutzerklärung",
+          "subtitle": "Gültig ab 15. Oktober 2026 · Herausgegeben von Next Dawn Technologies"
+        },
+        "ja": {
+          "language": "言語",
+          "support": "サポート",
+          "privacy": "プライバシーポリシー",
+          "title": "ND Books — プライバシーポリシー",
+          "description": "Next Dawn Technologies のオフライン電子書籍リーダー、ND Books のプライバシーポリシー。",
+          "heading": "プライバシーポリシー",
+          "subtitle": "施行日：2026 年 10 月 15 日 · 発行：Next Dawn Technologies"
+        },
+        "fr": {
+          "language": "Langue",
+          "support": "Assistance",
+          "privacy": "Politique de confidentialité",
+          "title": "ND Books — Politique de confidentialité",
+          "description": "Politique de confidentialité de ND Books, une liseuse hors ligne de Next Dawn Technologies.",
+          "heading": "Politique de confidentialité",
+          "subtitle": "En vigueur le 15 octobre 2026 · Publiée par Next Dawn Technologies"
+        },
+        "es": {
+          "language": "Idioma",
+          "support": "Soporte",
+          "privacy": "Política de privacidad",
+          "title": "ND Books — Política de privacidad",
+          "description": "Política de privacidad de ND Books, un lector de libros electrónicos sin conexión de Next Dawn Technologies.",
+          "heading": "Política de privacidad",
+          "subtitle": "En vigor desde el 15 de octubre de 2026 · Publicada por Next Dawn Technologies"
+        },
+        "pt": {
+          "language": "Idioma",
+          "support": "Suporte",
+          "privacy": "Política de Privacidade",
+          "title": "ND Books — Política de Privacidade",
+          "description": "Política de Privacidade do ND Books, um leitor de e-books offline da Next Dawn Technologies.",
+          "heading": "Política de Privacidade",
+          "subtitle": "Em vigor desde 15 de outubro de 2026 · Publicada por Next Dawn Technologies"
+        },
+        "ko": {
+          "language": "언어",
+          "support": "지원",
+          "privacy": "개인정보 처리방침",
+          "title": "ND Books — 개인정보 처리방침",
+          "description": "Next Dawn Technologies의 오프라인 전자책 리더 ND Books의 개인정보 처리방침입니다.",
+          "heading": "개인정보 처리방침",
+          "subtitle": "시행일: 2026년 10월 15일 · 게시자: Next Dawn Technologies"
+        },
+        "zh-Hans": {
+          "language": "语言",
+          "support": "支持与帮助",
+          "privacy": "隐私政策",
+          "title": "ND Books — 隐私政策",
+          "description": "ND Books 隐私政策。ND Books 是 Next Dawn Technologies 推出的离线电子书阅读器。",
+          "heading": "隐私政策",
+          "subtitle": "生效日期：2026 年 10 月 15 日 · 发布者：Next Dawn Technologies"
+        },
+        "zh-Hant": {
+          "language": "語言",
+          "support": "支援與說明",
+          "privacy": "隱私權政策",
+          "title": "ND Books — 隱私權政策",
+          "description": "ND Books 隱私權政策。ND Books 是 Next Dawn Technologies 推出的離線電子書閱讀器。",
+          "heading": "隱私權政策",
+          "subtitle": "生效日期：2026 年 10 月 15 日 · 發布者：Next Dawn Technologies"
+        },
+        "it": {
+          "language": "Lingua",
+          "support": "Assistenza",
+          "privacy": "Informativa sulla privacy",
+          "title": "ND Books — Informativa sulla privacy",
+          "description": "Informativa sulla privacy di ND Books, un lettore di ebook offline di Next Dawn Technologies.",
+          "heading": "Informativa sulla privacy",
+          "subtitle": "In vigore dal 15 ottobre 2026 · Pubblicata da Next Dawn Technologies"
+        },
+        "nl": {
+          "language": "Taal",
+          "support": "Ondersteuning",
+          "privacy": "Privacybeleid",
+          "title": "ND Books — Privacybeleid",
+          "description": "Privacybeleid voor ND Books, een offline e-booklezer van Next Dawn Technologies.",
+          "heading": "Privacybeleid",
+          "subtitle": "Van kracht vanaf 15 oktober 2026 · Gepubliceerd door Next Dawn Technologies"
+        },
+        "sv": {
+          "language": "Språk",
+          "support": "Support",
+          "privacy": "Integritetspolicy",
+          "title": "ND Books — Integritetspolicy",
+          "description": "Integritetspolicy för ND Books, en offlineläsare för e-böcker från Next Dawn Technologies.",
+          "heading": "Integritetspolicy",
+          "subtitle": "Gäller från den 15 oktober 2026 · Utgiven av Next Dawn Technologies"
+        },
+        "da": {
+          "language": "Sprog",
+          "support": "Support",
+          "privacy": "Privatlivspolitik",
+          "title": "ND Books — Privatlivspolitik",
+          "description": "Privatlivspolitik for ND Books, en offline e-bogslæser fra Next Dawn Technologies.",
+          "heading": "Privatlivspolitik",
+          "subtitle": "Gældende fra 15. oktober 2026 · Udgivet af Next Dawn Technologies"
+        },
+        "nb": {
+          "language": "Språk",
+          "support": "Brukerstøtte",
+          "privacy": "Personvernerklæring",
+          "title": "ND Books — Personvernerklæring",
+          "description": "Personvernerklæring for ND Books, en offline e-bokleser fra Next Dawn Technologies.",
+          "heading": "Personvernerklæring",
+          "subtitle": "Gjelder fra 15. oktober 2026 · Utgitt av Next Dawn Technologies"
+        },
+        "fi": {
+          "language": "Kieli",
+          "support": "Tuki",
+          "privacy": "Tietosuojakäytäntö",
+          "title": "ND Books — Tietosuojakäytäntö",
+          "description": "Next Dawn Technologiesin offline-e-kirjanlukijan ND Booksin tietosuojakäytäntö.",
+          "heading": "Tietosuojakäytäntö",
+          "subtitle": "Voimassa 15.10.2026 alkaen · Julkaisija Next Dawn Technologies"
+        },
+        "pl": {
+          "language": "Język",
+          "support": "Pomoc",
+          "privacy": "Polityka prywatności",
+          "title": "ND Books — Polityka prywatności",
+          "description": "Polityka prywatności ND Books, czytnika e-booków offline firmy Next Dawn Technologies.",
+          "heading": "Polityka prywatności",
+          "subtitle": "Obowiązuje od 15 października 2026 r. · Wydawca: Next Dawn Technologies"
+        },
+        "cs": {
+          "language": "Jazyk",
+          "support": "Podpora",
+          "privacy": "Zásady ochrany soukromí",
+          "title": "ND Books — Zásady ochrany soukromí",
+          "description": "Zásady ochrany soukromí aplikace ND Books, offline čtečky e-knih od Next Dawn Technologies.",
+          "heading": "Zásady ochrany soukromí",
+          "subtitle": "Platné od 15. října 2026 · Vydává Next Dawn Technologies"
+        },
+        "tr": {
+          "language": "Dil",
+          "support": "Destek",
+          "privacy": "Gizlilik Politikası",
+          "title": "ND Books — Gizlilik Politikası",
+          "description": "Next Dawn Technologies'in çevrimdışı e-kitap okuyucusu ND Books için Gizlilik Politikası.",
+          "heading": "Gizlilik Politikası",
+          "subtitle": "Yürürlük tarihi: 15 Ekim 2026 · Yayımlayan: Next Dawn Technologies"
+        },
+        "ru": {
+          "language": "Язык",
+          "support": "Поддержка",
+          "privacy": "Политика конфиденциальности",
+          "title": "ND Books — Политика конфиденциальности",
+          "description": "Политика конфиденциальности ND Books — офлайн-читалки электронных книг от Next Dawn Technologies.",
+          "heading": "Политика конфиденциальности",
+          "subtitle": "Действует с 15 октября 2026 г. · Опубликовано Next Dawn Technologies"
+        },
+        "uk": {
+          "language": "Мова",
+          "support": "Підтримка",
+          "privacy": "Політика конфіденційності",
+          "title": "ND Books — Політика конфіденційності",
+          "description": "Політика конфіденційності ND Books — офлайн-читалки електронних книжок від Next Dawn Technologies.",
+          "heading": "Політика конфіденційності",
+          "subtitle": "Діє з 15 жовтня 2026 р. · Опубліковано Next Dawn Technologies"
+        },
+        "ar": {
+          "language": "اللغة",
+          "support": "الدعم",
+          "privacy": "سياسة الخصوصية",
+          "title": "ND Books — سياسة الخصوصية",
+          "description": "سياسة الخصوصية لتطبيق ND Books، قارئ الكتب الإلكترونية الذي يعمل بلا اتصال من Next Dawn Technologies.",
+          "heading": "سياسة الخصوصية",
+          "subtitle": "سارية اعتبارًا من 15 أكتوبر 2026 · الناشر: Next Dawn Technologies"
+        },
+        "th": {
+          "language": "ภาษา",
+          "support": "ฝ่ายสนับสนุน",
+          "privacy": "นโยบายความเป็นส่วนตัว",
+          "title": "ND Books — นโยบายความเป็นส่วนตัว",
+          "description": "นโยบายความเป็นส่วนตัวของ ND Books แอปอ่านอีบุ๊กแบบออฟไลน์จาก Next Dawn Technologies",
+          "heading": "นโยบายความเป็นส่วนตัว",
+          "subtitle": "มีผลตั้งแต่วันที่ 15 ตุลาคม 2026 · เผยแพร่โดย Next Dawn Technologies"
+        },
+        "vi": {
+          "language": "Ngôn ngữ",
+          "support": "Hỗ trợ",
+          "privacy": "Chính sách quyền riêng tư",
+          "title": "ND Books — Chính sách quyền riêng tư",
+          "description": "Chính sách quyền riêng tư của ND Books, ứng dụng đọc sách điện tử ngoại tuyến của Next Dawn Technologies.",
+          "heading": "Chính sách quyền riêng tư",
+          "subtitle": "Có hiệu lực từ ngày 15 tháng 10 năm 2026 · Phát hành bởi Next Dawn Technologies"
+        },
+        "id": {
+          "language": "Bahasa",
+          "support": "Dukungan",
+          "privacy": "Kebijakan Privasi",
+          "title": "ND Books — Kebijakan Privasi",
+          "description": "Kebijakan Privasi ND Books, pembaca e-book offline dari Next Dawn Technologies.",
+          "heading": "Kebijakan Privasi",
+          "subtitle": "Berlaku sejak 15 Oktober 2026 · Diterbitkan oleh Next Dawn Technologies"
+        },
+        "ms": {
+          "language": "Bahasa",
+          "support": "Sokongan",
+          "privacy": "Dasar Privasi",
+          "title": "ND Books — Dasar Privasi",
+          "description": "Dasar Privasi ND Books, pembaca e-buku luar talian daripada Next Dawn Technologies.",
+          "heading": "Dasar Privasi",
+          "subtitle": "Berkuat kuasa mulai 15 Oktober 2026 · Diterbitkan oleh Next Dawn Technologies"
+        },
+        "hi": {
+          "language": "भाषा",
+          "support": "सहायता",
+          "privacy": "निजता नीति",
+          "title": "ND Books — निजता नीति",
+          "description": "Next Dawn Technologies के ऑफ़लाइन ई-बुक रीडर ND Books की निजता नीति।",
+          "heading": "निजता नीति",
+          "subtitle": "15 अक्टूबर 2026 से प्रभावी · प्रकाशक: Next Dawn Technologies"
+        },
+        "ro": {
+          "language": "Limbă",
+          "support": "Asistență",
+          "privacy": "Politica de confidențialitate",
+          "title": "ND Books — Politica de confidențialitate",
+          "description": "Politica de confidențialitate pentru ND Books, un cititor de cărți electronice offline de la Next Dawn Technologies.",
+          "heading": "Politica de confidențialitate",
+          "subtitle": "În vigoare din 15 octombrie 2026 · Publicată de Next Dawn Technologies"
+        },
+        "hu": {
+          "language": "Nyelv",
+          "support": "Támogatás",
+          "privacy": "Adatvédelmi irányelvek",
+          "title": "ND Books — Adatvédelmi irányelvek",
+          "description": "Az ND Books, a Next Dawn Technologies offline e-könyv-olvasójának adatvédelmi irányelvei.",
+          "heading": "Adatvédelmi irányelvek",
+          "subtitle": "Hatályos: 2026. október 15. · Kiadó: Next Dawn Technologies"
+        },
+        "el": {
+          "language": "Γλώσσα",
+          "support": "Υποστήριξη",
+          "privacy": "Πολιτική απορρήτου",
+          "title": "ND Books — Πολιτική απορρήτου",
+          "description": "Πολιτική απορρήτου του ND Books, ενός αναγνώστη ηλεκτρονικών βιβλίων εκτός σύνδεσης από την Next Dawn Technologies.",
+          "heading": "Πολιτική απορρήτου",
+          "subtitle": "Ισχύει από 15 Οκτωβρίου 2026 · Δημοσίευση: Next Dawn Technologies"
+        },
+        "he": {
+          "language": "שפה",
+          "support": "תמיכה",
+          "privacy": "מדיניות פרטיות",
+          "title": "ND Books — מדיניות פרטיות",
+          "description": "מדיניות הפרטיות של ND Books, קורא ספרים אלקטרוניים שעובד בלי חיבור מבית Next Dawn Technologies.",
+          "heading": "מדיניות פרטיות",
+          "subtitle": "בתוקף מ-15 באוקטובר 2026 · פורסם על ידי Next Dawn Technologies"
+        }
+      };
+      var rtl = { ar: true, he: true };
+      var storageKey = 'nd-books-language';
+      var select = document.querySelector('[data-lang-select]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = String(value).toLowerCase().replace(/_/g, '-');
+        if (/^zh-(hant|tw|hk|mo)/.test(value)) return 'zh-Hant';
+        if (/^zh/.test(value)) return 'zh-Hans';
+        if (/^(nb|no|nn)(-|$)/.test(value)) return 'nb';
+        if (value === 'iw' || value.indexOf('iw-') === 0) return 'he';
+        if (value === 'in' || value.indexOf('in-') === 0) return 'id';
+        if (Object.prototype.hasOwnProperty.call(translations, value)) return value;
+        var base = value.split('-')[0];
+        return Object.prototype.hasOwnProperty.call(translations, base) ? base : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = lang;
+        document.documentElement.dir = rtl[lang] ? 'rtl' : 'ltr';
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        select.value = lang;
+        select.setAttribute('aria-label', copy.language);
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      select.addEventListener('change', function () {
+        setLanguage(select.value);
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the browser language. */ }
+      }
+      if (!initialLanguage) {
+        var preferred = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+        for (var i = 0; i < preferred.length && !initialLanguage; i++) initialLanguage = normalizeLanguage(preferred[i]);
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>
