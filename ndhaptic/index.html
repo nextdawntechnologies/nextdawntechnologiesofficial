@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Haptic — Haptic Rhythms, Fully Offline</title>
+<meta name="description" content="ND Haptic plays adjustable, timed haptic rhythms with your phone's built-in motor — no account, no network." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #0a7cff;
+    --maxw: 920px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #4da2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; padding: 20px 0 0; }
+  .lang-toggle button {
+    appearance: none; border: 1px solid var(--border); background: var(--card);
+    color: var(--fg); border-radius: 999px; padding: 6px 16px; font-size: 14px; cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+
+  .hero { text-align: center; padding: 56px 0 40px; }
+  .hero .app-icon {
+    display: block; width: 112px; height: 112px; margin: 0 auto 20px;
+    border-radius: 25px; box-shadow: 0 10px 28px rgba(10, 92, 220, 0.28), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  }
+  .hero .badge {
+    display: inline-block; font-size: 13px; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; margin-bottom: 18px;
+  }
+  .hero h1 { font-size: 40px; margin: 0 0 14px; letter-spacing: -0.01em; }
+  .hero p.lead { font-size: 18px; color: var(--muted); max-width: 560px; margin: 0 auto 28px; }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 12px 24px; border-radius: 12px; font-weight: 600; font-size: 15.5px;
+    text-decoration: none; border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-secondary { background: var(--card); color: var(--fg); border-color: var(--border); }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 24px 0 56px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px;
+  }
+  .feature .icon { font-size: 26px; margin-bottom: 10px; }
+  .feature h3 { font-size: 16.5px; margin: 0 0 6px; }
+  .feature p { font-size: 14.5px; color: var(--muted); margin: 0; }
+
+  .protocols { text-align: center; padding-bottom: 56px; }
+  .protocols p.label { color: var(--muted); font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+  .chip-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--border); background: var(--card); border-radius: 999px;
+    padding: 6px 16px; font-size: 14px; color: var(--fg);
+  }
+
+  footer.page {
+    border-top: 1px solid var(--border); padding: 24px 0 48px; color: var(--muted); font-size: 13.5px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  footer.page a { color: var(--muted); }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid > *, .cta-row > * { min-width: 0; }
+  .btn { min-height: 48px; touch-action: manipulation; }
+  @media (min-width: 681px) and (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 680px) {
+    .hero { padding: 36px 0 28px; }
+    .hero .app-icon { width: 88px; height: 88px; border-radius: 20px; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(28px, 7.5vw, 36px); line-height: 1.3; }
+    .hero p.lead { font-size: 16px; margin-bottom: 24px; }
+    .cta-row { gap: 10px; }
+    .btn { padding: 12px 18px; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 16px 0 36px; }
+    .feature { padding: 18px; border-radius: 14px; }
+    .protocols { padding-bottom: 32px; }
+    .chip { padding: 6px 12px; }
+    footer.page {
+      flex-direction: column; align-items: flex-start; gap: 6px;
+      padding: 20px 0 calc(32px + env(safe-area-inset-bottom));
+    }
+  }
+  @media (max-width: 480px) {
+    .cta-row { flex-direction: column; align-items: stretch; }
+    .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+      <button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+      <button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+      <button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Haptic" />
+        <span class="badge">iOS</span>
+        <h1>Haptic Rhythms in Your Hand.</h1>
+        <p class="lead">ND Haptic uses your phone's built-in haptic motor to play adjustable, timed rhythms. Fully offline — no account, no external device.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6822129349">View on the App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">Support</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">〰️</div>
+          <h3>13 built-in patterns</h3>
+          <p>From Steady Touch and Breathing Rhythm to Echo Taps and Triple Beat.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎚️</div>
+          <h3>Intensity, tempo, duration</h3>
+          <p>Relative intensity 1–10, Gentle, Standard or Brisk tempo, and a 1–15 minute timer.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📱</div>
+          <h3>Tuned to your device</h3>
+          <p>Detects your phone's haptic capability and calibrates light, medium and high levels.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">✏️</div>
+          <h3>Custom patterns</h3>
+          <p>Create and edit your own patterns. A one-time purchase unlocks them for good.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⏹️</div>
+          <h3>Stop anytime</h3>
+          <p>Pause, resume or stop instantly. Output stops when the app leaves the foreground or the screen locks.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🚫</div>
+          <h3>Offline, no tracking</h3>
+          <p>No account, no ads, no analytics. Settings and history stay on this device.</p>
+        </div>
+      </div>
+
+      <div class="protocols">
+        <p class="label">Session options</p>
+        <div class="chip-row">
+          <span class="chip">1 min</span>
+          <span class="chip">3 min</span>
+          <span class="chip">5 min</span>
+          <span class="chip">10 min</span>
+          <span class="chip">15 min</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="zh" lang="zh-Hans">
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Haptic" />
+        <span class="badge">iOS</span>
+        <h1>握在手中的触觉节奏</h1>
+        <p class="lead">ND Haptic 使用手机内置触觉马达，播放可调节、可定时的节奏。全程离线，无需账号，无需外接设备。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6822129349">前往 App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">支持与帮助</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">〰️</div>
+          <h3>13 种内置模式</h3>
+          <p>从平稳轻触、呼吸节奏，到回声轻叩、三拍律动。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎚️</div>
+          <h3>强度、节奏与时长</h3>
+          <p>1–10 级相对强度，舒缓、标准、明快三档节奏，1–15 分钟定时。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📱</div>
+          <h3>适配当前设备</h3>
+          <p>自动检测手机的触觉能力，并完成轻、中、高三档校准。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">✏️</div>
+          <h3>自定义模式</h3>
+          <p>创建和编辑自己的触觉模式，一次购买永久解锁。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⏹️</div>
+          <h3>随时停止</h3>
+          <p>可暂停、继续或立即停止。应用进入后台或锁屏时自动停止输出。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🚫</div>
+          <h3>离线，不追踪</h3>
+          <p>无需账号，无广告，无分析。设置和记录只保存在本机。</p>
+        </div>
+      </div>
+
+      <div class="protocols">
+        <p class="label">可选时长</p>
+        <div class="chip-row">
+          <span class="chip">1 分钟</span>
+          <span class="chip">3 分钟</span>
+          <span class="chip">5 分钟</span>
+          <span class="chip">10 分钟</span>
+          <span class="chip">15 分钟</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant">
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Haptic" />
+        <span class="badge">iOS</span>
+        <h1>握在手中的觸覺節奏</h1>
+        <p class="lead">ND Haptic 使用手機內建觸覺馬達，播放可調整、可定時的節奏。全程離線，無需帳號，無需外接裝置。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6822129349">前往 App Store</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">支援與說明</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">〰️</div>
+          <h3>13 種內建模式</h3>
+          <p>從平穩輕觸、呼吸節奏，到回聲輕叩、三拍律動。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎚️</div>
+          <h3>強度、節奏與時長</h3>
+          <p>1–10 級相對強度，舒緩、標準、明快三種節奏，1–15 分鐘定時。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📱</div>
+          <h3>配合目前裝置</h3>
+          <p>自動偵測手機的觸覺能力，並完成輕、中、高三檔校正。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">✏️</div>
+          <h3>自訂模式</h3>
+          <p>建立和編輯自己的觸覺模式，一次購買永久解鎖。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⏹️</div>
+          <h3>隨時停止</h3>
+          <p>可暫停、繼續或立即停止。App 進入背景或鎖定螢幕時自動停止輸出。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🚫</div>
+          <h3>離線，不追蹤</h3>
+          <p>無需帳號，無廣告，無分析。設定和記錄只儲存在本機。</p>
+        </div>
+      </div>
+
+      <div class="protocols">
+        <p class="label">可選時長</p>
+        <div class="chip-row">
+          <span class="chip">1 分鐘</span>
+          <span class="chip">3 分鐘</span>
+          <span class="chip">5 分鐘</span>
+          <span class="chip">10 分鐘</span>
+          <span class="chip">15 分鐘</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="ko" lang="ko">
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Haptic" />
+        <span class="badge">iOS</span>
+        <h1>손안의 햅틱 리듬.</h1>
+        <p class="lead">ND Haptic은 휴대폰 내장 햅틱 모터로 조절 가능하고 시간을 정할 수 있는 리듬을 재생합니다. 완전 오프라인으로 작동하며 계정이나 외부 기기가 필요 없습니다.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6822129349">App Store에서 보기</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">지원</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">〰️</div>
+          <h3>13가지 기본 패턴</h3>
+          <p>일정한 터치와 호흡 리듬부터 메아리 터치, 세 박자 리듬까지.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎚️</div>
+          <h3>강도, 빠르기, 시간</h3>
+          <p>1–10단계 상대 강도, 부드러움·표준·경쾌함 빠르기, 1–15분 타이머.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📱</div>
+          <h3>내 기기에 맞춤</h3>
+          <p>휴대폰의 햅틱 지원 수준을 감지하고 약·중·강 세 단계로 보정합니다.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">✏️</div>
+          <h3>사용자 패턴</h3>
+          <p>나만의 패턴을 만들고 편집하세요. 한 번 구매하면 계속 사용할 수 있습니다.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⏹️</div>
+          <h3>언제든 정지</h3>
+          <p>일시정지, 계속, 즉시 정지할 수 있습니다. 앱이 백그라운드로 가거나 화면이 잠기면 출력이 멈춥니다.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🚫</div>
+          <h3>오프라인, 추적 없음</h3>
+          <p>계정, 광고, 분석이 없습니다. 설정과 기록은 이 기기에만 저장됩니다.</p>
+        </div>
+      </div>
+
+      <div class="protocols">
+        <p class="label">세션 시간</p>
+        <div class="chip-row">
+          <span class="chip">1분</span>
+          <span class="chip">3분</span>
+          <span class="chip">5분</span>
+          <span class="chip">10분</span>
+          <span class="chip">15분</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-lang="ja" lang="ja">
+      <div class="hero">
+        <img class="app-icon" src="./app-icon.png" width="112" height="112" alt="ND Haptic" />
+        <span class="badge">iOS</span>
+        <h1>手のひらに、触覚のリズムを。</h1>
+        <p class="lead">ND Haptic は、スマートフォン内蔵の触覚モーターで、調整とタイマー設定ができるリズムを再生します。完全オフラインで動作し、アカウントや外部機器は必要ありません。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6822129349">App Store で見る</a>
+          <a class="btn btn-secondary" href="./support.html" data-page-link="./support.html">サポート</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="feature">
+          <div class="icon">〰️</div>
+          <h3>13 種類の内蔵パターン</h3>
+          <p>安定したタッチや呼吸リズムから、エコータップ、3拍リズムまで。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🎚️</div>
+          <h3>強さ・テンポ・時間</h3>
+          <p>1〜10 の相対的な強さ、ゆったり・標準・軽快のテンポ、1〜15 分のタイマー。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">📱</div>
+          <h3>デバイスに合わせて調整</h3>
+          <p>スマートフォンの触覚機能を検出し、弱・中・強の 3 段階で調整します。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">✏️</div>
+          <h3>カスタムパターン</h3>
+          <p>自分だけのパターンを作成・編集できます。一度の購入でずっと使えます。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⏹️</div>
+          <h3>いつでも停止</h3>
+          <p>一時停止、再開、即時停止が可能。アプリがバックグラウンドに移るか画面がロックされると出力を停止します。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🚫</div>
+          <h3>オフライン、トラッキングなし</h3>
+          <p>アカウント、広告、分析はありません。設定と履歴はこのデバイスにのみ保存されます。</p>
+        </div>
+      </div>
+
+      <div class="protocols">
+        <p class="label">セッション時間</p>
+        <div class="chip-row">
+          <span class="chip">1 分</span>
+          <span class="chip">3 分</span>
+          <span class="chip">5 分</span>
+          <span class="chip">10 分</span>
+          <span class="chip">15 分</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page">
+      <span>© 2026 Next Dawn Technologies</span>
+      <span><a href="./support.html" data-page-link="./support.html" data-i18n="support">Support</a> · <a href="./privacy.html" data-page-link="./privacy.html" data-i18n="privacy">Privacy Policy</a></span>
+    </footer>
+  </div>
+
+  <script>
+
+    (function () {
+      var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND Haptic — Haptic Rhythms, Fully Offline",
+    "description": "ND Haptic plays adjustable, timed haptic rhythms with your phone's built-in motor — no account, no network."
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND Haptic — 完全离线的触觉节奏",
+    "description": "ND Haptic 使用手机内置马达，离线播放可调节、可定时的触觉节奏，无需账号，无需联网。"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND Haptic — 完全離線的觸覺節奏",
+    "description": "ND Haptic 使用手機內建馬達，離線播放可調整、可定時的觸覺節奏，無需帳號，無需連網。"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND Haptic — 완전 오프라인 햅틱 리듬",
+    "description": "ND Haptic은 휴대폰 내장 모터로 조절 가능하고 시간을 정할 수 있는 햅틱 리듬을 재생합니다. 계정과 네트워크가 필요 없습니다."
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND Haptic — 完全オフラインの触覚リズム",
+    "description": "ND Haptic は、スマートフォン内蔵のモーターで、調整とタイマー設定ができる触覚リズムを再生します。アカウントもネットワークも不要です。"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-haptic-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>

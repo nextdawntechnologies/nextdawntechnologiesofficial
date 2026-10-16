@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Haptic — Privacy Policy</title>
+<meta name="description" content="Privacy Policy for ND Haptic, an offline haptic rhythm app by Next Dawn Technologies." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #0a7cff;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #4da2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 32px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: inherit; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  .brand .eyebrow { margin: 0; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  h2 { font-size: 19px; margin: 36px 0 10px; }
+  p { margin: 0 0 14px; font-size: 15.5px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 16px; }
+  .card p { margin: 0; color: var(--fg); }
+  a { color: var(--accent); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .lang-toggle button {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--fg);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  @media (max-width: 680px) {
+    .card { padding: 16px; }
+    .lang-toggle { margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <a class="brand" href="./index.html" data-page-link="./index.html"><img src="./apple-touch-icon.png" width="36" height="36" alt="" /><span class="eyebrow">ND Haptic</span></a>
+      <h1 data-i18n="heading">Privacy Policy</h1>
+      <p class="sub" data-i18n="subtitle">Effective October 16, 2026 · Published by Next Dawn Technologies</p>
+    </header>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+      <button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+      <button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+      <button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <p>ND Haptic runs fully offline. It does not require an account, sell data, or track you across apps.</p>
+
+      <div class="card">
+        <h3>We Do Not Collect Your Data</h3>
+        <p>ND Haptic has no service that collects user data and includes no advertising, analytics, crash reporting or tracking SDK. The developer does not receive your settings, patterns, favorites, calibration results or session history.</p>
+      </div>
+
+      <div class="card">
+        <h3>Data Stays on Your Device</h3>
+        <p>Onboarding status, preferences, device capability and calibration results, favorites, recent and custom patterns, and optional session history are stored only on this device. A vendor-scoped identifier provided by iOS is used locally to check that calibration belongs to this device; it is never used for advertising or uploaded.</p>
+      </div>
+
+      <div class="card">
+        <h3>Permissions and Purchases</h3>
+        <p>ND Haptic uses the system haptic engine and does not request camera, microphone, photos, location, contacts or health data. Custom pattern purchases are handled by Apple StoreKit; the app verifies the entitlement on device and never receives your payment details.</p>
+      </div>
+
+      <div class="card">
+        <h3>You Control and Can Delete Local Data</h3>
+        <p>You can turn off Save Session History, or go to Settings → Clear Local Data to delete settings, calibration, favorites, custom patterns and history. Deleting the app also removes its local data.</p>
+      </div>
+
+      <h2>Policy Updates and Contact</h2>
+      <p>If these practices materially change, a new app version will update this notice. If you email us, we use your message only to reply. For privacy questions, contact the developer at <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>.</p>
+
+      <h2>Publisher</h2>
+      <p>Next Dawn Technologies<br />Email: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="zh" lang="zh-Hans">
+      <p>ND Haptic 完全离线运行。无需账号，不出售数据，也不会跨应用追踪你。</p>
+
+      <div class="card">
+        <h3>我们不收集你的数据</h3>
+        <p>ND Haptic 没有收集用户数据的服务，也未接入广告、分析、崩溃上报或追踪 SDK。开发者不会收到你的设置、模式、收藏、校准结果或使用历史。</p>
+      </div>
+
+      <div class="card">
+        <h3>数据只保存在你的设备上</h3>
+        <p>首次引导状态、偏好设置、设备能力与校准结果、收藏、最近使用和自定义模式，以及可选的会话记录，均只保存在本机。iOS 提供的 vendor-scoped 标识仅在本机用于判断校准是否属于当前设备，不用于广告，也不会上传。</p>
+      </div>
+
+      <div class="card">
+        <h3>权限与购买</h3>
+        <p>ND Haptic 使用系统触觉能力，不请求相机、麦克风、相册、位置、通讯录或健康数据权限。自定义模式的购买由 Apple StoreKit 处理，应用在设备上验证已购权益，不会获得你的付款信息。</p>
+      </div>
+
+      <div class="card">
+        <h3>本地数据由你掌控、可随时删除</h3>
+        <p>你可以关闭“保存会话记录”，或进入“设置 → 清除本地数据”删除设置、校准、收藏、自定义模式和使用历史。删除应用也会移除其本地数据。</p>
+      </div>
+
+      <h2>政策更新与联系方式</h2>
+      <p>如上述做法发生重大变化，我们会在新版本中更新本说明。你主动发送的邮件仅用于回复。隐私相关问题请联系开发者：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>。</p>
+
+      <h2>发布者</h2>
+      <p>Next Dawn Technologies<br />邮箱：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant">
+      <p>ND Haptic 完全離線執行。無需帳號，不出售資料，也不會跨 App 追蹤你。</p>
+
+      <div class="card">
+        <h3>我們不收集你的資料</h3>
+        <p>ND Haptic 沒有收集使用者資料的服務，也未使用廣告、分析、當機回報或追蹤 SDK。開發者不會收到你的設定、模式、收藏、校正結果或使用記錄。</p>
+      </div>
+
+      <div class="card">
+        <h3>資料只儲存在你的裝置上</h3>
+        <p>首次導覽狀態、偏好設定、裝置能力與校正結果、收藏、最近使用和自訂模式，以及可選的工作階段記錄，都只儲存在本機。iOS 提供的 vendor-scoped 識別碼僅在本機用於判斷校正是否屬於目前裝置，不用於廣告，也不會上傳。</p>
+      </div>
+
+      <div class="card">
+        <h3>權限與購買</h3>
+        <p>ND Haptic 使用系統觸覺功能，不要求相機、麥克風、照片、位置、聯絡人或健康資料權限。自訂模式的購買由 Apple StoreKit 處理，App 在裝置上驗證已購權益，不會取得你的付款資訊。</p>
+      </div>
+
+      <div class="card">
+        <h3>本機資料由你掌控、可隨時刪除</h3>
+        <p>你可以關閉「儲存工作階段記錄」，或前往「設定 → 清除本機資料」刪除設定、校正、收藏、自訂模式和使用記錄。刪除 App 也會移除其本機資料。</p>
+      </div>
+
+      <h2>政策更新與聯絡方式</h2>
+      <p>如上述做法有重大變更，我們會在新版本中更新本說明。你主動寄送的電子郵件僅用於回覆。隱私相關問題請聯絡開發者：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>。</p>
+
+      <h2>發行者</h2>
+      <p>Next Dawn Technologies<br />電子郵件：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ko" lang="ko">
+      <p>ND Haptic은 완전히 오프라인으로 작동합니다. 계정이 필요 없으며, 데이터를 판매하거나 다른 앱에서 사용자를 추적하지 않습니다.</p>
+
+      <div class="card">
+        <h3>사용자 데이터를 수집하지 않습니다</h3>
+        <p>ND Haptic에는 사용자 데이터를 수집하는 서비스가 없으며 광고, 분석, 충돌 보고, 추적 SDK를 포함하지 않습니다. 개발자는 사용자의 설정, 패턴, 즐겨찾기, 보정 결과, 세션 기록을 받지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>데이터는 기기에만 저장됩니다</h3>
+        <p>온보딩 상태, 환경설정, 기기 기능 및 보정 결과, 즐겨찾기, 최근 및 사용자 패턴, 선택적 세션 기록은 이 기기에만 저장됩니다. iOS가 제공하는 vendor-scoped 식별자는 보정이 이 기기에 속하는지 확인하는 용도로만 기기 내에서 사용되며, 광고에 사용되거나 업로드되지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>권한과 구매</h3>
+        <p>ND Haptic은 시스템 햅틱 기능을 사용하며 카메라, 마이크, 사진, 위치, 연락처, 건강 데이터 권한을 요청하지 않습니다. 사용자 패턴 구매는 Apple StoreKit이 처리하며, 앱은 기기에서 구매 권한을 확인할 뿐 결제 정보를 받지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>로컬 데이터는 직접 관리하고 삭제할 수 있습니다</h3>
+        <p>세션 기록 저장을 끄거나, 설정 → 로컬 데이터 지우기로 이동해 설정, 보정, 즐겨찾기, 사용자 패턴, 기록을 삭제할 수 있습니다. 앱을 삭제해도 로컬 데이터가 제거됩니다.</p>
+      </div>
+
+      <h2>방침 변경 및 문의</h2>
+      <p>이러한 방식이 크게 변경되면 새 앱 버전에서 이 안내를 업데이트합니다. 이메일로 문의하시면 답변 용도로만 사용합니다. 개인정보 관련 문의는 <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>으로 연락해 주세요.</p>
+
+      <h2>발행자</h2>
+      <p>Next Dawn Technologies<br />이메일: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <section data-lang="ja" lang="ja">
+      <p>ND Haptic は完全にオフラインで動作します。アカウントは不要で、データを販売したり、アプリをまたいでトラッキングしたりすることはありません。</p>
+
+      <div class="card">
+        <h3>ユーザーデータを収集しません</h3>
+        <p>ND Haptic にはユーザーデータを収集するサービスがなく、広告、分析、クラッシュレポート、トラッキングの SDK も含まれていません。開発者が設定、パターン、お気に入り、調整結果、セッション履歴を受け取ることはありません。</p>
+      </div>
+
+      <div class="card">
+        <h3>データはデバイス内に保存されます</h3>
+        <p>初回ガイドの状態、環境設定、デバイスの機能と調整結果、お気に入り、最近使ったパターンとカスタムパターン、任意のセッション履歴は、このデバイスにのみ保存されます。iOS が提供する vendor-scoped 識別子は、調整がこのデバイスのものかを確認するためにデバイス内でのみ使用され、広告に使われたりアップロードされたりすることはありません。</p>
+      </div>
+
+      <div class="card">
+        <h3>アクセス許可と購入</h3>
+        <p>ND Haptic はシステムの触覚機能を使用し、カメラ、マイク、写真、位置情報、連絡先、ヘルスケアデータへのアクセスは求めません。カスタムパターンの購入は Apple StoreKit が処理し、アプリはデバイス上で購入済みの権利を確認するだけで、支払い情報を受け取ることはありません。</p>
+      </div>
+
+      <div class="card">
+        <h3>ローカルデータはユーザーが管理・削除できます</h3>
+        <p>「セッション履歴を保存」をオフにしたり、「設定 → ローカルデータを消去」で設定、調整、お気に入り、カスタムパターン、履歴を削除したりできます。アプリを削除すると、ローカルデータも削除されます。</p>
+      </div>
+
+      <h2>ポリシーの更新とお問い合わせ</h2>
+      <p>これらの取り扱いに重要な変更がある場合は、新しいバージョンのアプリでこの通知を更新します。メールでお問い合わせいただいた内容は、返信のためにのみ使用します。プライバシーに関するご質問は、開発者 <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> までご連絡ください。</p>
+
+      <h2>発行者</h2>
+      <p>Next Dawn Technologies<br />メール：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></p>
+    </section>
+
+    <footer class="page">
+      <p>© 2026 Next Dawn Technologies · <a href="./index.html" data-page-link="./index.html">ND Haptic</a> · <a href="./support.html" data-page-link="./support.html" data-i18n="support">Support</a></p>
+    </footer>
+  </div>
+
+  <script>
+
+    (function () {
+      var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND Haptic — Privacy Policy",
+    "description": "Privacy Policy for ND Haptic, an offline haptic rhythm app by Next Dawn Technologies.",
+    "heading": "Privacy Policy",
+    "subtitle": "Effective October 16, 2026 · Published by Next Dawn Technologies"
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND Haptic — 隐私政策",
+    "description": "Next Dawn Technologies 旗下离线触觉节奏应用 ND Haptic 的隐私政策。",
+    "heading": "隐私政策",
+    "subtitle": "生效日期：2026 年 10 月 16 日 · 发布者：Next Dawn Technologies"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND Haptic — 隱私權政策",
+    "description": "Next Dawn Technologies 旗下離線觸覺節奏 App ND Haptic 的隱私權政策。",
+    "heading": "隱私權政策",
+    "subtitle": "生效日期：2026 年 10 月 16 日 · 發行者：Next Dawn Technologies"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND Haptic — 개인정보 처리방침",
+    "description": "Next Dawn Technologies의 오프라인 햅틱 리듬 앱 ND Haptic의 개인정보 처리방침.",
+    "heading": "개인정보 처리방침",
+    "subtitle": "시행일: 2026년 10월 16일 · 발행자: Next Dawn Technologies"
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND Haptic — プライバシーポリシー",
+    "description": "Next Dawn Technologies のオフライン触覚リズムアプリ、ND Haptic のプライバシーポリシー。",
+    "heading": "プライバシーポリシー",
+    "subtitle": "施行日：2026 年 10 月 16 日 · 発行者：Next Dawn Technologies"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-haptic-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>

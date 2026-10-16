@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Haptic — Support</title>
+<meta name="description" content="Get help with ND Haptic: patterns, intensity, calibration, custom patterns, membership and local data." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #0a7cff;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #4da2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 28px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: inherit; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  .brand .eyebrow { margin: 0; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  .contact {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin: 24px 0 36px;
+  }
+  .contact a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  h2 { font-size: 18px; margin: 32px 0 10px; }
+  details {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 10px;
+  }
+  details summary { cursor: pointer; font-weight: 600; font-size: 15.5px; }
+  details p { margin: 10px 0 0; color: var(--fg); font-size: 15px; }
+  details p + p { margin-top: 8px; }
+  a { color: var(--accent); }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .lang-toggle button {
+    appearance: none; border: 1px solid var(--border); background: var(--card);
+    color: var(--fg); border-radius: 999px; padding: 6px 16px; font-size: 14px; cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  .contact { align-items: flex-start; }
+  .contact > span:first-child { flex: 0 0 auto; }
+  .contact > span:last-child { min-width: 0; }
+  .contact a { overflow-wrap: anywhere; }
+  details { padding: 0; }
+  details summary {
+    min-height: 48px; padding: 14px 18px; border-radius: 11px;
+    line-height: 1.55; touch-action: manipulation;
+  }
+  details p { margin: 0 18px 14px; }
+  details p + p { margin-top: 8px; }
+  @media (max-width: 680px) {
+    .contact { padding: 14px 16px; margin: 20px 0 28px; }
+    details summary { padding: 14px 16px; }
+    details p { margin-left: 16px; margin-right: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <a class="brand" href="./index.html" data-page-link="./index.html"><img src="./apple-touch-icon.png" width="36" height="36" alt="" /><span class="eyebrow">ND Haptic</span></a>
+      <h1 data-i18n="heading">Support</h1>
+      <p class="sub" data-i18n="subtitle">Offline haptic rhythms powered by your phone's built-in motor.</p>
+    </header>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+      <button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+      <button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+      <button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+    </div>
+
+    <section data-lang="en" lang="en" class="active">
+      <div class="contact">
+        <span>📧</span>
+        <span>Email us at <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — we reply as soon as we can.</span>
+      </div>
+
+      <h2>Getting started</h2>
+      <details>
+        <summary>How do I start a session?</summary>
+        <p>On Home, choose a pattern, adjust intensity, tempo and duration, then tap Start. Sessions run for 1, 3, 5, 10 or 15 minutes; there is no unlimited mode.</p>
+      </details>
+      <details>
+        <summary>Why does my phone feel different from another phone?</summary>
+        <p>Haptic motors and system capabilities vary by device. Devices with fine amplitude control offer relative intensity levels 1–10; other devices use light, medium and strong. These levels are relative, not physical measurements.</p>
+      </details>
+      <details>
+        <summary>How do I recalibrate?</summary>
+        <p>Go to Settings → Recalibrate to repeat the light, medium and high calibration. Calibration is saved for this device; after reinstalling or switching devices, you will be asked to calibrate again.</p>
+      </details>
+
+      <h2>Membership</h2>
+      <details>
+        <summary>What does membership unlock?</summary>
+        <p>The app and all built-in patterns are free. A one-time purchase (Lifetime access) unlocks creating and editing custom patterns. There is no subscription or auto-renewal.</p>
+      </details>
+      <details>
+        <summary>I purchased membership but it isn't showing. How do I restore it?</summary>
+        <p>Open Settings → Membership → Restore Purchases and use the same Apple Account. Purchases are verified with the App Store through StoreKit. Custom patterns are stored on your device, so restoring a purchase does not bring back deleted patterns.</p>
+      </details>
+
+      <h2>Troubleshooting</h2>
+      <details>
+        <summary>I don't feel any haptics</summary>
+        <p>Make sure your device supports haptics and that system haptics are on. Go to Settings → Recheck Device, then try a higher intensity. The iOS Simulator never produces real haptics.</p>
+      </details>
+      <details>
+        <summary>The session stopped by itself</summary>
+        <p>For safety, output stops when the app moves to the background, the screen locks, or the system interrupts it (for example, an incoming call). It does not resume automatically; tap Start again when you are ready.</p>
+      </details>
+      <details>
+        <summary>How do I delete my data?</summary>
+        <p>Go to Settings → Clear Local Data. This deletes settings, calibration, favorites, custom patterns and history, then reopens onboarding. You can also turn off Save Session History.</p>
+      </details>
+
+      <h2>Important</h2>
+      <p>ND Haptic is a haptic rhythm tool, not a medical or professional massage device. Stop right away if your phone gets noticeably warm, makes unusual noises, or you feel discomfort.</p>
+
+      <h2>Legal</h2>
+      <p>See our <a href="./privacy.html" data-page-link="./privacy.html">Privacy Policy</a> for details on what data ND Haptic does (and does not) handle.</p>
+    </section>
+
+    <section data-lang="zh" lang="zh-Hans">
+      <div class="contact">
+        <span>📧</span>
+        <span>邮箱联系：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>，我们会尽快回复。</span>
+      </div>
+
+      <h2>快速上手</h2>
+      <details>
+        <summary>怎么开始一次会话？</summary>
+        <p>在首页选择模式，调整强度、节奏和时长，然后点按“开始”。时长可选 1、3、5、10 或 15 分钟，不提供无限运行。</p>
+      </details>
+      <details>
+        <summary>为什么不同手机的触感不一样？</summary>
+        <p>不同设备的马达与系统能力不同。支持精细振幅的设备提供 1–10 级相对强度，其他设备使用轻、中、强三档。这些等级都是相对值，不是物理测量值。</p>
+      </details>
+      <details>
+        <summary>怎么重新校准？</summary>
+        <p>进入“设置 → 重新校准”，重新完成轻、中、高三档校准。校准结果保存在当前设备；重新安装或更换设备后需要再次校准。</p>
+      </details>
+
+      <h2>会员</h2>
+      <details>
+        <summary>会员能解锁什么？</summary>
+        <p>App 和所有内置模式均可免费使用。一次购买（永久解锁）即可创建和编辑自定义模式，无订阅、无自动续费。</p>
+      </details>
+      <details>
+        <summary>我已购买会员但没有生效，怎么恢复？</summary>
+        <p>打开“设置 → 会员 → 恢复购买”，并使用同一 Apple 账户。购买状态会通过 StoreKit 向 App Store 核实。自定义模式保存在本机，恢复购买不会找回已删除的模式。</p>
+      </details>
+
+      <h2>常见问题排查</h2>
+      <details>
+        <summary>感觉不到触觉反馈</summary>
+        <p>请确认设备支持触觉，且系统触感反馈已开启。进入“设置 → 重新检测设备”，然后尝试提高强度。iOS 模拟器不会产生真实触觉。</p>
+      </details>
+      <details>
+        <summary>会话自己停止了</summary>
+        <p>出于安全考虑，应用进入后台、设备锁屏或发生系统中断（例如来电）时会停止输出，且不会自动恢复。准备好后请重新点按“开始”。</p>
+      </details>
+      <details>
+        <summary>怎么删除我的数据？</summary>
+        <p>进入“设置 → 清除本地数据”，即可删除设置、校准、收藏、自定义模式和使用历史，并重新打开首次引导。你也可以关闭“保存会话记录”。</p>
+      </details>
+
+      <h2>重要说明</h2>
+      <p>ND Haptic 是触觉节奏工具，不是医疗设备或专业按摩设备。手机明显发热、出现异常声音或身体感到不适时，请立即停止。</p>
+
+      <h2>法律</h2>
+      <p>数据处理方式详见<a href="./privacy.html" data-page-link="./privacy.html">隐私政策</a>。</p>
+    </section>
+
+    <section data-lang="zh-Hant" lang="zh-Hant">
+      <div class="contact">
+        <span>📧</span>
+        <span>電子郵件聯絡：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>，我們會盡快回覆。</span>
+      </div>
+
+      <h2>快速入門</h2>
+      <details>
+        <summary>如何開始一次工作階段？</summary>
+        <p>在首頁選擇模式，調整強度、節奏和時長，然後點一下「開始」。時長可選 1、3、5、10 或 15 分鐘，不提供無限執行。</p>
+      </details>
+      <details>
+        <summary>為什麼不同手機的觸感不一樣？</summary>
+        <p>不同裝置的馬達與系統能力不同。支援精細振幅的裝置提供 1–10 級相對強度，其他裝置使用輕、中、強三檔。這些等級都是相對值，不是物理測量值。</p>
+      </details>
+      <details>
+        <summary>如何重新校正？</summary>
+        <p>前往「設定 → 重新校正」，重新完成輕、中、高三檔校正。校正結果儲存在目前裝置；重新安裝或更換裝置後需要再次校正。</p>
+      </details>
+
+      <h2>會員</h2>
+      <details>
+        <summary>會員可以解鎖哪些功能？</summary>
+        <p>App 和所有內建模式均可免費使用。一次購買（永久解鎖）即可建立和編輯自訂模式，無訂閱、無自動續費。</p>
+      </details>
+      <details>
+        <summary>已購買會員但未生效，如何恢復？</summary>
+        <p>開啟「設定 → 會員 → 恢復購買」，並使用同一個 Apple 帳號。購買狀態會透過 StoreKit 向 App Store 驗證。自訂模式儲存在本機，恢復購買不會找回已刪除的模式。</p>
+      </details>
+
+      <h2>疑難排解</h2>
+      <details>
+        <summary>感覺不到觸覺回饋</summary>
+        <p>請確認裝置支援觸覺，且系統觸覺回饋已開啟。前往「設定 → 重新偵測裝置」，然後嘗試提高強度。iOS 模擬器不會產生真實觸覺。</p>
+      </details>
+      <details>
+        <summary>工作階段自行停止了</summary>
+        <p>基於安全考量，App 進入背景、裝置鎖定或發生系統中斷（例如來電）時會停止輸出，且不會自動恢復。準備好後請再點一下「開始」。</p>
+      </details>
+      <details>
+        <summary>如何刪除我的資料？</summary>
+        <p>前往「設定 → 清除本機資料」，即可刪除設定、校正、收藏、自訂模式和使用記錄，並重新開啟首次導覽。你也可以關閉「儲存工作階段記錄」。</p>
+      </details>
+
+      <h2>重要說明</h2>
+      <p>ND Haptic 是觸覺節奏工具，不是醫療裝置或專業按摩裝置。手機明顯發熱、出現異常聲音或身體感到不適時，請立即停止。</p>
+
+      <h2>法律資訊</h2>
+      <p>請參閱 <a href="./privacy.html" data-page-link="./privacy.html">隱私權政策</a>，了解 ND Haptic 處理及不處理哪些資料。</p>
+    </section>
+
+    <section data-lang="ko" lang="ko">
+      <div class="contact">
+        <span>📧</span>
+        <span>이메일 문의: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a> — 최대한 빠르게 답변해 드리겠습니다.</span>
+      </div>
+
+      <h2>시작하기</h2>
+      <details>
+        <summary>세션은 어떻게 시작하나요?</summary>
+        <p>홈에서 패턴을 선택하고 강도, 빠르기, 시간을 조절한 다음 시작을 탭하세요. 시간은 1, 3, 5, 10, 15분 중에서 선택할 수 있으며 무제한 실행은 제공하지 않습니다.</p>
+      </details>
+      <details>
+        <summary>휴대폰마다 진동 느낌이 다른 이유는 무엇인가요?</summary>
+        <p>기기마다 햅틱 모터와 시스템 기능이 다릅니다. 세밀한 진폭 제어를 지원하는 기기는 1–10단계 상대 강도를, 그 외 기기는 약·중·강 세 단계를 사용합니다. 이 단계는 상대적인 값이며 물리적 측정값이 아닙니다.</p>
+      </details>
+      <details>
+        <summary>다시 보정하려면 어떻게 하나요?</summary>
+        <p>설정 → 재보정으로 이동해 약·중·강 보정을 다시 진행하세요. 보정 결과는 현재 기기에 저장되며, 앱을 다시 설치하거나 기기를 바꾸면 다시 보정해야 합니다.</p>
+      </details>
+
+      <h2>멤버십</h2>
+      <details>
+        <summary>멤버십으로 어떤 기능을 이용할 수 있나요?</summary>
+        <p>앱과 모든 기본 패턴은 무료입니다. 일회성 구매(평생 이용)로 사용자 패턴을 만들고 편집할 수 있습니다. 구독이나 자동 갱신은 없습니다.</p>
+      </details>
+      <details>
+        <summary>멤버십을 구매했는데 표시되지 않습니다. 어떻게 복원하나요?</summary>
+        <p>설정 → 멤버십 → 구매 복원으로 이동해 같은 Apple 계정을 사용하세요. 구매 내역은 StoreKit을 통해 App Store에서 확인합니다. 사용자 패턴은 기기에 저장되므로 구매를 복원해도 삭제한 패턴은 돌아오지 않습니다.</p>
+      </details>
+
+      <h2>문제 해결</h2>
+      <details>
+        <summary>진동이 느껴지지 않아요</summary>
+        <p>기기가 햅틱을 지원하는지, 시스템 햅틱이 켜져 있는지 확인하세요. 설정 → 기기 다시 감지로 이동한 후 강도를 높여 보세요. iOS 시뮬레이터에서는 실제 햅틱이 출력되지 않습니다.</p>
+      </details>
+      <details>
+        <summary>세션이 저절로 멈췄어요</summary>
+        <p>안전을 위해 앱이 백그라운드로 이동하거나, 화면이 잠기거나, 시스템 중단(예: 전화 수신)이 발생하면 출력이 멈추며 자동으로 다시 시작되지 않습니다. 준비되면 시작을 다시 탭하세요.</p>
+      </details>
+      <details>
+        <summary>내 데이터는 어떻게 삭제하나요?</summary>
+        <p>설정 → 로컬 데이터 지우기로 이동하면 설정, 보정, 즐겨찾기, 사용자 패턴, 기록이 삭제되고 온보딩이 다시 열립니다. 세션 기록 저장을 끌 수도 있습니다.</p>
+      </details>
+
+      <h2>중요 안내</h2>
+      <p>ND Haptic은 햅틱 리듬 도구이며 의료 기기나 전문 마사지 기기가 아닙니다. 휴대폰이 눈에 띄게 뜨거워지거나, 이상한 소리가 나거나, 불편함이 느껴지면 즉시 중지하세요.</p>
+
+      <h2>법률 정보</h2>
+      <p>ND Haptic의 데이터 처리 방식에 대한 자세한 내용은 <a href="./privacy.html" data-page-link="./privacy.html">개인정보 처리방침</a>을 확인하세요.</p>
+    </section>
+
+    <section data-lang="ja" lang="ja">
+      <div class="contact">
+        <span>📧</span>
+        <span>メールでのお問い合わせ：<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>— できるだけ早く返信いたします。</span>
+      </div>
+
+      <h2>使いはじめるには</h2>
+      <details>
+        <summary>セッションを開始するには？</summary>
+        <p>ホームでパターンを選び、強さ、テンポ、時間を調整してから「開始」をタップします。時間は 1、3、5、10、15 分から選べます。無制限の実行はありません。</p>
+      </details>
+      <details>
+        <summary>スマートフォンによって感触が違うのはなぜ？</summary>
+        <p>触覚モーターとシステムの機能はデバイスによって異なります。細かな振幅制御に対応したデバイスでは 1〜10 の相対的な強さを、それ以外のデバイスでは弱・中・強の 3 段階を使用します。これらは相対値であり、物理的な測定値ではありません。</p>
+      </details>
+      <details>
+        <summary>調整をやり直すには？</summary>
+        <p>「設定 → 再調整」に進み、弱・中・強の調整をもう一度行います。調整結果はこのデバイスに保存されます。再インストールやデバイスの変更後は、再度調整が必要です。</p>
+      </details>
+
+      <h2>メンバーシップ</h2>
+      <details>
+        <summary>メンバーシップで利用できる機能は？</summary>
+        <p>アプリとすべての内蔵パターンは無料で使えます。一度の購入（永続利用）で、カスタムパターンの作成と編集ができるようになります。サブスクリプションや自動更新はありません。</p>
+      </details>
+      <details>
+        <summary>購入したメンバーシップが反映されません。復元するには？</summary>
+        <p>「設定 → メンバーシップ → 購入を復元」を開き、同じ Apple アカウントを使用してください。購入状況は StoreKit を通じて App Store に確認されます。カスタムパターンはデバイスに保存されるため、購入を復元しても削除したパターンは戻りません。</p>
+      </details>
+
+      <h2>トラブルシューティング</h2>
+      <details>
+        <summary>触覚フィードバックを感じない場合</summary>
+        <p>デバイスが触覚に対応していること、システムの触覚フィードバックがオンになっていることを確認してください。「設定 → デバイスを再検出」に進み、強さを上げてお試しください。iOS シミュレータでは実際の触覚は出力されません。</p>
+      </details>
+      <details>
+        <summary>セッションが勝手に停止した場合</summary>
+        <p>安全のため、アプリがバックグラウンドに移ったとき、画面がロックされたとき、またはシステムによる中断（着信など）があったときは出力を停止し、自動では再開しません。準備ができたら、もう一度「開始」をタップしてください。</p>
+      </details>
+      <details>
+        <summary>データを削除するには？</summary>
+        <p>「設定 → ローカルデータを消去」に進むと、設定、調整、お気に入り、カスタムパターン、履歴が削除され、初回ガイドが再び表示されます。「セッション履歴を保存」をオフにすることもできます。</p>
+      </details>
+
+      <h2>重要なお知らせ</h2>
+      <p>ND Haptic は触覚リズムのツールであり、医療機器や専門的なマッサージ機器ではありません。スマートフォンが著しく熱くなった場合、異音がする場合、または体に不快感がある場合は、すぐに使用を中止してください。</p>
+
+      <h2>法的情報</h2>
+      <p>ND Haptic が扱うデータや扱わないデータの詳細は、<a href="./privacy.html" data-page-link="./privacy.html">プライバシーポリシー</a>をご確認ください。</p>
+    </section>
+
+    <footer class="page">
+      <p>© 2026 Next Dawn Technologies · <a href="./index.html" data-page-link="./index.html">ND Haptic</a> · <a href="./privacy.html" data-page-link="./privacy.html" data-i18n="privacy">Privacy Policy</a></p>
+    </footer>
+  </div>
+
+  <script>
+
+    (function () {
+      var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND Haptic — Support",
+    "description": "Get help with ND Haptic: patterns, intensity, calibration, custom patterns, membership and local data.",
+    "heading": "Support",
+    "subtitle": "Offline haptic rhythms powered by your phone's built-in motor."
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND Haptic — 支持与帮助",
+    "description": "获取 ND Haptic 帮助：模式、强度、校准、自定义模式、会员与本地数据。",
+    "heading": "支持与帮助",
+    "subtitle": "使用手机内置马达的离线触觉节奏工具。"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND Haptic — 支援與說明",
+    "description": "取得 ND Haptic 使用說明：模式、強度、校正、自訂模式、會員及本機資料。",
+    "heading": "支援與說明",
+    "subtitle": "使用手機內建馬達的離線觸覺節奏工具。"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND Haptic — 지원",
+    "description": "ND Haptic 도움말: 패턴, 강도, 보정, 사용자 패턴, 멤버십, 로컬 데이터.",
+    "heading": "지원",
+    "subtitle": "휴대폰 내장 모터로 작동하는 오프라인 햅틱 리듬."
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND Haptic — サポート",
+    "description": "ND Haptic のヘルプ：パターン、強さ、調整、カスタムパターン、メンバーシップ、ローカルデータ。",
+    "heading": "サポート",
+    "subtitle": "スマートフォン内蔵モーターで動く、オフラインの触覚リズム。"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-haptic-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body>
+</html>
