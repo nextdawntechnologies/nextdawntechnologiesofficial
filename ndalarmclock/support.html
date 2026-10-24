@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Alarm Clock — Support</title>
+<meta name="description" content="Email us for help. Include your device model, iOS version, and steps to reproduce the issue. Please omit private photos, audio, and backups unless needed." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #0069d9;
+    --accent-fill: #0069d9;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #4da2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 28px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: inherit; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  .brand .eyebrow { margin: 0; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  .contact {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin: 24px 0 36px;
+  }
+  .contact a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  h2 { font-size: 18px; margin: 32px 0 10px; }
+  details {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 10px;
+  }
+  details summary { cursor: pointer; font-weight: 600; font-size: 15.5px; }
+  details p { margin: 10px 0 0; color: var(--fg); font-size: 15px; }
+  details p + p { margin-top: 8px; }
+  a { color: var(--accent); }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .lang-toggle button {
+    appearance: none; border: 1px solid var(--border); background: var(--card);
+    color: var(--fg); border-radius: 999px; padding: 6px 16px; font-size: 14px; cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent-fill); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  .contact { align-items: flex-start; }
+  .contact > span:first-child { flex: 1 1 auto; }
+  .contact > span:last-child { min-width: 0; }
+  .contact a { overflow-wrap: anywhere; }
+  details { padding: 0; }
+  details summary {
+    min-height: 48px; padding: 14px 18px; border-radius: 11px;
+    line-height: 1.55; touch-action: manipulation;
+  }
+  details p { margin: 0 18px 14px; }
+  details p + p { margin-top: 8px; }
+  @media (max-width: 680px) {
+    .contact { padding: 14px 16px; margin: 20px 0 28px; }
+    details summary { padding: 14px 16px; }
+    details p { margin-left: 16px; margin-right: 16px; }
+  }
+
+  section[data-lang][hidden] { display: none; }
+  .feature p, details p, .card p, section > p { font-size: 17px; }
+  .protocols .lead { color: var(--muted); text-transform: none; letter-spacing: normal; font-size: 17px; }
+
+  .feature h2 { font-size: 18px; margin: 0 0 6px; }
+  .card h2 { margin: 0 0 6px; font-size: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page">
+<a class="brand" href="./index.html" data-page-link="./index.html">
+<img src="./apple-touch-icon.png" width="36" height="36" alt="" />
+<span class="eyebrow">ND Alarm Clock</span>
+</a>
+<h1 data-i18n="heading">Support</h1>
+<p class="sub" data-i18n="subtitle">Alarms, sleep schedules, timers, and a stopwatch in one native iPhone and iPad app. No account. No ads.</p>
+</header>
+<div class="lang-toggle" role="group" aria-label="Language">
+<button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+<button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+<button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+<button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+<button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+</div>
+<main>
+<section data-lang="en" lang="en" class="active">
+<div class="contact">
+<span>Email us for help. Include your device model, iOS version, and steps to reproduce the issue. Please omit private photos, audio, and backups unless needed.<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</span>
+</div>
+<h2>Using ND Alarm Clock</h2>
+<details>
+<summary>How Do I Set My First Alarm?</summary>
+<p>Add an alarm, choose its time and repeat rule, then save it. Allow alarm access when asked. Use the in-app 10-second Lock Screen test and confirm that you heard the sound.</p>
+</details>
+<details>
+<summary>How Do Shift Cycles and Date Changes Work?</summary>
+<p>Use the schedule calendar to choose a cycle or change a specific date. These schedules prearrange the next eight valid alerts. Check the saved scheduling deadline in alarm details and reopen the app before it expires. After changing time zones, open the app to update fixed-date alerts.</p>
+</details>
+<details>
+<summary>What Should I Check If an Alarm Is Missing or Silent?</summary>
+<p>Check alarm permission in system Settings and confirm that the alarm is enabled. Review the next alert on Home and use the schedule check if offered. Check system alert volume and the selected sound, then run the Lock Screen test. Contact us if it still fails.</p>
+</details>
+<details>
+<summary>How Do Snooze and Wake Check Work?</summary>
+<p>Choose a snooze interval and a limit of 1–10 times or unlimited in the alarm editor. Wake check is optional: stopping the alarm schedules another alert, and confirming that you are awake in the app cancels it.</p>
+</details>
+<details>
+<summary>Can I Use My Own Music?</summary>
+<p>Import an unencrypted audio file through Files and choose a starting point. The app creates a ringtone of up to 30 seconds. Up to 20 imported sounds are supported. DRM-protected Apple Music songs cannot be imported.</p>
+</details>
+<details>
+<summary>What Does Lifetime PRO Include?</summary>
+<p>The free app and PRO are both ad-free. A one-time PRO purchase unlocks eight additional gallery layouts and photo themes; the basic flip clock stays free. Restore Purchases on the PRO page using the Apple Account used for the purchase. The App Store shows the current price.</p>
+</details>
+<details>
+<summary>How Do Backups Work?</summary>
+<p>Export a JSON backup from the app to a location you choose. It includes app data and photo themes, but not imported audio files. Restoring replaces current data after confirmation, leaves alarms off, and pauses running timers. There is no automatic cloud sync.</p>
+</details>
+<details>
+<summary>Do Sleep Sounds Play in the Background?</summary>
+<p>Rain and forest sounds play only while the sleep page is open in the foreground, with an optional stop timer. They stop when you leave the page or put the app in the background. Sleep schedules do not measure or track sleep.</p>
+</details>
+<p>
+<a href="./privacy.html" data-page-link="./privacy.html">Privacy Policy</a>
+</p>
+</section>
+<section data-lang="zh" lang="zh-Hans" hidden>
+<div class="contact">
+<span>请通过邮箱联系我们，并说明设备型号、iOS 版本与复现步骤。除非确有需要，请勿附上私人照片、音频或备份。<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</span>
+</div>
+<h2>使用 ND Alarm Clock</h2>
+<details>
+<summary>如何设置第一个闹钟？</summary>
+<p>添加闹钟，选择时间与重复规则后保存，并在提示时允许闹钟权限。使用应用内的 10 秒锁屏测试，确认自己听到了声音。</p>
+</details>
+<details>
+<summary>周期排班与单日调整如何生效？</summary>
+<p>在排班日历中选择周期或修改指定日期。此类安排会预排未来 8 次有效提醒，请查看闹钟详情中已保存日程的截止时间，并在截止前打开 App。更换时区后，也应打开 App 更新固定日期提醒。</p>
+</details>
+<details>
+<summary>闹钟未显示或没有声音，怎么办？</summary>
+<p>检查系统设置中的闹钟权限，并确认闹钟已启用。在首页核对下次响铃，如有日程检查入口可使用它。检查系统提醒音量与所选铃声，再运行锁屏测试；仍有问题请联系支持。</p>
+</details>
+<details>
+<summary>如何使用贪睡与醒后确认？</summary>
+<p>在编辑闹钟时选择贪睡间隔，并将次数设为 1–10 次或不限。醒后确认是可选功能：停止闹钟后安排补响，回到 App 确认已经醒来即可取消。</p>
+</details>
+<details>
+<summary>可以使用自己的音乐吗？</summary>
+<p>通过「文件」导入未加密音频并选择起始位置，应用会生成最长 30 秒的铃声，最多支持 20 首导入音频。受 DRM 保护的 Apple Music 歌曲无法导入。</p>
+</details>
+<details>
+<summary>永久 PRO 包含什么？</summary>
+<p>免费版与 PRO 都没有广告。一次购买 PRO 可解锁图库中另外 8 种布局及照片主题，基础翻页时钟保持免费。请在 PRO 页使用购买时的 Apple 账户恢复购买；价格以 App Store 当前显示为准。</p>
+</details>
+<details>
+<summary>如何备份与恢复？</summary>
+<p>在应用内导出 JSON 备份至所选位置，包含应用数据与照片主题，不含导入的音频文件。恢复经确认后替换现有数据，闹钟保持关闭，运行中的计时器暂停。应用不提供自动云同步。</p>
+</details>
+<details>
+<summary>助眠声音可以后台播放吗？</summary>
+<p>雨声与森林声仅在好眠页面保持前台时播放，可设置自动停止。离开页面或切到后台时停止。好眠计划不监测或测量睡眠。</p>
+</details>
+<p>
+<a href="./privacy.html" data-page-link="./privacy.html">隐私政策</a>
+</p>
+</section>
+<section data-lang="zh-Hant" lang="zh-Hant" hidden>
+<div class="contact">
+<span>請透過電子郵件聯絡我們，並說明裝置型號、iOS 版本與重現步驟。除非確有需要，請勿附上私人照片、音訊或備份。<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</span>
+</div>
+<h2>使用 ND Alarm Clock</h2>
+<details>
+<summary>如何設定第一個鬧鐘？</summary>
+<p>新增鬧鐘，選擇時間與重複規則後儲存，並在提示時允許鬧鐘權限。使用應用程式內的 10 秒鎖定畫面測試，確認自己聽到了聲音。</p>
+</details>
+<details>
+<summary>週期排班與單日調整如何生效？</summary>
+<p>在排班日曆中選擇週期或修改指定日期。這類排程會預先安排未來 8 次有效提醒，請查看鬧鐘詳細資訊中已儲存排程的期限，並在期限前開啟 App。更換時區後，也應開啟 App 更新固定日期提醒。</p>
+</details>
+<details>
+<summary>鬧鐘未顯示或沒有聲音，怎麼辦？</summary>
+<p>檢查系統設定中的鬧鐘權限，並確認鬧鐘已啟用。在首頁核對下次響鈴，如有排程檢查入口可使用它。檢查系統提示音量與所選鈴聲，再執行鎖定畫面測試；仍有問題請聯絡支援。</p>
+</details>
+<details>
+<summary>如何使用貪睡與醒後確認？</summary>
+<p>編輯鬧鐘時選擇貪睡間隔，並將次數設為 1–10 次或不限。醒後確認是選用功能：停止鬧鐘後安排再次響鈴，回到 App 確認已經醒來即可取消。</p>
+</details>
+<details>
+<summary>可以使用自己的音樂嗎？</summary>
+<p>透過「檔案」輸入未加密音訊並選擇起始位置，應用程式會產生最長 30 秒的鈴聲，最多支援 20 首輸入音訊。受 DRM 保護的 Apple Music 歌曲無法輸入。</p>
+</details>
+<details>
+<summary>永久 PRO 包含什麼？</summary>
+<p>免費版與 PRO 都沒有廣告。一次購買 PRO 可解鎖圖庫中另外 8 種版面及照片主題，基本翻頁時鐘維持免費。請在 PRO 頁使用購買時的 Apple 帳號回復購買；價格以 App Store 目前顯示為準。</p>
+</details>
+<details>
+<summary>如何備份與回復？</summary>
+<p>在應用程式內輸出 JSON 備份至所選位置，包含應用程式資料與照片主題，不含輸入的音訊檔案。回復經確認後取代現有資料，鬧鐘保持關閉，執行中的計時器暫停。應用程式不提供自動雲端同步。</p>
+</details>
+<details>
+<summary>助眠聲音可以在背景播放嗎？</summary>
+<p>雨聲與森林聲僅在好眠頁面保持前景時播放，可設定自動停止。離開頁面或切至背景時停止。好眠計畫不監測或測量睡眠。</p>
+</details>
+<p>
+<a href="./privacy.html" data-page-link="./privacy.html">隱私權政策</a>
+</p>
+</section>
+<section data-lang="ko" lang="ko" hidden>
+<div class="contact">
+<span>기기 모델, iOS 버전, 문제 재현 단계를 적어 이메일로 문의해 주세요. 꼭 필요한 경우가 아니라면 개인 사진, 오디오, 백업을 첨부하지 마세요.<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</span>
+</div>
+<h2>ND Alarm Clock 사용하기</h2>
+<details>
+<summary>첫 알람은 어떻게 설정하나요?</summary>
+<p>알람을 추가하고 시간과 반복 규칙을 선택한 후 저장하세요. 요청이 표시되면 알람 권한을 허용하세요. 앱 내 10초 잠금 화면 테스트를 실행하고 소리가 들렸는지 확인하세요.</p>
+</details>
+<details>
+<summary>교대 주기와 날짜별 변경은 어떻게 동작하나요?</summary>
+<p>근무 달력에서 주기를 선택하거나 특정 날짜를 변경하세요. 다음 유효 알림 8회가 미리 예약됩니다. 알람 세부 정보에서 저장된 예약 기한을 확인하고 그 전에 앱을 다시 여세요. 시간대를 변경한 뒤에도 앱을 열어 고정 날짜 알림을 업데이트하세요.</p>
+</details>
+<details>
+<summary>알람이 없거나 소리가 나지 않으면 어떻게 하나요?</summary>
+<p>시스템 설정에서 알람 권한과 알람 활성화 여부를 확인하세요. 홈에서 다음 알림을 확인하고 일정 확인 기능이 표시되면 사용하세요. 시스템 알림 음량과 선택한 사운드를 확인한 뒤 잠금 화면 테스트를 실행하세요. 문제가 계속되면 문의해 주세요.</p>
+</details>
+<details>
+<summary>다시 알림과 기상 확인은 어떻게 사용하나요?</summary>
+<p>알람 편집에서 다시 알림 간격과 횟수를 1~10회 또는 무제한으로 설정하세요. 기상 확인은 선택 사항입니다. 알람을 멈추면 추가 알림이 예약되며, 앱에서 일어났다고 확인하면 취소됩니다.</p>
+</details>
+<details>
+<summary>내 음악을 사용할 수 있나요?</summary>
+<p>파일 앱에서 암호화되지 않은 오디오를 가져와 시작 위치를 선택하세요. 최대 30초의 알람 사운드를 만들며, 최대 20개까지 가져올 수 있습니다. DRM으로 보호된 Apple Music 노래는 가져올 수 없습니다.</p>
+</details>
+<details>
+<summary>평생 PRO에는 무엇이 포함되나요?</summary>
+<p>무료 앱과 PRO 모두 광고가 없습니다. PRO를 한 번 구매하면 갤러리의 추가 레이아웃 8가지와 사진 테마가 잠금 해제됩니다. 기본 플립 시계는 무료입니다. PRO 페이지에서 구매에 사용한 Apple 계정으로 구입 항목을 복원하세요. 현재 가격은 App Store에서 확인하세요.</p>
+</details>
+<details>
+<summary>백업과 복원은 어떻게 하나요?</summary>
+<p>앱에서 원하는 위치로 JSON 백업을 내보내세요. 앱 데이터와 사진 테마가 포함되며, 가져온 오디오 파일은 포함되지 않습니다. 복원은 확인 후 현재 데이터를 교체하고, 알람을 끄며, 실행 중인 타이머를 일시 정지합니다. 자동 클라우드 동기화는 없습니다.</p>
+</details>
+<details>
+<summary>수면 소리는 백그라운드에서 재생되나요?</summary>
+<p>비와 숲 소리는 취침 페이지를 전면에 열어 둔 동안만 재생되며 자동 종료 타이머를 설정할 수 있습니다. 페이지를 떠나거나 앱을 백그라운드로 전환하면 멈춥니다. 취침 계획은 수면을 측정하거나 추적하지 않습니다.</p>
+</details>
+<p>
+<a href="./privacy.html" data-page-link="./privacy.html">개인정보 처리방침</a>
+</p>
+</section>
+<section data-lang="ja" lang="ja" hidden>
+<div class="contact">
+<span>端末のモデル、iOS のバージョン、再現手順を添えてメールでご連絡ください。必要がない限り、個人の写真、音声、バックアップは添付しないでください。<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</span>
+</div>
+<h2>ND Alarm Clock の使い方</h2>
+<details>
+<summary>最初のアラームを設定するには？</summary>
+<p>アラームを追加し、時刻と繰り返しルールを選んで保存します。求められたらアラームの使用を許可してください。アプリ内の 10 秒ロック画面テストで、音が聞こえることを確認します。</p>
+</details>
+<details>
+<summary>シフト周期や特定の日の変更はどう動作しますか？</summary>
+<p>勤務カレンダーで周期を選ぶか、指定した日を変更します。次の有効な通知 8 回分が予約されるため、アラームの詳細で保存済みの予約期限を確認し、その前にアプリを開いてください。タイムゾーンを変更した後も、アプリを開いて固定日時の通知を更新してください。</p>
+</details>
+<details>
+<summary>アラームが表示されない、音が鳴らない場合は？</summary>
+<p>システム設定でアラームの許可を確認し、アラームをオンにしてください。ホームで次の通知を確認し、スケジュールの確認機能が表示された場合は利用してください。システムの通知音量とサウンドを確認して、ロック画面テストを実行します。解決しない場合はご連絡ください。</p>
+</details>
+<details>
+<summary>スヌーズと起床確認の使い方は？</summary>
+<p>アラーム編集でスヌーズ間隔と上限を 1〜10 回または無制限から選びます。起床確認は任意です。アラームを停止すると再通知が予約され、アプリで起床を確認するとキャンセルされます。</p>
+</details>
+<details>
+<summary>自分の音楽は使えますか？</summary>
+<p>「ファイル」から暗号化されていない音声を読み込み、開始位置を選びます。最長 30 秒のサウンドを作成し、最大 20 曲まで保存できます。DRM で保護された Apple Music の曲は読み込めません。</p>
+</details>
+<details>
+<summary>買い切りの PRO には何が含まれますか？</summary>
+<p>無料版と PRO のどちらにも広告はありません。PRO を一度購入すると、ギャラリーの追加レイアウト 8 種類と写真テーマが利用できます。基本のフリップ時計は無料です。PRO ページから購入時の Apple Account で購入を復元してください。価格は App Store の現在の表示をご確認ください。</p>
+</details>
+<details>
+<summary>バックアップと復元の方法は？</summary>
+<p>アプリから JSON バックアップを任意の場所に書き出します。アプリのデータと写真テーマを含みますが、読み込んだ音声ファイルは含みません。復元は確認後に現在のデータを置き換え、アラームをオフにし、実行中のタイマーを一時停止します。自動クラウド同期はありません。</p>
+</details>
+<details>
+<summary>環境音はバックグラウンドでも再生できますか？</summary>
+<p>雨や森の音は、就寝ページを前面で開いている間だけ再生されます。停止タイマーを設定できます。ページを離れたりアプリをバックグラウンドにすると停止します。就寝プランは睡眠を測定・追跡しません。</p>
+</details>
+<p>
+<a href="./privacy.html" data-page-link="./privacy.html">プライバシーポリシー</a>
+</p>
+</section>
+</main>
+<footer class="page">
+<span>© 2026 Next Dawn Technologies</span>
+<span>
+<a href="./index.html" data-page-link="./index.html">ND Alarm Clock</a> · <a href="./privacy.html" data-page-link="./privacy.html" data-i18n="privacy">Privacy Policy</a>
+</span>
+</footer>
+</div>
+<script>
+(function () {
+var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND Alarm Clock — Support",
+    "description": "Email us for help. Include your device model, iOS version, and steps to reproduce the issue. Please omit private photos, audio, and backups unless needed.",
+    "heading": "Support",
+    "subtitle": "Alarms, sleep schedules, timers, and a stopwatch in one native iPhone and iPad app. No account. No ads."
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND Alarm Clock — 支持与帮助",
+    "description": "请通过邮箱联系我们，并说明设备型号、iOS 版本与复现步骤。除非确有需要，请勿附上私人照片、音频或备份。",
+    "heading": "支持与帮助",
+    "subtitle": "闹钟、好眠计划、计时器与秒表，融于原生 iPhone 和 iPad 应用。无需账号，没有广告。"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND Alarm Clock — 支援與說明",
+    "description": "請透過電子郵件聯絡我們，並說明裝置型號、iOS 版本與重現步驟。除非確有需要，請勿附上私人照片、音訊或備份。",
+    "heading": "支援與說明",
+    "subtitle": "鬧鐘、好眠計畫、計時器與碼錶，整合於原生 iPhone 與 iPad 應用程式。無需帳號，沒有廣告。"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND Alarm Clock — 지원",
+    "description": "기기 모델, iOS 버전, 문제 재현 단계를 적어 이메일로 문의해 주세요. 꼭 필요한 경우가 아니라면 개인 사진, 오디오, 백업을 첨부하지 마세요.",
+    "heading": "지원",
+    "subtitle": "알람, 취침 계획, 타이머, 스톱워치를 하나로. iPhone과 iPad를 위한 네이티브 앱으로, 계정과 광고가 없습니다."
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND Alarm Clock — サポート",
+    "description": "端末のモデル、iOS のバージョン、再現手順を添えてメールでご連絡ください。必要がない限り、個人の写真、音声、バックアップは添付しないでください。",
+    "heading": "サポート",
+    "subtitle": "アラーム、就寝プラン、タイマー、ストップウォッチを一つに。iPhone と iPad のためのネイティブアプリ。アカウントも広告もありません。"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-alarm-clock-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script></body></html>

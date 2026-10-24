@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Alarm Clock — Privacy Policy</title>
+<meta name="description" content="This policy describes how ND Alarm Clock handles data for alarms, sleep schedules, timers, and the stopwatch." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #0069d9;
+    --accent-fill: #0069d9;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #4da2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 32px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: inherit; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  .brand .eyebrow { margin: 0; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  h2 { font-size: 19px; margin: 36px 0 10px; }
+  p { margin: 0 0 14px; font-size: 15.5px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 16px; }
+  .card p { margin: 0; color: var(--fg); }
+  a { color: var(--accent); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .lang-toggle button {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--fg);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent-fill); color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  @media (max-width: 680px) {
+    .card { padding: 16px; }
+    .lang-toggle { margin-bottom: 24px; }
+  }
+
+  section[data-lang][hidden] { display: none; }
+  .feature p, details p, .card p, section > p { font-size: 17px; }
+  .protocols .lead { color: var(--muted); text-transform: none; letter-spacing: normal; font-size: 17px; }
+
+  .feature h2 { font-size: 18px; margin: 0 0 6px; }
+  .card h2 { margin: 0 0 6px; font-size: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="page">
+<a class="brand" href="./index.html" data-page-link="./index.html">
+<img src="./apple-touch-icon.png" width="36" height="36" alt="" />
+<span class="eyebrow">ND Alarm Clock</span>
+</a>
+<h1 data-i18n="heading">Privacy Policy</h1>
+<p class="sub" data-i18n="subtitle">Last updated: October 24, 2026 · Next Dawn Technologies</p>
+</header>
+<div class="lang-toggle" role="group" aria-label="Language">
+<button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+<button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+<button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+<button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+<button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+</div>
+<main>
+<section data-lang="en" lang="en" class="active">
+<p>This policy describes how ND Alarm Clock handles data for alarms, sleep schedules, timers, and the stopwatch.</p>
+<div class="card">
+<h2>Local Data and Use</h2>
+<p>Alarms, sleep schedules, timers, settings, and activity history stay on your device. We do not operate servers receiving this data, sell it, or share it for advertising or cross-app tracking. The app requires no account and includes no ads or third-party advertising or behavioral analytics SDKs.</p>
+</div>
+<div class="card">
+<h2>System Permissions</h2>
+<p>The app requests alarm permission as needed for alarms and timer alerts. Manage this permission in system Settings. Advance skip prompts are disabled; the app does not request notification permission or send these prompts. It does not request microphone, location, or health data access.</p>
+</div>
+<div class="card">
+<h2>Photos and Audio</h2>
+<p>Photo themes use only photos you select with the system photo picker. Photos are compressed and re-encoded on-device without the original location metadata; processed images and crop settings are stored locally. Imported audio is read through the system file picker, trimmed, converted, and stored on-device. Neither is uploaded to our servers.</p>
+</div>
+<div class="card">
+<h2>Backups and Cloud Storage</h2>
+<p>There is no account sync or automatic cloud sync. Only when you export a backup does the system file picker save it to your chosen location, including iCloud Drive or another file service. Backups contain app data and photo themes, but not imported audio files. Keep them secure and manage exported files separately. Your chosen file service applies its own privacy policy.</p>
+</div>
+<div class="card">
+<h2>Purchases</h2>
+<p>Apple’s App Store and StoreKit process purchases and restoration. The app reads verified transactions and entitlement status to unlock content and reflect refunds or revocations. We do not receive your payment card details.</p>
+</div>
+<div class="card">
+<h2>Manage and Delete Data</h2>
+<p>Delete alarms, timers, and custom sounds, remove photo themes, or clear activity history in the app. Deleting the app removes local app data; offloading keeps documents and data. Manage exported and system backups separately in the relevant file or system service.</p>
+</div>
+<div class="card">
+<h2>Updates and Contact</h2>
+<p>We will update this notice if these practices change. If you contact us by email, we use the information you choose to send to respond to your request. For support or privacy questions, contact the publisher using the address below.</p>
+</div>
+<p>Next Dawn Technologies<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</p>
+</section>
+<section data-lang="zh" lang="zh-Hans" hidden>
+<p>本政策说明 ND Alarm Clock 在提供闹钟、好眠计划、计时器和秒表功能时如何处理数据。</p>
+<div class="card">
+<h2>本地数据与使用</h2>
+<p>闹钟、作息计划、计时器、设置和操作历史保存在设备上。我们不运营接收这些数据的服务器，不出售这些数据，也不将其分享用于广告或跨应用追踪。应用无需账号，没有广告，不集成第三方广告或行为分析 SDK。</p>
+</div>
+<div class="card">
+<h2>系统权限</h2>
+<p>应用按需申请闹钟权限，用于闹钟与计时结束提醒，可在系统设置中管理。提前询问是否跳过闹钟的功能已停用，应用不申请通知权限或发送此类提示，也不申请麦克风、定位或健康数据权限。</p>
+</div>
+<div class="card">
+<h2>照片与音频</h2>
+<p>照片主题仅使用通过系统照片选择器选取的照片，在设备上压缩并重新编码，不保留原始定位元数据；处理后的图片与裁剪设置保存在本地。导入音频通过系统文件选择器读取，在设备上截取、转码与保存。照片与音频均不上传至我们的服务器。</p>
+</div>
+<div class="card">
+<h2>备份与云存储</h2>
+<p>应用不提供账号同步或自动云同步。仅在主动导出时，通过系统文件选择器保存到你指定的位置，包括 iCloud 云盘或其他文件服务。备份包含应用数据与照片主题，不含导入的音频文件。请妥善保管并单独管理导出文件；所选文件服务适用其自身隐私政策。</p>
+</div>
+<div class="card">
+<h2>应用内购买</h2>
+<p>购买与恢复由 Apple 的 App Store 和 StoreKit 处理。应用读取经验证的交易与权益状态，用于解锁内容并反映退款或撤销状态。我们不接收支付卡信息。</p>
+</div>
+<div class="card">
+<h2>数据管理与删除</h2>
+<p>可在应用内删除闹钟、计时器、自定义铃声，移除照片主题或清空操作历史。删除 App 会移除本地应用数据；仅卸载 App、保留文稿与数据则不会清除。导出备份与系统备份需在对应文件或系统服务中另行管理。</p>
+</div>
+<div class="card">
+<h2>更新与联系</h2>
+<p>数据处理方式变化时，我们会更新本说明。通过邮件联系我们时，你主动提供的信息用于处理与回复请求。支持或隐私相关问题，请通过下方邮箱联系发布者。</p>
+</div>
+<p>Next Dawn Technologies<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</p>
+</section>
+<section data-lang="zh-Hant" lang="zh-Hant" hidden>
+<p>本政策說明 ND Alarm Clock 在提供鬧鐘、好眠計畫、計時器與碼錶功能時如何處理資料。</p>
+<div class="card">
+<h2>本機資料與使用</h2>
+<p>鬧鐘、作息計畫、計時器、設定和操作歷史儲存在裝置上。我們不營運接收這些資料的伺服器，不出售這些資料，也不將其分享用於廣告或跨 App 追蹤。應用程式無需帳號，沒有廣告，不整合第三方廣告或行為分析 SDK。</p>
+</div>
+<div class="card">
+<h2>系統權限</h2>
+<p>應用程式視需要要求鬧鐘權限，用於鬧鐘與計時結束提醒，可在系統設定中管理。提前詢問是否略過鬧鐘的功能已停用，應用程式不要求通知權限或傳送這類提示，也不要求麥克風、定位或健康資料權限。</p>
+</div>
+<div class="card">
+<h2>照片與音訊</h2>
+<p>照片主題僅使用透過系統照片選擇器選取的照片，在裝置上壓縮並重新編碼，不保留原始定位中繼資料；處理後的圖片與裁切設定儲存在本機。輸入音訊透過系統檔案選擇器讀取，在裝置上擷取、轉碼與儲存。照片與音訊均不會上傳至我們的伺服器。</p>
+</div>
+<div class="card">
+<h2>備份與雲端儲存</h2>
+<p>應用程式不提供帳號同步或自動雲端同步。僅在主動輸出時，透過系統檔案選擇器儲存至指定位置，包括 iCloud 雲碟或其他檔案服務。備份包含應用程式資料與照片主題，不含輸入的音訊檔案。請妥善保管並個別管理輸出檔案；所選檔案服務適用其自身隱私權政策。</p>
+</div>
+<div class="card">
+<h2>App 內購買</h2>
+<p>購買與回復由 Apple 的 App Store 和 StoreKit 處理。應用程式讀取經驗證的交易與權益狀態，用於解鎖內容並反映退款或撤銷狀態。我們不接收付款卡片資訊。</p>
+</div>
+<div class="card">
+<h2>資料管理與刪除</h2>
+<p>可在應用程式內刪除鬧鐘、計時器、自訂鈴聲，移除照片主題或清空操作歷史。刪除 App 會移除本機應用程式資料；僅卸載 App、保留文件與資料則不會清除。輸出備份與系統備份需在對應檔案或系統服務中另行管理。</p>
+</div>
+<div class="card">
+<h2>更新與聯絡</h2>
+<p>資料處理方式變更時，我們會更新本說明。透過電子郵件聯絡我們時，你主動提供的資訊用於處理與回覆請求。支援或隱私權相關問題，請透過下方電子郵件聯絡發行者。</p>
+</div>
+<p>Next Dawn Technologies<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</p>
+</section>
+<section data-lang="ko" lang="ko" hidden>
+<p>이 방침은 ND Alarm Clock이 알람, 취침 계획, 타이머, 스톱워치를 제공하면서 데이터를 처리하는 방식을 설명합니다.</p>
+<div class="card">
+<h2>기기 내 데이터와 사용</h2>
+<p>알람, 취침 계획, 타이머, 설정, 활동 기록은 기기에 저장됩니다. 당사는 이 데이터를 수신하는 서버를 운영하지 않으며, 판매하거나 광고 또는 앱 간 추적을 위해 공유하지 않습니다. 계정이 필요 없고 광고 및 타사 광고·행동 분석 SDK가 없습니다.</p>
+</div>
+<div class="card">
+<h2>시스템 권한</h2>
+<p>알람과 타이머 종료 알림에 필요한 경우 알람 권한을 요청하며, 시스템 설정에서 관리할 수 있습니다. 알람을 미리 건너뛸지 묻는 기능은 비활성화되어 있어 알림 권한을 요청하거나 해당 알림을 보내지 않습니다. 마이크, 위치, 건강 데이터 접근 권한도 요청하지 않습니다.</p>
+</div>
+<div class="card">
+<h2>사진과 오디오</h2>
+<p>사진 테마에는 시스템 사진 선택기로 고른 사진만 사용합니다. 사진은 기기에서 압축 및 재인코딩되며 원본 위치 메타데이터를 보존하지 않습니다. 처리된 사진과 자르기 설정은 기기에 저장됩니다. 오디오는 시스템 파일 선택기로 읽고 기기에서 자르기, 변환, 저장을 수행합니다. 사진과 오디오는 당사 서버에 업로드되지 않습니다.</p>
+</div>
+<div class="card">
+<h2>백업과 클라우드 저장소</h2>
+<p>계정 동기화나 자동 클라우드 동기화는 없습니다. 사용자가 내보낼 때만 시스템 파일 선택기로 iCloud Drive 등 선택한 위치에 저장합니다. 백업에는 앱 데이터와 사진 테마가 포함되지만 가져온 오디오 파일은 포함되지 않습니다. 내보낸 파일은 안전하게 보관하고 별도로 관리하세요. 선택한 파일 서비스에는 해당 서비스의 개인정보 처리방침이 적용됩니다.</p>
+</div>
+<div class="card">
+<h2>앱 내 구입</h2>
+<p>구입과 복원은 Apple의 App Store 및 StoreKit에서 처리합니다. 앱은 검증된 거래와 이용 권한 상태를 읽어 콘텐츠를 잠금 해제하고 환불 또는 철회 상태를 반영합니다. 당사는 결제 카드 정보를 받지 않습니다.</p>
+</div>
+<div class="card">
+<h2>데이터 관리와 삭제</h2>
+<p>앱에서 알람, 타이머, 사용자 사운드, 사진 테마, 활동 기록을 삭제할 수 있습니다. 앱을 삭제하면 기기 내 앱 데이터가 제거되지만, 앱 정리하기는 문서와 데이터를 유지합니다. 내보낸 백업과 시스템 백업은 해당 파일 또는 시스템 서비스에서 별도로 관리하세요.</p>
+</div>
+<div class="card">
+<h2>업데이트 및 문의</h2>
+<p>데이터 처리 방식이 변경되면 이 안내를 업데이트합니다. 이메일로 보내 주신 정보는 문의 처리와 답변에 사용합니다. 지원 또는 개인정보 관련 질문은 아래 이메일로 게시자에게 문의해 주세요.</p>
+</div>
+<p>Next Dawn Technologies<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</p>
+</section>
+<section data-lang="ja" lang="ja" hidden>
+<p>本ポリシーは、ND Alarm Clock がアラーム、就寝プラン、タイマー、ストップウォッチの提供にあたりデータをどのように取り扱うかを説明します。</p>
+<div class="card">
+<h2>端末内のデータと利用</h2>
+<p>アラーム、就寝プラン、タイマー、設定、操作履歴は端末内に保存されます。当社はこれらを受信するサーバーを運営せず、販売や広告・アプリ間トラッキングのための共有を行いません。アカウントは不要で、広告や第三者の広告・行動分析 SDK はありません。</p>
+</div>
+<div class="card">
+<h2>システムのアクセス許可</h2>
+<p>アラームとタイマー終了通知のため、必要に応じてアラームの許可を求めます。システム設定で管理できます。事前にスキップを確認する機能は無効であり、通知の許可や該当する通知の送信は行いません。マイク、位置情報、ヘルスケアデータへのアクセスも求めません。</p>
+</div>
+<div class="card">
+<h2>写真と音声</h2>
+<p>写真テーマはシステムの写真ピッカーで選んだ写真だけを使用します。写真は端末内で圧縮・再エンコードされ、元の位置情報メタデータは保持しません。処理後の画像と切り抜き設定は端末内に保存されます。音声はシステムのファイルピッカーから読み込み、端末内で切り出し・変換・保存します。写真や音声を当社のサーバーにアップロードすることはありません。</p>
+</div>
+<div class="card">
+<h2>バックアップとクラウドストレージ</h2>
+<p>アカウント同期や自動クラウド同期はありません。利用者が書き出す場合だけ、システムのファイルピッカーで iCloud Drive などの指定した場所に保存します。バックアップにはアプリのデータと写真テーマを含みますが、読み込んだ音声ファイルは含みません。書き出したファイルは安全に保管し、個別に管理してください。利用するファイルサービスにはそのサービスのプライバシーポリシーが適用されます。</p>
+</div>
+<div class="card">
+<h2>アプリ内購入</h2>
+<p>購入と復元は Apple の App Store と StoreKit が処理します。アプリは検証済みの取引と利用権を読み取り、コンテンツの解放と返金・取り消しの反映に使用します。当社が支払いカード情報を受け取ることはありません。</p>
+</div>
+<div class="card">
+<h2>データの管理と削除</h2>
+<p>アプリでアラーム、タイマー、独自サウンド、写真テーマ、操作履歴を削除できます。アプリの削除は端末内のデータを削除しますが、アプリの取り除きでは書類とデータが保持されます。書き出したバックアップとシステムバックアップは、該当するファイルまたはシステムサービスで個別に管理してください。</p>
+</div>
+<div class="card">
+<h2>更新とお問い合わせ</h2>
+<p>取り扱いに変更があった場合は本通知を更新します。メールでご連絡いただいた情報は、お問い合わせへの対応と返信に使用します。サポートやプライバシーに関するご質問は、下記のメールアドレスから発行者にご連絡ください。</p>
+</div>
+<p>Next Dawn Technologies<br />
+<a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a>
+</p>
+</section>
+</main>
+<footer class="page">
+<span>© 2026 Next Dawn Technologies</span>
+<span>
+<a href="./index.html" data-page-link="./index.html">ND Alarm Clock</a> · <a href="./support.html" data-page-link="./support.html" data-i18n="support">Support</a>
+</span>
+</footer>
+</div>
+<script>
+(function () {
+var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND Alarm Clock — Privacy Policy",
+    "description": "This policy describes how ND Alarm Clock handles data for alarms, sleep schedules, timers, and the stopwatch.",
+    "heading": "Privacy Policy",
+    "subtitle": "Last updated: October 24, 2026 · Next Dawn Technologies"
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND Alarm Clock — 隐私政策",
+    "description": "本政策说明 ND Alarm Clock 在提供闹钟、好眠计划、计时器和秒表功能时如何处理数据。",
+    "heading": "隐私政策",
+    "subtitle": "最近更新：2026 年 10 月 24 日 · Next Dawn Technologies"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND Alarm Clock — 隱私權政策",
+    "description": "本政策說明 ND Alarm Clock 在提供鬧鐘、好眠計畫、計時器與碼錶功能時如何處理資料。",
+    "heading": "隱私權政策",
+    "subtitle": "最近更新：2026 年 10 月 24 日 · Next Dawn Technologies"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND Alarm Clock — 개인정보 처리방침",
+    "description": "이 방침은 ND Alarm Clock이 알람, 취침 계획, 타이머, 스톱워치를 제공하면서 데이터를 처리하는 방식을 설명합니다.",
+    "heading": "개인정보 처리방침",
+    "subtitle": "최종 업데이트: 2026년 10월 24일 · Next Dawn Technologies"
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND Alarm Clock — プライバシーポリシー",
+    "description": "本ポリシーは、ND Alarm Clock がアラーム、就寝プラン、タイマー、ストップウォッチの提供にあたりデータをどのように取り扱うかを説明します。",
+    "heading": "プライバシーポリシー",
+    "subtitle": "最終更新：2026 年 10 月 24 日 · Next Dawn Technologies"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-alarm-clock-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script></body></html>
