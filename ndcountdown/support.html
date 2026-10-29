@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ND Countdown — Support</title>
+<meta name="description" content="Help with events, reminders, syncing your data, and restoring PRO." />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1b1f;
+    --muted: #5c5c66;
+    --card: #f4f4f7;
+    --border: #e4e4ea;
+    --accent: #0064d9;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f1f1f4;
+      --muted: #a4a4ad;
+      --card: #1c1c20;
+      --border: #2b2b30;
+      --accent: #8bbaff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  header.page { margin-bottom: 28px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: inherit; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  .brand .eyebrow { margin: 0; }
+  .eyebrow { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0; }
+  .contact {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin: 24px 0 36px;
+  }
+  .contact a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  h2 { font-size: 18px; margin: 32px 0 10px; }
+  details {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 10px;
+  }
+  details summary { cursor: pointer; font-weight: 600; font-size: 15.5px; }
+  details p { margin: 10px 0 0; color: var(--fg); font-size: 15px; }
+  details p + p { margin-top: 8px; }
+  a { color: var(--accent); }
+  footer.page { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  footer.page a { color: var(--muted); }
+  .lang-toggle { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .lang-toggle button {
+    appearance: none; border: 1px solid var(--border); background: var(--card);
+    color: var(--fg); border-radius: 999px; padding: 6px 16px; font-size: 14px; cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: #0064d9; color: #fff; border-color: transparent; }
+  section[data-lang] { display: none; }
+  section[data-lang].active { display: block; }
+
+  /* Responsive spacing, long text, safe areas, and touch controls. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { overflow-wrap: anywhere; }
+  :lang(ko) { word-break: keep-all; }
+  .wrap {
+    width: 100%;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  section[data-lang], footer.page > * { min-width: 0; }
+  .lang-toggle button {
+    min-height: 44px; max-width: 100%; padding: 10px 14px;
+    font-family: inherit; line-height: 1.4; white-space: nowrap;
+    touch-action: manipulation;
+  }
+  button:focus-visible, a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent); outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer.page a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 480px) {
+    .lang-toggle {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .lang-toggle button { width: 100%; padding: 10px 6px; }
+  }
+
+  header.page h1 { line-height: 1.35; }
+  @media (max-width: 680px) {
+    .wrap { padding-top: 28px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+    header.page { margin-bottom: 24px; }
+    header.page h1 { font-size: clamp(24px, 7vw, 28px); }
+    .sub { font-size: 14.5px; }
+    h2 { margin-top: 28px; }
+    footer.page { margin-top: 32px; }
+  }
+
+  .contact { align-items: flex-start; }
+  .contact > span:last-child { min-width: 0; }
+  .contact a { overflow-wrap: anywhere; }
+  details { padding: 0; }
+  details summary {
+    min-height: 48px; padding: 14px 18px; border-radius: 11px;
+    line-height: 1.55; touch-action: manipulation;
+  }
+  details p { margin: 0 18px 14px; }
+  details p + p { margin-top: 8px; }
+  @media (max-width: 680px) {
+    .contact { padding: 14px 16px; margin: 20px 0 28px; }
+    details summary { padding: 14px 16px; }
+    details p { margin-left: 16px; margin-right: 16px; }
+  }
+
+  .brand { min-height: 44px; }
+</style>
+</head><body><main class="wrap">
+<header class="page"><a href="./index.html" data-page-link="./index.html" class="brand"><img src="./apple-touch-icon.png" width="36" height="36" alt="" /><span class="eyebrow">ND Countdown</span></a>
+<h1 data-i18n="heading">Support</h1><p class="sub" data-i18n="subtitle">Help with events, reminders, syncing your data, and restoring PRO.</p></header>
+<div class="lang-toggle" role="group" aria-label="Language">
+<button type="button" data-set-lang="en" lang="en" aria-pressed="true">English</button>
+<button type="button" data-set-lang="zh" lang="zh-Hans" aria-pressed="false">简体中文</button>
+<button type="button" data-set-lang="zh-Hant" lang="zh-Hant" aria-pressed="false">繁體中文</button>
+<button type="button" data-set-lang="ko" lang="ko" aria-pressed="false">한국어</button>
+<button type="button" data-set-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+</div>
+<section data-lang="en" lang="en" class="active"><div class="contact"><span>For help, email <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></span></div>
+<h2>Frequently Asked Questions</h2>
+<details><summary>How Do I Create My First Event?</summary><p>Tap Add in Events, choose an event, birthday, or anniversary, then enter a title and date. You can also add a photo, category, tags, reminders, and a preparation list. Birthdays do not require a birth year.</p></details>
+<details><summary>How Are Repeating Dates and Weekdays Calculated?</summary><p>Events can repeat daily, weekly, monthly, or annually. Birthdays and anniversaries can repeat annually using Gregorian or lunar dates. Shorter months use their last day for month-end dates; February 29 uses February 28 in non-leap years. Lunar leap months use the corresponding regular month, and day 30 uses the last day when needed. Weekday counts include Monday through Friday only, without public-holiday or adjusted-workday rules.</p></details>
+<details><summary>Why Did a Reminder Not Appear?</summary><p>Allow notifications for ND Countdown in system settings, then check Focus and notification settings. The app prioritizes up to 60 upcoming local notifications and extends the schedule when opened; the schedule can run out if you do not open the app for a long time. Regular notifications are not guaranteed to bypass Silent mode or Focus.</p></details>
+<details><summary>How Are Reminders Different from Alarms?</summary><p>Reminders use system notifications. On iOS 26 and later, you can separately authorize ringing alarms that sound in Silent mode and Focus. Only the next alarm for each event is scheduled; opening the app schedules later occurrences, with up to 48 alarms at once. Earlier systems do not show this feature.</p></details>
+<details><summary>How Do I Sync or Move to a New Device?</summary><p>Enable iCloud sync in Me, use the same Apple Account, and wait for syncing to finish. Sync is off by default; events, categories, photos, and preparation lists use your private CloudKit database. The local database is excluded from system backups. Confirm that iCloud sync has finished before changing devices or uninstalling; system backups alone cannot be relied on to restore records.</p></details>
+<details><summary>What Does PRO Include, and How Do I Restore It?</summary><p>Free includes five unarchived events, one reminder per event, preparation lists, iCloud sync, privacy features, and basic widgets. A one-time PRO purchase adds more events, up to eight reminders, milestones, all widgets, automatic calendar import, and Apple Watch. Open ND Countdown PRO in Me and select Restore Purchases using the Apple Account used to buy it. The App Store shows your price. Canceled or pending purchases do not unlock PRO.</p></details>
+<details><summary>How Do I Use Widgets and Apple Watch?</summary><p>Touch and hold an empty area on the Home Screen to add an ND Countdown widget. Touch and hold the widget, then edit it to choose an event. Add Lock Screen widgets through Customize. Basic widgets are free; all styles, event list widgets, and Apple Watch require PRO. Watch receives titles and dates, without notes, photos, or preparation lists. The system controls widget refresh timing; updates every second are not guaranteed.</p></details>
+<details><summary>Does Importing Change My Contacts or Calendar?</summary><p>No. Permissions are requested when you choose to import. Preview and select contact birthdays or calendar events from the coming year; duplicate sources are skipped. Calendar import keeps dates, without times or complex recurrence rules. PRO automatic import must be enabled explicitly; imported events do not follow later source changes.</p></details>
+<details><summary>How Do I Protect or Delete My Records?</summary><p>Enable App Lock with Face ID or your device passcode in Me. Widget, Watch, and notification privacy have separate controls: hiding widget records also hides Watch content, while another switch hides notification titles and content. Delete events individually; deletions sync when iCloud sync is enabled. Deleting all iCloud data turns off sync and keeps local records. When turning sync off, you can also remove synced local copies; unsynced content stays.</p></details>
+<details><summary>Which Languages Does the App Support, and How Can I Report an Issue?</summary><p>The app can follow the system language or use Simplified Chinese or English. This website also offers Traditional Chinese, Korean, and Japanese. For support, send your app and system versions, steps to reproduce the issue, and optional screenshots with private details hidden. We have no backend for remotely reading your records, and diagnostic logs are not uploaded automatically.</p></details>
+<p><a href="./privacy.html" data-page-link="./privacy.html">Privacy Policy</a></p></section>
+
+<section data-lang="zh" lang="zh-Hans" hidden><div class="contact"><span>如需帮助，请发送邮件至 <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></span></div>
+<h2>常见问题</h2>
+<details><summary>如何创建第一个时刻？</summary><p>在“时刻”页点击添加，选择倒数日、生日或纪念日，填写标题与日期后完成。可继续添加照片、分类、标签、提醒与准备清单。生日可以不填写出生年份。</p></details>
+<details><summary>重复日期和工作日如何计算？</summary><p>普通时刻支持每日、每周、每月和每年重复；生日与纪念日可按公历或农历每年重复。月末遇短月使用当月最后一天；公历 2 月 29 日在平年按 2 月 28 日计算。农历闰月按同名普通月份，小月缺少三十时使用月末。工作日只计算周一至周五，不含法定节假日或调休调整。</p></details>
+<details><summary>提醒没有出现，应该检查什么？</summary><p>请在系统设置中允许 ND Countdown 发送通知，并检查专注模式与通知设置。App 优先安排最近最多 60 个本地通知，打开 App 时补齐后续计划；长期不打开可能耗尽计划。普通通知不保证绕过静音或专注模式。</p></details>
+<details><summary>提醒和响铃闹钟有什么不同？</summary><p>提醒通过系统通知展示。iOS 26 及以上可另设响铃闹钟，需要单独授权，静音或专注模式下也会响铃。每个时刻只安排下一次响铃，打开 App 时续排，最多同时安排 48 个。旧系统不显示闹钟功能。</p></details>
+<details><summary>如何同步或迁移到新设备？</summary><p>在“我的”中开启 iCloud 同步，使用同一 Apple 账户，并等待同步完成。同步默认关闭；时刻、类别、照片和准备清单存入你的 CloudKit 私有数据库。本机数据库不参与系统备份，换机或卸载前务必确认 iCloud 已同步，不能仅依赖系统备份恢复。</p></details>
+<details><summary>免费版和 PRO 有什么区别？如何恢复购买？</summary><p>免费版可保留 5 个未归档时刻，每个时刻 1 个提醒；准备清单、iCloud 同步、隐私保护和基础组件免费。PRO 一次买断，解锁更多时刻、最多 8 个提醒、里程碑提醒、全部组件、自动导入日历和 Apple Watch。在“我的”中打开 ND Countdown PRO，选择“恢复购买”，并使用购买时的 Apple 账户。价格以 App Store 为准；取消购买或待批准时不会提前解锁。</p></details>
+<details><summary>如何添加小组件和使用 Apple Watch？</summary><p>长按主屏幕空白处添加 ND Countdown 小组件；长按已添加的组件并编辑，可选择时刻。锁屏可通过自定添加组件。基础组件免费，全部样式、列表组件和 Apple Watch 需要 PRO。Watch 显示标题与日期，不接收备注、照片或准备清单。组件刷新时间由系统决定，不能保证每秒更新。</p></details>
+<details><summary>通讯录和日历导入会修改原始内容吗？</summary><p>不会。点击导入后才申请相关权限，你可以预览并选择联系人生日或未来一年的日历事件，相同来源会跳过。日历导入只保留日期，不保留时分或复杂重复。PRO 自动导入需主动启用；已导入时刻不会随来源更新。</p></details>
+<details><summary>如何保护和删除我的记录？</summary><p>可在“我的”中启用 Face ID 或设备密码应用锁。小组件、Watch 与通知需分别控制隐私：隐藏小组件记录也会隐藏 Watch；通知另有隐藏标题和内容的开关。可逐条删除时刻；同步开启时删除会同步。删除全部 iCloud 数据会关闭同步并保留本机记录；关闭同步时也可选择移除已同步的本机副本，未同步内容保留。</p></details>
+<details><summary>App 支持哪些语言？如何反馈问题？</summary><p>App 当前支持跟随系统、简体中文和英语；网站另提供繁体中文、韩语与日语。反馈时请提供 App 版本、系统版本、复现步骤及可选截图，并遮盖私人信息。我们没有可远程读取你记录的后台，也不会自动上传诊断日志。</p></details>
+<p><a href="./privacy.html" data-page-link="./privacy.html">隐私政策</a></p></section>
+
+<section data-lang="zh-Hant" lang="zh-Hant" hidden><div class="contact"><span>如需協助，請傳送電子郵件至 <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></span></div>
+<h2>常見問題</h2>
+<details><summary>如何建立第一個時刻？</summary><p>在「時刻」頁點選新增，選擇倒數日、生日或紀念日，填入標題與日期後完成。可繼續加入照片、類別、標籤、提醒與準備清單。生日可以不填出生年份。</p></details>
+<details><summary>重複日期和工作日如何計算？</summary><p>一般時刻支援每日、每週、每月和每年重複；生日與紀念日可依國曆或農曆每年重複。月底遇短月使用當月最後一天；國曆 2 月 29 日在平年按 2 月 28 日計算。農曆閏月使用同名普通月份，小月沒有三十時使用月底。工作日只計算週一至週五，不套用國定假日或補班規則。</p></details>
+<details><summary>提醒沒有出現，應該檢查什麼？</summary><p>請在系統設定中允許 ND Countdown 傳送通知，並檢查專注模式與通知設定。App 優先安排最近最多 60 個本機通知，開啟 App 時補齊後續排程；長期不開啟可能用盡排程。一般通知不保證略過靜音或專注模式。</p></details>
+<details><summary>提醒和響鈴鬧鐘有什麼不同？</summary><p>提醒透過系統通知顯示。iOS 26 以上可另外設定響鈴鬧鐘，需要個別授權，在靜音或專注模式下也會響鈴。每個時刻僅安排下一次響鈴，開啟 App 時續排，最多同時安排 48 個。舊系統不顯示鬧鐘功能。</p></details>
+<details><summary>如何同步或移轉到新裝置？</summary><p>在個人設定頁開啟 iCloud 同步，使用相同 Apple 帳號並等待同步完成。同步預設關閉；時刻、類別、照片與準備清單儲存於你的 CloudKit 私有資料庫。本機資料庫不納入系統備份，換機或移除 App 前務必確認 iCloud 已同步，不能只依賴系統備份回復。</p></details>
+<details><summary>免費版和 PRO 有什麼差別？如何回復購買？</summary><p>免費版可保留 5 個未封存時刻，每個時刻 1 個提醒；準備清單、iCloud 同步、隱私保護和基本小工具免費。PRO 一次買斷，解鎖更多時刻、最多 8 個提醒、里程碑提醒、全部小工具、自動匯入行事曆和 Apple Watch。在個人設定頁開啟 ND Countdown PRO，選擇回復購買，並使用購買時的 Apple 帳號。價格以 App Store 為準；取消或待核准的購買不會提前解鎖。</p></details>
+<details><summary>如何加入小工具和使用 Apple Watch？</summary><p>長按主畫面空白處加入 ND Countdown 小工具；長按已加入的小工具並編輯，可選擇時刻。鎖定畫面可透過自訂加入小工具。基本小工具免費，全部樣式、列表小工具與 Apple Watch 需要 PRO。Watch 顯示標題與日期，不接收備註、照片或準備清單。更新時間由系統決定，不保證每秒更新。</p></details>
+<details><summary>匯入聯絡人和行事曆會修改原始內容嗎？</summary><p>不會。點選匯入後才要求相關權限，你可以預覽並選擇聯絡人生日或未來一年的行事曆事件，相同來源會略過。行事曆匯入僅保留日期，不保留時間或複雜重複規則。PRO 自動匯入需主動啟用；已匯入時刻不會隨來源更新。</p></details>
+<details><summary>如何保護和刪除我的記錄？</summary><p>可在個人設定頁啟用 Face ID 或裝置密碼 App 鎖定。小工具、Watch 與通知需分別控制隱私：隱藏小工具記錄也會隱藏 Watch；通知另有隱藏標題與內容的開關。可逐筆刪除時刻，同步開啟時刪除也會同步。刪除全部 iCloud 資料會關閉同步並保留本機記錄；關閉同步時也可移除已同步的本機副本，未同步內容保留。</p></details>
+<details><summary>App 支援哪些語言？如何回報問題？</summary><p>App 目前支援跟隨系統、簡體中文與英語；網站另提供繁體中文、韓語與日語。回報時請提供 App 版本、系統版本、重現步驟及選擇性的截圖，並遮蔽私人資訊。我們沒有可遠端讀取你記錄的後端，也不會自動上傳診斷記錄。</p></details>
+<p><a href="./privacy.html" data-page-link="./privacy.html">隱私權政策</a></p></section>
+
+<section data-lang="ko" lang="ko" hidden><div class="contact"><span>도움이 필요하면 다음 주소로 이메일을 보내주세요: <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></span></div>
+<h2>자주 묻는 질문</h2>
+<details><summary>첫 일정은 어떻게 만드나요?</summary><p>일정 화면에서 추가를 누르고 일반 일정, 생일 또는 기념일을 선택한 다음 제목과 날짜를 입력하세요. 사진, 카테고리, 태그, 미리 알림, 준비 목록도 추가할 수 있습니다. 생일은 출생 연도를 입력하지 않아도 됩니다.</p></details>
+<details><summary>반복 날짜와 평일은 어떻게 계산하나요?</summary><p>일반 일정은 매일, 매주, 매월, 매년 반복할 수 있습니다. 생일과 기념일은 양력 또는 음력으로 매년 반복할 수 있습니다. 짧은 달의 월말 날짜는 그달의 마지막 날을 사용하며, 양력 2월 29일은 평년에 2월 28일로 계산합니다. 음력 윤달은 같은 이름의 평달을 사용하고 30일이 없으면 말일을 사용합니다. 평일은 월요일부터 금요일까지만 계산하며 공휴일이나 대체 근무일은 반영하지 않습니다.</p></details>
+<details><summary>미리 알림이 표시되지 않으면 무엇을 확인하나요?</summary><p>시스템 설정에서 ND Countdown의 알림을 허용하고 집중 모드와 알림 설정을 확인하세요. 앱은 가까운 순서로 최대 60개의 로컬 알림을 예약하고 앱을 열면 이후 일정을 보충합니다. 오랫동안 앱을 열지 않으면 예약이 소진될 수 있습니다. 일반 알림이 무음 모드나 집중 모드를 우회하는 것은 보장되지 않습니다.</p></details>
+<details><summary>미리 알림과 알람은 어떻게 다른가요?</summary><p>미리 알림은 시스템 알림으로 표시됩니다. iOS 26 이상에서는 별도 권한으로 무음 모드와 집중 모드에서도 울리는 알람을 설정할 수 있습니다. 일정마다 다음 알람 한 번만 예약하고 앱을 열면 이후 알람을 예약하며, 동시에 최대 48개를 예약합니다. 이전 시스템에는 이 기능이 표시되지 않습니다.</p></details>
+<details><summary>동기화하거나 새 기기로 옮기려면 어떻게 하나요?</summary><p>개인 설정에서 iCloud 동기화를 켜고 동일한 Apple 계정을 사용한 뒤 동기화가 끝날 때까지 기다리세요. 기본값은 꺼짐이며 일정, 카테고리, 사진, 준비 목록은 개인 CloudKit 데이터베이스에 저장됩니다. 로컬 데이터베이스는 시스템 백업에서 제외됩니다. 기기를 바꾸거나 앱을 삭제하기 전에 iCloud 동기화 완료를 확인하세요. 시스템 백업만으로 복원할 수 있다고 가정하면 안 됩니다.</p></details>
+<details><summary>PRO에는 무엇이 포함되며 구매는 어떻게 복원하나요?</summary><p>무료 버전은 보관하지 않은 일정 5개, 일정당 미리 알림 1개, 준비 목록, iCloud 동기화, 개인정보 보호, 기본 위젯을 제공합니다. PRO를 한 번 구매하면 더 많은 일정, 최대 8개 미리 알림, 누적 일수 알림, 모든 위젯, 캘린더 자동 가져오기, Apple Watch를 사용할 수 있습니다. 개인 설정의 ND Countdown PRO에서 구매 복원을 선택하고 구매에 사용한 Apple 계정을 사용하세요. 가격은 App Store에 표시됩니다. 취소되거나 승인 대기 중인 구매는 PRO를 활성화하지 않습니다.</p></details>
+<details><summary>위젯과 Apple Watch는 어떻게 사용하나요?</summary><p>홈 화면의 빈 공간을 길게 눌러 ND Countdown 위젯을 추가하세요. 위젯을 길게 누른 뒤 편집하여 일정을 선택할 수 있습니다. 잠금 화면은 사용자화에서 위젯을 추가하세요. 기본 위젯은 무료이며 모든 스타일, 목록 위젯, Apple Watch는 PRO가 필요합니다. Watch에는 제목과 날짜가 표시되고 메모, 사진, 준비 목록은 전달되지 않습니다. 위젯 갱신 시점은 시스템이 정하므로 매초 갱신은 보장되지 않습니다.</p></details>
+<details><summary>가져오기를 하면 연락처나 캘린더 원본이 바뀌나요?</summary><p>아니요. 가져오기를 선택할 때만 권한을 요청합니다. 연락처 생일이나 향후 1년의 캘린더 일정을 미리 보고 선택할 수 있으며 같은 출처의 항목은 건너뜁니다. 캘린더 가져오기는 날짜만 유지하고 시간이나 복잡한 반복 규칙은 유지하지 않습니다. PRO 자동 가져오기는 직접 켜야 하며, 가져온 일정은 이후 원본 변경을 따라 업데이트되지 않습니다.</p></details>
+<details><summary>기록을 보호하거나 삭제하려면 어떻게 하나요?</summary><p>개인 설정에서 Face ID 또는 기기 암호로 앱 잠금을 켜세요. 위젯·Watch와 알림의 개인정보 보호는 별도로 설정합니다. 위젯 기록을 숨기면 Watch 내용도 숨겨지며, 알림 제목과 내용은 별도 스위치로 숨깁니다. 일정은 개별 삭제할 수 있고 동기화가 켜져 있으면 삭제도 동기화됩니다. iCloud 데이터를 모두 삭제하면 동기화가 꺼지고 로컬 기록은 유지됩니다. 동기화를 끌 때 동기화된 로컬 사본을 제거할 수도 있으며 미동기화 내용은 유지됩니다.</p></details>
+<details><summary>앱은 어떤 언어를 지원하며 문제는 어떻게 신고하나요?</summary><p>앱은 시스템 언어를 따르거나 중국어 간체 또는 영어로 사용할 수 있습니다. 웹사이트는 중국어 번체, 한국어, 일본어도 제공합니다. 문의 시 앱·시스템 버전, 재현 단계, 선택적으로 개인정보를 가린 스크린샷을 보내주세요. 기록을 원격으로 읽는 서버는 없으며 진단 로그를 자동 업로드하지 않습니다.</p></details>
+<p><a href="./privacy.html" data-page-link="./privacy.html">개인정보 처리방침</a></p></section>
+
+<section data-lang="ja" lang="ja" hidden><div class="contact"><span>お問い合わせは、次のアドレスにメールをお送りください： <a href="mailto:nextdawntechnologies@gmail.com">nextdawntechnologies@gmail.com</a></span></div>
+<h2>よくある質問</h2>
+<details><summary>最初のイベントはどう作成しますか？</summary><p>イベント画面で追加をタップし、通常のイベント、誕生日、記念日を選んでタイトルと日付を入力します。写真、カテゴリ、タグ、通知、準備リストも追加できます。誕生日は生年を入力しなくても登録できます。</p></details>
+<details><summary>繰り返す日付と平日はどう計算されますか？</summary><p>通常のイベントは毎日・毎週・毎月・毎年の繰り返しに対応します。誕生日と記念日は西暦または旧暦で毎年繰り返せます。月末の日付がない月は末日を使用し、西暦の 2 月 29 日は平年に 2 月 28 日として計算します。旧暦の閏月は同名の通常月を使い、30 日がない月は末日を使います。平日は月曜から金曜のみを数え、祝日や振替勤務日は考慮しません。</p></details>
+<details><summary>通知が表示されないときは何を確認しますか？</summary><p>システム設定で ND Countdown の通知を許可し、集中モードと通知設定を確認してください。アプリは近い順に最大 60 件のローカル通知を予約し、起動時に以降の予定を補充します。長期間開かないと予約が尽きる場合があります。通常の通知が消音モードや集中モードを回避することは保証されません。</p></details>
+<details><summary>通知とアラームは何が違いますか？</summary><p>通知はシステム通知として表示されます。iOS 26 以降では、別途許可することで消音モードや集中モードでも音が鳴るアラームを設定できます。イベントごとに次の 1 回だけを予約し、起動時に以降のアラームを予約します。同時に最大 48 件まで予約でき、以前のシステムではこの機能は表示されません。</p></details>
+<details><summary>同期や新しい端末への移行はどう行いますか？</summary><p>個人設定で iCloud 同期をオンにし、同じ Apple Account を使って同期の完了を待ってください。初期状態ではオフで、イベント、カテゴリ、写真、準備リストはプライベート CloudKit データベースに保存されます。端末内のデータベースはシステムバックアップの対象外です。機種変更やアプリ削除の前に iCloud 同期の完了を確認し、システムバックアップだけで復元できると考えないでください。</p></details>
+<details><summary>PRO の内容と購入の復元方法を教えてください。</summary><p>無料版には未アーカイブのイベント 5 件、イベントごとに通知 1 件、準備リスト、iCloud 同期、プライバシー機能、基本ウィジェットが含まれます。買い切りの PRO では、より多くのイベント、最大 8 件の通知、節目の日数の通知、すべてのウィジェット、カレンダー自動読み込み、Apple Watch を使えます。個人設定の ND Countdown PRO で購入を復元する操作を選び、購入時の Apple Account を使用してください。価格は App Store に表示されます。キャンセルや承認待ちの購入では PRO は有効になりません。</p></details>
+<details><summary>ウィジェットと Apple Watch はどう使いますか？</summary><p>ホーム画面の空白を長押しして ND Countdown ウィジェットを追加します。ウィジェットを長押しして編集するとイベントを選べます。ロック画面にはカスタマイズから追加します。基本ウィジェットは無料で、すべてのスタイル、一覧ウィジェット、Apple Watch には PRO が必要です。Watch にはタイトルと日付が表示され、メモ、写真、準備リストは送られません。更新時刻はシステムが決めるため、毎秒の更新は保証されません。</p></details>
+<details><summary>読み込むと連絡先やカレンダーの元データが変わりますか？</summary><p>変わりません。読み込みを選んだときにのみ権限を求めます。連絡先の誕生日や今後 1 年のカレンダーイベントをプレビューして選べ、同じ読み込み元はスキップします。カレンダーからは日付のみを保持し、時刻や複雑な繰り返しは保持しません。PRO の自動読み込みは自分で有効にする必要があり、読み込んだイベントは後の元データ変更には追従しません。</p></details>
+<details><summary>記録の保護や削除はどう行いますか？</summary><p>個人設定で Face ID または端末のパスコードを使うアプリロックを有効にできます。ウィジェット・Watch と通知の表示は別々に管理します。ウィジェットの記録を非表示にすると Watch も非表示になり、通知のタイトルと内容は別のスイッチで隠せます。イベントは個別に削除でき、同期がオンなら削除も同期されます。iCloud データの全削除は同期をオフにして端末内の記録を残します。同期をオフにするとき、同期済みの端末内コピーを取り除くこともでき、未同期の内容は残ります。</p></details>
+<details><summary>アプリの対応言語と問題の報告方法を教えてください。</summary><p>アプリはシステム言語に従う設定、簡体字中国語、英語に対応します。本サイトは繁体字中国語、韓国語、日本語も提供します。お問い合わせにはアプリとシステムのバージョン、再現手順、必要に応じて個人情報を隠したスクリーンショットを添えてください。記録を遠隔で読むサーバーはなく、診断ログも自動送信しません。</p></details>
+<p><a href="./privacy.html" data-page-link="./privacy.html">プライバシーポリシー</a></p></section>
+<footer class="page"><span>© 2026 Next Dawn Technologies</span><span><a href="./index.html" data-page-link="./index.html">ND Countdown</a> · <a href="./support.html" data-page-link="./support.html" data-i18n="support">Support</a> · <a href="./privacy.html" data-page-link="./privacy.html" data-i18n="privacy">Privacy Policy</a></span></footer>
+</main>
+<script>
+(function () {
+var translations = {
+  "en": {
+    "language": "Language",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "title": "ND Countdown — Support",
+    "description": "Help with events, reminders, syncing your data, and restoring PRO.",
+    "heading": "Support",
+    "subtitle": "Help with events, reminders, syncing your data, and restoring PRO."
+  },
+  "zh": {
+    "language": "语言",
+    "support": "支持与帮助",
+    "privacy": "隐私政策",
+    "title": "ND Countdown — 支持与帮助",
+    "description": "创建时刻、安排提醒、同步数据与恢复 PRO 的使用说明。",
+    "heading": "支持与帮助",
+    "subtitle": "创建时刻、安排提醒、同步数据与恢复 PRO 的使用说明。"
+  },
+  "zh-Hant": {
+    "language": "語言",
+    "support": "支援與說明",
+    "privacy": "隱私權政策",
+    "title": "ND Countdown — 支援與說明",
+    "description": "建立時刻、安排提醒、同步資料與回復 PRO 的使用說明。",
+    "heading": "支援與說明",
+    "subtitle": "建立時刻、安排提醒、同步資料與回復 PRO 的使用說明。"
+  },
+  "ko": {
+    "language": "언어",
+    "support": "지원",
+    "privacy": "개인정보 처리방침",
+    "title": "ND Countdown — 지원",
+    "description": "일정 만들기, 미리 알림, 데이터 동기화, PRO 복원 안내입니다.",
+    "heading": "지원",
+    "subtitle": "일정 만들기, 미리 알림, 데이터 동기화, PRO 복원 안내입니다."
+  },
+  "ja": {
+    "language": "言語",
+    "support": "サポート",
+    "privacy": "プライバシーポリシー",
+    "title": "ND Countdown — サポート",
+    "description": "イベントの作成、通知、データの同期、PRO の復元についてご案内します。",
+    "heading": "サポート",
+    "subtitle": "イベントの作成、通知、データの同期、PRO の復元についてご案内します。"
+  }
+};
+      var htmlLanguages = { en: 'en', zh: 'zh-Hans', 'zh-Hant': 'zh-Hant', ko: 'ko', ja: 'ja' };
+      var storageKey = 'nd-countdown-language';
+      var buttons = document.querySelectorAll('[data-set-lang]');
+      var sections = document.querySelectorAll('section[data-lang]');
+      var pageLinks = document.querySelectorAll('a[data-page-link]');
+
+      function normalizeLanguage(value) {
+        if (!value) return null;
+        value = value.toLowerCase();
+        if (value === 'zh-hant' || value === 'zh-tw' || value === 'zh-hk' || value === 'zh-mo') return 'zh-Hant';
+        if (value === 'zh' || value === 'zh-hans' || value === 'zh-cn' || value === 'zh-sg') return 'zh';
+        return Object.prototype.hasOwnProperty.call(translations, value) ? value : null;
+      }
+
+      function setLanguage(lang) {
+        var copy = translations[lang];
+        document.documentElement.lang = htmlLanguages[lang];
+        document.title = copy.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
+        document.querySelector('.lang-toggle').setAttribute('aria-label', copy.language);
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.getAttribute('data-set-lang') === lang));
+        });
+        sections.forEach(function (section) {
+          var active = section.getAttribute('data-lang') === lang;
+          section.classList.toggle('active', active);
+          section.hidden = !active;
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          element.textContent = copy[element.getAttribute('data-i18n')];
+        });
+        pageLinks.forEach(function (link) {
+          var url = new URL(link.getAttribute('data-page-link'), window.location.href);
+          url.searchParams.set('lang', lang);
+          link.setAttribute('href', url.href);
+        });
+        try { window.localStorage.setItem(storageKey, lang); } catch (error) { /* Storage may be disabled. */ }
+        try {
+          var url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState(null, '', url.href);
+        } catch (error) { /* File URLs may restrict history changes. */ }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-set-lang'));
+        });
+      });
+      var initialLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get('lang'));
+      if (!initialLanguage) {
+        try { initialLanguage = normalizeLanguage(window.localStorage.getItem(storageKey)); } catch (error) { /* Use the default. */ }
+      }
+      setLanguage(initialLanguage || 'en');
+    }());
+  </script>
+</body></html>
